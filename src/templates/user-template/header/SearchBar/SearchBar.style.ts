@@ -12,13 +12,13 @@ position: relative;
 box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
 @media (min-width: 768px) {
-    width: 100%
+    width: %
 }
 @media (min-width: 1280px) {
     width: 80%;
 }
 @media (min-width: 1600px) {
-    width: 70%;
+    width: 50%;
 }
 `
 export const SearchIcoin=styled.div`

@@ -40,7 +40,7 @@ AirBnB
 </div>
     {props.scrollY ?
     
-    (  <NavItem className='flex items-center 2xl:ml-[20rem] gap-5' id='navItem'>
+    (  <NavItem className='flex items-center 2xl:ml-[12rem] gap-5' id='navItem'>
     
     <div className='lg:text-[17px]'>Nơi ở</div>
     
@@ -49,7 +49,7 @@ AirBnB
     
     </NavItem>):(
         <NavItem>
-                <SearchBarNav className='2xl:ml-[20rem]'>
+                <SearchBarNav className='2xl:ml-[12rem]'>
             <div className="flex justify-between items-center px-8">
                <h5 className='text-[1.4rem]'>Địa điểm</h5>
                       <h5 className='text-[1.4rem]'>Thời gian</h5>
