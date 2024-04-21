@@ -1,5 +1,4 @@
-import React from 'react'
-import { SDiscoverItem } from './Discover.style';
+
 import { Container } from '@/components/StyleCompoment/StyleCompoment';
 import { DataDiscover } from './Data/DataDiscover';
 
