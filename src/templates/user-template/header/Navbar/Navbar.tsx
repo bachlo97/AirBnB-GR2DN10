@@ -26,6 +26,10 @@ const items = [
     
   ];
 function Navbar(props) {
+ 
+  
+
+  
   return (
     <div className="flex justify-between items-center mb-3">
     <div className='logo flex items-center gap-3 text-[2.1rem]'>
@@ -40,7 +44,7 @@ AirBnB
 </div>
     {props.scrollY ?
     
-    (  <NavItem className='flex items-center 2xl:ml-[12rem] gap-5' id='navItem'>
+    (  <NavItem  className='flex items-center 2xl:ml-[12rem] gap-5' id='navItem'>
     
     <div className='lg:text-[17px]'>Nơi ở</div>
     

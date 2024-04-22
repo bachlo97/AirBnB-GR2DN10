@@ -12,7 +12,7 @@ position: relative;
 box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
 @media (min-width: 768px) {
-    width: %
+    width: 80%
 }
 @media (min-width: 1280px) {
     width: 80%;
@@ -30,11 +30,12 @@ width:220px;
 height: 60px;
 
 padding: 0 5rem;
+transition: all .5s;
 &:hover{
    
 
     border-radius: 10rem;
-    background-color:rgb(0,0,0,.1);
+    background-color:rgba(128, 128, 128, 0.082)
 }
 `
 
@@ -48,9 +49,12 @@ height: 4.6rem;
 background-color: red;
 border-radius: 50%;
 color: white;
+
 `
 export const NavItem=styled.div`
+/* transition: all 2s; */
+
 @media (max-width: 768px){
-    display: none;
+   display: none;
 }
 `
