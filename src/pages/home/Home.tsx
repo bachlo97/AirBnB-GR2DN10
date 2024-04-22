@@ -1,4 +1,4 @@
-import Footer from '@/templates/user-template/footer/Footer'
+import Footer from '@/templates/user-template/components/footer/Footer'
 import React from 'react'
 
 function Home() {

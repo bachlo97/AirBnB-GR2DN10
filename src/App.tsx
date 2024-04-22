@@ -1,11 +1,22 @@
 import { useState } from "react";
-import Home from "./pages/home/Home";
+// ** Router
+import { RouterProvider } from "react-router-dom";
+import { router } from "./router/router.config.tsx";
+// ** End - Router
+import { GlobalStyle } from "./components/global-style/global-style.tsx";
+
+// ** Redux
+import { store } from "./redux/store.config.ts";
+import { Provider } from "react-redux";
+// ** End - Redux
 
 function App() {
   return (
-    <>
-     <Home/>
-    </>
+    <GlobalStyle>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </GlobalStyle>
   );
 }
 

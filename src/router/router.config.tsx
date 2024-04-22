@@ -1,15 +1,51 @@
+import { ScrollToTop } from "@/components/scroll-to-top";
+
+const Home = lazy(() => import("@/pages/home"));
+const Auth = lazy(() => import("@/pages/auth"));
+const Profile = lazy(() => import("@/pages/profile"));
+const RoomDetail = lazy(() => import("@/pages/room-detail"));
+const RoomList = lazy(() => import("@/pages/room-list"));
+
+import UserTemplate from "@/templates/user-template/user.template";
+import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 
 export const router = createBrowserRouter([
-    {
-      element: <UserTemplate />,
-      children: [
+  {
+    element: <ScrollToTop />,
+    children: [
         {
-          path: "",
-          element:<Home />
-  
+            element: <UserTemplate />,
+            children: [
+                {
+                    path: "",
+                    element: <Home />,
+                },
+
+                {
+                    path: "profile",
+                    element: <Profile />,
+                },
+                {
+                  path: 'roomdetail/:id',
+                  element: <RoomDetail/>
+                },
+                {
+                  path: 'roomlist/:location',
+                  element: <RoomList/>,
+                },
+                {
+                  path: 'auth/:sign',
+                  element: <Auth/>,
+                }
+            ],
         },
-        ]
-    }
+    ],
+},
+
+{
+    path: "*",
+    element: <>Page not found.</>,
+},
   ]);
   
