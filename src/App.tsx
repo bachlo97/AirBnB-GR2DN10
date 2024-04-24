@@ -1,9 +1,9 @@
-import Home from "./pages/home/Home";
+import { DetailRoom } from "./pages/room-detail/DetailRoom";
 
 function App() {
   return (
     <>
-     <Home/>
+     <DetailRoom/>
     </>
   );
 }

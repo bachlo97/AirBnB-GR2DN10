@@ -34,3 +34,13 @@
     height: 2.5rem;
     color: black;
 }
+.search-icon.active{
+    width:220px;
+    background: white;
+    border-radius: 10rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+/* .search-icon.noActive{
+    border-radius: 10rem;
+    background-color:rgba(128, 128, 128, 0.123);
+} */

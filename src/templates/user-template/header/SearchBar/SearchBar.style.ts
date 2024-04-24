@@ -23,7 +23,7 @@ box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 `
 export const SearchIcoin=styled.div`
 
-
+cursor: pointer;
 
 
 width:220px;

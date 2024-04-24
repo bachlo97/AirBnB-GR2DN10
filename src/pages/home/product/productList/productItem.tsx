@@ -2,7 +2,7 @@ import React from 'react'
 import { FaRegHeart, FaRegUser, FaStar } from 'react-icons/fa';
 import { IoBedOutline } from 'react-icons/io5';
 import { MdBedroomChild } from 'react-icons/md';
-import { SProductItem, SProductItemText } from './Product.style';
+import {  SProductItemText } from './Product.style';
 
 function ProductItem() {
     const truncateText=(text:string)=> {

@@ -2,18 +2,27 @@ import { NavItem, SearchBar, SearchIcoin, SearchIconSubmi} from './SearchBar.sty
 import { FaMagnifyingGlass } from 'react-icons/fa6'
 import { DatePicker, Select, Space } from 'antd';
 import './style.css'
+import { useState } from 'react';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function HeaderSearchBar(props:any) {
-  
+  const [activeField, setActiveField] = useState(''); // Use a string to track active field
+
+  const handleFieldClick = (fieldName: string) => {
+    setActiveField(fieldName); // Update active field state on click
+  };
   return (
  
     <NavItem className='mb-5'>
         {
   
         props.scrollY ?(        <SearchBar>
-     <div className='flex'>
-        <SearchIcoin className='search-icon'>
-  
+     <form className='flex'>
+     
+        <SearchIcoin className={`${activeField === 'location' ? 'active' : ''} search-icon`} onClick={()=>{
+         handleFieldClick('location')
+          
+        }}>
+    
                       <h5 className='text-[1.4rem] ml-4 mt-3'>Địa điểm</h5>
         <p className='text-[1.5rem] text-gray-500'>
           
@@ -23,7 +32,7 @@ function HeaderSearchBar(props:any) {
      allowClear 
       // onChange={handleChange}
       options={[
-        { value: 'jack', label: 'Jack' },
+        { value: 'jack', label: ';pre,,,,,,,,,,,' },
         { value: 'lucy', label: 'Lucy' },
         { value: 'Yiminghe', label: 'yiminghe' },
         { value: 'disabled', label: 'Disabled', disabled: true },
@@ -33,7 +42,10 @@ function HeaderSearchBar(props:any) {
 
   
         </SearchIcoin>
-        <SearchIcoin className='search-icon'>
+        <SearchIcoin className={`${activeField === 'ngayden' ? 'active' : ''} search-icon`} onClick={()=>{
+          handleFieldClick('ngayden')
+          
+        }}>
         <h5 className='text-[1.4rem] mt-3'>Ngày đến</h5>
         <p className='text-[1.5rem] text-gray-500'>
         <Space direction="vertical">
@@ -43,7 +55,10 @@ function HeaderSearchBar(props:any) {
 
         </p>
         </SearchIcoin>
-        <SearchIcoin className='search-icon'>
+        <SearchIcoin className={`${activeField === 'ngayVe' ? 'active' : ''} search-icon`} onClick={()=>{
+          handleFieldClick('ngayVe')
+          
+        }}>
         <h5 className='text-[1.4rem] mt-3'>Ngày về</h5>
         <p className='text-[1.5rem] text-gray-500'>
         <Space direction="vertical">
@@ -53,22 +68,32 @@ function HeaderSearchBar(props:any) {
 
         </p>
         </SearchIcoin>
-        <SearchIcoin className='search-icon'>
+        <SearchIcoin className={`${activeField === 'soKhach' ? 'active' : ''} search-icon`} onClick={()=>{
+          handleFieldClick('soKhach')
+          
+        }}>
         <h5 className='text-[1.4rem] mt-3'>Số khách </h5>
-        <p className='text-[1.5rem] text-gray-500'>3</p>
+        <p className='text-[1.5rem] text-gray-500'>
+
+
+          <input type="number" placeholder='Số Khách' style={{width:'100%'}} className='outline-none' />
+        </p>
 
         </SearchIcoin>
-    
-     </div> 
-        <SearchIconSubmi>
-    <div className='flex items-center justify-center'>
+            <SearchIconSubmi>
+          <div className='flex items-center justify-center'>
+  <button type='submit' >
         <FaMagnifyingGlass />
-    </div>
+    </button>
+          </div>
+  
             
 
 
       
         </SearchIconSubmi>
+     </form> 
+
     
     </SearchBar>): ``
     
