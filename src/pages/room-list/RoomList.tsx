@@ -1,6 +1,5 @@
 import { Container } from '@/components/StyleCompoment/StyleCompoment'
-import Footer from '@/templates/user-template/footer/Footer'
-import Header from '@/templates/user-template/header/Header'
+
 import { Fragment } from 'react'
 import { SButtonRoomList, SMap, SMapRespon, SRespon } from './RoomList.style'
 import ProductItemRoom from './Compoment/ProductItemRoom'
@@ -9,7 +8,7 @@ import ProductItemRoom from './Compoment/ProductItemRoom'
 function RoomList() {
   return (
     <Fragment>
-            <Header />
+      
 
         <Container> 
         <SMapRespon>
@@ -68,7 +67,7 @@ function RoomList() {
           
 
             </Container>    
-            <Footer/>
+         
     </Fragment>
   )
 }

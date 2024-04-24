@@ -24,8 +24,6 @@ axiosWithAuth.interceptors.request.use(
         config.headers.Authorization = `Bearer ${getLocalStorage(ACCESS_TOKEN)}`;
         config.headers.tokenCybersoft = TOKEN_CYBER;
 
-        config.headers.test = "test";
-
         return config;
     },
     (e) => {

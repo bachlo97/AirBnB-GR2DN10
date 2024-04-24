@@ -1,6 +1,5 @@
 import { Container } from '@/components/StyleCompoment/StyleCompoment';
-import Footer from '@/templates/user-template/footer/Footer';
-import Header from '@/templates/user-template/header/Header';
+
 import { Fragment } from 'react';
 import { BsTranslate } from 'react-icons/bs';
 import { CiHeart } from 'react-icons/ci';
@@ -13,7 +12,7 @@ import { IoIosArrowBack } from "react-icons/io";
 export function DetailRoom() {
   return (
     <Fragment>
-      <Header />
+  
 
       <Container>
         <div className=' justify-between mb-4 sm:hidden 2sm:flex'>
@@ -87,8 +86,7 @@ export function DetailRoom() {
         </div>
       </Container>
 
-      <Footer />
-
+   
     </Fragment>
   );
 }
