@@ -16,7 +16,7 @@ function ProductItem() {
     <div className='sm:w-[100%] ssm:w-[49%] 2sm:w-[32.5%] lg:w-[24%] xl:w-[19%] mt-[1.5rem]'>
       <div>
        <div className='relative'>
-        <img  style={{height:'200px'}} src="https://airbnbnew.cybersoft.edu.vn/images/phong12.png" alt="" />
+        <img  style={{height:'200px'}} className='rounded-[1rem]' src="https://airbnbnew.cybersoft.edu.vn/images/phong12.png" alt="" />
         <FaRegHeart className='absolute top-[5%] right-[5%] text-[2.5rem] text-white' />
 
        </div>

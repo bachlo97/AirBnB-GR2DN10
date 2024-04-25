@@ -10,6 +10,8 @@ import { useEffect, useState } from 'react';
 
 function Header() {
     const [scrollY,setScrollY]=useState(true);
+    const [loading,setLoading]=useState(true);
+    
 useEffect(()=>{
     const handleScroll = () => {
 if(window.scrollY>0){

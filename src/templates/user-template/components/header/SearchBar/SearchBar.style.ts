@@ -12,7 +12,7 @@ position: relative;
 box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
 @media (min-width: 768px) {
-    width: 80%
+    width:100%
 }
 @media (min-width: 1280px) {
     width: 80%;

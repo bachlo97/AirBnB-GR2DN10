@@ -2,7 +2,8 @@ import { NavItem, SearchBar, SearchIcoin, SearchIconSubmi} from './SearchBar.sty
 import { FaMagnifyingGlass } from 'react-icons/fa6'
 import { DatePicker, Select, Space } from 'antd';
 import './style.css'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import SearchBarLoading from './SearchBarLoading';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function HeaderSearchBar(props:any) {
   const [activeField, setActiveField] = useState(''); // Use a string to track active field
@@ -10,6 +11,17 @@ function HeaderSearchBar(props:any) {
   const handleFieldClick = (fieldName: string) => {
     setActiveField(fieldName); // Update active field state on click
   };
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 3000); // Mô phỏng thời gian tải dữ liệu
+  }, []);
+
+  if (isLoading) {
+    return <SearchBarLoading scrollY={props.scrollY}></SearchBarLoading>;
+  }
+  
+
   return (
  
     <NavItem className='mb-5'>

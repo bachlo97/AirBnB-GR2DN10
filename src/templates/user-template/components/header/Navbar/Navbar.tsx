@@ -1,4 +1,4 @@
-import React from 'react'
+import  { useEffect, useState } from 'react'
 import { HeaderLogo, HeaderLogoText } from '../header.style'
 import { FaAirbnb, FaBars, FaUserCircle } from 'react-icons/fa'
 import ToogleHeader from '../Toggle/ToogleHeader'
@@ -6,6 +6,8 @@ import { Button, Dropdown } from 'antd'
 import { HeaderSearchIconSubmit, SearchBarNav } from './NavBar.style'
 import { NavItem } from '../SearchBar/SearchBar.style'
 import { FaMagnifyingGlass } from 'react-icons/fa6'
+import NavbarLoading from './NavbarLoading'
+type Props=object;
 const items = [
     {
       key: '1',
@@ -25,8 +27,16 @@ const items = [
     },
     
   ];
-function Navbar(props) {
- 
+function Navbar(props:Props) {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 3000); // Mô phỏng thời gian tải dữ liệu
+  }, []);
+
+  if (isLoading) {
+    return <NavbarLoading/>;
+  }
   
 
   
@@ -44,7 +54,7 @@ AirBnB
 </div>
     {props.scrollY ?
     
-    (  <NavItem  className='flex items-center 2xl:ml-[12rem] gap-5' id='navItem'>
+    (  <NavItem  className='flex items-center gap-5' id='navItem'>
     
     <div className='lg:text-[17px]'>Nơi ở</div>
     
@@ -53,7 +63,7 @@ AirBnB
     
     </NavItem>):(
         <NavItem>
-                <SearchBarNav className='2xl:ml-[12rem]'>
+                <SearchBarNav className=''>
             <div className="flex justify-between items-center px-8">
                <h5 className='text-[1.4rem]'>Địa điểm</h5>
                       <h5 className='text-[1.4rem]'>Thời gian</h5>
