@@ -9,6 +9,7 @@ const RoomList = lazy(() => import("@/pages/room-list"));
 import UserTemplate from "@/templates/user-template/user.template";
 
 import { createBrowserRouter } from "react-router-dom";
+import Pay from "@/pages/Pay/Pay";
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ export const router = createBrowserRouter([
                 {
                   path: 'roomlist/:location',
                   element: <RoomList/>,
+                },
+                {
+                  path: 'pay',
+                  element: <Pay/>,
                 },
                 {
                   path: 'auth/:sign',

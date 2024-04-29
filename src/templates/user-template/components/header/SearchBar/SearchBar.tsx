@@ -6,10 +6,10 @@ import { useEffect, useState } from 'react';
 import SearchBarLoading from './SearchBarLoading';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function HeaderSearchBar(props:any) {
-  const [activeField, setActiveField] = useState(''); // Use a string to track active field
+  const [activeField, setActiveField] = useState(''); 
 
   const handleFieldClick = (fieldName: string) => {
-    setActiveField(fieldName); // Update active field state on click
+    setActiveField(fieldName); 
   };
   const [isLoading, setIsLoading] = useState(true);
 
