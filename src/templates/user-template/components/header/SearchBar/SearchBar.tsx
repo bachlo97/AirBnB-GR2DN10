@@ -4,19 +4,47 @@ import { DatePicker, Select, Space } from 'antd';
 import './style.css'
 import { useEffect, useState } from 'react';
 import SearchBarLoading from './SearchBarLoading';
+import { TLocaltion } from '@/services/localtion/Localtion.type';
+import { IIFE } from '@/utils';
+import { getLocaltion } from '@/services/localtion/Localtion.service';
+import { converToLocations } from './helper/ConvertToLocations';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function HeaderSearchBar(props:any) {
   const [activeField, setActiveField] = useState(''); 
-
+  const [dataLocations,setDataLocations]=useState<TLocaltion[]>([]);
   const handleFieldClick = (fieldName: string) => {
     setActiveField(fieldName); 
   };
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => setIsLoading(false), 3000); // Mô phỏng thời gian tải dữ liệu
+    setTimeout(() => setIsLoading(false), 3000); 
   }, []);
 
+  useEffect(()=>{
+    IIFE(async ()=>{
+      try{
+        const data=await getLocaltion();  
+        const content=data.content;
+          setDataLocations(converToLocations(content));
+      
+      }catch(e){
+          console.log({e});
+          
+        }
+    })
+  },[])
+
+ 
+  const dataoption=dataLocations.map((item)=>{
+    return {
+      value: item.tenViTri, label: item.tenViTri+','+item.tinhThanh
+    }
+   
+  
+  })
+
+  
   if (isLoading) {
     return <SearchBarLoading scrollY={props.scrollY}></SearchBarLoading>;
   }
@@ -40,15 +68,12 @@ function HeaderSearchBar(props:any) {
           
         <Select 
       placeholder="Địa điểm"
-     className='my-select'
+     className='my-select w-[150px]'
      allowClear 
+     
       // onChange={handleChange}
-      options={[
-        { value: 'jack', label: ';pre,,,,,,,,,,,' },
-        { value: 'lucy', label: 'Lucy' },
-        { value: 'Yiminghe', label: 'yiminghe' },
-        { value: 'disabled', label: 'Disabled', disabled: true },
-      ]}
+      options={dataoption}
+      
     />
         </p>
 
@@ -106,12 +131,12 @@ function HeaderSearchBar(props:any) {
         </SearchIconSubmi>
      </form> 
 
+
     
     </SearchBar>): ``
     
     }
 
-    
     </NavItem>
     
   )

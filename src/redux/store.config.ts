@@ -1,6 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
+import { GetLocations } from './location/Location'
 export const store = configureStore({
   reducer: {
+    GetLocations,
   },
 })
 

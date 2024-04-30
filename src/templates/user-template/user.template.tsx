@@ -4,9 +4,9 @@ import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
 
 
-type Props = {}
 
-const UserTemplate = (props: Props) => {
+
+const UserTemplate = () => {
   return (
     <>
         <Header/>

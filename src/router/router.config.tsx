@@ -9,7 +9,7 @@ const RoomList = lazy(() => import("@/pages/room-list"));
 import UserTemplate from "@/templates/user-template/user.template";
 
 import { createBrowserRouter } from "react-router-dom";
-import Pay from "@/pages/Pay/Pay";
+import Pay from "@/pages/pay/Pay";
 
 export const router = createBrowserRouter([
   {

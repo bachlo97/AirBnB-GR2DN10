@@ -10,6 +10,7 @@ import { SImg } from './Detail.style';
 import { IoIosArrowBack } from "react-icons/io";
 
 export function DetailRoom() {
+  
   return (
     <Fragment>
   
