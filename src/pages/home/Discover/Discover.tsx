@@ -40,7 +40,7 @@ function Discover() {
       <h3 className='font-bold sm:text-[1.8rem] 2sm:text-[2.2rem]'>Khám phá những địa điểm gần đây</h3>
       <div className='flex flex-wrap gap-[1%]' >
        {renderData}
-       <div className='sm:w-[49%] 2sm:w-[32.5%] lg:w-[24%] xl:w-[19%] mt-3 relative'>
+       {/* <div className='sm:w-[49%] 2sm:w-[32.5%] lg:w-[24%] xl:w-[19%] mt-3 relative'>
             <img style={{height:'150px',borderRadius:'3rem'}} src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMBrloD5EpDYmIR-8sbWawEcdNlVuAd1yb2g&s' alt='Phu quoc' />
         <div className="text absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-white text-center">
             <h4 className='text-3xl font-medium'>
@@ -48,7 +48,7 @@ function Discover() {
                 </h4>
             <p className='text-2xl'>Phú Quốc</p>
         </div> 
-        </div>
+        </div> */}
       
       
       </div>

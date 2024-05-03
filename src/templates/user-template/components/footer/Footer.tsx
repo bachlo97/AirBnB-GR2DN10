@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { IoLocationSharp } from "react-icons/io5";
 import {  FooterBottom, FooterTop, FooterWeb, SocialItem } from './footer.style';
 import { BsTelephone } from 'react-icons/bs';
@@ -7,8 +7,33 @@ import { ButtonPrimary } from '@/components/Button/Button';
 import { BiLogoFacebook } from 'react-icons/bi';
 import { CiInstagram, CiYoutube } from 'react-icons/ci';
 import { Container } from '@/components/StyleCompoment/StyleCompoment';
+import emailjs from '@emailjs/browser';
+
 
 function Footer() {
+    const form = useRef<HTMLFormElement>(null);
+    const [emailAddress, setEmailAddress] = useState(''); // Added state to store email address
+
+    const sendEmail = (e: {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        target: any; preventDefault: () => void; 
+}) => {
+        e.preventDefault();
+    
+        emailjs
+          .sendForm('service_v37gfbc', 'template_3okj7wu',(form.current as HTMLFormElement), {
+            publicKey: 'VK9JicpxPvlJdRkJA',
+          })
+          .then(
+            () => {
+              console.log('SUCCESS!');
+            },
+            (error) => {
+              console.log('FAILED...', error.text);
+            },
+          );
+          e.target.reset();
+      };
   return (
     <FooterWeb>
       
@@ -123,8 +148,8 @@ function Footer() {
             <div className='box'>
                 <h4 className='text-[1.8rem] mb-3'>Thông tin thêm</h4>
     <p style={{lineHeight:'3rem'}}>Bạn muốn mã giảm giá hãy đăng kí ngay tại đây</p>
-           <form action="" method="post" className='flex'>
-            <input type="email" placeholder='Vui lòng nhập email' className='px-3 h-[30px]'/>
+           <form action="" method="post" className='flex' ref={form} onSubmit={sendEmail}>
+            <input type="email" placeholder='Vui lòng nhập email' name="user_email" className='px-3 h-[30px] text-black'/>
             <ButtonPrimary width='75px' height={ 3.2} type="submit" className='text-2xl'>Đăng Kí</ButtonPrimary>
            </form>
                <h4 style={{lineHeight:'3rem'}}>Theo dõi chúng tôi qua</h4>

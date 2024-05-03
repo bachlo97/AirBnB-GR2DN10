@@ -11,7 +11,7 @@ const UserTemplate = () => {
     <>
         <Header/>
         <main>
-            <Suspense fallback={<p className="text-red-400">Loading...</p>}>
+            <Suspense>
                 <Outlet/>
             </Suspense>
         </main>

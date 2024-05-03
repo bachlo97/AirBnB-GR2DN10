@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { GetLocations } from './location/Location'
+import { GetRoomItem } from './Room/Room'
+
 export const store = configureStore({
   reducer: {
-    GetLocations,
+    GetRoomItem,
   },
 })
 

@@ -1,10 +1,14 @@
 import { ButtonPrimary, ButtonPrimaryTwo } from "@/components/Button/Button";
 import { TextPrimary } from "@/components/StyleCompoment/StyleCompoment";
+import { IoIosAdd, IoIosRemove } from "react-icons/io";
 
 import { MdBedroomChild } from "react-icons/md";
 import { PiTelevisionSimpleBold } from "react-icons/pi";
+import ModalRoomDetail from "../Modal/ModalRoomDetail";
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Props=any;
 
-function InformationDetailRoom() {
+function InformationDetailRoom(props:Props) {
   return (
    
  <div className="mx-auto my-3 mt-8 flex lg:w-[100%] 2xl:w-3/4 justify-between">
@@ -66,32 +70,58 @@ function InformationDetailRoom() {
         <div className="border-b border-solid border-gray-600 py-8">
           <h4 className="mb-3 text-3xl font-bold">Về địa điểm này</h4>
           <div>
-            Đã 5 năm, Samir, Mehdi và tôi David ở chung nhà với bạn cùng phòng.
-            Nó nằm trong một khu phố quốc tế và sôi động ở Paris. Chúng tôi
-            quyết định thuê một trong các phòng của mình và gặp gỡ khách, giống
-            như bạn vậy! Do đó, bạn sẽ có phòng riêng và các phòng chung khác!
-            Hãy yên tâm, chúng tôi sẽ tôn trọng quyền riêng tư và quyền tự chủ
-            của bạn!{" "}
+           {props.data.moTa}
           </div>
         </div>
 
         <div className=" py-8">
           <h4 className="mb-3 text-3xl font-bold">Địa điểm này có gì</h4>
-          <div className="flex flex-wrap">
-            <div className="flex w-1/2 items-center gap-2 text-[2.1rem]">
+          <div className="flex flex-wrap"> 
+              {props.data.tivi ? (
+                <div className="flex w-1/2 items-center gap-2 text-[2.1rem]">
+         
               <PiTelevisionSimpleBold />
               TV
             </div>
-            <div className="flex w-1/2  items-center gap-2 text-[2.1rem]">
+              ):''}
+              {props.data.banLa ? (
+                <div className="flex w-1/2 items-center gap-2 text-[2.1rem]">
+         
               <PiTelevisionSimpleBold />
-              TV
+              Bàn Là
             </div>
-            <div className="flex items-center gap-2 text-[2.1rem]">
+              ):''}
+              {props.data.dieuHoa ? (
+                <div className="flex w-1/2 items-center gap-2 text-[2.1rem]">
+         
               <PiTelevisionSimpleBold />
-              TV
+                Điều Hoà
             </div>
+              ):''}
+              {props.data.mayGiat ? (
+                <div className="flex w-1/2 items-center gap-2 text-[2.1rem]">
+         
+              <PiTelevisionSimpleBold />
+              Máy Giặt
+            </div>
+              ):''}
+          
           </div>
-          <ButtonPrimaryTwo width="16rem" height={3.7} className="rounded-[1rem] mt-8">Xem Thêm</ButtonPrimaryTwo>
+          <div className="mt-3">
+             <ModalRoomDetail 
+ tivi={props.data.tivi}
+ banLa={props.data.banLa}
+ dieuHoa={props.data.dieuHoa}
+ mayGiat={props.data.mayGiat}
+ wifi={props.data.wifi}
+ bep={props.data.bep}
+ doXe={props.data.doXe}
+ hoBoi={props.data.hoBoi}
+ banUi={props.data.banUi}
+
+ />
+          </div>
+
         </div>
       </div>
 
@@ -127,7 +157,14 @@ function InformationDetailRoom() {
                 <label htmlFor="" className="block text-[1.4rem] font-semibold">
                   Khach
                 </label>
-                <p>1 Khách</p>
+                <div className="flex items-center justify-between">
+                <IoIosAdd className="text-[2.5rem]"/>
+
+                      <p>1 Khách</p>
+                      <IoIosRemove className="text-[2.5rem]"/>
+
+                </div>
+            
               </div>
             </div>
 
@@ -135,6 +172,10 @@ function InformationDetailRoom() {
               width="100%"
               height={4}
               className="mt-5 rounded-[1rem] border border-solid"
+              onClick={()=>{
+               
+                
+              }}
             >
               Xac Nhan
             </ButtonPrimary>

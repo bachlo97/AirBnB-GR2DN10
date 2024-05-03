@@ -1,17 +1,59 @@
 import { Container } from '@/components/StyleCompoment/StyleCompoment'
 
-import { Fragment } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { SButtonRoomList, SMap, SMapRespon, SRespon } from './RoomList.style'
 import ProductItemRoom from './Compoment/ProductItemRoom'
+import { useParams } from 'react-router-dom'
+import { TRoom } from '@/services/room/Room.type'
+import { IIFE } from '@/utils'
+import { getRoomsList } from '@/services/room/RoomsList.style'
+import { converToRoomsList } from './helpers/ConverToRoomList'
+import ListProductRoom from './Compoment/ListProductRoom'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
+import { GetRoomItem } from '@/redux/Room/Room'
+import LoadPage from '../../hooks/LoadPage';
+import LoadRoomList from './load/LoadRoomList'
 
 
 function RoomList() {
+  const roomDate = useAppSelector((state) => state.GetRoomItem);
+  const dispatch = useAppDispatch();
+
+  const {location}=useParams()
+  const [dataLocation,setDataLocation]=useState<TRoom[]>([]);
+  useEffect(()=>{
+    IIFE(async()=>{
+      try{
+         const data=await getRoomsList(location);
+      const content=data.content;
+      setDataLocation(converToRoomsList(content)); 
+        
+
+      }catch(e){
+        console.log(e);
+        
+      }
+    
+
+    })
+  },[location])
+  const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+      setTimeout(() => setIsLoading(false), 2000);
+    }, []);
+  
+    if (isLoading) {
+      return <LoadRoomList data={dataLocation}/>
+      }
   return (
     <Fragment>
       
 
         <Container> 
+
         <SMapRespon>
+          
            <iframe
             
             src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15672.855867132948!2d106.59377735!3d10.8713242!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1713872185758!5m2!1sen!2s" width="100%" height='300px'  loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>    
@@ -20,7 +62,7 @@ function RoomList() {
             
             <div className='lg:w-3/5 xl:w-3/5'>
                 <SRespon className=''>
-               <p className='text-xl text-gray-600'>Hơn 300 chỗ ở 16 tháng 4 - 14 tháng 5</p>
+               <p className='text-xl text-gray-600'>Hơn 300 chỗ ở {roomDate.depDay} - {roomDate.nextDay}</p>
             <h3 className='text-[2.5rem] font-semibold'>Chỗ ở tại khu vực bản đồ đã chọn</h3>   
            <div className='flex gap-5 my-4'>
              <SButtonRoomList className='text-[1.3rem]'>
@@ -30,33 +72,21 @@ function RoomList() {
                 Giá
             </SButtonRoomList>
              <SButtonRoomList className='text-[1.3rem]'>
-                Đặt ngay
+                Đ ngay
             </SButtonRoomList>
              <SButtonRoomList className='text-[1.3rem]'>
-                Phòng và phòng ngủ
+               ặt Phòng và phòng ngủ
             </SButtonRoomList>
              <SButtonRoomList className='text-[1.3rem]'>
                 Bộ lọc khác
             </SButtonRoomList>
            </div>
            </SRespon>
-           <div className='flex gap-[1%] flex-wrap'>
-            <div className='ssm:w-[49%] xl:w-[32%]'>
-            <ProductItemRoom/>
-            </div>
-            <div className='ssm:w-[49%] xl:w-[32%]'>
-            <ProductItemRoom/>
-            </div>
-            <div className='w-[32%]'>
-            <ProductItemRoom/>
-            </div>
-            <div className='w-[32%]'>
-            <ProductItemRoom/>
-            </div>
-            
-           </div>
+        <div>
+          <ListProductRoom data={dataLocation}></ListProductRoom>
+        </div>
             </div>   
-            <SMap className='lg:w-3/5 xl:w-2/5'>
+            <SMap className='lg:w-3/5 xl:w-2/5 mb-5'>
             <iframe
             
             src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15672.855867132948!2d106.59377735!3d10.8713242!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1713872185758!5m2!1sen!2s" width="100%" height='100%'  loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>            {/*  */}

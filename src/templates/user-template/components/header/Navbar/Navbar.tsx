@@ -31,7 +31,7 @@ function Navbar(props:Props) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => setIsLoading(false), 3000); // Mô phỏng thời gian tải dữ liệu
+    setTimeout(() => setIsLoading(false), 2000); // Mô phỏng thời gian tải dữ liệu
   }, []);
 
   if (isLoading) {
