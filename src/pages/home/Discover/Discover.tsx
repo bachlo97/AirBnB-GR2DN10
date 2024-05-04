@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { TLocaltion } from '@/services/localtion/Localtion.type';
 import { IIFE } from '@/utils';
 import { getLocaltionsPage } from '@/services/localtion/LocationsPage';
-import { converToLocationsPages } from './helps/ConverToDiscover';
+import { converToLocationsPages } from './helpers/ConverToDiscover';
 
 function Discover() {
   const [dataLocations,setDataLocations]=useState<TLocaltion[]>([])

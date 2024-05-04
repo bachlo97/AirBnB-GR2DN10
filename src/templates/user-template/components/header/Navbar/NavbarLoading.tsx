@@ -1,7 +1,7 @@
 import React from 'react'
 import { HeaderLogo, HeaderLogoText } from '../header.style'
 import { FaAirbnb, FaBars, FaUserCircle } from 'react-icons/fa'
-import { NavItem } from '../SearchBar/SearchBar.style'
+import { NavItem } from '../searchbar/SearchBar.style'
 import { HeaderSearchIconSubmit, SearchBarNav } from './NavBar.style'
 import { FaMagnifyingGlass } from 'react-icons/fa6'
 import ToogleHeader from '../Toggle/ToogleHeader'

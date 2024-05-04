@@ -14,10 +14,13 @@ box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 @media (min-width: 768px) {
     width:100%
 }
-@media (min-width: 1280px) {
-    width: 80%;
+@media (min-width: 1000px) {
+    width: 78%;
 }
-@media (min-width: 1600px) {
+@media (min-width: 1280px) {
+    width: 68%;
+}
+@media (min-width: 1700px) {
     width: 50%;
 }
 `

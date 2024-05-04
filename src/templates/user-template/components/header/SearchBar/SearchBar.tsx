@@ -7,7 +7,7 @@ import {
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { DatePicker, Select, Space } from "antd";
 import "./style.css";
-import { SetStateAction, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import SearchBarLoading from "./SearchBarLoading";
 import { TLocaltion } from "@/services/localtion/Localtion.type";
 import { IIFE } from "@/utils";
@@ -15,8 +15,10 @@ import { getLocaltion } from "@/services/localtion/Localtion.service";
 import { converToLocations } from "./helper/ConvertToLocations";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "@/redux/hooks";
-import { setNextDayRoom, setPrevDayRoom } from "@/redux/Room/Room";
+import { setStartDayRoom, setEndDayRoom } from "@/redux/room/Date.slice";
 import { Dayjs } from "dayjs";
+import moment from 'moment';
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function HeaderSearchBar(props: any) {
   const navigate = useNavigate();
@@ -25,7 +27,8 @@ function HeaderSearchBar(props: any) {
   const [activeField, setActiveField] = useState("");
   const [dataLocations, setDataLocations] = useState<TLocaltion[]>([]);
   const [valueId, setValueId] = useState(0);
-  const [valueDayId, setValueDayId] = useState("");
+  const [valueStartDay, setvalueStartDay] = useState("");
+  const [valueEndDay, setvalueEndDay] = useState("");
 
   const handleFieldClick = (fieldName: string) => {
     setActiveField(fieldName);
@@ -47,19 +50,28 @@ function HeaderSearchBar(props: any) {
       }
     });
   }, []);
-  const handleDateChange = (selectedDate: Dayjs) => {
+  const handleDateChange = (selectedDate: Dayjs,name:string) => {
     const selectedDateValue = selectedDate && selectedDate.format("YYYY-MM-DD");
-    setValueDayId(selectedDateValue);
+    
+    if(name==='currentDay'){
+         setvalueStartDay(selectedDateValue);
+    }else{
+   
+      setvalueEndDay(selectedDateValue);
+    }
   };
   const handleChange = (value: number) => {
     setValueId(value);
+
+    
   };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleSubmit = (value: any) => {
-    dispatch(setNextDayRoom(valueDayId))
+  const handleSubmit = (e: { preventDefault: () => void; }) => {
+e.preventDefault();
   };
 
-  const dataoption = dataLocations.map((item) => {
+// dataOption
+  const dataOption = dataLocations.map((item) => {
     return {
       value: item.id,
       label: item.tenViTri + "," + item.tinhThanh,
@@ -69,6 +81,8 @@ function HeaderSearchBar(props: any) {
   if (isLoading) {
     return <SearchBarLoading scrollY={props.scrollY}></SearchBarLoading>;
   }
+
+
 
   return (
     <NavItem className="mb-5">
@@ -88,7 +102,7 @@ function HeaderSearchBar(props: any) {
                   className="my-select w-[150px]"
                   allowClear
                   onChange={handleChange}
-                  options={dataoption}
+                  options={dataOption}
                 />
               </p>
             </SearchIcoin>
@@ -103,7 +117,8 @@ function HeaderSearchBar(props: any) {
                 <Space direction="vertical">
                   <DatePicker
                     placeholder="Ngày tới"
-                    onChange={(selectedDate) => handleDateChange(selectedDate)}
+                    onChange={(selectedDate) => handleDateChange(selectedDate,'currentDay')}
+                    name="currentDay"
                   />
                 </Space>
               </p>
@@ -113,11 +128,15 @@ function HeaderSearchBar(props: any) {
               onClick={() => {
                 handleFieldClick("ngayVe");
               }}
+           
             >
               <h5 className="mt-3 text-[1.4rem]">Ngày về</h5>
               <p className="text-[1.5rem] text-gray-500">
                 <Space direction="vertical">
-                  <DatePicker placeholder="Ngày về" />
+                  <DatePicker placeholder="Ngày về" 
+                    onChange={(selectedDate) => handleDateChange(selectedDate,'nextDay')}
+                  name="nextDay"
+                  />
                 </Space>
               </p>
             </SearchIcoin>
@@ -140,8 +159,12 @@ function HeaderSearchBar(props: any) {
             <button
               type="submit"
               onClick={(e) => {
+               
+                dispatch(setStartDayRoom(valueStartDay));
+                dispatch(setEndDayRoom(valueEndDay));
                 navigate(`/roomlist/${valueId}`);
-                dispatch(setNextDayRoom(valueDayId));
+                
+                
               }}
             >
               <SearchIconSubmi>

@@ -8,11 +8,11 @@ import { BiLogoFacebook } from 'react-icons/bi';
 import { CiInstagram, CiYoutube } from 'react-icons/ci';
 import { Container } from '@/components/StyleCompoment/StyleCompoment';
 import emailjs from '@emailjs/browser';
+import AlertSuccess from '@/components/notification/AlertSuccess';
 
 
 function Footer() {
     const form = useRef<HTMLFormElement>(null);
-    const [emailAddress, setEmailAddress] = useState(''); // Added state to store email address
 
     const sendEmail = (e: {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -32,14 +32,16 @@ function Footer() {
               console.log('FAILED...', error.text);
             },
           );
+           
           e.target.reset();
+        
       };
   return (
     <FooterWeb>
       
        <FooterTop>
       <Container>
-       
+       <button onClick={()=>{<AlertSuccess/>}}>asdsa</button>
 <div className='grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-[10px]'>
             <div className='box'>
                 <h3 className='text-[2rem] mb-5'>Airbnb</h3>
@@ -150,7 +152,9 @@ function Footer() {
     <p style={{lineHeight:'3rem'}}>Bạn muốn mã giảm giá hãy đăng kí ngay tại đây</p>
            <form action="" method="post" className='flex' ref={form} onSubmit={sendEmail}>
             <input type="email" placeholder='Vui lòng nhập email' name="user_email" className='px-3 h-[30px] text-black'/>
-            <ButtonPrimary width='75px' height={ 3.2} type="submit" className='text-2xl'>Đăng Kí</ButtonPrimary>
+            <ButtonPrimary width='75px' height={ 3.2} type="submit" className='text-2xl'
+            
+            >Đăng Kí</ButtonPrimary>
            </form>
                <h4 style={{lineHeight:'3rem'}}>Theo dõi chúng tôi qua</h4>
           <div className="socials flex gap-3">

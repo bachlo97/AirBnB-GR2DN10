@@ -12,7 +12,6 @@ import { useParams } from 'react-router-dom';
 import { TRoomDetail } from '@/services/room-detail/RoomDetail.type';
 import { IIFE } from '@/utils';
 import { GetRoomDetail } from '@/services/room-detail/RoomDetail.service';
-import { converToRoomDetail } from './helpers/ConverToRoomDetail';
 
 
 type Props = object

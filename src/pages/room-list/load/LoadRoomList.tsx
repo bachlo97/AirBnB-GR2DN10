@@ -10,7 +10,7 @@ import { getRoomsList } from '@/services/room/RoomsList.style'
 
 import { useAppSelector } from '@/redux/hooks'
 import { SButtonRoomList, SMap, SMapRespon, SRespon } from '../RoomList.style'
-import ListProductRoom from '../Compoment/ListProductRoom'
+import ListProductRoom from '../compoment/ListProductRoom'
 import LoadListRoom from './LoadListRoom'
 
 

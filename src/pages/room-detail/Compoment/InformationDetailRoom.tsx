@@ -4,11 +4,15 @@ import { IoIosAdd, IoIosRemove } from "react-icons/io";
 
 import { MdBedroomChild } from "react-icons/md";
 import { PiTelevisionSimpleBold } from "react-icons/pi";
-import ModalRoomDetail from "../Modal/ModalRoomDetail";
+import ModalRoomDetail from "../modal/ModalRoomDetail";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Props=any;
 
 function InformationDetailRoom(props:Props) {
+  const navigate = useNavigate();
+  const[countClient,setCountClient]=useState(0)
   return (
    
  <div className="mx-auto my-3 mt-8 flex lg:w-[100%] 2xl:w-3/4 justify-between">
@@ -74,7 +78,7 @@ function InformationDetailRoom(props:Props) {
           </div>
         </div>
 
-        <div className=" py-8">
+        <div className="py-8">
           <h4 className="mb-3 text-3xl font-bold">Địa điểm này có gì</h4>
           <div className="flex flex-wrap"> 
               {props.data.tivi ? (
@@ -158,10 +162,23 @@ function InformationDetailRoom(props:Props) {
                   Khach
                 </label>
                 <div className="flex items-center justify-between">
-                <IoIosAdd className="text-[2.5rem]"/>
+                  <button onClick={(e)=>{
+                    e.preventDefault()
+                    setCountClient(countClient+1)}}
+                    
+                    >
+                                    <IoIosAdd className="text-[2.5rem]"/>
 
-                      <p>1 Khách</p>
-                      <IoIosRemove className="text-[2.5rem]"/>
+                  </button>
+
+                      <p>{countClient} Khách</p>
+                      <button onClick={(e)=>{
+                    e.preventDefault()
+                    countClient>0?   (setCountClient(countClient-1)) :'0'
+                 }}
+                    
+                    >                      <IoIosRemove className="text-[2.5rem]"/>
+</button>
 
                 </div>
             
@@ -174,7 +191,7 @@ function InformationDetailRoom(props:Props) {
               className="mt-5 rounded-[1rem] border border-solid"
               onClick={()=>{
                
-                
+                navigate('/pay')
               }}
             >
               Xac Nhan

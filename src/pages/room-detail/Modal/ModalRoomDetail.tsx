@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { ButtonPrimaryTwo } from '@/components/Button/Button';
 import { Button, Modal } from 'antd';
 import React, { useState } from 'react'
 import { PiTelevisionSimpleBold } from 'react-icons/pi';
@@ -27,9 +28,9 @@ function ModalRoomDetail(props:Props) {
     };
   return (
     <>
-      <Button type="primary" onClick={showModal}>
+      <ButtonPrimaryTwo width='12rem' height={3.5} className='rounded-[1rem]'  onClick={showModal}>
          Xem Thêm
-        </Button> 
+        </ButtonPrimaryTwo> 
         <Modal
         open={open}
         title="Địa điểm này có gì"

@@ -4,8 +4,8 @@ import { Container } from '@/components/StyleCompoment/StyleCompoment'
 
 import { HeaderWeb } from './header.style';
 
-import Navbar from './Navbar/Navbar';
-import HeaderSearchBar from './SearchBar/SearchBar';
+import Navbar from './navbar/Navbar';
+import HeaderSearchBar from './searchbar/SearchBar';
 import { useEffect, useState } from 'react';
 
 function Header() {

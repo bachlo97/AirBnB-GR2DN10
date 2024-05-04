@@ -2,21 +2,22 @@ import { Container } from '@/components/StyleCompoment/StyleCompoment'
 
 import { Fragment, useEffect, useState } from 'react'
 import { SButtonRoomList, SMap, SMapRespon, SRespon } from './RoomList.style'
-import ProductItemRoom from './Compoment/ProductItemRoom'
+import ProductItemRoom from './compoment/ProductItemRoom'
 import { useParams } from 'react-router-dom'
 import { TRoom } from '@/services/room/Room.type'
 import { IIFE } from '@/utils'
 import { getRoomsList } from '@/services/room/RoomsList.style'
 import { converToRoomsList } from './helpers/ConverToRoomList'
-import ListProductRoom from './Compoment/ListProductRoom'
+import ListProductRoom from './compoment/ListProductRoom'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
-import { GetRoomItem } from '@/redux/Room/Room'
+import { GetDateSlice } from '@/redux/room/Date.slice'
 import LoadPage from '../../hooks/LoadPage';
 import LoadRoomList from './load/LoadRoomList'
+import moment from 'moment'
 
 
 function RoomList() {
-  const roomDate = useAppSelector((state) => state.GetRoomItem);
+  const roomDate = useAppSelector((state) => state.GetDateSlice);
   const dispatch = useAppDispatch();
 
   const {location}=useParams()
@@ -46,6 +47,13 @@ function RoomList() {
     if (isLoading) {
       return <LoadRoomList data={dataLocation}/>
       }
+      // 
+      // Ngày
+const startDate = moment(roomDate.startDate);
+const endDate = moment(roomDate.endDate);
+
+const diffInDays = endDate.diff(startDate, 'days');
+
   return (
     <Fragment>
       
@@ -62,7 +70,8 @@ function RoomList() {
             
             <div className='lg:w-3/5 xl:w-3/5'>
                 <SRespon className=''>
-               <p className='text-xl text-gray-600'>Hơn 300 chỗ ở {roomDate.depDay} - {roomDate.nextDay}</p>
+                  {/* {diffInDays+1} */}
+               <p className='text-xl text-gray-600'>Hơn 300 chỗ ở {roomDate.startDate} - {roomDate.endDate}</p>
             <h3 className='text-[2.5rem] font-semibold'>Chỗ ở tại khu vực bản đồ đã chọn</h3>   
            <div className='flex gap-5 my-4'>
              <SButtonRoomList className='text-[1.3rem]'>

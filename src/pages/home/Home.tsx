@@ -1,8 +1,8 @@
 
 import  { Fragment } from 'react'
-import Discover from './Discover/Discover'
-import InforWherever from './InforWherever/InforWherever'
 import HomeProduct from './product/product'
+import Discover from './discover/Discover'
+import InforWherever from './inforWherever/InforWherever'
 
 
 function Home() {
