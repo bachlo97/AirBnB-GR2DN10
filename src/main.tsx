@@ -5,7 +5,5 @@ import { GlobalStyle } from './components/global-style/global-style.tsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <GlobalStyle>
     <App />
-  </GlobalStyle>
 )

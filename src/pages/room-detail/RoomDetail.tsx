@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 import { Fragment, useEffect, useState } from 'react';
 import { BsTranslate } from 'react-icons/bs';
@@ -111,6 +112,15 @@ const RoomDetail = (_props: Props) => {
 
  
   </Fragment>
+=======
+import React from 'react'
+
+type Props = {}
+
+const RoomDetail = (props: Props) => {
+  return (
+    <div>RoomDetail</div>
+>>>>>>> f6256daf7a43fb4ba2826914b563b320b744c069
   )
 }
 
