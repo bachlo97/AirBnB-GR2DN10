@@ -7,35 +7,14 @@ import { ButtonPrimary } from '@/components/Button/Button';
 import { BiLogoFacebook } from 'react-icons/bi';
 import { CiInstagram, CiYoutube } from 'react-icons/ci';
 import { Container } from '@/components/StyleCompoment/StyleCompoment';
-import emailjs from '@emailjs/browser';
 import AlertSuccess from '@/components/notification/AlertSuccess';
+import { useSendEmailHook } from './hooks/SendEmailHook';
+import emailjs from '@emailjs/browser';
 
 
 function Footer() {
-    const form = useRef<HTMLFormElement>(null);
 
-    const sendEmail = (e: {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        target: any; preventDefault: () => void; 
-}) => {
-        e.preventDefault();
-    
-        emailjs
-          .sendForm('service_v37gfbc', 'template_3okj7wu',(form.current as HTMLFormElement), {
-            publicKey: 'VK9JicpxPvlJdRkJA',
-          })
-          .then(
-            () => {
-              console.log('SUCCESS!');
-            },
-            (error) => {
-              console.log('FAILED...', error.text);
-            },
-          );
-           
-          e.target.reset();
-        
-      };
+const {form,sendEmail}=useSendEmailHook();
   return (
     <FooterWeb>
       

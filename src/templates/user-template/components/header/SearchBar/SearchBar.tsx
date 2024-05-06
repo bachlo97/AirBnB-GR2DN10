@@ -8,75 +8,33 @@ import { FaMagnifyingGlass } from "react-icons/fa6";
 import { DatePicker, Select, Space } from "antd";
 import "./style.css";
 import {  useEffect, useState } from "react";
-import SearchBarLoading from "./SearchBarLoading";
-import { TLocaltion } from "@/services/localtion/Localtion.type";
-import { IIFE } from "@/utils";
-import { getLocaltion } from "@/services/localtion/Localtion.service";
-import { converToLocations } from "./helper/ConvertToLocations";
-import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "@/redux/hooks";
+
 import { setStartDayRoom, setEndDayRoom } from "@/redux/room/Date.slice";
-import { Dayjs } from "dayjs";
-import moment from 'moment';
+
+import SearchBarLoading from "../loading/SearchBarLoading";
+import { useSearchBarHook } from "../hooks/useSearchBarHook";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function HeaderSearchBar(props: any) {
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
-  const [activeField, setActiveField] = useState("");
-  const [dataLocations, setDataLocations] = useState<TLocaltion[]>([]);
-  const [valueId, setValueId] = useState(0);
-  const [valueStartDay, setvalueStartDay] = useState("");
-  const [valueEndDay, setvalueEndDay] = useState("");
-
-  const handleFieldClick = (fieldName: string) => {
-    setActiveField(fieldName);
-  };
   const [isLoading, setIsLoading] = useState(true);
-
+  const {  navigate,
+    dispatch,
+    activeField,
+   
+    valueId,
+    valueStartDay,
+    valueEndDay,
+    dataOption,
+    handleFieldClick,
+    handleDateChange,
+    handleChange,
+    handleSubmit}=useSearchBarHook();
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 2000);
   }, []);
 
-  useEffect(() => {
-    IIFE(async () => {
-      try {
-        const data = await getLocaltion();
-        const content = data.content;
-        setDataLocations(converToLocations(content));
-      } catch (e) {
-        console.log({ e });
-      }
-    });
-  }, []);
-  const handleDateChange = (selectedDate: Dayjs,name:string) => {
-    const selectedDateValue = selectedDate && selectedDate.format("YYYY-MM-DD");
-    
-    if(name==='currentDay'){
-         setvalueStartDay(selectedDateValue);
-    }else{
-   
-      setvalueEndDay(selectedDateValue);
-    }
-  };
-  const handleChange = (value: number) => {
-    setValueId(value);
 
-    
-  };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
-e.preventDefault();
-  };
-
-// dataOption
-  const dataOption = dataLocations.map((item) => {
-    return {
-      value: item.id,
-      label: item.tenViTri + "," + item.tinhThanh,
-    };
-  });
 
   if (isLoading) {
     return <SearchBarLoading scrollY={props.scrollY}></SearchBarLoading>;

@@ -2,42 +2,16 @@ import { Container } from '@/components/StyleCompoment/StyleCompoment'
 
 import { Fragment, useEffect, useState } from 'react'
 import { SButtonRoomList, SMap, SMapRespon, SRespon } from './RoomList.style'
-import ProductItemRoom from './compoment/ProductItemRoom'
-import { useParams } from 'react-router-dom'
-import { TRoom } from '@/services/room/Room.type'
-import { IIFE } from '@/utils'
-import { getRoomsList } from '@/services/room/RoomsList.style'
-import { converToRoomsList } from './helpers/ConverToRoomList'
+
 import ListProductRoom from './compoment/ListProductRoom'
-import { useAppDispatch, useAppSelector } from '@/redux/hooks'
-import { GetDateSlice } from '@/redux/room/Date.slice'
-import LoadPage from '../../hooks/LoadPage';
+
 import LoadRoomList from './load/LoadRoomList'
-import moment from 'moment'
+
+import { useRoomListHook } from './hooks/UseRoomListHook'
 
 
 function RoomList() {
-  const roomDate = useAppSelector((state) => state.GetDateSlice);
-  const dispatch = useAppDispatch();
-
-  const {location}=useParams()
-  const [dataLocation,setDataLocation]=useState<TRoom[]>([]);
-  useEffect(()=>{
-    IIFE(async()=>{
-      try{
-         const data=await getRoomsList(location);
-      const content=data.content;
-      setDataLocation(converToRoomsList(content)); 
-        
-
-      }catch(e){
-        console.log(e);
-        
-      }
-    
-
-    })
-  },[location])
+ const {roomDate,dispatch,dataLocation}=useRoomListHook();
   const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -47,13 +21,7 @@ function RoomList() {
     if (isLoading) {
       return <LoadRoomList data={dataLocation}/>
       }
-      // 
-      // Ngày
-const startDate = moment(roomDate.startDate);
-const endDate = moment(roomDate.endDate);
-
-const diffInDays = endDate.diff(startDate, 'days');
-
+  
   return (
     <Fragment>
       

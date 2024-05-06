@@ -6,7 +6,7 @@ import { Button, Dropdown } from 'antd'
 import { HeaderSearchIconSubmit, SearchBarNav } from './NavBar.style'
 import { NavItem } from '../searchbar/SearchBar.style'
 import { FaMagnifyingGlass } from 'react-icons/fa6'
-import NavbarLoading from './NavbarLoading'
+import NavbarLoading from '../loading/NavbarLoading'
 type Props=object;
 const items = [
     {

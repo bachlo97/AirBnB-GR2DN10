@@ -1,4 +1,4 @@
-import { NavItem, SearchBar } from './SearchBar.style'
+import { NavItem, SearchBar } from '../searchbar/SearchBar.style'
 import Skeleton from 'react-loading-skeleton'
 
 type Props={
