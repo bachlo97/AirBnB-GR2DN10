@@ -1,7 +1,7 @@
 import  { useEffect, useState } from 'react'
 import { HeaderLogo, HeaderLogoText } from '../header.style'
 import { FaAirbnb, FaBars, FaUserCircle } from 'react-icons/fa'
-import ToogleHeader from '../Toggle/ToogleHeader'
+import ToogleHeader from '../Ytoggle/ToogleHeader'
 import { Button, Dropdown } from 'antd'
 import { HeaderSearchIconSubmit, SearchBarNav } from './NavBar.style'
 import { NavItem } from '../searchbar/SearchBar.style'

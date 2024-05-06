@@ -4,7 +4,7 @@ import { Container } from '@/components/StyleCompoment/StyleCompoment'
 
 import { HeaderWeb } from './header.style';
 
-import Navbar from './navbar/Navbar';
+import Navbar from './Ynavbar/Navbar';
 import HeaderSearchBar from './searchbar/SearchBar';
 import { useEffect, useState } from 'react';
 

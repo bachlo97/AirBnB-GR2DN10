@@ -7,7 +7,6 @@ import { ButtonPrimary } from '@/components/Button/Button';
 import { BiLogoFacebook } from 'react-icons/bi';
 import { CiInstagram, CiYoutube } from 'react-icons/ci';
 import { Container } from '@/components/StyleCompoment/StyleCompoment';
-import AlertSuccess from '@/components/notification/AlertSuccess';
 import { useSendEmailHook } from './hooks/SendEmailHook';
 import emailjs from '@emailjs/browser';
 
@@ -20,7 +19,7 @@ const {form,sendEmail}=useSendEmailHook();
       
        <FooterTop>
       <Container>
-       <button onClick={()=>{<AlertSuccess/>}}>asdsa</button>
+
 <div className='grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-[10px]'>
             <div className='box'>
                 <h3 className='text-[2rem] mb-5'>Airbnb</h3>

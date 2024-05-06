@@ -3,7 +3,7 @@ import { Container } from '@/components/StyleCompoment/StyleCompoment'
 import { Fragment, useEffect, useState } from 'react'
 import { SButtonRoomList, SMap, SMapRespon, SRespon } from './RoomList.style'
 
-import ListProductRoom from './compoment/ListProductRoom'
+import ListProductRoom from './Scompoment/ListProductRoom'
 
 import LoadRoomList from './load/LoadRoomList'
 

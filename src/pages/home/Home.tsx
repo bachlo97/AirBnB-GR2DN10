@@ -5,8 +5,9 @@ import Discover from './discover/Discover'
 import InforWherever from './inforWherever/InforWherever'
 
 
+
 function Home() {
-  
+ 
   return (
     <Fragment>
      
@@ -16,7 +17,6 @@ function Home() {
 
     <HomeProduct></HomeProduct>
     <InforWherever/>
-
  
     </Fragment>
     

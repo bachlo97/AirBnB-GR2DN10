@@ -1,7 +1,10 @@
 import { useRef } from "react";
 import emailjs from '@emailjs/browser';
+import useAlertHook from "@/hooks/notification/Alert";
 
 export const useSendEmailHook=()=>{
+  const {alertSuccess}=useAlertHook('Gửi email')
+
     const form = useRef<HTMLFormElement>(null);
     const sendEmail = (e: {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -23,7 +26,7 @@ export const useSendEmailHook=()=>{
           );
            
           e.target.reset();
-        
+          alertSuccess();
       };
       return {form,sendEmail}
 }

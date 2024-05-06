@@ -1,11 +1,11 @@
 
 import { Container } from '@/components/StyleCompoment/StyleCompoment';
-import { DataDiscover } from './Data/DataDiscover';
 import { useEffect, useState } from 'react';
 import { TLocaltion } from '@/services/localtion/Localtion.type';
 import { IIFE } from '@/utils';
 import { getLocaltionsPage } from '@/services/localtion/LocationsPage';
 import { converToLocationsPages } from './helpers/ConverToDiscover';
+import DiscoverLoading from './loading/discover-loading';
 
 function Discover() {
   const [dataLocations,setDataLocations]=useState<TLocaltion[]>([])
@@ -21,6 +21,15 @@ function Discover() {
       }
     })
   })
+  const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+      setTimeout(() => setIsLoading(false), 2000);
+    }, []);
+  
+    if (isLoading) {
+      return <DiscoverLoading/>
+      }
     const renderData=dataLocations.map((item,index)=>{
         return (
             <div key={index} className='sm:w-[49%] 2sm:w-[32.5%] lg:w-[24%] xl:w-[19%] mt-3 relative'>
