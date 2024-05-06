@@ -1,5 +1,4 @@
 import { ButtonPrimary, ButtonPrimaryTwo } from "@/components/Button/Button";
-import { TextPrimary } from "@/components/StyleCompoment/StyleCompoment";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
 
 import { MdBedroomChild } from "react-icons/md";
@@ -7,6 +6,7 @@ import { PiTelevisionSimpleBold } from "react-icons/pi";
 import ModalRoomDetail from "../modal/ModalRoomDetail";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { TextPrimary } from "@/components/style-compoment/StyleCompoment";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Props=any;
 

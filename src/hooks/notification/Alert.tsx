@@ -1,11 +1,10 @@
-import React from 'react'
 import Swal from 'sweetalert2';
 
 function useAlertHook(title:string) {
   const alertSuccess=()=>{
     Swal.fire({
-      title: 'Chào mừng!',
-      text: `Xin chào ${title}!`,
+      title: `${title}`,
+      text: `Thành công!`,
       icon: 'success',
       timer: 1500
 

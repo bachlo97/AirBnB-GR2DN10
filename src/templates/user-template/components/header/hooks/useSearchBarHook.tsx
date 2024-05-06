@@ -2,7 +2,7 @@ import { getLocaltion } from "@/services/localtion/Localtion.service";
 import { IIFE } from "@/utils";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { converToLocations } from "../searchbar/helper/ConvertToLocations";
+import { converToLocations } from "../search-bar/helper/ConvertToLocations";
 import { Dayjs } from "dayjs";
 import { useAppDispatch } from "@/redux/hooks";
 import { TLocaltion } from "@/services/localtion/Localtion.type";

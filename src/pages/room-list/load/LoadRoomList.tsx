@@ -1,17 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Container } from '@/components/StyleCompoment/StyleCompoment'
+
 
 import { Fragment, useEffect, useState } from 'react'
 import Skeleton from 'react-loading-skeleton'
-import { useParams } from 'react-router-dom'
-import { TRoom } from '@/services/room/Room.type'
-import { IIFE } from '@/utils'
-import { getRoomsList } from '@/services/room/RoomsList.style'
 
-import { useAppSelector } from '@/redux/hooks'
 import { SButtonRoomList, SMap, SMapRespon, SRespon } from '../RoomList.style'
-import ListProductRoom from '../Scompoment/ListProductRoom'
+
 import LoadListRoom from './LoadListRoom'
+import { Container } from '@/components/style-compoment/Container'
 
 
 function LoadRoomList(props: { data: any[] }) {

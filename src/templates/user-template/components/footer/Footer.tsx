@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+
 import { IoLocationSharp } from "react-icons/io5";
 import {  FooterBottom, FooterTop, FooterWeb, SocialItem } from './footer.style';
 import { BsTelephone } from 'react-icons/bs';
@@ -6,9 +6,9 @@ import { AiOutlineMail } from 'react-icons/ai';
 import { ButtonPrimary } from '@/components/Button/Button';
 import { BiLogoFacebook } from 'react-icons/bi';
 import { CiInstagram, CiYoutube } from 'react-icons/ci';
-import { Container } from '@/components/StyleCompoment/StyleCompoment';
 import { useSendEmailHook } from './hooks/SendEmailHook';
-import emailjs from '@emailjs/browser';
+
+import { Container } from '@/components/style-compoment/Container';
 
 
 function Footer() {

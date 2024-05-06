@@ -2,7 +2,7 @@
 import  { Fragment } from 'react'
 import HomeProduct from './product/product'
 import Discover from './discover/Discover'
-import InforWherever from './inforWherever/InforWherever'
+import InforWherever from './infor-Wherever/InforWherever'
 
 
 

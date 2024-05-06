@@ -1,16 +1,15 @@
-import { Container } from '@/components/StyleCompoment/StyleCompoment'
 
 
 
+import { Container } from '@/components/style-compoment/Container';
 import { HeaderWeb } from './header.style';
 
-import Navbar from './Ynavbar/Navbar';
-import HeaderSearchBar from './searchbar/SearchBar';
+import Navbar from './navbar/Navbar';
+import HeaderSearchBar from './search-bar/SearchBar';
 import { useEffect, useState } from 'react';
 
 function Header() {
     const [scrollY,setScrollY]=useState(true);
-    const [loading,setLoading]=useState(true);
     
 useEffect(()=>{
     const handleScroll = () => {

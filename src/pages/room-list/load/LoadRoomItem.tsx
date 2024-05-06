@@ -1,8 +1,6 @@
-import { SProductItemText } from '@/pages/home/product/productList/Product.style'
-import React from 'react'
-import { FaRegHeart } from 'react-icons/fa'
-import { NavLink } from 'react-router-dom'
+
 import Skeleton from 'react-loading-skeleton'
+import { SProductItemText } from '@/pages/home/product/product-list/Product.style'
 
 function LoadRoomItem() {
   return (

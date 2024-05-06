@@ -1,5 +1,6 @@
-import { NavItem, SearchBar } from '../searchbar/SearchBar.style'
+
 import Skeleton from 'react-loading-skeleton'
+import { NavItem } from '../search-bar/SearchBar.style'
 
 type Props={
     scrollY: number | string

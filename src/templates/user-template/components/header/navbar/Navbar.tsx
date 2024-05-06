@@ -1,10 +1,10 @@
 import  { useEffect, useState } from 'react'
 import { HeaderLogo, HeaderLogoText } from '../header.style'
 import { FaAirbnb, FaBars, FaUserCircle } from 'react-icons/fa'
-import ToogleHeader from '../Ytoggle/ToogleHeader'
+import ToogleHeader from '../toggle/ToogleHeader'
 import { Button, Dropdown } from 'antd'
 import { HeaderSearchIconSubmit, SearchBarNav } from './NavBar.style'
-import { NavItem } from '../searchbar/SearchBar.style'
+import { NavItem } from '../search-bar/SearchBar.style'
 import { FaMagnifyingGlass } from 'react-icons/fa6'
 import NavbarLoading from '../loading/NavbarLoading'
 type Props=object;

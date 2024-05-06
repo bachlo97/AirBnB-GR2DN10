@@ -1,5 +1,5 @@
 import { ButtonPrimary, ButtonPrimaryTwo } from '@/components/Button/Button'
-import { Container } from '@/components/StyleCompoment/StyleCompoment'
+import { Container } from '@/components/style-compoment/Container'
 
 import { IoIosArrowBack } from 'react-icons/io'
 

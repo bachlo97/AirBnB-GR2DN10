@@ -1,6 +1,6 @@
-import { Container } from '@/components/StyleCompoment/StyleCompoment'
+import { Container } from '@/components/style-compoment/Container'
 import React from 'react'
-import { DataWherever } from './Sdata/DataWherever'
+import { DataWherever } from './data/DataWherever'
 
 function InforWherever() {
   const DataItem=DataWherever.map((item,index)=>{

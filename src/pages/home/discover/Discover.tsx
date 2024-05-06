@@ -1,11 +1,11 @@
 
-import { Container } from '@/components/StyleCompoment/StyleCompoment';
 import { useEffect, useState } from 'react';
 import { TLocaltion } from '@/services/localtion/Localtion.type';
 import { IIFE } from '@/utils';
 import { getLocaltionsPage } from '@/services/localtion/LocationsPage';
 import { converToLocationsPages } from './helpers/ConverToDiscover';
 import DiscoverLoading from './loading/discover-loading';
+import { Container } from '@/components/style-compoment/Container';
 
 function Discover() {
   const [dataLocations,setDataLocations]=useState<TLocaltion[]>([])

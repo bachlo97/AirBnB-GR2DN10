@@ -1,4 +1,3 @@
-import { Container } from '@/components/StyleCompoment/StyleCompoment';
 
 import { Fragment, useEffect, useState } from 'react';
 import { BsTranslate } from 'react-icons/bs';
@@ -8,16 +7,19 @@ import InformationDetailRoom from './compoment/InformationDetailRoom';
 import { ButtonPrimary } from '@/components/Button/Button';
 import { SImg } from './Detail.style';
 import { IoIosArrowBack } from "react-icons/io";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { TRoomDetail } from '@/services/room-detail/RoomDetail.type';
 import { IIFE } from '@/utils';
 import { GetRoomDetail } from '@/services/room-detail/RoomDetail.service';
+import { Container } from '@/components/style-compoment/Container';
 
 
 type Props = object
 
 const RoomDetail = (_props: Props) => {
   const { id } = useParams();
+    const navigate = useNavigate();
+
   const [dataRoomDetail,setDataRoomDetail]=useState<TRoomDetail>({})
   useEffect(()=>{
     IIFE(async ()=>{

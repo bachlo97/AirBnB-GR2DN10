@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react'
 import ProductItemRoom from './ProductItemRoom'
-import { TRoom } from '@/services/room/Room.type'
 
 function ListProductRoom(props: { data: any[] }) {
   

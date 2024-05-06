@@ -1,6 +1,7 @@
-import { Container } from "@/components/StyleCompoment/StyleCompoment"
-import ProductList from "./productList/productList"
-import ProductIcon from "./productIcon/ProductIcon"
+
+import { Container } from "@/components/style-compoment/Container"
+import ProductIcon from "./product-icon/ProductIcon"
+import ProductList from "./product-list/productList"
 
 
 function HomeProduct() {

@@ -1,11 +1,8 @@
 import React from 'react'
 import { HeaderLogo, HeaderLogoText } from '../header.style'
-import { FaAirbnb, FaBars, FaUserCircle } from 'react-icons/fa'
-import { NavItem } from '../searchbar/SearchBar.style'
-import { HeaderSearchIconSubmit, SearchBarNav } from '../Ynavbar/NavBar.style'
-import { FaMagnifyingGlass } from 'react-icons/fa6'
-import ToogleHeader from '../Ytoggle/ToogleHeader'
-import { Button, Dropdown } from 'antd'
+
+import { NavItem } from '../search-bar/SearchBar.style'
+
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 function NavbarLoading() {
