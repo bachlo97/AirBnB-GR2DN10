@@ -9,11 +9,22 @@ import { CiInstagram, CiYoutube } from 'react-icons/ci';
 import { useSendEmailHook } from './hooks/SendEmailHook';
 
 import { Container } from '@/components/style-compoment/Container';
+import FooterLoading from "./loading/FooterLoading";
+import { useEffect, useState } from "react";
 
 
 function Footer() {
 
 const {form,sendEmail}=useSendEmailHook();
+const [isLoading, setIsLoading] = useState(true);
+
+useEffect(() => {
+  setTimeout(() => setIsLoading(false), 2000);
+}, []);
+
+if (isLoading) {
+  return <FooterLoading />
+  }
   return (
     <FooterWeb>
       

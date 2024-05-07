@@ -7,6 +7,7 @@ import { HeaderSearchIconSubmit, SearchBarNav } from './NavBar.style'
 import { NavItem } from '../search-bar/SearchBar.style'
 import { FaMagnifyingGlass } from 'react-icons/fa6'
 import NavbarLoading from '../loading/NavbarLoading'
+import { NavLink } from 'react-router-dom'
 type Props=object;
 const items = [
     {
@@ -42,7 +43,7 @@ function Navbar(props:Props) {
   
   return (
     <div className="flex justify-between items-center mb-3">
-    <div className='logo flex items-center gap-3 text-[2.1rem]'>
+    <NavLink to={'/'} className='logo flex items-center gap-3 text-[2.1rem]'>
 
 <HeaderLogo>
 <FaAirbnb />
@@ -51,7 +52,7 @@ function Navbar(props:Props) {
 AirBnB
 </HeaderLogoText>
 
-</div>
+</NavLink>
     {props.scrollY ?
     
     (  <NavItem  className='flex items-center gap-5' id='navItem'>
