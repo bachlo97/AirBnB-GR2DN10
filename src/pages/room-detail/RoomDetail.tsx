@@ -12,6 +12,7 @@ import { TRoomDetail } from '@/services/room-detail/RoomDetail.type';
 import { IIFE } from '@/utils';
 import { GetRoomDetail } from '@/services/room-detail/RoomDetail.service';
 import { Container } from '@/components/style-compoment/Container';
+import RoomDetailLoading from './loading/RoomDetailLoading';
 
 
 type Props = object
@@ -33,6 +34,16 @@ const RoomDetail = (_props: Props) => {
       }
     })
   },[id])
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 2000);
+  }, []);
+
+  if (isLoading) {
+    return <RoomDetailLoading/>
+    }
+
   return (
     <Fragment>
   
@@ -107,6 +118,7 @@ const RoomDetail = (_props: Props) => {
 
         </form>
       </div>
+
     </Container>
 
  

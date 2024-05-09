@@ -1,21 +1,51 @@
 import { ButtonPrimary, ButtonPrimaryTwo } from "@/components/Button/Button";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
+import { DatePicker, Space } from "antd";
 
 import { MdBedroomChild } from "react-icons/md";
 import { PiTelevisionSimpleBold } from "react-icons/pi";
 import ModalRoomDetail from "../modal/ModalRoomDetail";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TextPrimary } from "@/components/style-compoment/StyleCompoment";
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+import { useSearchBarHook } from "@/templates/user-template/components/header/hooks/useSearchBarHook";
+import moment from 'moment';
+import { useAppDispatch } from "@/redux/hooks";
+import { setDisCount, setImg, setName, setPrice } from "@/redux/cart/Cart.slice";
+import { setCustomers, setEndDayRoom, setStartDayRoom } from "@/redux/room/Date.slice";
+
 type Props=any;
 
 function InformationDetailRoom(props:Props) {
   const navigate = useNavigate();
-  const[countClient,setCountClient]=useState(0)
+  const[countClient,setCountClient]=useState(0);
+
+  const [countDay,setCountDay]=useState(0);
+  const [discount,setDiscount]=useState(0);
+
+  const dispatch=useAppDispatch();
+  const { 
+
+    valueStartDay,
+    valueEndDay,
+   
+    handleSubmit,
+    handleDateChange
+  }=useSearchBarHook();
+  const startDate = moment(valueStartDay);
+const endDate = moment(valueEndDay);
+
+
+useEffect(()=>{
+
+  if(startDate!==null&&endDate!==null){
+    const diffInDays = endDate.diff(startDate, 'days');
+    setCountDay(diffInDays)
+  }
+},[startDate, endDate])
   return (
    
- <div className="mx-auto my-3 mt-8 flex lg:w-[100%] 2xl:w-3/4 justify-between">
+ <div className="mx-auto my-3 mt-8 2sm:flex lg:w-[100%] 2xl:w-3/4 justify-between relative">
       <div className="md:w-[50%] xl:w-[60%]">
         <h3 className="text-[2rem] font-bold">
           Toàn bộ căn hộ. Chủ nhà Sungwon
@@ -130,12 +160,12 @@ function InformationDetailRoom(props:Props) {
       </div>
 
       <div
-        className="xl:mr-24 h-[400px] 2sm:w-[40%] xl:w-[30%] border border-solid border-white p-8 md:sticky md:top-36 md:right-0  sm:hidden md:block"
-        style={{ boxShadow: " rgba(149, 157, 165, 0.2) 0px 8px 24px" }}
+        className="2xl:mr-24 h-[430px] 2sm:w-[40%] xl:w-[35%] 2xl:w-[30%] border border-solid border-white p-8 md:sticky md:top-36 md:right-0 "
+        style={{ boxShadow: " rgba(16, 20, 24, 0.2) 0px 8px 24px" }}
       >
         <div>
-          <h3 className="mb-6 text-3xl font-semibold">$102 CAD/ đêm </h3>
-          <form action="">
+          <h3 className="mb-6 text-3xl font-semibold">${props.data.giaTien}/ đêm </h3>
+          <form action="" onSubmit={handleSubmit}>
             <div className="rounded-[1rem] border border-solid border-gray-400">
               <div className="flex border-b border-solid border-gray-400">
                 <div className="group-form w-1/2 border-r border-solid border-gray-400 px-4 py-3">
@@ -145,7 +175,16 @@ function InformationDetailRoom(props:Props) {
                   >
                     Checkin
                   </label>
-                  <p>6/24/2024</p>
+                  <p>
+                  <Space direction="vertical">
+                  <DatePicker
+                    placeholder="Ngày tới"
+                    name="currentDay"
+                    onChange={(selectedDate) => handleDateChange(selectedDate,'currentDay')}
+
+                  />
+                </Space>
+                  </p>
                 </div>
                 <div className="group-form w-1/2 px-4 py-3">
                   <label
@@ -154,7 +193,13 @@ function InformationDetailRoom(props:Props) {
                   >
                     Checkout
                   </label>
-                  <p>6/24/2024</p>
+                  <p>  <Space direction="vertical">
+                  <DatePicker
+                    placeholder="Ngày về"
+                    name="currentDay"
+                    onChange={(selectedDate) => handleDateChange(selectedDate,'nextDay')}
+                  />
+                </Space></p>
                 </div>
               </div>
               <div className="group-form px-4 py-3">
@@ -192,38 +237,62 @@ function InformationDetailRoom(props:Props) {
               onClick={()=>{
                
                 navigate('/pay')
+                dispatch(setDisCount(discount))
+                dispatch(setPrice(props.data.giaTien))
+                dispatch(setStartDayRoom(valueStartDay))
+                dispatch(setEndDayRoom(valueEndDay))
+                dispatch(setCustomers(countClient))
+                dispatch(setImg(props.data.hinhAnh))
+                dispatch(setName(props.data.tenPhong))
+
+
+
               }}
             >
               Xac Nhan
             </ButtonPrimary>
+
           </form>
           <p className="text-center text-[1.6rem] text-gray-500">
             You won't be charged yet
           </p>
-          <div className="border-b border-solid border-gray-400 py-4">
-            <div className="flex justify-between">
-              <p>$102 CAD x 5 nights</p>
-              <TextPrimary>$12 CAD</TextPrimary>
-            </div>
-            <div className="flex justify-between ">
-              <p>Cleaning fee</p>
-              <TextPrimary>$12 CAD</TextPrimary>
-            </div>
-            <div className="flex justify-between">
-              <p>Cleaning fee</p>
-              <TextPrimary>$12 CAD</TextPrimary>
-            </div>
-          </div>
-          <div>
-            <div className="flex justify-between py-4">
-              <p>Total before taxes</p>
-              <TextPrimary>$12 CAD</TextPrimary>
-            </div>
-          </div>
+  
+ 
+          {countDay>0?(
+             <div>
+             <div className="border-b border-solid border-gray-400 py-4">
+             <div className="flex justify-between">
+              
+               <p>{props.data.giaTien} CAD x {countDay} nights</p>
+               <TextPrimary>${props.data.giaTien*countDay}</TextPrimary>
+             </div>
+            
+              <form action="" className="flex justify-between my-3">
+                <input type="text" placeholder="Nhập mã giảm giá" className="w-[90%] px-3 border border-gray-400 border-solid h-[35px] outline-none"/>
+                <ButtonPrimary height={3.5} width="30%">Xac Nhan</ButtonPrimary>
+              </form>
+             
+        
+             <div className="flex justify-between">
+               <p>Giảm Giá</p>
+               <TextPrimary>-{discount}%</TextPrimary>
+             </div>
+           </div>
+           <div>
+             <div className="flex justify-between py-4">
+               <p>Tổng giá:</p>
+               <TextPrimary>${(props.data.giaTien*countDay*(100-discount)/100)}</TextPrimary>
+             </div>
+           </div>
+             </div>
+          ):('')}
+         
+        
         </div>
+
+       
       </div>
 
-      
     </div>
  
 
@@ -232,3 +301,5 @@ function InformationDetailRoom(props:Props) {
 }
 
 export default InformationDetailRoom;
+
+

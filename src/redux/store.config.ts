@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { GetDateSlice } from './room/Date.slice'
+import { GetCartsRoomSlice } from './cart/Cart.slice'
 
 export const store = configureStore({
   reducer: {
     // GetRoomItemReducer,
-    GetDateSlice
+    GetDateSlice,
+    GetCartsRoomSlice
   },
 })
 
