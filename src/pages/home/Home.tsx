@@ -1,9 +1,27 @@
-import Footer from '@/templates/user-template/components/footer/Footer'
-import React from 'react'
+
+import  { Fragment } from 'react'
+import HomeProduct from './product/product'
+import Discover from './discover/Discover'
+import InforWherever from './infor-Wherever/InforWherever'
+import { Carousel } from './carousel'
+import { HorizontalScroll } from './horizontal-scroll'
+
+
 
 function Home() {
+ 
   return (
- <Footer/>
+    <Fragment>
+    
+    <Carousel/>
+      
+    <Discover></Discover>
+    <HorizontalScroll/>
+    <HomeProduct></HomeProduct>
+    <InforWherever/>
+ 
+    </Fragment>
+    
   )
 }
 

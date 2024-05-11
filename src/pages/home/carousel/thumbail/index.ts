@@ -1,0 +1,1 @@
+export { Thumbail } from "./thumbail";

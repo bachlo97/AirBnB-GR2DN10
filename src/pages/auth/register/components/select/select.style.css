@@ -1,0 +1,38 @@
+.select-auth{ 
+    border: none;
+    width: 100%;
+    height: 50px;
+}
+
+.select-auth .ant-select-selector{
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none;
+    color: white;
+}
+
+.select-auth.ant-select-focused.ant-select-outlined:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer) .ant-select-selector{
+    box-shadow: none !important;
+}
+
+.popup-select-auth{
+    background-color:#54fa0333;
+    backdrop-filter: blur(41px) brightness(0.68) contrast(171%) grayscale(4%) hue-rotate(318deg) invert(20%) sepia(3%);
+    
+}
+
+.popup-select-auth.ant-select-dropdown .ant-select-item{
+    color: white;
+}
+
+
+
+.popup-select-auth.ant-select-dropdown .ant-select-item-option-selected:not(.ant-select-item-option-disabled){
+    color: white;
+    background-color: transparent;
+}
+
+.popup-select-auth.ant-select-dropdown .ant-select-item-option-active:not(.ant-select-item-option-disabled){
+    background-color: #0b3f0b75;
+}
+

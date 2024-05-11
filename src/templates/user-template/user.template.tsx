@@ -3,18 +3,20 @@ import { Outlet } from 'react-router-dom'
 import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
 
-type Props = {}
 
-const UserTemplate = (props: Props) => {
+
+
+const UserTemplate = () => {
   return (
     <>
         <Header/>
         <main>
-            <Suspense fallback={<p className="text-red-400">Loading...</p>}>
+            <Suspense>
                 <Outlet/>
             </Suspense>
         </main>
         <Footer/>
+    
     </>
   )
 }

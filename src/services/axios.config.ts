@@ -10,7 +10,18 @@ export const axiosWithoutAuth = axios.create({
     // Đợi phản hồi của một Api -> giới hạn 3p
     timeout: 180_000,
 });
+axiosWithoutAuth.interceptors.request.use(
+    (config) => { 
+        config.headers.tokenCybersoft  = TOKEN_CYBER;
 
+        config.headers.Authorization = `Bearer ${getLocalStorage(ACCESS_TOKEN)}`;
+
+        return config;
+    },
+    (e) => {
+        return Promise.reject(e);
+    },
+);
 export const axiosWithAuth = axios.create({
     baseURL: `${BASE_URL}/api`,
 
@@ -20,9 +31,9 @@ export const axiosWithAuth = axios.create({
 
 // Đính kèm thêm thông tin cho api trước khi gửi đi
 axiosWithAuth.interceptors.request.use(
-    (config) => {
-        config.headers.Authorization = `Bearer ${getLocalStorage(ACCESS_TOKEN)}`;
-        config.headers.tokenCybersoft = TOKEN_CYBER;
+    (config) => { 
+        config.headers.tokenCybersoft  = TOKEN_CYBER;
+
 
         return config;
     },

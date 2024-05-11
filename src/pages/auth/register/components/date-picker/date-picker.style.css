@@ -1,0 +1,98 @@
+
+.date-picker-auth {
+    border: none !important;
+    background-color: transparent !important;
+    width: 100% !important;
+    height: 50px !important;
+}
+
+.date-picker-auth .ant-picker-input {
+    position: relative !important;
+    top: 1px !important;
+    color: white !important;
+}
+
+.date-picker-auth:focus,
+.date-picker-auth:hover,
+.date-picker-auth:focus-within {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+
+.date-picker-auth.ant-picker
+    .ant-picker-suffix {
+    color: white !important;
+    font-size: 16px !important;
+}
+
+.date-picker-auth.ant-picker
+    .ant-picker-input-placeholder
+    > input {
+    color: white !important;
+}
+
+/** custom calendar popup */
+
+.calendar-auth .ant-picker-panel-container {
+    background-color:#54fa0333 !important;
+    backdrop-filter: blur(41px) brightness(0.68) contrast(171%) grayscale(4%) hue-rotate(93deg) invert(20%) sepia(3%) !important;
+    color: white !important;
+}
+
+.calendar-auth .ant-picker-header-view {
+    color: white !important;
+}
+.calendar-auth .ant-picker-content th{
+    color:white !important;
+}
+.calendar-auth.ant-picker-dropdown .ant-picker-cell {
+    padding: 6px 0 !important;
+    color: #e6f4ff33 !important;
+    cursor: pointer !important;
+}
+
+.calendar-auth.ant-picker-dropdown .ant-picker-cell-in-view {
+    color: #e5e7eb !important;
+}
+
+.calendar-auth.ant-picker-dropdown .ant-picker-header-view button:hover {
+    color: #3a9b1d !important;
+}
+.calendar-auth a:hover {
+    color: #69ff87ab !important;
+}
+
+
+.calendar-auth .ant-picker-header-next-btn,
+.calendar-auth .ant-picker-header-super-next-btn,
+.calendar-auth .ant-picker-header-prev-btn,
+.calendar-auth .ant-picker-header-super-prev-btn {
+    color: white !important;
+}
+
+.calendar-auth .ant-picker-header {
+    border-bottom-color: #18510738 !important;
+}
+.calendar-auth .ant-picker-footer {
+    border-top-color: #18510738 !important;
+}
+
+.calendar-auth.ant-picker-dropdown
+    .ant-picker-cell-in-view.ant-picker-cell-today
+    .ant-picker-cell-inner::before {
+        border-radius: 50% !important;
+        border: 2px dashed #18a427 !important;
+}
+
+.calendar-auth.ant-picker-dropdown .ant-picker-cell-in-view.ant-picker-cell-selected:not(.ant-picker-cell-disabled) .ant-picker-cell-inner{
+    background-color:#18a427 !important;
+}
+
+.calendar-auth.ant-picker-dropdown .ant-picker-cell .ant-picker-cell-inner {
+    border-radius: 50% !important;
+}
+.calendar-auth.ant-picker-dropdown .ant-picker-cell:hover:not(.ant-picker-cell-in-view) .ant-picker-cell-inner, .calendar-auth.ant-picker-dropdown .ant-picker-cell:hover:not(.ant-picker-cell-selected):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end) .ant-picker-cell-inner {
+    
+    background-color: #0cdd8c42 !important;
+}

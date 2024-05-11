@@ -1,14 +1,16 @@
 import { ScrollToTop } from "@/components/scroll-to-top";
-
+import { lazy } from "react";
 const Home = lazy(() => import("@/pages/home"));
-const Auth = lazy(() => import("@/pages/auth"));
+import Auth from "@/pages/auth";
 const Profile = lazy(() => import("@/pages/profile"));
 const RoomDetail = lazy(() => import("@/pages/room-detail"));
 const RoomList = lazy(() => import("@/pages/room-list"));
 
 import UserTemplate from "@/templates/user-template/user.template";
-import { lazy } from "react";
+
 import { createBrowserRouter } from "react-router-dom";
+import Pay from "@/pages/pay/Pay";
+
 
 export const router = createBrowserRouter([
   {
@@ -35,11 +37,15 @@ export const router = createBrowserRouter([
                   element: <RoomList/>,
                 },
                 {
-                  path: 'auth/:sign',
-                  element: <Auth/>,
-                }
+                  path: 'pay',
+                  element: <Pay/>,
+                },
             ],
         },
+        {
+          path:'auth/:sign',
+          element: <Auth/>
+        }
     ],
 },
 

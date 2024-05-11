@@ -87,13 +87,12 @@ function HeaderSearchBar(props: any) {
             >
               <h5 className="mt-3 text-[1.4rem]">Ngày đến</h5>
               <p className="text-[1.5rem] text-gray-500">
-                <Space direction="vertical" >
+                <Space direction="vertical">
                   <DatePicker
                     placeholder="Ngày tới"
                     onChange={(selectedDate) => handleDateChange(selectedDate,'currentDay')}
                     name="currentDay"
                     open={isOpen.ngayden}
-                 
                   />
                 </Space>
               </p>
