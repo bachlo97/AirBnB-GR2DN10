@@ -51,11 +51,11 @@ function HeaderSearchBar(props: any) {
 
 
   return (
-    <NavItem className="mb-5">
+    <NavItem className="mb-5 search-bar">
       {props.scrollY ? (
         <SearchBar>
           <form className="flex" onSubmit={handleSubmit} method="get" action="">
-            <SearchIcoin
+            <SearchIcoin 
               className={`${isOpen.location? "active" :""}  search-icon`}
               onClick={() => {
                 handleFieldClick("location");
