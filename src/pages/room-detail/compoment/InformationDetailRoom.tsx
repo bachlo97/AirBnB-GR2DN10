@@ -2,11 +2,14 @@ import { ButtonPrimary, ButtonPrimaryTwo } from "@/components/Button/Button";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
 import { DatePicker, Space } from "antd";
 
-import { MdBedroomChild } from "react-icons/md";
+import { MdBedroomChild, MdIron } from "react-icons/md";
 import { PiTelevisionSimpleBold } from "react-icons/pi";
 import ModalRoomDetail from "../modal/ModalRoomDetail";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { GiWashingMachine } from "react-icons/gi";
+import {  FaWifi } from 'react-icons/fa';
+
 import { TextPrimary } from "@/components/style-compoment/StyleCompoment";
 import { useSearchBarHook } from "@/templates/user-template/components/header/hooks/useSearchBarHook";
 import moment from 'moment';
@@ -121,21 +124,22 @@ useEffect(()=>{
               {props.data.banLa ? (
                 <div className="flex w-1/2 items-center gap-2 text-[2.1rem]">
          
-              <PiTelevisionSimpleBold />
+         <MdIron />
               Bàn Là
             </div>
               ):''}
-              {props.data.dieuHoa ? (
+              {props.data.wifi ? (
                 <div className="flex w-1/2 items-center gap-2 text-[2.1rem]">
          
-              <PiTelevisionSimpleBold />
-                Điều Hoà
+         <FaWifi />
+
+wifi
             </div>
               ):''}
               {props.data.mayGiat ? (
                 <div className="flex w-1/2 items-center gap-2 text-[2.1rem]">
          
-              <PiTelevisionSimpleBold />
+         <GiWashingMachine />
               Máy Giặt
             </div>
               ):''}

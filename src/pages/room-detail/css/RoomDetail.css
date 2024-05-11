@@ -1,0 +1,19 @@
+:where(.css-dev-only-do-not-override-1qfezbu).ant-picker-dropdown .ant-picker-panel-container .ant-picker-panel-layout{
+    background: linear-gradient(to left, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+    color: white;
+}
+:where(.css-dev-only-do-not-override-1qfezbu).ant-picker-dropdown .ant-picker-content th, :where(.css-dev-only-do-not-override-1qfezbu).ant-picker-dropdown .ant-picker-content td {
+    color: white;
+}
+:where(.css-dev-only-do-not-override-1qfezbu).ant-picker-dropdown .ant-picker-header button{
+    color: white;
+}
+:where(.css-dev-only-do-not-override-1qfezbu).ant-btn-primary{
+    background: linear-gradient(to left, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+}
+:where(.css-dev-only-do-not-override-1qfezbu).ant-picker-dropdown .ant-picker-header{
+    border-bottom: 1px solid white;
+}
+:where(.css-dev-only-do-not-override-1qfezbu).ant-picker-dropdown .ant-picker-footer{
+    border-top: 1px solid white;
+}

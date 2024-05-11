@@ -21,7 +21,7 @@ box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     width: 68%;
 }
 @media (min-width: 1700px) {
-    width: 50%;
+    width: 46%;
 }
 `
 export const SearchIcoin=styled.div`
@@ -49,7 +49,7 @@ right: 0%;
 transform: translate(-30%,-50%);
 width: 4.6rem;
 height: 4.6rem;
-background-color: red;
+background: #F62682;
 border-radius: 50%;
 color: white;
 

@@ -15,7 +15,7 @@ export const HeaderSearchIconSubmit=styled.button`
 
 width: 3rem;
 height: 3rem;
-background-color: red;
+background-color: #F62682;
 border-radius: 50%;
 color: white;
 `
