@@ -1,34 +1,7 @@
-.toggle{
-    width: 50px;
-    height: 25px;
-    background-color: #ccc;
-    padding: 2px;
-    cursor: pointer;
-  
-    border-radius: 100rem;
-    transition: all .2 linear;
 
-
+:where(.css-dev-only-do-not-override-1qfezbu).ant-switch.ant-switch-checked {
+    background: #F62682;
 }
-.spinner{
-    width: 20px;
-    height: 20px;
-    border-radius: 100rem;
-    background-color: white;
-    transition: all .2 linear;
-}
-.toggle.active{
-    background-color: #F62682;
-}
-.spinner.active{
-    transform: translateX(25px);
-}
-.toggle-control{
-margin: 0 25px;
-display: flex;
-align-items: center;
-gap: 0 10px;
-}
-.toggle-control > *{
-    cursor: pointer;
+:where(.css-dev-only-do-not-override-1qfezbu).ant-switch.ant-switch-checked:hover:not(.ant-switch-disabled) {
+    background: #F62682;
 }

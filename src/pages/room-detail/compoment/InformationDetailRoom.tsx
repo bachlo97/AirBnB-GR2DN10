@@ -2,18 +2,21 @@ import { ButtonPrimary, ButtonPrimaryTwo } from "@/components/Button/Button";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
 import { DatePicker, Space } from "antd";
 
-import { MdBedroomChild } from "react-icons/md";
+import { MdBedroomChild, MdIron } from "react-icons/md";
 import { PiTelevisionSimpleBold } from "react-icons/pi";
 import ModalRoomDetail from "../modal/ModalRoomDetail";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { GiWashingMachine } from "react-icons/gi";
+import {  FaWifi } from 'react-icons/fa';
+
 import { TextPrimary } from "@/components/style-compoment/StyleCompoment";
 import { useSearchBarHook } from "@/templates/user-template/components/header/hooks/useSearchBarHook";
 import moment from 'moment';
 import { useAppDispatch } from "@/redux/hooks";
 import { setDisCount, setImg, setName, setPrice } from "@/redux/cart/Cart.slice";
 import { setCustomers, setEndDayRoom, setStartDayRoom } from "@/redux/room/Date.slice";
-
+import '../css/RoomDetail.css'
 type Props=any;
 
 function InformationDetailRoom(props:Props) {
@@ -121,21 +124,22 @@ useEffect(()=>{
               {props.data.banLa ? (
                 <div className="flex w-1/2 items-center gap-2 text-[2.1rem]">
          
-              <PiTelevisionSimpleBold />
+         <MdIron />
               Bàn Là
             </div>
               ):''}
-              {props.data.dieuHoa ? (
+              {props.data.wifi ? (
                 <div className="flex w-1/2 items-center gap-2 text-[2.1rem]">
          
-              <PiTelevisionSimpleBold />
-                Điều Hoà
+         <FaWifi />
+
+wifi
             </div>
               ):''}
               {props.data.mayGiat ? (
                 <div className="flex w-1/2 items-center gap-2 text-[2.1rem]">
          
-              <PiTelevisionSimpleBold />
+         <GiWashingMachine />
               Máy Giặt
             </div>
               ):''}
@@ -162,13 +166,14 @@ useEffect(()=>{
       <div
         className="2xl:mr-24 h-[430px] 2sm:w-[40%] xl:w-[35%] 2xl:w-[30%] border border-solid border-white p-8 md:sticky md:top-36 md:right-0 "
         style={{ boxShadow: " rgba(16, 20, 24, 0.2) 0px 8px 24px" }}
+        id="dateSearchbar"
       >
         <div>
           <h3 className="mb-6 text-3xl font-semibold">${props.data.giaTien}/ đêm </h3>
           <form action="" onSubmit={handleSubmit}>
-            <div className="rounded-[1rem] border border-solid border-gray-400">
+            <div className="rounded-[1rem] border border-solid border-gray-400 ">
               <div className="flex border-b border-solid border-gray-400">
-                <div className="group-form w-1/2 border-r border-solid border-gray-400 px-4 py-3">
+                <div className="dateSearchbar group-form w-1/2 border-r border-solid border-gray-400 px-4 py-3">
                   <label
                     htmlFor=""
                     className="block text-[1.4rem] font-semibold"
@@ -198,6 +203,7 @@ useEffect(()=>{
                     placeholder="Ngày về"
                     name="currentDay"
                     onChange={(selectedDate) => handleDateChange(selectedDate,'nextDay')}
+                    
                   />
                 </Space></p>
                 </div>

@@ -16,7 +16,7 @@ function ProductItem(props: TRoom) {
         }
       }
   return (
-    <NavLink className='sm:w-[100%] 2sm:w-[49%] lg:w-[32%] 2xl:w-[24%] mt-[1.5rem]' to={`roomdetail/${props.id}`}>
+    <NavLink className='sm:w-[100%] 2sm:w-[49%] lg:w-[32%] xl:w-[24%] mt-[1.5rem]' to={`roomdetail/${props.id}`}>
       <div>
        <div className='relative'>
         <img  style={{height:'200px'}} className='rounded-[1rem]' src={props.hinhAnh} alt="" />

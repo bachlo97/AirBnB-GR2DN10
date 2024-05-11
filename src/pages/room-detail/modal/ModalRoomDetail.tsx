@@ -2,8 +2,11 @@
 import { ButtonPrimaryTwo } from '@/components/Button/Button';
 import { Button, Modal } from 'antd';
 import React, { useState } from 'react'
+import { MdBedroomChild, MdIron, MdKitchen } from 'react-icons/md';
 import { PiTelevisionSimpleBold } from 'react-icons/pi';
-
+import { GiWashingMachine } from "react-icons/gi";
+import { FaCar, FaSwimmingPool, FaWifi } from 'react-icons/fa';
+import '../css/RoomDetail.css'
 type Props={
     tivi:string;
     banLa:string;
@@ -57,7 +60,8 @@ function ModalRoomDetail(props:Props) {
     {props.mayGiat ? (
                 <div className="flex  items-center gap-3  text-[2.0rem] py-3 border-b border-b-gray-300 border-solid">
          
-              <PiTelevisionSimpleBold />
+         <GiWashingMachine />
+
               mayGiat
             </div>
               ):''}
@@ -65,14 +69,14 @@ function ModalRoomDetail(props:Props) {
     {props.banLa ? (
                 <div className="flex  items-center gap-3  text-[2.0rem] py-3 border-b border-b-gray-300 border-solid">
          
-              <PiTelevisionSimpleBold />
+         <MdIron />
               banLa
             </div>
               ):''}
     {props.banUi ? (
                 <div className="flex  items-center gap-3  text-[2.0rem] py-3 border-b border-b-gray-300 border-solid">
-         
-              <PiTelevisionSimpleBold />
+    <MdIron />
+
               banUi
             </div>
               ):''}
@@ -88,14 +92,16 @@ function ModalRoomDetail(props:Props) {
     {props.doXe ? (
                 <div className="flex  items-center gap-3  text-[2.0rem] py-3 border-b border-b-gray-300 border-solid">
          
-              <PiTelevisionSimpleBold />
+         <FaCar />
+
               doXe
             </div>
               ):''}
     {props.bep ? (
                 <div className="flex  items-center gap-3  text-[2.0rem] py-3 border-b border-b-gray-300 border-solid">
          
-              <PiTelevisionSimpleBold />
+         <MdKitchen />
+
               bep
             </div>
               ):''}
@@ -104,7 +110,8 @@ function ModalRoomDetail(props:Props) {
     {props.tivi ? (
                 <div className="flex  items-center gap-3  text-[2.0rem] py-3 border-b border-b-gray-300 border-solid">
          
-              <PiTelevisionSimpleBold />
+         <MdBedroomChild />
+
               phongNgu
             </div>
               ):''}
@@ -127,7 +134,8 @@ function ModalRoomDetail(props:Props) {
     {props.wifi ? (
                 <div className="flex  items-center gap-3 text-[2.0rem] py-3 border-b border-b-gray-300 border-solid">
          
-              <PiTelevisionSimpleBold />
+         <FaWifi />
+
               wifi
             </div>
               ):''}
@@ -135,7 +143,9 @@ function ModalRoomDetail(props:Props) {
     {props.hoBoi ? (
                 <div className="flex  items-center gap-3  text-[2.0rem] py-3 border-b border-b-gray-300 border-solid">
          
-              <PiTelevisionSimpleBold />
+         <FaSwimmingPool />
+
+
               hoBoi
             </div>
               ):''}

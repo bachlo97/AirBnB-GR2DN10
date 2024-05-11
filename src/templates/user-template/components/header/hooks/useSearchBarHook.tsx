@@ -11,16 +11,28 @@ export const useSearchBarHook=()=>{
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
   
-    const [activeField, setActiveField] = useState("");
+    const [isOpen, setIsOpen] = useState({
+      location: false,
+      ngayden: false, 
+      ngayVe: false, 
+      soKhach: false, 
+      
+    });
     const [dataLocations, setDataLocations] = useState<TLocaltion[]>([]);
     const [valueId, setValueId] = useState(0);
     const [valueStartDay, setvalueStartDay] = useState("");
     const [valueEndDay, setvalueEndDay] = useState("");
   
-    const handleFieldClick = (fieldName: string) => {
-      setActiveField(fieldName);
+    const handleFieldClick = (field: "location" | "ngayden" | "ngayVe" | "soKhach") => {
+      setIsOpen((prevIsOpen) => ({
+        ...prevIsOpen,
+        [field]: !prevIsOpen[field],
+        
+        ...(Object.fromEntries(
+          Object.keys(prevIsOpen).filter((key) => key !== field).map((key) => [key, false])
+        )),
+      }));
     };
-  
   
     useEffect(() => {
       IIFE(async () => {
@@ -61,7 +73,7 @@ export const useSearchBarHook=()=>{
 return {
     navigate,
     dispatch,
-    activeField,
+    isOpen,
   
     valueId,
     valueStartDay,

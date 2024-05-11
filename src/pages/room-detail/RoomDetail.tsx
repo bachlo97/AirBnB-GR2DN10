@@ -14,7 +14,6 @@ import { GetRoomDetail } from '@/services/room-detail/RoomDetail.service';
 import { Container } from '@/components/style-compoment/Container';
 import RoomDetailLoading from './loading/RoomDetailLoading';
 
-
 type Props = object
 
 const RoomDetail = (_props: Props) => {

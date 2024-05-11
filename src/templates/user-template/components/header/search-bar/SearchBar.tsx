@@ -20,7 +20,7 @@ function HeaderSearchBar(props: any) {
   const [isLoading, setIsLoading] = useState(true);
   const {  navigate,
     dispatch,
-    activeField,
+    isOpen,
    
     valueId,
     valueStartDay,
@@ -30,11 +30,19 @@ function HeaderSearchBar(props: any) {
     handleDateChange,
     handleChange,
     handleSubmit}=useSearchBarHook();
+
+   
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 2000);
   }, []);
 
-
+  const onSearch = (value:any) => {
+    console.log('search:', value);
+  };
+  
+  // Filter `option.label` match the user type `input`
+  const filterOption = (input: string, option: { label: any; }) =>
+    (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
 
   if (isLoading) {
     return <SearchBarLoading scrollY={props.scrollY}></SearchBarLoading>;
@@ -43,14 +51,15 @@ function HeaderSearchBar(props: any) {
 
 
   return (
-    <NavItem className="mb-5">
+    <NavItem className="mb-5 search-bar">
       {props.scrollY ? (
         <SearchBar>
           <form className="flex" onSubmit={handleSubmit} method="get" action="">
-            <SearchIcoin
-              className={`${activeField === "location" ? "active" : ""} search-icon`}
+            <SearchIcoin 
+              className={`${isOpen.location? "active" :""}  search-icon`}
               onClick={() => {
                 handleFieldClick("location");
+             
               }}
             >
               <h5 className="ml-4 mt-3 text-[1.4rem]">Địa điểm</h5>
@@ -61,13 +70,19 @@ function HeaderSearchBar(props: any) {
                   allowClear
                   onChange={handleChange}
                   options={dataOption}
+                  open={isOpen.location}
+
+                  showSearch
+ onSearch={onSearch}
+    filterOption={filterOption}
                 />
               </p>
             </SearchIcoin>
             <SearchIcoin
-              className={`${activeField === "ngayden" ? "active" : ""} search-icon`}
+              className={`${isOpen.ngayden ? "active" : ""} search-icon`}
               onClick={() => {
                 handleFieldClick("ngayden");
+         
               }}
             >
               <h5 className="mt-3 text-[1.4rem]">Ngày đến</h5>
@@ -77,14 +92,16 @@ function HeaderSearchBar(props: any) {
                     placeholder="Ngày tới"
                     onChange={(selectedDate) => handleDateChange(selectedDate,'currentDay')}
                     name="currentDay"
+                    open={isOpen.ngayden}
                   />
                 </Space>
               </p>
             </SearchIcoin>
             <SearchIcoin
-              className={`${activeField === "ngayVe" ? "active" : ""} search-icon`}
+              className={`${isOpen.ngayVe ? "active" : ""} search-icon`}
               onClick={() => {
                 handleFieldClick("ngayVe");
+              
               }}
            
             >
@@ -94,24 +111,22 @@ function HeaderSearchBar(props: any) {
                   <DatePicker placeholder="Ngày về" 
                     onChange={(selectedDate) => handleDateChange(selectedDate,'nextDay')}
                   name="nextDay"
+                  open={isOpen.ngayVe}
                   />
                 </Space>
               </p>
             </SearchIcoin>
             <SearchIcoin
-              className={`${activeField === "soKhach" ? "active" : ""} search-icon`}
+              className={`${isOpen.soKhach ? "active" : ""} search-icon`}
               onClick={() => {
                 handleFieldClick("soKhach");
               }}
             >
               <h5 className="mt-3 text-[1.4rem]">Số khách </h5>
-              <p className="text-[1.5rem] text-gray-500">
-                <input
-                  type="number"
-                  placeholder="Số Khách"
-                  style={{ width: "100%" }}
-                  className="outline-none"
-                />
+              <p className="text-[1.5rem] flex gap-3 items-center text-gray-500">
+                <div>+</div>
+               0
+                <div>-</div>
               </p>
             </SearchIcoin>
             <button
