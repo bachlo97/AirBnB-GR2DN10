@@ -1,7 +1,7 @@
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { lazy } from "react";
 const Home = lazy(() => import("@/pages/home"));
-const Auth = lazy(() => import("@/pages/auth"));
+import Auth from "@/pages/auth";
 const Profile = lazy(() => import("@/pages/profile"));
 const RoomDetail = lazy(() => import("@/pages/room-detail"));
 const RoomList = lazy(() => import("@/pages/room-list"));
@@ -40,12 +40,12 @@ export const router = createBrowserRouter([
                   path: 'pay',
                   element: <Pay/>,
                 },
-                {
-                  path: 'auth/:sign',
-                  element: <Auth/>,
-                }
             ],
         },
+        {
+          path:'auth/:sign',
+          element: <Auth/>
+        }
     ],
 },
 

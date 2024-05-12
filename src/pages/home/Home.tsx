@@ -3,6 +3,8 @@ import  { Fragment } from 'react'
 import HomeProduct from './product/product'
 import Discover from './discover/Discover'
 import InforWherever from './infor-Wherever/InforWherever'
+import { Carousel } from './carousel'
+import { HorizontalScroll } from './horizontal-scroll'
 
 
 
@@ -10,11 +12,11 @@ function Home() {
  
   return (
     <Fragment>
-     
-      <div className='border w-[100%] h-[100vh] bg-black'></div>
+    
+    <Carousel/>
       
     <Discover></Discover>
-
+    <HorizontalScroll/>
     <HomeProduct></HomeProduct>
     <InforWherever/>
  

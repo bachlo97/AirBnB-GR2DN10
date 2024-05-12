@@ -1,0 +1,8 @@
+.tab-menu::-webkit-scrollbar {
+    display: none;
+}
+.tab-menu.dragging{
+    scroll-behavior: unset;
+    cursor: grab;
+}
+

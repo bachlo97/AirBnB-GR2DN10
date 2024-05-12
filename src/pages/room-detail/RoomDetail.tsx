@@ -20,7 +20,7 @@ const RoomDetail = (_props: Props) => {
   const { id } = useParams();
     const navigate = useNavigate();
 
-  const [dataRoomDetail,setDataRoomDetail]=useState<TRoomDetail>({})
+  const [dataRoomDetail,setDataRoomDetail]=useState<TRoomDetail|null>(null)
   useEffect(()=>{
     IIFE(async ()=>{
       try{
