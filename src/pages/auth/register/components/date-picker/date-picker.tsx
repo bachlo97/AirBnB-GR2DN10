@@ -23,7 +23,7 @@ export function DatePickerCustom({ handleDatePicker,handleBlur,label,touch,error
     return (
         <>
             <div
-                className={`relative mx-0 my-[10px] w-[55%] border-b-2 border-solid border-b-white`}
+                className={`relative mx-0 my-[10px] mobile:w-[100%] ipad:w-[55%] border-b-2 border-solid border-b-white`}
             >
                 <DatePicker
                     placeholder=""
@@ -36,11 +36,11 @@ export function DatePickerCustom({ handleDatePicker,handleBlur,label,touch,error
                 />
                 <label
                     htmlFor=""
-                    className={`absolute ${check ? "left-0 top-[-1px] text-[1.25rem] italic " : "left-[5px] top-[30%] text-[16px]"} text-white transition-all duration-500 ease-in-out`}
+                    className={`absolute ${check ? "left-0 top-[-1px] ipad:text-[1.25rem]  mobile:text-[0.75rem] italic " : "left-[5px] top-[30%] ipad:text-[16px] mobile:text-[10px]"} text-white transition-all duration-500 ease-in-out`}
                 >
                     {label}
                     {touch && error ? (
-                        <span className="error ml-2 text-[12px] font-semibold italic text-orange-400">
+                        <span className="error ml-2 ipad:text-[12px] mobile:text-[7px] font-semibold italic text-orange-400">
                             {error}
                         </span>
                     ) : null}

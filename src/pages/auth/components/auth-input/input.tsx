@@ -32,16 +32,16 @@ export const AuthInput = ({ type, label, icon, ...props }: Props) => {
                 type={hide ? type : "text"}
                 required
                 autoComplete="off"
-                className="peer h-[50px] w-full border-none bg-transparent p-[0_35px_0_5px] text-[17px] text-white outline-none focus:shadow-none"
+                className="peer h-[50px] w-full border-none bg-transparent p-[0_35px_0_5px] ipad:text-[17px] mobile:text-[12px] text-white outline-none focus:shadow-none"
                 {...field} {...props}
             />
             <label
                 htmlFor=""
-                className="peer pointer-events-none absolute left-[5px] top-[30%] text-[16px] text-white transition-all duration-500 ease-in-out peer-valid:left-0 peer-valid:top-[-1px] peer-valid:text-[0.75em] peer-valid:italic peer-focus:left-0 peer-focus:top-[-1px] peer-focus:text-[0.75em] peer-focus:italic"
+                className="peer pointer-events-none absolute left-[5px] top-[30%] mobile:text-[10px] ipad:text-[16px] text-white transition-all duration-500 ease-in-out peer-valid:left-0 peer-valid:top-[-1px] ipad:peer-valid:text-[0.75em] mobile:peer-valid:text-[0.5em] peer-valid:italic peer-focus:left-0 peer-focus:top-[-1px] mobile:peer-focus:text-[0.5em] ipad:peer-focus:text-[0.75em] peer-focus:italic"
             >
                 {label}
                 {meta.touched && meta.error ? (
-                <span className="error text-orange-400 text-[12px] italic font-semibold ml-2">{meta.error}</span>
+                <span className="error text-orange-400 ipad:text-[12px] mobile:text-[8px] italic font-semibold ml-2">{meta.error}</span>
             ) : null}
             </label>
 

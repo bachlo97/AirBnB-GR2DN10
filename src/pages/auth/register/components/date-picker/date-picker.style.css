@@ -31,6 +31,18 @@
     > input {
     color: white !important;
 }
+@media only screen and (min-width: 375px){
+    .date-picker-auth.ant-picker .ant-picker-input input{
+        font-size: 12px;
+    }
+}
+
+@media only screen and (min-width: 768px){
+    .date-picker-auth.ant-picker .ant-picker-input input{
+        font-size: 15px;
+    }
+}
+
 
 /** custom calendar popup */
 

@@ -11,6 +11,8 @@
     color: white;
 }
 
+
+
 .select-auth.ant-select-focused.ant-select-outlined:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer) .ant-select-selector{
     box-shadow: none !important;
 }
@@ -34,5 +36,16 @@
 
 .popup-select-auth.ant-select-dropdown .ant-select-item-option-active:not(.ant-select-item-option-disabled){
     background-color: #0b3f0b75;
+}
+
+@media only screen and (min-width: 375px){
+    .select-auth .ant-select-selector{
+        font-size: 12px;
+    }
+}
+@media only screen and (min-width: 768px){
+    .select-auth .ant-select-selector{
+        font-size: 15px;
+    }
 }
 

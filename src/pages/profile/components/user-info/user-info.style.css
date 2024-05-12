@@ -1,0 +1,15 @@
+.tab-user.ant-tabs-top >.ant-tabs-nav::before{
+    left: 0;
+    border-bottom: none;
+    content: '';
+}
+
+.tab-user.ant-tabs .ant-tabs-ink-bar {
+    background: none;
+}
+
+.tab-user.ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
+    font-size: 16px;
+    color: pink;
+    font-weight: 600;
+}

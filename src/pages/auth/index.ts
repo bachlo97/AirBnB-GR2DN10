@@ -1,3 +1,3 @@
-import Auth from "./_auth";
+import Auth from "./auth";
 
 export default Auth
