@@ -22,7 +22,7 @@ function Discover() {
         
       }
     })
-  })
+  },[])
   const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {

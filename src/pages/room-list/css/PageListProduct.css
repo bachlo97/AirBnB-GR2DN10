@@ -1,0 +1,30 @@
+.page-product-list ul{
+    display: flex;
+    font-size: 1.9rem;
+    gap: 1.2rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+.page-product-list ul .previous,
+.page-product-list ul .next
+
+{
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    border: 1px solid black;
+  
+}
+.page-product-list ul li{
+      text-align: center;
+    line-height: 22px;
+    width: 23px;
+    height: 23px;
+ border: 1px solid black;
+
+}
+.page-product-list ul li.activePage{
+   background-color: #F62682;
+   color: white;
+   border: 1px solid #F62682;
+}

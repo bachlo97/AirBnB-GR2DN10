@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
+import { useTranslation } from "react-i18next"
 
 import './Toggle.css'
 import { Switch } from 'antd';
+import i18n from '@/components/locales/i18n';
 function ToogleHeader() {
+  const {t}=useTranslation();
+  const languages=[
+    {code:"vi",name:"viet nam"},
+    {code:'en',name:'en'}
+  ]
     const [on,setOn]=useState(false);
     console.log(on ,setOn);
     const onChange = (checked: any) => {
-      console.log(`switch to ${checked}`);
+      const value=checked ? 'vi' : 'en';
+      console.log(value);
+      i18n.changeLanguage(value)
     }; 
    return (
     <div className='flex gap-3 md:text-[15px] lg:text-[17px]'>
@@ -14,6 +23,7 @@ function ToogleHeader() {
        <Switch defaultChecked onChange={onChange} />
    
       EN
+ 
     </div>
     
   )

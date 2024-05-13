@@ -1,0 +1,37 @@
+{
+    "header":{
+        "stays":"Nơi ở" ,
+        "experiences":"Trải nghiệm",
+       "onlineExperiences":"Trải nghiệm trực tuyến",
+       "logIn":"Đăng mhập",
+       "signUp":"Đăng kí",
+       "anyWhere":"Địa điểm",
+       
+       "anyWeek":"Thời gian",
+       "startDay":"Ngày đến",
+       "endDay":"Ngày về",
+       "addGuests":"Số khách"
+    },
+    "footer":{
+        "support":"Hỗ trợ",
+        "helpCenter":"Trung tâm trợ giúp",
+        "antiDiscrimination":"Chống phân biệt đối xử",
+        "disabilitySupport":"Hỗ trợ người khuyết tật",
+        "cancellationOptions":"Các tùy chọn hủy",
+        "reportNeighborhood ":"Báo cáo lo ngại của khu dân cư",
+
+        "policies":"Chính sách & Quy định",
+        "terms":"Điều khoản và điều kiện",
+        "payment ":"Quy định về thanh toán",
+        "information":"Chính sách bảo mật thông tin",
+        "operating":"Quy chế hoạt động",
+        "loyalty":"Chương trình khách hàng thân thiết",
+        "experience":"Chương trình đánh giá trải nghiệm",
+
+        "moreInformation":"Thông tin thêm",
+        "discount":"Bạn muốn mã giảm giá hãy đăng kí ngay tại đây",
+        "email":"Vui lòng nhập email",
+        "follow":"Theo dõi chúng tôi qua"
+    }
+   
+}
