@@ -1,4 +1,4 @@
-import { axiosGetUser, axiosWithAuth } from "../axios.config";
+import { axiosWithAuth } from "../axios.config";
 
 export const signup = (payload: TPayloadSignup) => {
     return axiosWithAuth("/auth/signup", {
@@ -16,8 +16,8 @@ export const signin = (payload: TPayloadSignin) => {
 };
 
 export const getProfile = (id:number) => {
-    return axiosGetUser(`/users/${id}`,{
-        method: "post",
+    return axiosWithAuth(`/users/${id}`,{
+        method: "get",
     })
 }
 

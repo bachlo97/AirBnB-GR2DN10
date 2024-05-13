@@ -26,13 +26,13 @@ export function Login(props: Props) {
       onSubmit={(values: TPayloadSignin) => {
         signin(values).then((r) => {
           // ** Sau khi đăng nhập thành công thì lưu vào localStorage
-          saveLocalStorage(ACCESS_TOKEN, r.data.content.accessToken);
+          saveLocalStorage(ACCESS_TOKEN, r.data.content.token);
           saveLocalStorage(USER_ID,r.data.content.user.id)
           // ** di chuyển về trang home
           navigate("/");
           dispatch(getProfileThunk(getLocalStorage(USER_ID)))
         }).catch((e)=>{
-          alert(e.response.data.message)
+          alert(e.response.data.content)
         });
       }}
     >
