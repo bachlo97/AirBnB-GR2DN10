@@ -133,7 +133,7 @@ function HeaderSearchBar(props: any) {
               }}
             >
               <h5 className="mt-3 text-[1.4rem]">{t('header.addGuests')} </h5>
-              <p className="text-[1.5rem] flex gap-3 items-center text-gray-500">
+              <p className="text-[1.8rem] flex gap-3 items-center text-gray-500">
                 <button onClick={()=>{
                   setValueGuess(value=>value+1);
                 }}>+</button>

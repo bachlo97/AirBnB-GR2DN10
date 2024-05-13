@@ -87,20 +87,20 @@ useEffect(()=>{
           <div className="mt-8 flex gap-3">
             <HiOutlineKey  className="text-6xl" />
             <div className="">
-              <h4 className="font-bold">Phòng trong một căn hộ chung cư</h4>
+              <h4 className="font-bold">Trải nghiệm check-in tuyệt vời</h4>
               <p>
-                Phòng riêng của bạn trong nhà, cộng với quyền sử dụng không gian
-                chung.
+              100% khách gần đây đã xếp hạng 5 sao cho quá trình nhận phòng.
+
               </p>
             </div>
           </div>
           <div className="mt-8 flex gap-3">
             <BsCalendarDate className="text-6xl" />
             <div className="">
-              <h4 className="font-bold">Phòng trong một căn hộ chung cư</h4>
+              <h4 className="font-bold">Hủy miễn phí trước ngày 19 tháng 9</h4>
               <p>
-                Phòng riêng của bạn trong nhà, cộng với quyền sử dụng không gian
-                chung.
+              Được hoàn lại tiền đầy đủ nếu bạn thay đổi ý định.
+
               </p>
             </div>
           </div>

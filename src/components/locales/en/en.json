@@ -29,9 +29,12 @@
         "information":"Information security policy",
         "operating":"Operating regulations",
         "loyalty":"Loyalty program",
-        "experience":"Experience evaluation program"
+        "experience":"Experience evaluation program",
 
-
+        "moreInformation":"More information",
+        "discount":"If you want a discount code, register right here",
+        "email":"Please enter your email",
+        "follow":"Follow us over"
     }
     
   
