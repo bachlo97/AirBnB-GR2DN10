@@ -7,8 +7,11 @@ import { HeaderWeb } from './header.style';
 import Navbar from './navbar/Navbar';
 import HeaderSearchBar from './search-bar/SearchBar';
 import { useEffect, useState } from 'react';
+import { useAppSelector } from '@/redux/hooks';
 
 function Header() {
+    const user = useAppSelector(state=>state.authReducer.user)
+    console.log(user)
     const [scrollY,setScrollY]=useState(true);
     
 useEffect(()=>{

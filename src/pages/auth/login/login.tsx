@@ -2,10 +2,17 @@ import { EmailIcon } from "@/assets/icons";
 import { AuthInput } from "../components/auth-input";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import { useAppDispatch } from "@/redux/hooks";
+import { signin } from "@/services/user";
+import { ACCESS_TOKEN, USER_ID } from "@/constant";
+import { getLocalStorage, saveLocalStorage } from "@/utils";
+import { getProfileThunk } from "@/redux/auth/auth.slice";
 type Props = {};
-
 export function Login(props: Props) {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
@@ -15,10 +22,18 @@ export function Login(props: Props) {
           .min(6, "Must be from 6 to 10 characters")
           .max(10, "Must be from 6 to 10 characters")
           .required("requried"),
-        gender: Yup.string().required("required"),
       })}
-      onSubmit={(values) => {
-        alert(JSON.stringify(values, null, 2));
+      onSubmit={(values: TPayloadSignin) => {
+        signin(values).then((r) => {
+          // ** Sau khi đăng nhập thành công thì lưu vào localStorage
+          saveLocalStorage(ACCESS_TOKEN, r.data.content.accessToken);
+          saveLocalStorage(USER_ID,r.data.content.user.id)
+          // ** di chuyển về trang home
+          navigate("/");
+          dispatch(getProfileThunk(getLocalStorage(USER_ID)))
+        }).catch((e)=>{
+          alert(e.response.data.message)
+        });
       }}
     >
       <Form noValidate className="w-[300px]">
@@ -40,12 +55,12 @@ export function Login(props: Props) {
 
         <div className="m-[25px_0_20px] flex justify-center text-[1.25rem] text-white">
           <p className="mr-2">Don't have a account </p>
-          <span className="cursor-pointer font-[700] hover:underline mr-2">
+          <span className="mr-2 cursor-pointer font-[700] hover:underline">
             <NavLink to={"/auth/signup"}>Register</NavLink>
           </span>
           |
-          <span className="cursor-pointer font-[700] hover:underline ml-2">
-            <NavLink to={'/'}>Home</NavLink>
+          <span className="ml-2 cursor-pointer font-[700] hover:underline">
+            <NavLink to={"/"}>Home</NavLink>
           </span>
         </div>
       </Form>
