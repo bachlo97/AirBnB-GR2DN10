@@ -8,8 +8,10 @@ import { GlobalStyle } from "./components/global-style/global-style.tsx";
 // ** Redux
 import { store } from "./redux/store.config.ts";
 import { Provider } from "react-redux";
+import i18n from "./components/locales/i18n.tsx";
 
 // ** End - Redux
+//  i18
 
 function App() {
   return (
