@@ -5,10 +5,12 @@ import { DatePickerCustom } from "./components/date-picker";
 import { SelectCustom } from "./components/select";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { signup } from "@/services/user";
 type Props = {};
 
 export function Register(props: Props) {
+  const navigate = useNavigate()  
   const hoTenRegex =
     /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]+$/u;
   return (
@@ -49,7 +51,25 @@ export function Register(props: Props) {
           )
           .required("required"),
       })}
-      onSubmit={(values) => alert(JSON.stringify(values, null, 2))}
+      onSubmit={(values) => {
+        const payload:TPayloadSignup ={
+          id: 0,
+          name: values.userName,
+          email: values.email,
+          password: values.confirmPassword,
+          phone: values.phone,
+          birthday: values.birthDay,
+          gender: Boolean(values.gender),
+          role: "",
+        }
+        signup(payload)
+        .then((res)=>{
+            console.log({res})
+            navigate('/auth/signin')
+        }).catch((e)=>{
+          alert(e.response.data.content);
+        })
+      }}
     >
       {({ setFieldValue, errors, touched, setFieldTouched }) => {
         console.log("touched", touched);
