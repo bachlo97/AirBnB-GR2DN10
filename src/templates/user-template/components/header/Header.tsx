@@ -11,7 +11,7 @@ import { useAppSelector } from '@/redux/hooks';
 
 function Header() {
     const user = useAppSelector(state=>state.authReducer.user)
-    console.log(user)
+    console.log({user})
     const [scrollY,setScrollY]=useState(true);
     
 useEffect(()=>{
