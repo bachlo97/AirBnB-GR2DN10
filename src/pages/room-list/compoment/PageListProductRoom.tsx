@@ -25,7 +25,7 @@ export default function PaginatedItems({ itemsPerPage,data}:any) {
   const handlePageClick = (event:any) => {
     const newOffset = (event.selected * itemsPerPage) % items.length;
     console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
+      `User requested page  ${event.selected}, which is offset ${newOffset}`
     );
     setItemOffset(newOffset);
   };
