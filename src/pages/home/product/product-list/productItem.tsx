@@ -5,7 +5,6 @@ import { MdBedroomChild } from 'react-icons/md';
 import {  SProductItemText } from './Product.style';
 import { TRoom } from '@/services/room/Room.type';
 import { NavLink } from 'react-router-dom';
-import Star from '@/components/star/Star';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function ProductItem(props: TRoom) {
@@ -32,7 +31,14 @@ function ProductItem(props: TRoom) {
                 truncateText(`${props.tenPhong}`)
             }   
             </h4>
-        <Star/>
+            <div className="stars flex items-center sm:text-[1.2rem] md:text-[1.5rem] mb-1">
+            <FaStar />
+            <FaStar />
+            <FaStar />
+            <FaStar />
+            <FaStar />
+            (3 người đánh giá)
+            </div>
            <p className='font-bold text-[1.8rem]'>${props.giaTien}/Đêm</p>
            <div className="product-icons flex gap-3">
             <div className='flex items-center'><IoBedOutline />:{props.giuong}</div>

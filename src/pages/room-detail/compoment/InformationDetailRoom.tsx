@@ -1,12 +1,14 @@
 import { ButtonPrimary, ButtonPrimaryTwo } from "@/components/Button/Button";
-import '../css/RoomDetail.css'
-
+import { IoIosAdd, IoIosRemove } from "react-icons/io";
 import { DatePicker, Space } from "antd";
 
+import { MdBedroomChild, MdIron } from "react-icons/md";
+import { PiTelevisionSimpleBold } from "react-icons/pi";
 import ModalRoomDetail from "../modal/ModalRoomDetail";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-
+import { GiWashingMachine } from "react-icons/gi";
+import {  FaWifi } from 'react-icons/fa';
 
 import { TextPrimary } from "@/components/style-compoment/StyleCompoment";
 import { useSearchBarHook } from "@/templates/user-template/components/header/hooks/useSearchBarHook";
@@ -14,15 +16,7 @@ import moment from 'moment';
 import { useAppDispatch } from "@/redux/hooks";
 import { setDisCount, setImg, setName, setPrice } from "@/redux/cart/Cart.slice";
 import { setCustomers, setEndDayRoom, setStartDayRoom } from "@/redux/room/Date.slice";
-import { IoIosAdd, IoIosRemove } from "react-icons/io";
-import { MdBedroomChild, MdIron } from "react-icons/md";
-import { PiTelevisionSimpleBold } from "react-icons/pi";
-import { IoLocationOutline } from "react-icons/io5";
-import { GiWashingMachine } from "react-icons/gi";
-import {  FaWifi } from 'react-icons/fa';
-import { HiOutlineKey } from "react-icons/hi2";
-import { BsCalendarDate } from "react-icons/bs";
-
+import '../css/RoomDetail.css'
 type Props=any;
 
 function InformationDetailRoom(props:Props) {
@@ -76,16 +70,7 @@ useEffect(()=>{
             </div>
           </div>
           <div className="mt-8 flex gap-3">
-            <IoLocationOutline className="text-6xl" />
-            <div className="">
-              <h4 className="font-bold">Vị trí tuyệt vời</h4>
-              <p>
-              100% khách gần đây đã xếp hạng 5 sao cho địa điểm này.
-              </p>
-            </div>
-          </div>
-          <div className="mt-8 flex gap-3">
-            <HiOutlineKey  className="text-6xl" />
+            <MdBedroomChild className="text-6xl" />
             <div className="">
               <h4 className="font-bold">Phòng trong một căn hộ chung cư</h4>
               <p>
@@ -95,7 +80,17 @@ useEffect(()=>{
             </div>
           </div>
           <div className="mt-8 flex gap-3">
-            <BsCalendarDate className="text-6xl" />
+            <MdBedroomChild className="text-6xl" />
+            <div className="">
+              <h4 className="font-bold">Phòng trong một căn hộ chung cư</h4>
+              <p>
+                Phòng riêng của bạn trong nhà, cộng với quyền sử dụng không gian
+                chung.
+              </p>
+            </div>
+          </div>
+          <div className="mt-8 flex gap-3">
+            <MdBedroomChild className="text-6xl" />
             <div className="">
               <h4 className="font-bold">Phòng trong một căn hộ chung cư</h4>
               <p>
@@ -175,7 +170,7 @@ wifi
       >
         <div>
           <h3 className="mb-6 text-3xl font-semibold">${props.data.giaTien}/ đêm </h3>
-          <form action="" onSubmit={handleSubmit} className="search-bar">
+          <form action="" onSubmit={handleSubmit}>
             <div className="rounded-[1rem] border border-solid border-gray-400 ">
               <div className="flex border-b border-solid border-gray-400">
                 <div className="dateSearchbar group-form w-1/2 border-r border-solid border-gray-400 px-4 py-3">
@@ -191,7 +186,7 @@ wifi
                     placeholder="Ngày tới"
                     name="currentDay"
                     onChange={(selectedDate) => handleDateChange(selectedDate,'currentDay')}
-                    popupClassName="calendar-header"
+
                   />
                 </Space>
                   </p>
@@ -208,7 +203,7 @@ wifi
                     placeholder="Ngày về"
                     name="currentDay"
                     onChange={(selectedDate) => handleDateChange(selectedDate,'nextDay')}
-                    popupClassName="calendar-header"
+                    
                   />
                 </Space></p>
                 </div>

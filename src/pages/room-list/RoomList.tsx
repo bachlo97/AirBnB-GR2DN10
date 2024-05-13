@@ -8,7 +8,6 @@ import LoadRoomList from './load/LoadRoomList'
 
 import { useRoomListHook } from './hooks/UseRoomListHook'
 import { Container } from '@/components/style-compoment/Container'
-import PaginatedItems from './compoment/PageListProductRoom'
 
 
 function RoomList() {
@@ -61,9 +60,7 @@ function RoomList() {
            </div>
            </SRespon>
         <div>
-          <div className='page-product-list'>
-            <PaginatedItems itemsPerPage={1} data={dataLocation} className='page-product-list'
-          ></PaginatedItems></div>
+          <ListProductRoom data={dataLocation}></ListProductRoom>
         </div>
             </div>   
             <SMap className='lg:w-3/5 xl:w-2/5 mb-5'>
@@ -71,7 +68,7 @@ function RoomList() {
             
             src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15672.855867132948!2d106.59377735!3d10.8713242!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1713872185758!5m2!1sen!2s" width="100%" height='100%'  loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>            {/*  */}
             </SMap>
-    
+           
             </div>
            
           

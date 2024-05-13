@@ -13,15 +13,11 @@ import { setStartDayRoom, setEndDayRoom } from "@/redux/room/Date.slice";
 
 import SearchBarLoading from "../loading/SearchBarLoading";
 import { useSearchBarHook } from "../hooks/useSearchBarHook";
-import { useTranslation } from "react-i18next";
 
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function HeaderSearchBar(props: any) {
-  const {t}=useTranslation();
 
   const [isLoading, setIsLoading] = useState(true);
-  const [valueGuess,setValueGuess]=useState(0);
-
   const {  navigate,
     dispatch,
     isOpen,
@@ -60,17 +56,16 @@ function HeaderSearchBar(props: any) {
         <SearchBar>
           <form className="flex" onSubmit={handleSubmit} method="get" action="">
             <SearchIcoin 
-              className={`${isOpen.location? "activeSearchbar" :""}  search-icon `}
+              className={`${isOpen.location? "active" :""}  search-icon`}
               onClick={() => {
                 handleFieldClick("location");
              
               }}
-              
             >
-              <h5 className="ml-4 mt-3 text-[1.4rem]">{t('header.anyWhere')}</h5>
+              <h5 className="ml-4 mt-3 text-[1.4rem]">Địa điểm</h5>
               <p className="text-[1.5rem] text-gray-500">
                 <Select
-                  placeholder={t('header.anyWhere')}
+                  placeholder="Địa điểm"
                   className="my-select w-[150px]"
                   allowClear
                   onChange={handleChange}
@@ -80,67 +75,58 @@ function HeaderSearchBar(props: any) {
                   showSearch
  onSearch={onSearch}
     filterOption={filterOption}
-    
                 />
               </p>
             </SearchIcoin>
             <SearchIcoin
-              className={`${isOpen.ngayden ? "activeSearchbar" : ""} search-icon`}
+              className={`${isOpen.ngayden ? "active" : ""} search-icon`}
               onClick={() => {
                 handleFieldClick("ngayden");
          
               }}
             >
-              <h5 className="mt-3 text-[1.4rem]">{t('header.startDay')}</h5>
+              <h5 className="mt-3 text-[1.4rem]">Ngày đến</h5>
               <p className="text-[1.5rem] text-gray-500">
-                <Space direction="vertical" >
+                <Space direction="vertical">
                   <DatePicker
-                    placeholder={t('header.startDay')}
+                    placeholder="Ngày tới"
                     onChange={(selectedDate) => handleDateChange(selectedDate,'currentDay')}
                     name="currentDay"
                     open={isOpen.ngayden}
-                    popupClassName="calendar-header"
                   />
                 </Space>
               </p>
             </SearchIcoin>
             <SearchIcoin
-              className={`${isOpen.ngayVe ? "activeSearchbar" : ""} search-icon`}
+              className={`${isOpen.ngayVe ? "active" : ""} search-icon`}
               onClick={() => {
                 handleFieldClick("ngayVe");
               
               }}
            
             >
-              <h5 className="mt-3 text-[1.4rem]">{t('header.endDay')}</h5>
+              <h5 className="mt-3 text-[1.4rem]">Ngày về</h5>
               <p className="text-[1.5rem] text-gray-500">
                 <Space direction="vertical">
-                  <DatePicker 
-                  placeholder={t('header.endDay')}
-                   className="date-picker-header"
+                  <DatePicker placeholder="Ngày về" 
                     onChange={(selectedDate) => handleDateChange(selectedDate,'nextDay')}
                   name="nextDay"
                   open={isOpen.ngayVe}
-                  popupClassName="calendar-header"
                   />
                 </Space>
               </p>
             </SearchIcoin>
             <SearchIcoin
-              className={`${isOpen.soKhach ? "activeSearchbar" : ""} search-icon`}
+              className={`${isOpen.soKhach ? "active" : ""} search-icon`}
               onClick={() => {
                 handleFieldClick("soKhach");
               }}
             >
-              <h5 className="mt-3 text-[1.4rem]">{t('header.addGuests')} </h5>
+              <h5 className="mt-3 text-[1.4rem]">Số khách </h5>
               <p className="text-[1.5rem] flex gap-3 items-center text-gray-500">
-                <button onClick={()=>{
-                  setValueGuess(value=>value+1);
-                }}>+</button>
-              {valueGuess}
-              <button onClick={()=>{
-                  setValueGuess(value=>value-1);
-                }}>-</button>
+                <div>+</div>
+               0
+                <div>-</div>
               </p>
             </SearchIcoin>
             <button
