@@ -33,7 +33,6 @@ function HeaderSearchBar(props: any) {
     handleFieldClick,
     handleDateChange,
     handleChange,
-    // hihi
     handleSubmit}=useSearchBarHook();
 
    

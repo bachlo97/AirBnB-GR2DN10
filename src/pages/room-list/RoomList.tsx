@@ -8,6 +8,7 @@ import LoadRoomList from './load/LoadRoomList'
 
 import { useRoomListHook } from './hooks/UseRoomListHook'
 import { Container } from '@/components/style-compoment/Container'
+import PaginatedItems from './compoment/PageListProductRoom'
 
 
 function RoomList() {
@@ -59,9 +60,11 @@ function RoomList() {
             </SButtonRoomList>
            </div>
            </SRespon>
-        <div>
-          <ListProductRoom data={dataLocation}></ListProductRoom>
-        </div>
+        <div className='page-product-list'>
+
+        <PaginatedItems itemsPerPage={1} data={dataLocation} className='page-product-list'
+          ></PaginatedItems></div>      
+          
             </div>   
             <SMap className='lg:w-3/5 xl:w-2/5 mb-5'>
             <iframe
