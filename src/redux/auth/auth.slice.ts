@@ -1,13 +1,19 @@
-import { getProfile } from "@/services/user";
+import { getProfile, uploadAvatar } from "@/services/user";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const getProfileThunk = createAsyncThunk(
   "getProfileThunk",
   async (id: number) => {
-    const resp = await getProfile(id);
-    return resp.data.content;
+    try{
+      const resp = await getProfile(id);
+      return resp.data.content;
+    }catch(e){
+      alert(e)
+    }
+
   },
 );
+
 const initialState = {
   user: null,
 };

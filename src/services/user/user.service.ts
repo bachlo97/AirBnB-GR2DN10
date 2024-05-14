@@ -1,4 +1,4 @@
-import { axiosWithAuth } from "../axios.config";
+import { axiosWithAuth, axiosWithAuthToken } from "../axios.config";
 
 export const signup = (payload: TPayloadSignup) => {
     return axiosWithAuth("/auth/signup", {
@@ -15,9 +15,19 @@ export const signin = (payload: TPayloadSignin) => {
     });
 };
 
-export const getProfile = (id:number) => {
-    return axiosWithAuth(`/users/${id}`,{
-        method: "get",
-    })
+export const getProfile = async (id:number) => {
+    try{
+        const resp = await axiosWithAuth(`/users/${id}`)
+        return resp
+    }
+    catch(e:any){
+        throw new Error(e);
+    }
 }
 
+export const uploadAvatar = (payload:any) => {
+    return axiosWithAuthToken('/users/upload-avatar',{
+        method:'post',
+        data: payload,
+    })
+}

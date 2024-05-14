@@ -1,12 +1,12 @@
 import { CheckIcon, VIcon } from "@/assets/icons";
 import { useAppSelector } from "@/redux/hooks";
+import { uploadAvatar } from "@/services/user";
 import React, { useEffect, useRef, useState } from "react";
 
 type Props = {};
 
 export function Upload({}: Props) {
   const user: any = useAppSelector((state) => state.authReducer.user);
-  console.log('pass',user.avatar)
   const inpRef = useRef<any>();
 
   const [urlImage, setUrlImage] = useState('');
@@ -17,6 +17,9 @@ export function Upload({}: Props) {
       return text.substring(0, 16) + "...";
     }
   }
+  useEffect(()=>{
+    user && setUrlImage(user.avatar)
+  },[])
 
   useEffect(() => {
     return () => {
@@ -31,7 +34,7 @@ export function Upload({}: Props) {
       >
         {!urlImage ? (
           <h1 className="text-[35px] text-white">
-            {user.name[0].toUpperCase()}
+            {user?.name[0].toUpperCase()}
           </h1>
         ) : null}
       </div>
@@ -39,8 +42,15 @@ export function Upload({}: Props) {
             inpRef.current.click();
           }}>Cập nhật ảnh</span>
            <input
-          onChange={(event:any) => {
-            setUrlImage(URL.createObjectURL(event.target.files[0]));
+          onChange={async(event:any) => {
+            try{
+              const formFile = new FormData()
+              formFile.append("formFile",event.target.files[0])
+              await uploadAvatar(formFile)
+              setUrlImage(URL.createObjectURL(event.target.files[0]));
+            }catch(err){
+              console.log(err)
+            }
           }}
           ref={inpRef}
           className="hidden"
@@ -67,7 +77,7 @@ export function Upload({}: Props) {
         <hr />
       </div>
       <div className="mt-10 w-[85%] text-left text-[19px] font-semibold">
-        <h3 className="">{truncateText(user.name)} đã xác nhận</h3>
+        <h3 className="">{user && truncateText(user?.name)} đã xác nhận</h3>
       </div>
       <div className="mb-16 mt-4 flex w-[85%] space-x-2 text-left text-[13px]">
         <VIcon />
