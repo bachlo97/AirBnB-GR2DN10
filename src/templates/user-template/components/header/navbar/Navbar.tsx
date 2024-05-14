@@ -1,39 +1,50 @@
-import  { useEffect, useState } from 'react'
-import { HeaderLogo, HeaderLogoText } from '../header.style'
-import { FaAirbnb, FaBars, FaUserCircle } from 'react-icons/fa'
-import ToogleHeader from '../toggle/ToogleHeader'
-import { Button, Dropdown } from 'antd'
-import { HeaderSearchIconSubmit, SearchBarNav } from './NavBar.style'
-import { NavItem } from '../search-bar/SearchBar.style'
-import { FaMagnifyingGlass } from 'react-icons/fa6'
-import NavbarLoading from '../loading/NavbarLoading'
-import { NavLink } from 'react-router-dom'
+import { useEffect, useState } from "react";
+import { HeaderLogo, HeaderLogoText } from "../header.style";
+import { FaAirbnb, FaBars, FaUserCircle } from "react-icons/fa";
+import ToogleHeader from "../toggle/ToogleHeader";
+import { Button, Dropdown } from "antd";
+import { HeaderSearchIconSubmit, SearchBarNav } from "./NavBar.style";
+import { NavItem } from "../search-bar/SearchBar.style";
+import { FaMagnifyingGlass } from "react-icons/fa6";
+import NavbarLoading from "../loading/NavbarLoading";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { setUser } from "@/redux/auth/auth.slice";
+import { removeLocalStorage } from "@/utils";
+import { ACCESS_TOKEN, USER_ID } from "@/constant";
 import { useTranslation } from 'react-i18next'
+type Props = object;
 
-type Props=object;
-
-function Navbar(props:Props) {
-  const [isLoading, setIsLoading] = useState(true);
+function Navbar(props: Props) {
+  const user:any = useAppSelector((state) => state.authReducer.user);
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const {t}=useTranslation();
+  const [isLoading, setIsLoading] = useState(true);
+
+
+  const handlelogout = () => {
+    dispatch(setUser(null));
+    removeLocalStorage(ACCESS_TOKEN)
+    removeLocalStorage(USER_ID)
+    navigate('/')
+};
+
   const items = [
     {
-      key: '1',
-      label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-          {t('header.logIn')}
-        </a>
-      ),
+      key: "1",
+      label: user ? <NavLink to={"profile"}>Trang cá nhân</NavLink> : <NavLink to={"auth/signin"}>Đăng nhập</NavLink>,
     },
     {
-      key: '2',
-      label: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
-              {t('header.signUp')}
-        </a>
-      ),
+      key: "2",
+      label: user ? <button onClick={handlelogout}>Đăng xuất</button> : <NavLink to={"auth/signup"}>Đăng Kí</NavLink>,
     },
-    
+    user?.role === 'ADMIN' ? {key: '3',label: <NavLink to={"/admin"}>Quản trị</NavLink>} : null
   ];
+
+
+ 
+
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 2000); // Mô phỏng thời gian tải dữ liệu
   }, []);
@@ -94,33 +105,29 @@ AirBnB
 
 <ToogleHeader></ToogleHeader>
 
-{/* user */}
-<Dropdown
-menu={{
-items,
-}}
-placement="bottomLeft"
-arrow
-trigger={['click']}
->
-<Button 
-
-className='flex gap-3 items-center h-[40px]' style={{borderRadius:'30px'}}
-
->
-<FaBars />
-<div className='text-[25px]'>
-<FaUserCircle />
-</div>
-
-
-
-</Button>
-</Dropdown>
-</div>
-
-</div>
-  )
+        {/* user */}
+        <Dropdown
+          menu={{
+            items,
+            
+          }}
+          placement="bottomLeft"
+          arrow
+          trigger={["click"]}
+        >
+          <Button
+            className="flex h-[40px] items-center gap-3"
+            style={{ borderRadius: "30px" }}
+          >
+            <FaBars />
+            <div className="text-[25px]">{user ? <div className="rounded-full h-12 w-12 bg-[#F62682] text-white text-[16px] flex justify-center items-center">
+                {user.name[0].toUpperCase()}
+            </div> : <FaUserCircle />}</div>
+          </Button>
+        </Dropdown>
+      </div>
+    </div>
+  );
 }
 
 export default Navbar

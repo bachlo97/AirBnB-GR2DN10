@@ -7,6 +7,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { NavLink, useNavigate } from "react-router-dom";
 import { signup } from "@/services/user";
+import dayjs from "dayjs";
 type Props = {};
 
 export function Register(props: Props) {
@@ -58,10 +59,11 @@ export function Register(props: Props) {
           email: values.email,
           password: values.confirmPassword,
           phone: values.phone,
-          birthday: values.birthDay,
+          birthday: dayjs(values.birthDay).format("DD/MM/YYYY"),
           gender: Boolean(values.gender),
           role: "",
         }
+        console.log(payload)
         signup(payload)
         .then((res)=>{
             console.log({res})
