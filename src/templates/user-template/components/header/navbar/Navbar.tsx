@@ -1,5 +1,4 @@
 
-import { useTranslation } from 'react-i18next'
 
 
 
@@ -19,6 +18,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { setUser } from "@/redux/auth/auth.slice";
 import { removeLocalStorage } from "@/utils";
 import { ACCESS_TOKEN, USER_ID } from "@/constant";
+import { useTranslation } from 'react-i18next'
 type Props = object;
 
 function Navbar(props: Props) {
@@ -28,6 +28,7 @@ function Navbar(props: Props) {
   const user:any = useAppSelector((state) => state.authReducer.user);
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
+
   const [isLoading, setIsLoading] = useState(true);
 
 
