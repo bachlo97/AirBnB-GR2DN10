@@ -7,20 +7,41 @@ import { HeaderSearchIconSubmit, SearchBarNav } from "./NavBar.style";
 import { NavItem } from "../search-bar/SearchBar.style";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import NavbarLoading from "../loading/NavbarLoading";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { setUser } from "@/redux/auth/auth.slice";
+import { removeLocalStorage } from "@/utils";
+import { ACCESS_TOKEN, USER_ID } from "@/constant";
 type Props = object;
-const items = [
-  {
-    key: "1",
-    label: <NavLink to={"auth/signin"}>Đăng nhập</NavLink>,
-  },
-  {
-    key: "2",
-    label: <NavLink to={"auth/signup"}>Đăng Kí</NavLink>,
-  },
-];
+
 function Navbar(props: Props) {
+  const user:any = useAppSelector((state) => state.authReducer.user);
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(true);
+
+
+  const handlelogout = () => {
+    dispatch(setUser(null));
+    removeLocalStorage(ACCESS_TOKEN)
+    removeLocalStorage(USER_ID)
+    navigate('/')
+};
+
+  const items = [
+    {
+      key: "1",
+      label: user ? <NavLink to={"profile"}>Trang cá nhân</NavLink> : <NavLink to={"auth/signin"}>Đăng nhập</NavLink>,
+    },
+    {
+      key: "2",
+      label: user ? <button onClick={handlelogout}>Đăng xuất</button> : <NavLink to={"auth/signup"}>Đăng Kí</NavLink>,
+    },
+    // user ? {key: '3',label: <button>Quản trị</button>} : null
+  ];
+
+
+ 
 
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 2000); // Mô phỏng thời gian tải dữ liệu
@@ -72,6 +93,7 @@ function Navbar(props: Props) {
         <Dropdown
           menu={{
             items,
+            
           }}
           placement="bottomLeft"
           arrow
@@ -82,9 +104,9 @@ function Navbar(props: Props) {
             style={{ borderRadius: "30px" }}
           >
             <FaBars />
-            <div className="text-[25px]">
-              <FaUserCircle />
-            </div>
+            <div className="text-[25px]">{user ? <div className="rounded-full h-12 w-12 bg-[#F62682] text-white text-[16px] flex justify-center items-center">
+                {user.name[0]}
+            </div> : <FaUserCircle />}</div>
           </Button>
         </Dropdown>
       </div>
