@@ -3,16 +3,18 @@ import { Upload } from "./components/upload/upload";
 import UserInfo from "./components/user-info/user-info";
 import { useAppSelector } from "@/redux/hooks";
 import { useNavigate } from "react-router-dom";
+import { getLocalStorage } from "@/utils";
+import { ACCESS_TOKEN } from "@/constant";
 
 type Props = {};
 
 export default function Profile({}: Props) {
-  const user = useAppSelector((state) => state.authReducer.user);
   const navigate = useNavigate();
   useEffect(() => {
-    if (!user) {
+    if (!getLocalStorage(ACCESS_TOKEN)) {
+    
       navigate("/auth/signin");
-    }
+  }
   }, []);
   return (
     <div className="mx-auto my-10 grid w-[95%] grid-cols-4 gap-7">

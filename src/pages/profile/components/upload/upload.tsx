@@ -19,7 +19,7 @@ export function Upload({}: Props) {
   }
   useEffect(()=>{
     user && setUrlImage(user.avatar)
-  },[])
+  },[user])
 
   useEffect(() => {
     return () => {

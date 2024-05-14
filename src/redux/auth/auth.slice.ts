@@ -8,7 +8,7 @@ export const getProfileThunk = createAsyncThunk(
       const resp = await getProfile(id);
       return resp.data.content;
     }catch(e){
-      alert(e)
+      console.log(e)
     }
 
   },
