@@ -10,9 +10,20 @@ import { IoIosArrowBack } from 'react-icons/io'
 function Pay() {
   const [countDay,setCountDay]=useState(0);
   const {alertSuccess}=useAlertHook('Thanh toán thành công')
+  const [userPay,setUserPay]=useState ({
 
+    id: '',
+    maPhong: '',
+    ngayDen: '',
+    ngayDi: '',
+    soLuongKhach: '',
+    maNguoiDung: '',
+  });
   const payRoom = useAppSelector((state: any) => state.GetCartsRoomSlice);
   const dateRoom = useAppSelector((state: any) => state.GetDateSlice);
+  const user = useAppSelector((state: any) => state.authReducer);
+  console.log(userPay);
+  
   const startDate = moment(dateRoom.startDate);
 const endDate = moment(dateRoom.endDate);
 
@@ -110,7 +121,13 @@ useEffect(()=>{
             <ButtonPrimary width='10rem' height={3.5} className='my-6'
             onClick={(e)=>{
               alertSuccess();
-
+              setUserPay({  
+              id: '',
+              maPhong: '',
+              ngayDen: dateRoom.startDate,
+              ngayDi: dateRoom.endDate,
+              soLuongKhach: dateRoom.customers,
+              maNguoiDung: user.id,})
             }}
             >Xác Nhận</ButtonPrimary>
 

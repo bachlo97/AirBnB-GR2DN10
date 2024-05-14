@@ -6,7 +6,7 @@ const initialState = {
     priceRoom:100,
     imgRoom:'',
     nameRoom:'',
-    
+    idRoom:'',
 };
 
 const GetCartRoomSlice = createSlice({
@@ -25,6 +25,9 @@ const GetCartRoomSlice = createSlice({
     },
      setName:(state, { payload }) => {
         state.nameRoom = payload;
+    },
+     setIdRoom:(state, { payload }) => {
+        state.idRoom = payload;
     },
    
   
