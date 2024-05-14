@@ -14,16 +14,15 @@ export default function Profile({}: Props) {
       navigate("/auth/signin");
     }
   }, []);
-  if (user) {
-    return (
-      <div className="mx-auto my-10 grid w-[95%] grid-cols-4 gap-7">
-        <div className="cols-span bg-white-300 flex flex-col items-center justify-center rounded-3xl border-[1px] border-solid border-gray-300">
-          <Upload />
-        </div>
-        <div className="col-span-3">
-          <UserInfo />
-        </div>
+  return (
+    <div className="mx-auto my-10 grid w-[95%] grid-cols-4 gap-7">
+      <div className="cols-span bg-white-300 flex flex-col items-center justify-center rounded-3xl border-[1px] border-solid border-gray-300">
+        <Upload />
       </div>
-    );
-  }
+      <div className="col-span-3">
+        <UserInfo />
+      </div>
+    </div>
+  );
+ 
 }

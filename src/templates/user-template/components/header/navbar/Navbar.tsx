@@ -37,7 +37,7 @@ function Navbar(props: Props) {
       key: "2",
       label: user ? <button onClick={handlelogout}>Đăng xuất</button> : <NavLink to={"auth/signup"}>Đăng Kí</NavLink>,
     },
-    // user ? {key: '3',label: <button>Quản trị</button>} : null
+    user?.role === 'ADMIN' ? {key: '3',label: <NavLink to={"/admin"}>Quản trị</NavLink>} : null
   ];
 
 
@@ -105,7 +105,7 @@ function Navbar(props: Props) {
           >
             <FaBars />
             <div className="text-[25px]">{user ? <div className="rounded-full h-12 w-12 bg-[#F62682] text-white text-[16px] flex justify-center items-center">
-                {user.name[0]}
+                {user.name[0].toUpperCase()}
             </div> : <FaUserCircle />}</div>
           </Button>
         </Dropdown>
