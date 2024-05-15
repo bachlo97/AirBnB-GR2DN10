@@ -13,6 +13,7 @@ import { IIFE } from '@/utils';
 import { GetRoomDetail } from '@/services/room-detail/RoomDetail.service';
 import { Container } from '@/components/style-compoment/Container';
 import RoomDetailLoading from './loading/RoomDetailLoading';
+import CommentDetail from './compoment/CommentDetail';
 
 type Props = object
 
@@ -48,7 +49,7 @@ const RoomDetail = (_props: Props) => {
   
 
     <Container>
-      <div className=' justify-between mb-4 sm:hidden 2sm:flex'>
+      <div className='justify-between mb-4 sm:hidden 2sm:flex'>
         <div className='flex gap-3 items-center'>
           <BsTranslate className='text-4xl' />
           <h3 className='font-bold md:text-3xl lg:text-4xl'>{dataRoomDetail.tenPhong}</h3>
@@ -89,34 +90,7 @@ const RoomDetail = (_props: Props) => {
       {/* Thông tin chi tiết và thanh toán */}
       <InformationDetailRoom data={dataRoomDetail}/>
       {/* Bình luận */}
-      <div className='2xl:w-3/4 mx-auto mt-8 border-t border-solid py-5'>
-        <h3 className='font-semibold text-3xl mb-6'>Đánh giá</h3>
-        <div className='border-b border-solid'>
-          <div className='flex gap-5'>
-            <SImg>
-              <img className='w-[100%] h-[100%] bg-cover ' src="https://yt3.ggpht.com/Lw90L5d4JrRQGyUInde_DyOdHWJKjG0g8CvWzQkjXamdTkdg2QgiZy6VzPVmtoNgwiFmXTvVlw=s48-c-k-c0x00ffffff-no-rj" alt="" />
-            </SImg>
-            <div>
-              <h4>Phạm Duy</h4>
-              <p>Tháng 6 năm 2022</p>
-            </div>
-          </div>
-          <div className='my-5'>Mọi thứ đều ok nha</div>
-        </div>
-        <form action="" method="post" className='flex w-[100%] my-5 gap-5'>
-          <SImg>
-            <img className='w-[10rem]' src="https://yt3.ggpht.com/Lw90L5d4JrRQGyUInde_DyOdHWJKjG0g8CvWzQkjXamdTkdg2QgiZy6VzPVmtoNgwiFmXTvVlw=s48-c-k-c0x00ffffff-no-rj" alt="" />
-          </SImg>
-          <div className="w-[100%] group-form">
-            <textarea name="" id="" className='border w-[100%] h-[20rem] px-4 py-3 outline-none'></textarea> <br />
-            <div className='text-right'>
-              <ButtonPrimary width='150px' height={3.5} type="submit">Thêm Bình Luận</ButtonPrimary>
-
-            </div>
-          </div>
-
-        </form>
-      </div>
+    <CommentDetail/>
 
     </Container>
 

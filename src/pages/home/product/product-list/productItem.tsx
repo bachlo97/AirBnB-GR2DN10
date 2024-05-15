@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaRegHeart, FaRegUser, FaStar } from 'react-icons/fa';
+import { FaRegHeart, FaRegUser } from 'react-icons/fa';
 import { IoBedOutline } from 'react-icons/io5';
 import { MdBedroomChild } from 'react-icons/md';
 import {  SProductItemText } from './Product.style';
@@ -7,7 +7,6 @@ import { TRoom } from '@/services/room/Room.type';
 import { NavLink } from 'react-router-dom';
 import Star from '@/components/star/Star';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function ProductItem(props: TRoom) {
     const truncateText=(text:string)=> {
         if (text.length <= 30) {
