@@ -12,7 +12,7 @@ import { TextPrimary } from "@/components/style-compoment/StyleCompoment";
 import { useSearchBarHook } from "@/templates/user-template/components/header/hooks/useSearchBarHook";
 import moment from 'moment';
 import { useAppDispatch } from "@/redux/hooks";
-import { setDisCount, setImg, setName, setPrice } from "@/redux/cart/Cart.slice";
+import { setDisCount, setIdRoom, setImg, setName, setPrice } from "@/redux/cart/Cart.slice";
 import { setCustomers, setEndDayRoom, setStartDayRoom } from "@/redux/room/Date.slice";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
 import { MdBedroomChild, MdIron } from "react-icons/md";
@@ -52,6 +52,8 @@ useEffect(()=>{
     setCountDay(diffInDays)
   }
 },[startDate, endDate])
+
+
   return (
    
  <div className="mx-auto my-3 mt-8 2sm:flex lg:w-[100%] 2xl:w-3/4 justify-between relative">
@@ -255,6 +257,7 @@ wifi
                 dispatch(setCustomers(countClient))
                 dispatch(setImg(props.data.hinhAnh))
                 dispatch(setName(props.data.tenPhong))
+                dispatch(setIdRoom(props.data.id))
 
 
 

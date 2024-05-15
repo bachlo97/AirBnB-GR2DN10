@@ -116,27 +116,24 @@ AirBnB
 
 {/* user */}
 <Dropdown
-menu={{
-items,
-}}
-placement="bottomLeft"
-arrow
-trigger={['click']}
->
-<Button 
-
-className='flex gap-3 items-center h-[40px]' style={{borderRadius:'30px'}}
-
->
-<FaBars />
-<div className='text-[25px]'>
-<FaUserCircle />
-</div>
-
-
-
-</Button>
-</Dropdown>
+          menu={{
+            items,
+            
+          }}
+          placement="bottomLeft"
+          arrow
+          trigger={["click"]}
+        >
+          <Button
+            className="flex h-[40px] items-center gap-3"
+            style={{ borderRadius: "30px" }}
+          >
+            <FaBars />
+            <div className="text-[25px]">{user ? <div className="rounded-full h-12 w-12 bg-[#F62682] text-white text-[16px] flex justify-center items-center">
+                {user.name[0].toUpperCase()}
+            </div> : <FaUserCircle />}</div>
+          </Button>
+        </Dropdown>
 </div>
 
 </div>

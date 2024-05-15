@@ -35,7 +35,7 @@ const GetCartRoomSlice = createSlice({
   
 });
 // eslint-disable-next-line no-empty-pattern
-export const {setDisCount,setPrice,setImg,setName} = GetCartRoomSlice.actions;
+export const {setDisCount,setPrice,setImg,setName,setIdRoom} = GetCartRoomSlice.actions;
 
 export const GetCartsRoomSlice = GetCartRoomSlice.reducer;
 

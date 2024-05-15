@@ -2,26 +2,35 @@ import { ButtonPrimary, ButtonPrimaryTwo } from '@/components/Button/Button'
 import { Container } from '@/components/style-compoment/Container'
 import useAlertHook from '@/hooks/notification/Alert';
 import { useAppSelector } from '@/redux/hooks';
+import { postPay } from '@/services/pay/Pay.service';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 
 import { IoIosArrowBack } from 'react-icons/io'
+import { useNavigate } from 'react-router-dom';
 
 function Pay() {
   const [countDay,setCountDay]=useState(0);
   const {alertSuccess}=useAlertHook('Thanh toán thành công')
-  const [userPay,setUserPay]=useState ({
+  const [userPay,setUserPay]=useState<TPay>({
 
-    id: '',
-    maPhong: '',
+    id:0,
+    maPhong: 0,
     ngayDen: '',
     ngayDi: '',
-    soLuongKhach: '',
-    maNguoiDung: '',
+    soLuongKhach: 0,
+    maNguoiDung: 0,
   });
+  const navigate = useNavigate()  
+
+  useEffect(()=>{
+    postPay(userPay);
+  },[userPay])
   const payRoom = useAppSelector((state: any) => state.GetCartsRoomSlice);
   const dateRoom = useAppSelector((state: any) => state.GetDateSlice);
-  const user = useAppSelector((state: any) => state.authReducer);
+  const user:any = useAppSelector((state) => state.authReducer.user);
+  console.log(user);
+  
   console.log(userPay);
   
   const startDate = moment(dateRoom.startDate);
@@ -93,11 +102,11 @@ useEffect(()=>{
                 <h4 className='text-[1.9rem] font-bold'>Chọn cách thanh toán</h4>
             <form action="">
                 <div className='flex gap-3 mt-3'>
-                            <input type="radio" />
+                            <input type="radio" name='check'/>
                 <label htmlFor="">Thanh toán qua ATM</label>
                 </div>
                 <div className='flex gap-3 mt-3'>
-                            <input type="radio" />
+                            <input type="radio" name='check'/>
                 <label htmlFor="">Thanh toán qua MOMO</label>
                 </div>
         
@@ -109,12 +118,12 @@ useEffect(()=>{
                 <h4 className='text-[1.9rem] font-bold'>Thông tin thanh toán</h4>
             <div className="groupt-form mt-5">
                 <label htmlFor="" className='block mb-3'>Họ Tên</label>
-                <input type="text" value='Phạm Ngọc Duy' className='p-3 w-[100%]' disabled/>
+                <input type="text" value={user.name} className='p-3 w-[100%]' disabled/>
               
             </div>
             <div className="groupt-form mt-5">
                 <label htmlFor="" className='block mb-3'>SDT</label>
-                <input type="text" value='0334491141' className='p-3 w-[100%]' disabled/>              
+                <input type="text"  value={user.phone} className='p-3 w-[100%]' disabled/>              
             </div>
             <div className='flex justify-between'>
             <ButtonPrimaryTwo width='10rem' height={3.5} className='my-6'>Quay lại</ButtonPrimaryTwo>
@@ -122,13 +131,14 @@ useEffect(()=>{
             onClick={(e)=>{
               alertSuccess();
               setUserPay({  
-              id: '',
-              maPhong: '',
+              id: 0,
+              maPhong: payRoom.idRoom,
               ngayDen: dateRoom.startDate,
               ngayDi: dateRoom.endDate,
               soLuongKhach: dateRoom.customers,
               maNguoiDung: user.id,})
             }}
+       
             >Xác Nhận</ButtonPrimary>
 
             </div>
