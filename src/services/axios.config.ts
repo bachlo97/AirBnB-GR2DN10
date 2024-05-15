@@ -4,17 +4,17 @@ import { getLocalStorage } from "@/utils";
 import axios from "axios";
 
 // -- Call Api: public
-export const axiosWithoutAuth = axios.create({
+export const axiosWithAuthToken = axios.create({
     baseURL: `${BASE_URL}/api`,
 
     // Đợi phản hồi của một Api -> giới hạn 3p
     timeout: 180_000,
 });
-axiosWithoutAuth.interceptors.request.use(
+axiosWithAuthToken.interceptors.request.use(
     (config) => { 
         config.headers.tokenCybersoft  = TOKEN_CYBER;
 
-        config.headers.Authorization = `Bearer ${getLocalStorage(ACCESS_TOKEN)}`;
+        config.headers.token = getLocalStorage(ACCESS_TOKEN);
 
         return config;
     },

@@ -18,107 +18,95 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { setUser } from "@/redux/auth/auth.slice";
 import { removeLocalStorage } from "@/utils";
 import { ACCESS_TOKEN, USER_ID } from "@/constant";
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from "react-i18next";
 type Props = object;
 
 function Navbar(props: Props) {
-  const {t}=useTranslation();
-
-
-  const user:any = useAppSelector((state) => state.authReducer.user);
-  const dispatch = useAppDispatch()
-  const navigate = useNavigate()
-
+  const user: any = useAppSelector((state) => state.authReducer.user);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(true);
-
 
   const handlelogout = () => {
     dispatch(setUser(null));
-    removeLocalStorage(ACCESS_TOKEN)
-    removeLocalStorage(USER_ID)
-    navigate('/')
-};
+    removeLocalStorage(ACCESS_TOKEN);
+    removeLocalStorage(USER_ID);
+    navigate("/");
+  };
 
   const items = [
     {
       key: "1",
-      label: user ? <NavLink to={"profile"}>Trang cá nhân</NavLink> : <NavLink to={"auth/signin"}>Đăng nhập</NavLink>,
+      label: user ? (
+        <NavLink to={"profile"}>Trang cá nhân</NavLink>
+      ) : (
+        <NavLink to={"auth/signin"}>Đăng nhập</NavLink>
+      ),
     },
     {
       key: "2",
-      label: user ? <button onClick={handlelogout}>Đăng xuất</button> : <NavLink to={"auth/signup"}>Đăng Kí</NavLink>,
+      label: user ? (
+        <button onClick={handlelogout}>Đăng xuất</button>
+      ) : (
+        <NavLink to={"auth/signup"}>Đăng Kí</NavLink>
+      ),
     },
-    user?.role === 'ADMIN' ? {key: '3',label: <NavLink to={"/admin"}>Quản trị</NavLink>} : null
+    user?.role === "ADMIN"
+      ? { key: "3", label: <NavLink to={"/admin"}>Quản trị</NavLink> }
+      : null,
   ];
-
-
- 
 
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 2000); // Mô phỏng thời gian tải dữ liệu
   }, []);
 
   if (isLoading) {
-    return <NavbarLoading/>;
+    return <NavbarLoading />;
   }
-  
 
-  
   return (
-    <div className="flex justify-between items-center mb-3">
-    <NavLink to={'/'} className='logo flex items-center gap-3 text-[2.1rem]'>
+    <div className="mb-3 flex items-center justify-between">
+      <NavLink to={"/"} className="logo flex items-center gap-3 text-[2.1rem]">
+        <HeaderLogo>
+          <FaAirbnb />
+        </HeaderLogo>
+        <HeaderLogoText>AirBnB</HeaderLogoText>
+      </NavLink>
+      {props.scrollY ? (
+        <NavItem className="flex items-center gap-5" id="navItem">
+          <div className="lg:text-[17px]">{t("header.stays")}</div>
 
-<HeaderLogo>
-<FaAirbnb />
-</HeaderLogo>  
-<HeaderLogoText>
-AirBnB
-</HeaderLogoText>
-
-</NavLink>
-    {props.scrollY ?
-    
-    (  <NavItem  className='flex items-center gap-5' id='navItem'>
-    
-    <div className='lg:text-[17px]'>{t('header.stays')}</div>
-    
-    <div className='lg:text-[17px]'>{t('header.experiences')}</div>
-    <div className='lg:text-[17px]'>{t('header.onlineExperiences')}</div>
-    
-    </NavItem>):(
-        <NavItem>
-                <SearchBarNav className=''>
-            <div className="flex justify-between items-center px-8">
-               <h5 className='text-[1.4rem]'>{t('header.anyWhere')}</h5>
-                      <h5 className='text-[1.4rem]'>{t('header.anyWeek')}</h5>
-                      <h5 className='text-[1.4rem]'>{t('header.addGuests')}</h5> 
-                    <HeaderSearchIconSubmit>
-                        <div className='flex justify-center'>
-                         <FaMagnifyingGlass />   
-                        </div>
-                    
-                    </HeaderSearchIconSubmit>
-            </div>
-                      
-
-
-        </SearchBarNav>
+          <div className="lg:text-[17px]">{t("header.experiences")}</div>
+          <div className="lg:text-[17px]">{t("header.onlineExperiences")}</div>
         </NavItem>
-    
+      ) : (
+        <NavItem>
+          <SearchBarNav className="">
+            <div className="flex items-center justify-between px-8">
+              <h5 className="text-[1.4rem]">{t("header.anyWhere")}</h5>
+              <h5 className="text-[1.4rem]">{t("header.anyWeek")}</h5>
+              <h5 className="text-[1.4rem]">{t("header.addGuests")}</h5>
+              <HeaderSearchIconSubmit>
+                <div className="flex justify-center">
+                  <FaMagnifyingGlass />
+                </div>
+              </HeaderSearchIconSubmit>
+            </div>
+          </SearchBarNav>
+        </NavItem>
+      )}
 
-    )}
-  
-    <div className='flex items-center gap-5'>
-{/* <div className='md:text-[15px] lg:text-[17px]'>Đón tiếp khách</div> */}
-{/* toggle */}
+      <div className="flex items-center gap-5">
+        {/* <div className='md:text-[15px] lg:text-[17px]'>Đón tiếp khách</div> */}
+        {/* toggle */}
 
-<ToogleHeader></ToogleHeader>
+        <ToogleHeader></ToogleHeader>
 
 {/* user */}
 <Dropdown
           menu={{
             items,
-            
           }}
           placement="bottomLeft"
           arrow
@@ -129,9 +117,22 @@ AirBnB
             style={{ borderRadius: "30px" }}
           >
             <FaBars />
-            <div className="text-[25px]">{user ? <div className="rounded-full h-12 w-12 bg-[#F62682] text-white text-[16px] flex justify-center items-center">
-                {user.name[0].toUpperCase()}
-            </div> : <FaUserCircle />}</div>
+            <div className="text-[25px]">
+              {user ? (
+                <div
+                  className={`flex h-12 w-12 items-center justify-center rounded-full ${user.avatar ? "bg-cover bg-center bg-no-repeat" : "bg-[#F62682] text-[16px] text-white "} `}
+                  style={{
+                    backgroundImage: user.avatar
+                      ? `url(${user.avatar})`
+                      : "none",
+                  }}
+                >
+                  {user.avatar === "" ? user.name[0].toUpperCase() : null}
+                </div>
+              ) : (
+                <FaUserCircle />
+              )}
+            </div>
           </Button>
         </Dropdown>
 </div>
@@ -140,4 +141,4 @@ AirBnB
   )
 }
 
-export default Navbar
+export default Navbar;
