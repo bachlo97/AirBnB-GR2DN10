@@ -1,0 +1,1 @@
+export { RoomItem } from "./room-item";

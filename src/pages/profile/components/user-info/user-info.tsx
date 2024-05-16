@@ -21,7 +21,7 @@ export default function UserInfo({}: Props) {
     {
       key: "2",
       label: "LỊCH SỬ ĐẶT PHÒNG",
-      children: <BookingInfo/>,
+      children: <BookingInfo itemsPerPage={2}/>,
     },
   ];
 
