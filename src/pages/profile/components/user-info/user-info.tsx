@@ -4,6 +4,7 @@ import type { TabsProps } from "antd";
 import './user-info.style.css'
 import AccountInfo from "./account-info/account-info";
 import BookingInfo from "./booking-info/booking-info";
+import { Provider } from "./context";
 type Props = {};
 
 export default function UserInfo({}: Props) {
@@ -15,7 +16,7 @@ export default function UserInfo({}: Props) {
     {
       key: "1",
       label: "THÔNG TIN TÀI KHOẢN",
-      children: <AccountInfo/>,
+      children: <Provider><AccountInfo/></Provider> ,
     },
     {
       key: "2",
@@ -26,3 +27,5 @@ export default function UserInfo({}: Props) {
 
   return <Tabs defaultActiveKey="1" items={items} onChange={onChange} className='tab-user'/>;
 }
+
+

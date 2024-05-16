@@ -1,19 +1,14 @@
-import { useAppSelector } from "@/redux/hooks";
-import { Input } from "antd";
-import React, { useState } from "react";
+import { useContext } from "react";
 import { RowInfo } from "./row-info";
 import { ProfileInput } from "./row-info/profile-input";
 import { ProfileSelect } from "./row-info/profile-select";
 import { ProfileDatePicker } from "./row-info/profile-datepicker";
+import { ContextStore } from "../context";
 
 type Props = {};
 
 export default function AccountInfo({}: Props) {
-  const user: any = useAppSelector((state) => state.authReducer.user);
-  const [bgBlur, setBgBlur] = useState<boolean>(false);
-  const handleBgBlur = (value: boolean) => {
-    setBgBlur(value);
-  };
+  const [bgBlur] = useContext(ContextStore);
   return (
     <div
       className={`${bgBlur ? 'after:absolute after:bottom-0 after:left-0 after:right-0 after:top-0  after:bg-[#ffffffd9] after:content-[""]' : ""} relative`}
@@ -21,31 +16,27 @@ export default function AccountInfo({}: Props) {
       <RowInfo
         type="email"
         label="Email"
-        edited={false}
+        edited={true}
         rowInput={<ProfileInput name="email" />}
-        handleBgBlur={handleBgBlur}
       />
 
       <RowInfo
         type="password"
         label="Password"
-        edited={true}
+        edited={false}
         rowInput={<ProfileInput name="password" />}
-        handleBgBlur={handleBgBlur}
       />
       <RowInfo
         type="name"
         label="Tên người dùng"
         edited={true}
         rowInput={<ProfileInput name="name" />}
-        handleBgBlur={handleBgBlur}
       />
       <RowInfo
         type="phone"
         label="Số điện thoại"
         edited={true}
         rowInput={<ProfileInput name="phone" />}
-        handleBgBlur={handleBgBlur}
       />
 
       <RowInfo
@@ -53,15 +44,13 @@ export default function AccountInfo({}: Props) {
         label="Ngày sinh"
         edited={true}
         rowInput={<ProfileDatePicker name="birthday" />}
-        handleBgBlur={handleBgBlur}
       />
 
       <RowInfo
         type="gender"
         label="Giới tính"
         edited={true}
-        rowInput={<ProfileSelect   name="gender" />}
-        handleBgBlur={handleBgBlur}
+        rowInput={<ProfileSelect name="gender" />}
       />
     </div>
   );

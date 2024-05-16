@@ -2,6 +2,7 @@ import { CheckIcon, VIcon } from "@/assets/icons";
 import { useAppSelector } from "@/redux/hooks";
 import { uploadAvatar } from "@/services/user";
 import React, { useEffect, useRef, useState } from "react";
+import Swal from "sweetalert2";
 
 type Props = {};
 
@@ -29,11 +30,11 @@ export function Upload({}: Props) {
   return (
     <>
       <div
-        className="mt-10 flex h-40 w-40 items-center justify-center rounded-full bg-pink-500 bg-center bg-cover bg-no-repeat"
+        className="mt-10 flex h-48 w-48 items-center justify-center rounded-full bg-pink-500 bg-center bg-cover bg-no-repeat"
         style={{ backgroundImage: urlImage ? `url(${urlImage})` : "none" }}
       >
         {!urlImage ? (
-          <h1 className="text-[35px] text-white">
+          <h1 className="text-[60px] text-white">
             {user?.name[0].toUpperCase()}
           </h1>
         ) : null}
@@ -47,6 +48,13 @@ export function Upload({}: Props) {
               const formFile = new FormData()
               formFile.append("formFile",event.target.files[0])
               await uploadAvatar(formFile)
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Bạn đã cập nhật thành công",
+                showConfirmButton: false,
+                timer: 1500
+              });
               setUrlImage(URL.createObjectURL(event.target.files[0]));
             }catch(err){
               console.log(err)

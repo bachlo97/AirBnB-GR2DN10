@@ -73,8 +73,8 @@ export function Register(props: Props) {
         })
       }}
     >
-      {({ setFieldValue, errors, touched, setFieldTouched }) => {
-        console.log("touched", touched);
+      {({ setFieldValue, errors, touched, setFieldTouched,values }) => {
+        console.log("values", values);
         return (
           <Form noValidate className="w-[400px]">
             <h1 className="text-center text-[2rem] text-white">

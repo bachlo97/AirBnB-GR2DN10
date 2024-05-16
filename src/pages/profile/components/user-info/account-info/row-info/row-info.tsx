@@ -1,12 +1,11 @@
 import { useAppSelector } from "@/redux/hooks";
-import { Input } from "antd";
-import React, { ReactElement, useState } from "react";
+import {ReactElement, useContext, useEffect, useState } from "react";
+import {ContextStore} from "../../context";
 
 type Props = {
   label: string;
   edited: boolean;
   rowInput: ReactElement;
-  handleBgBlur?: (value: boolean) => void;
   type: string;
 };
 
@@ -15,10 +14,14 @@ export function RowInfo({
   edited,
   rowInput,
   type,
-  handleBgBlur,
 }: Props) {
   const user: any = useAppSelector((state) => state.authReducer.user);
   const [open, setOpen] = useState<boolean>(false);
+  const [bgBlur, setBgBlur] = useContext(ContextStore);
+
+  useEffect(()=>{
+    setOpen(false)
+  },[user])
   const renderContent = () => {
     if(user){
         switch(type){
@@ -31,6 +34,7 @@ export function RowInfo({
         }
     }
   }
+
   return (
     <div className={`${open ? "relative z-30" : null} mt-5 w-[55%]`}>
       <div className="flex items-center justify-between">
@@ -40,14 +44,14 @@ export function RowInfo({
             className="cursor-pointer text-[15px] font-semibold underline"
             onClick={() => {
               setOpen(!open);
-              handleBgBlur && handleBgBlur(!open);
+              setBgBlur(!open)
             }}
           >
-            {open ? "Huỷ" : "Chỉnh sửa"}
+            {bgBlur? "Huỷ" : "Chỉnh sửa"}
           </span>
         ) : null}
       </div>
-      {open ? (
+      {open && bgBlur ? (
         rowInput
       ) : (
         <p className="text-[15px] text-gray-500">

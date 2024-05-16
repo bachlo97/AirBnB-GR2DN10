@@ -1,32 +1,70 @@
-import { useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { Select } from "antd";
-import React from "react";
-
+import {Form, Formik } from "formik";
+import { useContext } from "react";
+import { ContextStore } from "../../../context";
+import { getLocalStorage } from "@/utils";
+import { USER_ID } from "@/constant";
+import { updateUserThunk } from "@/redux/auth/auth.slice";
+import Swal from "sweetalert2";
+import _ from "lodash";
 type Props = {
   name: string;
 };
 
 export function ProfileSelect({ name }: Props) {
   const user: any = useAppSelector((state) => state.authReducer.user);
+  const [, setBgBlur] = useContext(ContextStore)
+  const dispatch = useAppDispatch()
+  const handleSubmit = async (values: any) => {
+    let subUser = _.omit(user,['avatar','password'])
+    const payload = {
+      ...subUser,
+      [name] : values[name]
+    }
+     await dispatch(updateUserThunk({payload,id: getLocalStorage(USER_ID)}))
+     setBgBlur(false)
+     Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Bạn đã cập nhật thành công",
+      showConfirmButton: false,
+      timer: 1500
+    });
+  };
   return (
-    <>
-      <Select
-        className="mt-3  w-[50%] block"
-        defaultValue={user && (user[name] ? 'Nam' : 'Nữ')}
-        options={[
-          {
-            value: true,
-            label: "Nam",
-          },
-          {
-            value: false,
-            label: "Nữ",
-          },
-        ]}
-      />
-      <button className="mt-4 rounded-xl   bg-[#222222] px-8 py-4 text-white hover:bg-[#000000]">
-        Lưu
-      </button>
-    </>
+    <Formik
+      initialValues={{ gender: user?.gender }}
+      onSubmit={handleSubmit}
+    >
+      {({ setFieldValue,values}) => {
+        console.log({values})
+        return (
+          <Form>
+            <Select
+              className="mt-3  block w-[50%]"
+              defaultValue={user && (user[name] ? "Nam" : "Nữ")}
+              onChange={(value) => setFieldValue("gender", value)}
+              options={[
+                {
+                  value: true,
+                  label: "Nam",
+                },
+                {
+                  value: false,
+                  label: "Nữ",
+                },
+              ]}
+            />
+            <button
+              type="submit"
+              className="mt-4 rounded-xl   bg-[#222222] px-8 py-4 text-white hover:bg-[#000000]"
+            >
+              Lưu
+            </button>
+          </Form>
+        );
+      }}
+    </Formik>
   );
 }
