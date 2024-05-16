@@ -52,10 +52,13 @@ function HeaderSearchBar(props: any) {
     return <SearchBarLoading scrollY={props.scrollY}></SearchBarLoading>;
   }
 
-
+  const navbarStyle = {
+    opacity: scrollY ? 0: 1, // Control navbar opacity based on state
+    transition: "opacity 0.3s ease-in-out", // Smooth transition
+  };
 
   return (
-    <NavItem className="mb-5 search-bar">
+    <NavItem className="mb-5 search-bar" style={navbarStyle}>
       {props.scrollY ? (
         <SearchBar>
           <form className="flex" onSubmit={handleSubmit} method="get" action="">

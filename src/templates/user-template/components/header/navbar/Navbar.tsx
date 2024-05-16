@@ -4,7 +4,7 @@
 
 
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { HeaderLogo, HeaderLogoText } from "../header.style";
 import { FaAirbnb, FaBars, FaUserCircle } from "react-icons/fa";
 import ToogleHeader from "../toggle/ToogleHeader";
@@ -23,11 +23,15 @@ type Props = object;
 
 function Navbar(props: Props) {
   const user: any = useAppSelector((state) => state.authReducer.user);
+ 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(true);
-
+  const navbarStyle = {
+    opacity: scrollY ? 1: 0, // Control navbar opacity based on state
+    transition: "opacity 0.3s ease-in-out", // Smooth transition
+  };
   const handlelogout = () => {
     dispatch(setUser(null));
     removeLocalStorage(ACCESS_TOKEN);
@@ -65,6 +69,8 @@ function Navbar(props: Props) {
     return <NavbarLoading />;
   }
 
+  console.log(props.scrollY);
+  
   return (
     <div className="mb-3 flex items-center justify-between">
       <NavLink to={"/"} className="logo flex items-center gap-3 text-[2.1rem]">

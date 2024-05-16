@@ -8,12 +8,13 @@ import Navbar from './navbar/Navbar';
 import HeaderSearchBar from './search-bar/SearchBar';
 import { useEffect, useState } from 'react';
 import { useAppSelector } from '@/redux/hooks';
+import { useTransition, animated } from "@react-spring/web";
 
 function Header() {
     const user = useAppSelector(state=>state.authReducer.user)
     console.log({user})
     const [scrollY,setScrollY]=useState(true);
-    
+
 useEffect(()=>{
     const handleScroll = () => {
 if(window.scrollY>0){
@@ -32,10 +33,12 @@ if(window.scrollY>0){
 
     
   return (
-    <HeaderWeb className='py-5'>
-        <Container>
 
-        <Navbar scrollY={scrollY}/>
+    <HeaderWeb className='py-5' >   
+
+        <Container>
+ 
+        <Navbar scrollY={scrollY} />
       
         <HeaderSearchBar scrollY={scrollY}></HeaderSearchBar>
        

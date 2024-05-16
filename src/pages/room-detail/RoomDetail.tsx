@@ -13,7 +13,7 @@ import { IIFE } from '@/utils';
 import { GetRoomDetail } from '@/services/room-detail/RoomDetail.service';
 import { Container } from '@/components/style-compoment/Container';
 import RoomDetailLoading from './loading/RoomDetailLoading';
-import CommentDetail from './compoment/CommentDetail';
+import CommentDetail from './comment/CommentDetail';
 
 type Props = object
 
