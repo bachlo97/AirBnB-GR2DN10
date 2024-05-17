@@ -1,0 +1,1 @@
+export { convertToBookRoom } from "./convert-to-book-room";

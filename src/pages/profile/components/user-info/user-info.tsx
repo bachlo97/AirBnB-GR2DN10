@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Tabs } from "antd";
 import type { TabsProps } from "antd";
 import './user-info.style.css'
 import AccountInfo from "./account-info/account-info";
 import BookingInfo from "./booking-info/booking-info";
 import { Provider } from "./context";
+import { IIFE } from "@/utils";
+import { getRoomBookingViaUser } from "@/services/booking";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { getRoomBookingThunk } from "@/redux/booking-history/booking-history.slice";
 type Props = {};
 
 export default function UserInfo({}: Props) {
+  const dispatch = useAppDispatch()
+  const roomBookingList = useAppSelector(state => state.bookingHistoryReducer.roomBookingList)
+  console.log({roomBookingList})
+  useEffect(()=>{
+    dispatch(getRoomBookingThunk(5))
+  },[])
   const onChange = (key: string) => {
     console.log(key);
   };

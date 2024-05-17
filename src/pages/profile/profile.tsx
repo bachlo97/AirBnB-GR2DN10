@@ -12,9 +12,10 @@ export default function Profile({}: Props) {
   const navigate = useNavigate();
   useEffect(() => {
     if (!getLocalStorage(ACCESS_TOKEN)) {
-    
       navigate("/auth/signin");
-  }
+    }
+
+    
   }, []);
   return (
     <div className="mx-auto my-10 grid w-[95%] grid-cols-4 gap-7">
@@ -26,5 +27,4 @@ export default function Profile({}: Props) {
       </div>
     </div>
   );
- 
 }
