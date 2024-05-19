@@ -1,25 +1,33 @@
-import { getRoomBookingList, getRoomBookingViaUser } from "@/services/booking";
+import { getRoomBookingList, getRoomBookingViaUser, getRoomLocationList } from "@/services/booking";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import _ from "lodash";
-import { convertToBookRoom } from "./helper";
+import { convertToBookRoom ,combineRoom, handleResult} from "./helper";
+
+
 export const getRoomBookingThunk = createAsyncThunk(
   "getRoomBookingThunk",
   async (id: number) => {
     try {
-      const resp1 = await getRoomBookingViaUser(id);
-      const roomBooking = convertToBookRoom(resp1.data.content)
-      const resp2 = await getRoomBookingList(roomBooking);
-      const results = resp2
-        .filter((item) => item !== null) // Loại bỏ các phần tử null
-        .map((item) => item.data.content); // Trích xuất dữ liệu từ content
-      return results;
+      const bookingApi = await getRoomBookingViaUser(id);
+      const bookingData = convertToBookRoom(bookingApi.data.content);
+
+      const roomListApi = await getRoomBookingList(bookingData);
+      const roomListData = roomListApi.map((item: any) => item.data.content);
+      console.log({ bookingData });
+      console.log({ roomListData });
+      const roomCombine = combineRoom(bookingData,roomListData)
+      console.log({roomCombine})
+      const locationListApi = await getRoomLocationList(roomCombine)
+      const locationListData = locationListApi.map((item:any) => item.data.content)
+      const result = handleResult(roomCombine,locationListData)
+      console.log({result})
+      return result
     } catch (e) {
       console.log(e);
     }
   },
 );
 
-const initialState = {
+const initialState:any = {
   roomBookingList: [
     {
       tenViTri: "",
@@ -58,37 +66,3 @@ export const {} = BookingHistorySlice.actions;
 
 export const bookingHistoryReducer = BookingHistorySlice.reducer;
 
-// const data1 = [
-//   {
-//     tenViTri: "A",
-//     tinhThanh: "A",
-//   },
-//   {
-//     tenViTri: "B",
-//     tinhThanh: "B",
-//   },
-//   {
-//     tenViTri: "C",
-//     tinhThanh: "C",
-//   },
-// ];
-// const data2 = [
-//   {
-//     maPhong: "12",
-//     soLuongKhach: 5,
-//   },
-//   {
-//     maPhong: "13",
-//     soLuongKhach: 2,
-//   },
-//   {
-//     maPhong: "14",
-//     soLuongKhach: 4,
-//   },
-// ];
-
-// const result = [
-//   {soLuongKhach:5},
-//   {soLuongKhach: 2},
-//   {  soLuongKhach: 4}
-// ]

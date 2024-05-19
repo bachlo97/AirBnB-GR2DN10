@@ -10,11 +10,16 @@ import {
 import { useAppSelector } from "@/redux/hooks";
 type Props = {
   itemsPerPage: number;
+  data: TBookingHistory
+  hearts: boolean[]
+  toggleHeart: (index:number) => void
 };
 
-export default function BookingInfo({ itemsPerPage }: Props) {
-  const roomBookingList = useAppSelector(state => state.bookingHistoryReducer.roomBookingList)
-
+export default function BookingInfo({ itemsPerPage,hearts,toggleHeart }: Props) {
+  const roomBookingList = useAppSelector(
+    (state) => state.bookingHistoryReducer.roomBookingList,
+  );
+  console.log({hearts})
   const roomList: any = [];
   for (let i = 0; i < 20; i++) {
     roomList.push(
@@ -26,14 +31,14 @@ export default function BookingInfo({ itemsPerPage }: Props) {
   }
   const [prev, setPrev] = useState(false);
   const [next, setNext] = useState(true);
-  const lenRoomList = roomList.length;
+  const lenRoomList = roomBookingList.length;
   const [itemOffset, setItemOffset] = useState(0);
   const endOffset = itemOffset + itemsPerPage;
-  const currentItems = roomList.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(roomList.length / itemsPerPage);
+  const currentItems = roomBookingList.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(roomBookingList.length / itemsPerPage);
   const handlePageClick = (event: any) => {
     console.log("ssss", event.selected);
-    const newOffset = (event.selected * itemsPerPage) % roomList.length;
+    const newOffset = (event.selected * itemsPerPage) % roomBookingList.length;
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`,
     );
@@ -43,7 +48,7 @@ export default function BookingInfo({ itemsPerPage }: Props) {
     } else {
       setPrev(true);
     }
-    const a = Math.ceil(roomList.length / 2 - 1);
+    const a = Math.ceil(roomBookingList.length / 2 - 1);
     console.log({ a });
     if (event.selected == a) {
       setNext(false);
@@ -55,7 +60,7 @@ export default function BookingInfo({ itemsPerPage }: Props) {
     <div className="flex flex-col gap-10">
       {lenRoomList ? (
         <>
-          {currentItems}
+          <RoomArray currentItems={currentItems} itemOffset={itemOffset} hearts={hearts} toggleHeart={toggleHeart}/>
           <ReactPaginate
             breakLabel={
               <span className="text-[16px] tracking-widest text-gray-900">
@@ -70,7 +75,7 @@ export default function BookingInfo({ itemsPerPage }: Props) {
             previousLabel={lenRoomList > 2 ? <MdOutlineArrowBackIosNew /> : ""}
             renderOnZeroPageCount={null}
             breakLinkClassName="text-red-500"
-            pageClassName="text-gray-900 inline-block ml-8 w-10 h-10 flex justify-center items-center hover:bg-[#e73b9054] rounded-full"
+            pageClassName={`${lenRoomList > 2 ? "text-gray-900 inline-block ml-8 w-10 h-10 flex justify-center items-center hover:bg-[#e73b9054] rounded-full" : "hidden"}`}
             pageLinkClassName="hover:text-gray-900"
             activeClassName="bg-[#f31c7bba]"
             activeLinkClassName="text-white"

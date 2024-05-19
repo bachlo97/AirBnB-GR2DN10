@@ -38,7 +38,7 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
-    "@types/lodash": "^4.17.1",
+    "@types/lodash": "^4.17.4",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
