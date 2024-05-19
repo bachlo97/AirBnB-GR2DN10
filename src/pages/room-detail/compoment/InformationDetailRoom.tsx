@@ -182,7 +182,7 @@ wifi
       </div>
 
       <div
-        className="2xl:mr-24 h-[430px] 2sm:w-[40%] xl:w-[35%] 2xl:w-[30%] border border-solid border-white p-8 md:sticky md:top-36 md:right-0 "
+        className=" h-[430px] 2sm:w-[40%] lg:w-[35%] xl:w-[35%]  2xl:w-[38%] border border-solid border-white p-8 md:sticky md:top-36 md:right-0 "
         style={{ boxShadow: " rgba(16, 20, 24, 0.2) 0px 8px 24px" }}
         id="dateSearchbar"
       >

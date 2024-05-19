@@ -101,7 +101,7 @@ function Pay() {
             </div>
             </div>
         </div>   
-          <div className='sm:hidden md:block sm:w-[45%] xl:w-[40%] 2xl:w-[35%] 2sm:h-[340px] md:h-[310px] border border-solid border-gray-400 rounded-[1rem] p-8'>
+          <div className='sm:hidden md:block sm:w-[45%] xl:w-[40%] 2xl:w-[40%] 2sm:h-[340px] md:h-[310px] border border-solid border-gray-400 rounded-[1rem] p-8'>
            <div className='flex gap-4 border-b border-solid border-gray-400 pb-7'>
             <img className=' sm:w-[100px] rounded-[1rem]' src={payRoom.imgRoom} alt="" />
             <div>

@@ -1,6 +1,5 @@
 import { TLocaltion } from '@/services/localtion/Localtion.type'
-import React from 'react'
-import DiscoverItem from './DiscoverItem'
+import DiscoverItem from '../discover/component/DiscoverItem'
 
 function ListDiscover(props:any) {
   return (
