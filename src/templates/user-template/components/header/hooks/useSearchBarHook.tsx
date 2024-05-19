@@ -1,6 +1,6 @@
 import { getLocaltion } from "@/services/localtion/Localtion.service";
 import { IIFE } from "@/utils";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { converToLocations } from "../search-bar/helper/ConvertToLocations";
 import { Dayjs } from "dayjs";
@@ -22,7 +22,8 @@ export const useSearchBarHook=()=>{
     const [valueId, setValueId] = useState(0);
     const [valueStartDay, setvalueStartDay] = useState("");
     const [valueEndDay, setvalueEndDay] = useState("");
-  
+    const searchBarRef = useRef<HTMLDivElement>(null);
+
     const handleFieldClick = (field: "location" | "ngayden" | "ngayVe" | "soKhach") => {
       setIsOpen((prevIsOpen) => ({
         ...prevIsOpen,
@@ -70,6 +71,28 @@ export const useSearchBarHook=()=>{
         label: item.tenViTri + "," + item.tinhThanh,
       };
     });
+
+    useEffect(() => {
+      const handleClickOutside = (event:any) => {
+        if (searchBarRef.current && !searchBarRef.current.contains(event.target)) {
+          // Click occurred outside of the search bar
+          console.log('asd');
+          setIsOpen({
+            location: false,
+            ngayden: false, 
+            ngayVe: false, 
+            soKhach: false, 
+          })
+        }
+      };
+    
+      document.addEventListener('click', handleClickOutside);
+    
+      return () => {
+        // Cleanup function to remove the event listener on unmount
+        document.removeEventListener('click', handleClickOutside);
+      };
+    }, [searchBarRef]);
 return {
     navigate,
     dispatch,
@@ -79,6 +102,7 @@ return {
     valueStartDay,
     valueEndDay,
     dataOption,
+    searchBarRef,
     handleFieldClick,
     handleDateChange,
     handleChange,

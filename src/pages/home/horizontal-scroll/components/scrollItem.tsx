@@ -11,9 +11,9 @@ const ScrollItem = ({img,content}: Props) => {
             <img
                 src={img}
                 alt=""
-                className="h-[24px] w-[24px]"
+                className="h-[30px] w-[30px]"
             />
-            <p className="whitespace-nowrap text-[12px]">{content}</p>
+            <p className="whitespace-nowrap text-[13px]">{content}</p>
         </li>
     );
 };

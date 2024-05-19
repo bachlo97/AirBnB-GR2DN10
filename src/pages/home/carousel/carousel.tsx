@@ -6,13 +6,22 @@ import { Thumbail } from "./thumbail";
 import {
     useHomeCarousel,
 } from "./hook/";
-type Props = {};
+import LoadingCarousel from "./loading/LoadingCarousel";
+type Props = object;
 
 export function Carousel(props: Props){
 
 
     const [{currentIndex,btnState,thumbnailListWrapperRef},{handleNext}] = useHomeCarousel(data)
+    const [isLoading, setIsLoading] = useState(true);
 
+    useEffect(() => {
+      setTimeout(() => setIsLoading(false), 1500);
+    }, []);
+  
+    if (isLoading) {
+      return <LoadingCarousel/>
+      }
     return (
         <div className="container relative m-auto flex desktopPlus:h-[720px] desktopPlus:w-[1280px] mobile:h-[257px] mobile:w-[358px] flex-col justify-end overflow-hidden rounded-[20px] bg-[#767676] text-white ipad:w-[700px] ipad:h-[400px] desktop:h-[570px] desktop:w-[1100px]">
             <div className="flex w-full">
@@ -60,6 +69,6 @@ export function Carousel(props: Props){
             </div>
         </div>
     );
-};
+}
 
 

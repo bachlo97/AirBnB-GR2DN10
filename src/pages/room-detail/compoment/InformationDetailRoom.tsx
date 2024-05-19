@@ -22,15 +22,19 @@ import { GiWashingMachine } from "react-icons/gi";
 import {  FaWifi } from 'react-icons/fa';
 import { HiOutlineKey } from "react-icons/hi2";
 import { BsCalendarDate } from "react-icons/bs";
+import useAlertHook from "@/hooks/notification/Alert";
 
 type Props=any;
 
 function InformationDetailRoom(props:Props) {
+  const {alertError}=useAlertHook();
+
   const navigate = useNavigate();
   const[countClient,setCountClient]=useState(0);
 
   const [countDay,setCountDay]=useState(0);
   const [discount,setDiscount]=useState(0);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const dispatch=useAppDispatch();
   const { 
@@ -52,6 +56,13 @@ useEffect(()=>{
     setCountDay(diffInDays)
   }
 },[startDate, endDate])
+useEffect(()=>{
+ if(valueStartDay!==null&&valueEndDay!==null&&countClient>0){
+  setIsButtonDisabled(false)
+} else{
+  setIsButtonDisabled(true);
+}
+},[countClient, valueEndDay, valueStartDay])
 
 
   return (
@@ -221,32 +232,51 @@ wifi
                 </label>
                 <div className="flex items-center justify-between">
                   <button onClick={(e)=>{
-                    e.preventDefault()
+                    e.preventDefault();
+                    if(countClient>props.data.khach){
+                      alertError('Thất bại vì đã đủ thành viên');
+                      return 
+                  
+                    }
                     setCountClient(countClient+1)}}
-                    
+                  
                     >
                                     <IoIosAdd className="text-[2.5rem]"/>
 
                   </button>
 
-                      <p>{countClient} Khách</p>
+
+                      <p>{countClient} Khách</p>   
                       <button onClick={(e)=>{
                     e.preventDefault()
-                    countClient>0?   (setCountClient(countClient-1)) :'0'
+                    countClient>0?  
+                     (
+                      setCountClient(countClient-1)
+                    ) :  alertError('Thất bại bạn không thể cho dưới số 0');
                  }}
                     
                     >                      <IoIosRemove className="text-[2.5rem]"/>
 </button>
 
                 </div>
-            
+           
               </div>
             </div>
 
-            <ButtonPrimary
+          {isButtonDisabled?(
+               <ButtonPrimary
+               width="100%"
+               height={4}
+               className="mt-5 rounded-[1rem] border border-solid"
+            disabled
+             >
+               Xac Nhan
+             </ButtonPrimary>
+            ):(            <ButtonPrimary
               width="100%"
               height={4}
               className="mt-5 rounded-[1rem] border border-solid"
+             
               onClick={()=>{
                
                 navigate('/pay')
@@ -264,7 +294,7 @@ wifi
               }}
             >
               Xac Nhan
-            </ButtonPrimary>
+            </ButtonPrimary>)}
 
           </form>
           <p className="text-center text-[1.6rem] text-gray-500">
@@ -284,6 +314,7 @@ wifi
               <form action="" className="flex justify-between my-3">
                 <input type="text" placeholder="Nhập mã giảm giá" className="w-[90%] px-3 border border-gray-400 border-solid h-[35px] outline-none"/>
                 <ButtonPrimary height={3.5} width="30%">Xac Nhan</ButtonPrimary>
+               
               </form>
              
         

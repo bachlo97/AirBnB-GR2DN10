@@ -1,20 +1,33 @@
 import Swal from 'sweetalert2';
 
-function useAlertHook(title:string) {
-  const alertSuccess=()=>{
+function useAlertHook() {
+  const alertSuccess=(title:string)=>{
     Swal.fire({
       position: "top-end",
       title: `${title}`,
       text: `Thành công!`,
-      icon: 'success',
+      
       showConfirmButton: false,
 
       timer: 1500,
       timerProgressBar: true,
 
+
     });
   }
-  return {alertSuccess}
+  const alertError=(text:string)=>{
+    Swal.fire({
+ 
+      position: "top-end",
+      title: "Thất bại",
+      text: `${text}`,
+      showConfirmButton: false,
+      timer: 1500,
+      background:'red',
+      color:'white'
+    });
+  }
+  return {alertSuccess,alertError}
 }
 
 export default useAlertHook

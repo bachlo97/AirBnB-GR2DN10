@@ -46,7 +46,7 @@ function RoomDetailLoading() {
         </div>
       </div>
 
-      {/* Thông tin chi tiết và thanh toán */}
+    
       <InformationDetailLoading />
       {/* Bình luận */}
       <div className='2xl:w-3/4 mx-auto mt-8 border-t border-solid py-5'>
@@ -54,14 +54,15 @@ function RoomDetailLoading() {
         <div className='border-b border-solid'>
           <div className='flex gap-5'>
             <SImg>
-              <img className='w-[100%] h-[100%] bg-cover ' src="https://yt3.ggpht.com/Lw90L5d4JrRQGyUInde_DyOdHWJKjG0g8CvWzQkjXamdTkdg2QgiZy6VzPVmtoNgwiFmXTvVlw=s48-c-k-c0x00ffffff-no-rj" alt="" />
+              <Skeleton className='w-[100%] h-[100%] bg-cover'/>
             </SImg>
             <div>
-              <h4>Phạm Duy</h4>
-              <p>Tháng 6 năm 2022</p>
+              <Skeleton width={50} height={30}></Skeleton>
+              <Skeleton width={200} height={30} className='my-5'></Skeleton>
+              <Skeleton width={170} height={30}></Skeleton>
             </div>
           </div>
-          <div className='my-5'>Mọi thứ đều ok nha</div>
+          
         </div>
         <form action="" method="post" className='flex w-[100%] my-5 gap-5'>
           <SImg>

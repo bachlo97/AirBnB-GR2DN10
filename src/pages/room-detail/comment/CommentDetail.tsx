@@ -1,22 +1,28 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { SImg } from '../Detail.style'
 import { FaStar } from 'react-icons/fa'
 import { Rate } from 'antd'
 import { ButtonPrimary } from '@/components/Button/Button'
-import { useEffect, useRef, useState } from 'react'
-import { TcommentAPI } from '@/services/comment/comment.type'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { getCommentRoomId, postCommentRoom } from '@/services/comment/comment.service'
-import { IIFE } from '@/utils'
+import { postCommentRoom } from '@/services/comment/comment.service'
+
 import PageCommentDetail from './component/PageCommentDetail'
-import { useAppSelector } from '@/redux/hooks'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import moment from 'moment'
+import { getCommentThunk } from '@/redux/comment/Comment.slice'
 
 
 function CommentDetail() {
-  const [listComemt,setListComment]=useState<TcommentAPI[]>([]);
-  const user:any = useAppSelector((state) => state.authReducer.user);
+  
 
+  const user:any = useAppSelector((state) => state.authReducer.user);
+  const listCommentRoom:any = useAppSelector((state) => state.commentSlice.listComment);
+
+  const dispatch = useAppDispatch();
+
+
+
+  
   const [postComment,setPostComment]=useState({   
      id: 0,
      maPhong: 0,
@@ -25,19 +31,16 @@ function CommentDetail() {
      noiDung:'',
      saoBinhLuan:0
   })
+
+  
   const { id } = useParams();
-  useEffect(()=>{
-    IIFE(async ()=>{
-      try{
-        const data=await getCommentRoomId(id);
-        const content=data.content;
-        setListComment(content)
-      }catch(e){
-        console.log(e);
-        
-      }
-    })
-  },[id])
+  
+
+  useEffect(() => {
+    dispatch(getCommentThunk(id));
+  }, [dispatch, id]);  
+  
+  console.log(listCommentRoom);
 
   // gui binh luan
 
@@ -49,9 +52,9 @@ console.log(postComment);
 
 let averageStar=0;
 let total=0
-const totalStarsRating=listComemt.map((item)=>{
+const totalStarsRating=listCommentRoom.map((item:any)=>{
    total+=item.saoBinhLuan;
-  averageStar=Math.floor(total/listComemt.length)
+  averageStar=Math.floor(total/listCommentRoom.length)
 })
   return (
     <div className='2xl:w-3/4 mx-auto mt-8 border-t border-solid py-5'>
@@ -67,20 +70,20 @@ const totalStarsRating=listComemt.map((item)=>{
               <FaStar /> 
               </div>
      
-    <p className='mb-3'>({listComemt.length} đánh giá)</p>
+    <p className='mb-3'>({listCommentRoom.length} đánh giá)</p>
        </div>
    
         
 
 
-       <PageCommentDetail data={listComemt} itemsPerPage={5}/>
+       <PageCommentDetail data={listCommentRoom} itemsPerPage={6}/>
 
 
        
         <form action="" method="post" className='flex w-[100%] my-5 gap-5'>
             <div className='w-[20%] flex flex-col items-center'>
                     <SImg>
-            <img  src={ user.avatar} alt="" />
+            <img  src={ user?.avatar} alt="" />
            
           </SImg> 
           <div>Phạm Duy</div>
@@ -99,9 +102,9 @@ const totalStarsRating=listComemt.map((item)=>{
             ></textarea> <br />
             <div className='text-right'>
               <ButtonPrimary width='150px' height={3.5} type="submit"
-              onClick={(e)=>{
+              onClick={async (e)=>{
                 e.preventDefault();
-                setPostComment({
+           setPostComment({
                   ...postComment,
                   id: 0,
                   ngayBinhLuan: moment().format('DD/MM/YYYY'),
@@ -110,6 +113,12 @@ const totalStarsRating=listComemt.map((item)=>{
                   
                   maNguoiBinhLuan:user.id,
                 })
+                try {
+                  await postCommentRoom(postComment);
+                  dispatch(getCommentThunk(id)); // Re-fetch comments after posting
+                } catch (e) {
+                  console.error(e);
+                }
               }}
               >Thêm Bình Luận</ButtonPrimary>
 

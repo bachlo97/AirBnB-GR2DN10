@@ -7,7 +7,7 @@ import {
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { DatePicker, Select, Space } from "antd";
 import "./style.css";
-import {  useEffect, useState } from "react";
+import {  useEffect, useRef, useState } from "react";
 
 import { setStartDayRoom, setEndDayRoom } from "@/redux/room/Date.slice";
 
@@ -18,10 +18,11 @@ import { useTranslation } from "react-i18next";
 
 function HeaderSearchBar(props: any) {
   const {t}=useTranslation();
+  const myRef=useRef(null);
+  const [showButton, setShowButton] = useState(true);
 
   const [isLoading, setIsLoading] = useState(true);
   const [valueGuess,setValueGuess]=useState(0);
-
   const {  navigate,
     dispatch,
     isOpen,
@@ -30,6 +31,7 @@ function HeaderSearchBar(props: any) {
     valueStartDay,
     valueEndDay,
     dataOption,
+    searchBarRef,
     handleFieldClick,
     handleDateChange,
     handleChange,
@@ -52,17 +54,13 @@ function HeaderSearchBar(props: any) {
     return <SearchBarLoading scrollY={props.scrollY}></SearchBarLoading>;
   }
 
-  const navbarStyle = {
-    opacity: scrollY ? 0: 1, // Control navbar opacity based on state
-    transition: "opacity 0.3s ease-in-out", // Smooth transition
-  };
 
   return (
-    <NavItem className="mb-5 search-bar" style={navbarStyle}>
+    <NavItem className="mb-5 search-bar">
       {props.scrollY ? (
-        <SearchBar>
+        <SearchBar  className="search-bar-nav" ref={searchBarRef}>
           <form className="flex" onSubmit={handleSubmit} method="get" action="">
-            <SearchIcoin 
+            <SearchIcoin  ref={myRef}
               className={`${isOpen.location? "activeSearchbar" :""}  search-icon `}
               onClick={() => {
                 handleFieldClick("location");
@@ -88,6 +86,7 @@ function HeaderSearchBar(props: any) {
               </p>
             </SearchIcoin>
             <SearchIcoin
+            ref={searchBarRef}
               className={`${isOpen.ngayden ? "activeSearchbar" : ""} search-icon`}
               onClick={() => {
                 handleFieldClick("ngayden");
@@ -138,11 +137,12 @@ function HeaderSearchBar(props: any) {
               <h5 className="mt-3 text-[1.4rem]">{t('header.addGuests')} </h5>
               <p className="text-[1.8rem] flex gap-3 items-center text-gray-500">
                 <button onClick={()=>{
-                  setValueGuess(value=>value+1);
+                 valueGuess <20?  setValueGuess(value=>value+1): valueGuess;
                 }}>+</button>
               {valueGuess}
               <button onClick={()=>{
-                  setValueGuess(value=>value-1);
+           
+                  valueGuess >0?   ( setValueGuess(value=>value-1)) :'0'
                 }}>-</button>
               </p>
             </SearchIcoin>

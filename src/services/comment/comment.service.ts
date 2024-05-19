@@ -1,5 +1,5 @@
 // /binh-luan/lay-binh-luan-theo-phong/
-import { axiosWithAuth } from "../axios.config"
+import { axiosWithAuth, axiosWithAuthToken } from "../axios.config"
 
 export const getCommentRoomId=async (id:string|undefined)=>{
     try{
@@ -15,9 +15,22 @@ export const getCommentRoomId=async (id:string|undefined)=>{
 export const postCommentRoom=async (data:object)=>{
     try{
      
-        return axiosWithAuth("/binh-luan", {
+        return axiosWithAuthToken("/binh-luan", {
             method: "post",
             data: data,
+        });
+  
+    }catch(e:any){
+       console.log(e.response?.data);
+       
+    }
+}
+export const deleteCommentRoom=async(id:number)=>{
+    try{
+     
+        return axiosWithAuthToken(`/binh-luan/${id}`, {
+            method: "detele",
+           
         });
   
     }catch(e:any){

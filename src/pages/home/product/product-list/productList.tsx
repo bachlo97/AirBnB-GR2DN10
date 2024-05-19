@@ -1,4 +1,4 @@
-import  { useEffect, useState } from 'react'
+import  { Fragment, useEffect, useState } from 'react'
 import { TRoom } from '@/services/room/Room.type';
 import { IIFE } from '@/utils';
 import { getRooms } from '@/services/room/Room.service';
@@ -34,8 +34,10 @@ function ProductList() {
   return (
     <div className='flex gap-[1.2%] flex-wrap'>
     {
-      dataRooms.map((item)=>{
-        return <ProductItem 
+      dataRooms.map((item,index)=>{
+        return(<Fragment key={index}>
+ <ProductItem 
+      
           id={item.id}
           tenPhong={item.tenPhong} 
           khach={item.khach} 
@@ -45,6 +47,8 @@ function ProductList() {
           giaTien={item.giaTien} 
           maViTri={item.maViTri} 
           hinhAnh={item.hinhAnh}        />
+
+        </Fragment>)
       })
     }
    

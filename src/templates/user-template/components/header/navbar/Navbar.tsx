@@ -19,19 +19,17 @@ import { setUser } from "@/redux/auth/auth.slice";
 import { removeLocalStorage } from "@/utils";
 import { ACCESS_TOKEN, USER_ID } from "@/constant";
 import { useTranslation } from "react-i18next";
+import { animated } from "@react-spring/web";
 type Props = object;
 
 function Navbar(props: Props) {
   const user: any = useAppSelector((state) => state.authReducer.user);
- 
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(true);
-  const navbarStyle = {
-    opacity: scrollY ? 1: 0, // Control navbar opacity based on state
-    transition: "opacity 0.3s ease-in-out", // Smooth transition
-  };
+ 
   const handlelogout = () => {
     dispatch(setUser(null));
     removeLocalStorage(ACCESS_TOKEN);
@@ -69,7 +67,14 @@ function Navbar(props: Props) {
     return <NavbarLoading />;
   }
 
-  console.log(props.scrollY);
+  const navbarStyle = {
+    opacity: scrollY ? 0: 1, // Control navbar opacity based on state
+    transition: "opacity 0.3s ease-in-out", // Smooth transition
+  };
+  const navbarStyle2 = {
+    opacity: scrollY ? 1: 0, // Control navbar opacity based on state
+    transition: "opacity 0.3s ease-in-out", // Smooth transition
+  };
   
   return (
     <div className="mb-3 flex items-center justify-between">
@@ -79,15 +84,20 @@ function Navbar(props: Props) {
         </HeaderLogo>
         <HeaderLogoText>AirBnB</HeaderLogoText>
       </NavLink>
-      {props.scrollY ? (
+      {props.scrollY
+       ? (
+        <animated.div style={navbarStyle}>
         <NavItem className="flex items-center gap-5" id="navItem">
           <div className="lg:text-[17px]">{t("header.stays")}</div>
 
           <div className="lg:text-[17px]">{t("header.experiences")}</div>
           <div className="lg:text-[17px]">{t("header.onlineExperiences")}</div>
         </NavItem>
+        </animated.div>
+
       ) : (
-        <NavItem>
+        <animated.div style={navbarStyle2}>
+    <NavItem>
           <SearchBarNav className="">
             <div className="flex items-center justify-between px-8">
               <h5 className="text-[1.4rem]">{t("header.anyWhere")}</h5>
@@ -101,6 +111,8 @@ function Navbar(props: Props) {
             </div>
           </SearchBarNav>
         </NavItem>
+        </animated.div>
+      
       )}
 
       <div className="flex items-center gap-5">

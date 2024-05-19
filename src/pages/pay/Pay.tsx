@@ -1,49 +1,10 @@
 import { ButtonPrimary, ButtonPrimaryTwo } from '@/components/Button/Button'
 import { Container } from '@/components/style-compoment/Container'
-import useAlertHook from '@/hooks/notification/Alert';
-import { useAppSelector } from '@/redux/hooks';
-import { postPay } from '@/services/pay/Pay.service';
-import moment from 'moment';
-import { useEffect, useState } from 'react';
-
 import { IoIosArrowBack } from 'react-icons/io'
-import { useNavigate } from 'react-router-dom';
-
+import usePayHook from './hooks/usePayHook'
 function Pay() {
-  const [countDay,setCountDay]=useState(0);
-  const {alertSuccess}=useAlertHook('Thanh toán thành công')
-  const [userPay,setUserPay]=useState<TPay>({
+ const {countDay,user,dateRoom,payRoom,navigate,handleSubmit}=usePayHook();
 
-    id:0,
-    maPhong: 0,
-    ngayDen: '',
-    ngayDi: '',
-    soLuongKhach: 0,
-    maNguoiDung: 0,
-  });
-  const navigate = useNavigate()  
-
-  useEffect(()=>{
-    postPay(userPay);
-  },[userPay])
-  const payRoom = useAppSelector((state: any) => state.GetCartsRoomSlice);
-  const dateRoom = useAppSelector((state: any) => state.GetDateSlice);
-  const user:any = useAppSelector((state) => state.authReducer.user);
-  console.log(user);
-  
-  console.log(userPay);
-  
-  const startDate = moment(dateRoom.startDate);
-const endDate = moment(dateRoom.endDate);
-
-
-useEffect(()=>{
-
-  if(startDate!==null&&endDate!==null){
-    const diffInDays = endDate.diff(startDate, 'days');
-    setCountDay(diffInDays)
-  }
-},[startDate, endDate])
   return (
     <Container>
       <div className='sm:w-[95%] xl:w-[75%] 2xl:w-[65%] mx-auto'>
@@ -128,15 +89,11 @@ useEffect(()=>{
             <div className='flex justify-between'>
             <ButtonPrimaryTwo width='10rem' height={3.5} className='my-6'>Quay lại</ButtonPrimaryTwo>
             <ButtonPrimary width='10rem' height={3.5} className='my-6'
-            onClick={(e)=>{
-              alertSuccess();
-              setUserPay({  
-              id: 0,
-              maPhong: payRoom.idRoom,
-              ngayDen: dateRoom.startDate,
-              ngayDi: dateRoom.endDate,
-              soLuongKhach: dateRoom.customers,
-              maNguoiDung: user.id,})
+            onClick={()=>{
+              handleSubmit();
+              setInterval(()=>{
+                navigate('/')
+              },2000)
             }}
        
             >Xác Nhận</ButtonPrimary>

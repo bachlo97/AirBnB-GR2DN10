@@ -4,9 +4,9 @@ import ItemComment from './ItemComment'
 
 function ListCommentDetail(props:any) {
   return (
-    <div>
+    <div className='flex flex-wrap'>
       {  props.listComemt.map((item:Tcomment)=>{
-      return  <div className='border-b border-solid mt-3'>
+      return  <div className='border-b border-solid mt-3 w-[49%]'>
      <ItemComment
          id={item.id}
          ngayBinhLuan={item.ngayBinhLuan}
