@@ -10,48 +10,89 @@ import UserTemplate from "@/templates/user-template/user.template";
 
 import { createBrowserRouter } from "react-router-dom";
 import Pay from "@/pages/pay/Pay";
-
+import AdminTemplate from "@/templates/admin-template/admin.template";
+const DashBoard = lazy(() => import("@/pages/admin/dashboard"));
+// import DashBoard from "@/pages/admin/dashboard/dashboard";
+const UserManagement = lazy(() => import("@/pages/admin/user-management"));
+// import UserManagement from "@/pages/admin/user-management/user-management";
+const LocationManagement = lazy(() => import("@/pages/admin/location-management"));
+// import LocationManagement from "@/pages/admin/location-management/location-management";
+const RoomManagement = lazy(() => import("@/pages/admin/room-management"));
+// import RoomManagement from "@/pages/admin/room-management/room-management";
+const BookingManagement = lazy(() => import("@/pages/admin/booking-management"));
+// import BookingManagement from "@/pages/admin/booking-management/booking-management";
+const CommentManagement = lazy(() => import("@/pages/admin/comment-management"));
+// import CommentManagement from "@/pages/admin/comment-management/comment-management";
 
 export const router = createBrowserRouter([
   {
     element: <ScrollToTop />,
     children: [
-        {
-            element: <UserTemplate />,
-            children: [
-                {
-                    path: "",
-                    element: <Home />,
-                },
+      {
+        element: <UserTemplate />,
+        children: [
+          {
+            path: "",
+            element: <Home />,
+          },
 
-                {
-                    path: "profile",
-                    element: <Profile />,
-                },
-                {
-                  path: 'roomdetail/:id',
-                  element: <RoomDetail/>
-                },
-                {
-                  path: 'roomlist/:location',
-                  element: <RoomList/>,
-                },
-                {
-                  path: 'pay',
-                  element: <Pay/>,
-                },
-            ],
-        },
-        {
-          path:'auth/:sign',
-          element: <Auth/>
-        }
+          {
+            path: "profile",
+            element: <Profile />,
+          },
+          {
+            path: "roomdetail/:id",
+            element: <RoomDetail />,
+          },
+          {
+            path: "roomlist/:location",
+            element: <RoomList />,
+          },
+          {
+            path: "pay",
+            element: <Pay />,
+          },
+        ],
+      },
+      {
+        path: "auth/:sign",
+        element: <Auth />,
+      },
+      {
+        path: "admin",
+        element: <AdminTemplate />,
+        children: [
+          {
+            path: "dashboard",
+            element: <DashBoard />,
+          },
+          {
+            path: "users",
+            element: <UserManagement />,
+          },
+          {
+            path: "locations",
+            element: <LocationManagement />,
+          },
+          {
+            path: "rooms",
+            element: <RoomManagement />,
+          },
+          {
+            path: "booking",
+            element: <BookingManagement />,
+          },
+          {
+            path: "comments",
+            element: <CommentManagement/>,
+          }
+        ],
+      },
     ],
-},
+  },
 
-{
+  {
     path: "*",
     element: <>Page not found.</>,
-},
-  ]);
-  
+  },
+]);

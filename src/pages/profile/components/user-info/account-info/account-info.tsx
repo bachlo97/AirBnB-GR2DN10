@@ -1,61 +1,57 @@
-import { useAppSelector } from "@/redux/hooks";
-import React from "react";
+import { useContext } from "react";
+import { RowInfo } from "./row-info";
+import { ProfileInput } from "./row-info/profile-input";
+import { ProfileSelect } from "./row-info/profile-select";
+import { ProfileDatePicker } from "./row-info/profile-datepicker";
+import { ContextStore } from "../context";
 
 type Props = {};
 
 export default function AccountInfo({}: Props) {
-  const user: any = useAppSelector((state) => state.authReducer.user);
+  const [bgBlur] = useContext(ContextStore);
   return (
-    <div>
-      <div className="mt-5 w-[55%]">
-        <div className="flex items-center justify-between">
-          <h4 className="text-[18px] text-gray-700">Email</h4>
-        </div>
-        <p className="text-[15px] text-gray-500">{user?.email}</p>
-        <hr className="mt-6" />
-      </div>
-      <div className="mt-5 w-[55%]">
-        <div className="flex items-center justify-between">
-          <h4 className="text-[18px] text-gray-700">Password</h4>
-          {/* <span className="text-[15px] font-semibold underline">Chỉnh sửa</span> */}
-        </div>
-        <p className="text-[15px] text-gray-500">********</p>
-        <hr className="mt-6" />
-      </div>
-      <div className="mt-5 w-[55%]">
-        <div className="flex items-center justify-between">
-          <h4 className="text-[18px] text-gray-700">Tên người dùng</h4>
-          <span className="text-[15px] font-semibold underline">Chỉnh sửa</span>
-        </div>
-        <p className="text-[15px] text-gray-500">{user?.name}</p>
-        <hr className="mt-6" />
-      </div>
-      <div className="mt-5 w-[55%]">
-        <div className="flex items-center justify-between">
-          <h4 className="text-[18px] text-gray-700">Số điện thoại</h4>
-          <span className="text-[15px] font-semibold underline">Chỉnh sửa</span>
-        </div>
-        <p className="text-[15px] text-gray-500">{user?.phone}</p>
-        <hr className="mt-6" />
-      </div>
-      <div className="mt-5 w-[55%]">
-        <div className="flex items-center justify-between">
-          <h4 className="text-[18px] text-gray-700">Ngày sinh </h4>
-          <span className="text-[15px] font-semibold underline">Chỉnh sửa</span>
-        </div>
-        <p className="text-[15px] text-gray-500">{user?.birthday}</p>
-        <hr className="mt-6" />
-      </div>
-      <div className="mt-5 w-[55%]">
-        <div className="flex items-center justify-between">
-          <h4 className="text-[18px] text-gray-700">Giới tính </h4>
-          <span className="text-[15px] font-semibold underline">Chỉnh sửa</span>
-        </div>
-        <p className="text-[15px] text-gray-500">
-          {user?.gender ? "Nam" : "Nữ"}
-        </p>
-        <hr className="mt-6" />
-      </div>
+    <div
+      className={`${bgBlur ? 'after:absolute after:bottom-0 after:left-0 after:right-0 after:top-0  after:bg-[#ffffffd9] after:content-[""]' : ""} relative`}
+    >
+      <RowInfo
+        type="email"
+        label="Email"
+        edited={true}
+        rowInput={<ProfileInput name="email" />}
+      />
+
+      <RowInfo
+        type="password"
+        label="Password"
+        edited={false}
+        rowInput={<ProfileInput name="password" />}
+      />
+      <RowInfo
+        type="name"
+        label="Tên người dùng"
+        edited={true}
+        rowInput={<ProfileInput name="name" />}
+      />
+      <RowInfo
+        type="phone"
+        label="Số điện thoại"
+        edited={true}
+        rowInput={<ProfileInput name="phone" />}
+      />
+
+      <RowInfo
+        type="birthday"
+        label="Ngày sinh"
+        edited={true}
+        rowInput={<ProfileDatePicker name="birthday" />}
+      />
+
+      <RowInfo
+        type="gender"
+        label="Giới tính"
+        edited={true}
+        rowInput={<ProfileSelect name="gender" />}
+      />
     </div>
   );
 }

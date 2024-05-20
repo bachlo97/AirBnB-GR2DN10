@@ -1,1 +1,1 @@
-export { signin,signup,getProfile,uploadAvatar } from './user.service';
+export { signin,signup,getProfile,uploadAvatar,editUser } from './user.service';

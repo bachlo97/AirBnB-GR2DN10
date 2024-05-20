@@ -1,0 +1,1 @@
+export { RoomArray } from "./room-array";

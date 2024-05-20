@@ -1,3 +1,4 @@
+export {LogoIcon} from './logo.icon'
 export { EmailIcon } from "./email.icon";
 export { ClosedEyeIcon } from "./closed-eye.icon";
 export { OpendEyeIcon } from "./opened-eye.icon";

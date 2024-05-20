@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { GetDateSlice } from './room/Date.slice'
 import { GetCartsRoomSlice } from './cart/Cart.slice'
 import { authReducer } from './auth/auth.slice'
+import { bookingHistoryReducer } from './booking-history/booking-history.slice'
 import { commentSlice } from './comment/Comment.slice'
 
 export const store = configureStore({
@@ -10,6 +11,7 @@ export const store = configureStore({
     GetDateSlice,
     GetCartsRoomSlice,
     authReducer,
+    bookingHistoryReducer,
     commentSlice,
   },
 })
