@@ -7,19 +7,25 @@ import {
   MdOutlineArrowForwardIos,
   MdOutlineArrowBackIosNew,
 } from "react-icons/md";
+import { FaInbox } from "react-icons/fa";
 import { useAppSelector } from "@/redux/hooks";
+import { useTransition,animated } from "@react-spring/web";
 type Props = {
   itemsPerPage: number;
-  data: TBookingHistory
-  hearts: boolean[]
-  toggleHeart: (index:number) => void
+  data: TBookingHistory;
+  hearts: boolean[];
+  toggleHeart: (index: number) => void;
 };
 
-export default function BookingInfo({ itemsPerPage,hearts,toggleHeart }: Props) {
+export default function BookingInfo({
+  itemsPerPage,
+  hearts,
+  toggleHeart,
+}: Props) {
   const roomBookingList = useAppSelector(
     (state) => state.bookingHistoryReducer.roomBookingList,
   );
-  console.log({hearts})
+  console.log({ hearts });
   const roomList: any = [];
   for (let i = 0; i < 20; i++) {
     roomList.push(
@@ -29,6 +35,7 @@ export default function BookingInfo({ itemsPerPage,hearts,toggleHeart }: Props) 
       </div>,
     );
   }
+
   const [prev, setPrev] = useState(false);
   const [next, setNext] = useState(true);
   const lenRoomList = roomBookingList.length;
@@ -56,11 +63,31 @@ export default function BookingInfo({ itemsPerPage,hearts,toggleHeart }: Props) 
       setNext(true);
     }
   };
+
+  const transitions = useTransition(itemOffset, {
+    from: { opacity: 0, transform: 'perspective(600px) rotateY(180deg)' },
+    enter: { opacity: 1, transform: 'perspective(600px) rotateY(0deg)' },
+    leave: { opacity: 0, transform: 'perspective(600px) rotateY(-180deg)',display:'none' },
+    config: {duration: 500},
+  });
+
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-10 overflow-hidden">
       {lenRoomList ? (
         <>
-          <RoomArray currentItems={currentItems} itemOffset={itemOffset} hearts={hearts} toggleHeart={toggleHeart}/>
+          {transitions((props) => {
+            return (
+              <animated.div style={props}>
+                <RoomArray
+                  currentItems={currentItems}
+                  itemOffset={itemOffset}
+                  hearts={hearts}
+                  toggleHeart={toggleHeart}
+                />
+              </animated.div>
+            );
+          })}
+
           <ReactPaginate
             breakLabel={
               <span className="text-[16px] tracking-widest text-gray-900">
@@ -88,7 +115,9 @@ export default function BookingInfo({ itemsPerPage,hearts,toggleHeart }: Props) 
           />
         </>
       ) : (
-        <p>Không có dữ liệu để hiển thị</p>
+        <p className="mx-auto flex flex-col items-center text-[25px]">
+          Không có dữ liệu để hiển thị <FaInbox />
+        </p>
       )}
     </div>
   );
