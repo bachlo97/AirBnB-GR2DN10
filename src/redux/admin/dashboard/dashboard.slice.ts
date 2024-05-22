@@ -1,11 +1,15 @@
 import { getCommentRooms } from "@/services/comment";
 import { getUsers } from "@/services/user";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { handleCommentOverView } from "./helper";
+import {
+  handleBarChart,
+  handleColumnChart,
+  handleCommentOverView,
+  handleLineChart,
+} from "./helper";
 import { getBookingList } from "@/services/booking";
 import { getRooms } from "@/services/room";
 import { getLocaltion } from "@/services/localtion";
-import { CgLogIn } from "react-icons/cg";
 
 const initialState = {
   overView: {
@@ -14,6 +18,18 @@ const initialState = {
     totalUser: "",
     totalRoom: "",
     totalLocation: "",
+  },
+  lineChart: {
+    lineChartKeys: "",
+    lineChartValues: "",
+  },
+  columnChart: {
+    columnChartKeys: "",
+    columnChartValues: "",
+  },
+  barChart: {
+    barChartKeys: "",
+    barChartValues: "",
   },
 };
 
@@ -39,9 +55,8 @@ export const getDashBoardInfoThunk = createAsyncThunk(
       const roomData = roomsAPI.content;
       const locationData = locationAPI.content;
 
-    //   handle overview
+      //   handle overview
       const commentOverView = handleCommentOverView(commentsData);
-      console.log({commentOverView})
       result.push({
         ...commentOverView,
         totalUser: usersData.length,
@@ -49,10 +64,27 @@ export const getDashBoardInfoThunk = createAsyncThunk(
         totalLocation: locationData.length,
       });
 
-      console.log('result',result)
-      return result
+      // handle line-chart
+      const lineChartVirtulized = handleLineChart(bookingData);
+      result.push(lineChartVirtulized);
+
+      console.log({ result });
+
+      // handle column-chart
+      const columnChartVirtulized = handleColumnChart(bookingData, roomData);
+      result.push(columnChartVirtulized);
+
+      // handle bar-chart
+
+      const barChartVirtulized = handleBarChart(
+        bookingData,
+        roomData,
+        locationData,
+      );
+      result.push(barChartVirtulized)
+      return result;
     } catch (e) {
-      console.log('errr',e);
+      console.log("errr", e);
     }
   },
 );
@@ -62,11 +94,14 @@ const DashBoardSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getDashBoardInfoThunk.fulfilled,(state,{payload})=>{
-        const [overView] = payload
-        state.overView = overView
-    })
-  }
+    builder.addCase(getDashBoardInfoThunk.fulfilled, (state, { payload }) => {
+      const [overView, lineChart, columnChart,barChart] = payload;
+      state.overView = overView;
+      state.lineChart = lineChart;
+      state.columnChart = columnChart;
+      state.barChart = barChart;
+    });
+  },
 });
 
 export const {} = DashBoardSlice.actions;

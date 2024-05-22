@@ -2,43 +2,11 @@ import React, { useState } from "react";
 import { bookingData } from "../data";
 import Chart from 'react-apexcharts'
 import { redirect } from "react-router-dom";
+import { useAppSelector } from "@/redux/hooks";
 type Props = {};
 
 export function LineChart({}: Props) {
-  const currentYear = new Date().getFullYear();
-  const filtered = bookingData.filter((bookingData) => {
-    const year = new Date(bookingData.ngayDen).getFullYear();
-    return year === currentYear;
-  });
-
-  const monthCounts = filtered.reduce((acc: { [key: string]: number }, reservation) => {
-    const month = new Date(reservation.ngayDen).toLocaleString("default", {
-      month: "short",
-    });
-
-    if (!acc[month]) {
-      acc[month] = 0;
-    }
-    acc[month]++;
-
-    return acc;
-  }, {});
-
-  const allMonths = Array.from({ length: 12 }, (_, i) =>
-    new Date(0, i).toLocaleString("default", { month: "short" }),
-  ).reduce((acc:{ [key: string]: number }, month) => {
-    acc[month] = 0;
-    return acc;
-  }, {});
-
-  Object.keys(monthCounts).forEach((month) => {
-    allMonths[month] = monthCounts[month];
-  });
-
-  const months = Object.keys(allMonths);
-  const values = Object.values(allMonths);
-
-
+  const {lineChartKeys,lineChartValues} = useAppSelector(state => state.dashBoardReducer.lineChart)
   const [state, setState] = useState({
     options: {
       chart: {
@@ -58,7 +26,7 @@ export function LineChart({}: Props) {
         enabled: false,
       },
       xaxis: {
-        categories: months,
+        categories: lineChartKeys,
       },
       yaxis: {
         title: {
@@ -79,7 +47,7 @@ export function LineChart({}: Props) {
     series: [
       {
         name: "series-1",
-        data: values,
+        data: lineChartValues,
       },
     ],
   });

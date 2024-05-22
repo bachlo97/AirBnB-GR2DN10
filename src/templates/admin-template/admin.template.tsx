@@ -12,6 +12,8 @@ import type { MenuProps } from "antd";
 import { Breadcrumb, Dropdown, Layout, Menu, Space, Spin, theme } from "antd";
 import { useTransition, animated } from "@react-spring/web";
 import { LogoIcon } from "@/assets/icons";
+import { useAppDispatch } from "@/redux/hooks";
+import { getDashBoardInfoThunk } from "@/redux/admin/dashboard/dashboard.slice";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -19,6 +21,11 @@ type MenuItem = Required<MenuProps>["items"][number];
 
 const AdminTemplate: React.FC = () => {
   const location = useLocation();
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(getDashBoardInfoThunk());
+  }, [location]);
+
   const navigate = useNavigate();
   const transitions = useTransition(location, {
     from: {
@@ -138,7 +145,7 @@ const AdminTemplate: React.FC = () => {
             </Dropdown>
           </div>
         </Header>
-        <Content style={{ margin: "0 16px", overflow:'hidden' }}>
+        <Content style={{ margin: "0 16px", overflow: "hidden" }}>
           <Breadcrumb style={{ margin: "16px 0" }}>
             {/* <Breadcrumb.Item>User</Breadcrumb.Item>
                         <Breadcrumb.Item>Bill</Breadcrumb.Item> */}
