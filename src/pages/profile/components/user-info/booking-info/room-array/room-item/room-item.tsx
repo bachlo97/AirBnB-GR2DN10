@@ -3,6 +3,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { LuSend } from "react-icons/lu";
 import _ from "lodash";
 import { useNavigate } from "react-router-dom";
+import { truncateText } from "@/utils";
 type Props = {
   data: TBookingHistory;
   heartIndex: number;
@@ -12,13 +13,13 @@ type Props = {
 
 export function RoomItem({ data, heartIndex, toggleHeart, hearts }: Props) {
   const navigate = useNavigate()
-  const truncateText = (text: string, limit: number) => {
-    if (text.length <= limit) {
-      return text;
-    } else {
-      return text.substring(0, limit) + "...";
-    }
-  };
+  // const truncateText = (text: string, limit: number) => {
+  //   if (text.length <= limit) {
+  //     return text;
+  //   } else {
+  //     return text.substring(0, limit) + "...";
+  //   }
+  // };
   const convertEquiment: any = {
     mayGiat: "Máy giặt",
     banLa: "Bàn là",

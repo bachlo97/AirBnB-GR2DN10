@@ -1,6 +1,9 @@
 import { CheckIcon, VIcon } from "@/assets/icons";
-import { useAppSelector } from "@/redux/hooks";
+import { USER_ID } from "@/constant";
+import { getProfileThunk } from "@/redux/auth/auth.slice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { uploadAvatar } from "@/services/user";
+import { getLocalStorage } from "@/utils";
 import React, { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
 
@@ -8,6 +11,7 @@ type Props = {};
 
 export function Upload({}: Props) {
   const user: any = useAppSelector((state) => state.authReducer.user);
+  const dispatch = useAppDispatch()
   const inpRef = useRef<any>();
 
   const [urlImage, setUrlImage] = useState('');
@@ -56,6 +60,7 @@ export function Upload({}: Props) {
                 timer: 1500
               });
               setUrlImage(URL.createObjectURL(event.target.files[0]));
+              dispatch(getProfileThunk(getLocalStorage(USER_ID)))
             }catch(err){
               console.log(err)
             }
