@@ -36,3 +36,14 @@ export const editUser = (payload: any, id: number) => {
     data: payload,
   });
 };
+
+export const getUsers = async () => {
+  try {
+    const resp = await axiosWithAuth(`/users/`);
+    return resp;
+  } catch (e: any) {
+    throw new Error(e);
+  }
+};
+
+

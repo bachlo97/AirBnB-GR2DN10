@@ -38,3 +38,17 @@ export const deleteCommentRoom=async(id:number)=>{
        
     }
 }
+
+
+
+
+//? write by devCuong
+export const getCommentRooms = async () => {
+    try {
+      const resp = await axiosWithAuth(`/binh-luan`);
+      return resp;
+    } catch (e: any) {
+      throw new Error(e);
+    }
+  };
+  
