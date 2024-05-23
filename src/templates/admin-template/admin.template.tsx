@@ -21,10 +21,20 @@ type MenuItem = Required<MenuProps>["items"][number];
 
 const AdminTemplate: React.FC = () => {
   const location = useLocation();
+  console.log({location})
+  const [dashBoardState,setDashBoardState] = useState(false)
   const dispatch = useAppDispatch();
+  useEffect(()=>{
+    if(location.pathname === "/admin/dashboard"){
+      console.log(123456123)
+      setDashBoardState(true)
+    }else{
+      setDashBoardState(false)
+    }
+  },[location])
   useEffect(() => {
     dispatch(getDashBoardInfoThunk());
-  }, [location]);
+  }, [dashBoardState]);
 
   const navigate = useNavigate();
   const transitions = useTransition(location, {

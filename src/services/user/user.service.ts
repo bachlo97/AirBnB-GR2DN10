@@ -46,4 +46,13 @@ export const getUsers = async () => {
   }
 };
 
+export const searchUsers = async (keyword:string) => {
+  try{
+    const resp = await axiosWithAuth(`/users/search/${keyword}`);
+    return resp;
+  } catch (e: any) {
+    throw new Error(e);
+  }
+}
+
 

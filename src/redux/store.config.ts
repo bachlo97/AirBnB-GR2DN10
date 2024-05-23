@@ -5,6 +5,7 @@ import { authReducer } from './auth/auth.slice'
 import { bookingHistoryReducer } from './booking-history/booking-history.slice'
 import { commentSlice } from './comment/Comment.slice'
 import { dashBoardReducer } from './admin/dashboard/dashboard.slice'
+import { userManagementReducer } from './admin/user-management/user-management.slice'
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
     bookingHistoryReducer,
     dashBoardReducer,
     commentSlice,
+    userManagementReducer,
   },
 })
 
