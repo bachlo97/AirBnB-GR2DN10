@@ -51,10 +51,10 @@ export const handleLineChart = (data: any) => {
     allMonths[month] = monthCounts[month];
   });
 
-  return {
-    lineChartKeys: Object.keys(allMonths),
-    lineChartValues: Object.values(allMonths),
-  };
+  return Object.entries(allMonths).map(([key, value]) => ({
+    category: key,
+    value: value,
+  }));
 };
 
 export const handleColumnChart = (data1: any, data2: any) => {
@@ -109,10 +109,10 @@ export const handleColumnChart = (data1: any, data2: any) => {
     allMonths[month] = monthlyTotals[month];
   });
 
-  return {
-    columnChartKeys: Object.keys(allMonths),
-    columnChartValues: Object.values(allMonths),
-  };
+  return Object.entries(allMonths).map(([key, value]) => ({
+    category: key,
+    value: value,
+  }));
 };
 
 export const handleBarChart = (data1: any, data2: any, data3: any) => {
@@ -167,17 +167,6 @@ export const handleBarChart = (data1: any, data2: any, data3: any) => {
     soLuong,
   }));
 
-  result.sort((a: any, b: any) => b.soLuong - a.soLuong);
-
+  return result.sort((a: any, b: any) => b.soLuong - a.soLuong).slice(0, 5);
   // Lấy 5 phần tử đầu tiên
-  const top5 = result.slice(0, 5);
-
-  // Tạo hai mảng tinhThanh và soLuongTuongUng
-  const tinhThanh = top5.map((item) => truncateText(item.tinhThanh, 20));
-
-  const values = top5.map((item) => item.soLuong);
-  return {
-    barChartKeys: tinhThanh,
-    barChartValues: values,
-  };
 };

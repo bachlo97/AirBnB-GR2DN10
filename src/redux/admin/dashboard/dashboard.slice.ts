@@ -19,18 +19,9 @@ const initialState = {
     totalRoom: "",
     totalLocation: "",
   },
-  lineChart: {
-    lineChartKeys: "",
-    lineChartValues: "",
-  },
-  columnChart: {
-    columnChartKeys: "",
-    columnChartValues: "",
-  },
-  barChart: {
-    barChartKeys: "",
-    barChartValues: "",
-  },
+  lineChart: [],
+  columnChart:[],
+  barChart: []
 };
 
 export const getDashBoardInfoThunk = createAsyncThunk(

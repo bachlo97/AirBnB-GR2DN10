@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { bookingData } from "../data";
-import Chart from 'react-apexcharts'
 import { redirect } from "react-router-dom";
 import { useAppSelector } from "@/redux/hooks";
+import ReactApexChart from "react-apexcharts";
 type Props = {};
 
 export function LineChart({}: Props) {
-  const {lineChartKeys,lineChartValues} = useAppSelector(state => state.dashBoardReducer.lineChart)
+  const {lineChart} = useAppSelector(state => state.dashBoardReducer)
+
+
   const [state, setState] = useState({
     options: {
       chart: {
@@ -26,7 +28,7 @@ export function LineChart({}: Props) {
         enabled: false,
       },
       xaxis: {
-        categories: lineChartKeys,
+        categories: lineChart.length && lineChart.map((item:any) => item.category),
       },
       yaxis: {
         title: {
@@ -47,7 +49,7 @@ export function LineChart({}: Props) {
     series: [
       {
         name: "series-1",
-        data: lineChartValues,
+        data: lineChart.length  &&  lineChart.map((item:any) => item.value),
       },
     ],
   });
@@ -55,7 +57,7 @@ export function LineChart({}: Props) {
   return (
     <div className="w-full min-w-0 flex-col break-words rounded-[6px] border-0 bg-white p-7 text-[14px] text-[#333] shadow-[0_1px_4px_0_rgba(0,0,0,.14)] overflow-hidden">
       <div id="chart" >
-        <Chart
+        <ReactApexChart
           options={state.options}
           series={state.series}
           type="area"

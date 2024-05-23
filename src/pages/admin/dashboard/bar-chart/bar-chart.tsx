@@ -6,11 +6,11 @@ import { useAppSelector } from "@/redux/hooks";
 type Props = {};
 
 export function BarChart({}: Props) {
-  const {barChartKeys,barChartValues} = useAppSelector(state => state.dashBoardReducer.barChart)
+  const {barChart} = useAppSelector(state => state.dashBoardReducer)
   const [state, setState] = useState({
     series: [
       {
-        data: barChartValues,
+        data: barChart.length && barChart.map((item:any) => item.soLuong),
       },
     ],
     options: {
@@ -40,7 +40,7 @@ export function BarChart({}: Props) {
         show:false,
       },
       xaxis: {
-        categories: barChartKeys,
+        categories: barChart.length && barChart.map((item:any) => item.tinhThanh),
         title:{
             text: 'Số lượng người'
         }
