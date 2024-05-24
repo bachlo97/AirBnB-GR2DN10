@@ -22,6 +22,9 @@ export const searchUsersThunk = createAsyncThunk('searchUsersThunk',async(keywor
 const initialState = {
   userList: [],
   modal: false,
+  modalTitle: '',
+  okText: '',
+  btnColor: '',
 }
 
 
@@ -34,7 +37,12 @@ const UserManagementSlice = createSlice({
     },
     closeModal: (state) =>{
       state.modal = false
-    }
+    },
+    addForm : (state,{payload}) => {
+      state.modalTitle = payload.modalTitle
+      state.okText = payload.okText
+      state.btnColor = payload.btnColor
+    },
   },
   extraReducers: (builder) =>{
     builder.addCase(getUsersThunk.fulfilled,(state,{payload})=>{
@@ -45,6 +53,6 @@ const UserManagementSlice = createSlice({
   }
 });
 
-export const {openModal,closeModal} = UserManagementSlice.actions
+export const {openModal,closeModal,addForm} = UserManagementSlice.actions
 
 export const userManagementReducer =  UserManagementSlice.reducer

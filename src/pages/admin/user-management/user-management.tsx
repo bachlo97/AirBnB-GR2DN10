@@ -1,4 +1,5 @@
 import {
+  addForm,
   getUsersThunk,
   openModal,
   searchUsersThunk,
@@ -6,7 +7,7 @@ import {
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import type { TableColumnsType, TableProps } from "antd";
 import React, { useEffect, useRef, useState } from "react";
-import { Table, Input, Button, Popconfirm, Tag, Modal } from "antd";
+import { Table, Input, Button, Popconfirm, Tag} from "antd";
 import { IoSearchOutline } from "react-icons/io5";
 import { IoIosMale } from "react-icons/io";
 import { IoFemaleOutline } from "react-icons/io5";
@@ -14,8 +15,10 @@ import { VscEdit } from "react-icons/vsc";
 import { TiDelete } from "react-icons/ti";
 import type { SearchProps } from "antd/es/input/Search";
 import { truncateText } from "@/utils";
-import { FormModal } from "./modal/form-modal";
+import { FormModal } from "./components/modal/";
 import { getUsers, searchUsers } from "@/services/user";
+import { AddAdmin } from "./components/modal/add-admin";
+import { EditUser } from "./components/modal/update-user";
 type Props = {};
 
 interface DataType {
@@ -96,7 +99,16 @@ export default function UserManagement({}: Props) {
           <div className="flex gap-4">
             <div
               className="cursor-pointer self-center text-blue-500"
-              onClick={() => dispatch(openModal())}
+              onClick={() => {
+                dispatch(openModal());
+                dispatch(
+                  addForm({
+                    modalTitle: "Chỉnh sửa người dùng",
+                    okText: "Lưu",
+                    btnColor: '#ffc107'
+                  }),
+                );
+              }}
             >
               <VscEdit />
             </div>
@@ -147,6 +159,12 @@ export default function UserManagement({}: Props) {
         className="mb-4"
         onClick={() => {
           dispatch(openModal());
+          dispatch(
+            addForm({
+              modalTitle: "Thêm quản trị viên",
+              okText: "Thêm"
+            }),
+          );
         }}
       >
         Thêm quản trị viên
@@ -163,11 +181,11 @@ export default function UserManagement({}: Props) {
             clearTimeout(userRef.current);
           }
           userRef.current = setTimeout(async () => {
-          if(e.target.value){
-            dispatch(searchUsersThunk(e.target.value));
-          }else{
-            dispatch(getUsersThunk())
-          }
+            if (e.target.value) {
+              dispatch(searchUsersThunk(e.target.value));
+            } else {
+              dispatch(getUsersThunk());
+            }
           }, 500);
         }}
       />

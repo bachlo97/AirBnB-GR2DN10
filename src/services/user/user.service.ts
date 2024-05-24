@@ -39,7 +39,7 @@ export const editUser = (payload: any, id: number) => {
 
 export const getUsers = async () => {
   try {
-    const resp = await axiosWithAuth(`/users/`);
+    const resp = await axiosWithAuth(`/users`);
     return resp;
   } catch (e: any) {
     throw new Error(e);
