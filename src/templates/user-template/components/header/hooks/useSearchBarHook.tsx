@@ -62,6 +62,7 @@ export const useSearchBarHook=()=>{
       
     };
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    
     const handleSubmit = (e: { preventDefault: () => void; }) => {
   e.preventDefault();
     };
@@ -97,7 +98,7 @@ return {
     navigate,
     dispatch,
     isOpen,
-  
+    dataLocations,
     valueId,
     valueStartDay,
     valueEndDay,

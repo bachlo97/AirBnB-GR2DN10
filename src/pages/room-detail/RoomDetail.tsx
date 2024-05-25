@@ -19,7 +19,7 @@ type Props = object
 
 const RoomDetail = (_props: Props) => {
   const { id } = useParams();
-    const navigate = useNavigate();
+    
 
   const [dataRoomDetail,setDataRoomDetail]=useState<TRoomDetail>({})
   useEffect(()=>{

@@ -4,6 +4,7 @@ import { GetCartsRoomSlice } from './cart/Cart.slice'
 import { authReducer } from './auth/auth.slice'
 import { bookingHistoryReducer } from './booking-history/booking-history.slice'
 import { commentSlice } from './comment/Comment.slice'
+import { locationSlice } from './admin-location/AdminLocation.slice'
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     authReducer,
     bookingHistoryReducer,
     commentSlice,
+    locationSlice,
   },
 })
 

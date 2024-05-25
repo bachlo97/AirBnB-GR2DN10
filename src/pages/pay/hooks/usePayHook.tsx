@@ -51,7 +51,7 @@ const handleSubmit=()=>{
 )
 
 }
-  return {countDay,user,dateRoom,payRoom,handleSubmit}
+  return {countDay,user,dateRoom,payRoom,navigate,handleSubmit}
 }
 
 export default usePayHook

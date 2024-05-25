@@ -3,6 +3,7 @@ export const DataWherever = [
   {
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUsR6AP4ptbNfoFjQQDmlUIYzLmNU_IHT3hA&s",
     title: "Toàn bộ nhà",
+    titleEN:'Many House'
   },
   {
     img: "https://amdmodular.com/wp-content/uploads/2022/06/Frame-190-1024x673.jpg",

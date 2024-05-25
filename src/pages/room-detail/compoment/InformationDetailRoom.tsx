@@ -205,6 +205,7 @@ wifi
                     name="currentDay"
                     onChange={(selectedDate) => handleDateChange(selectedDate,'currentDay')}
                     popupClassName="calendar-header"
+                      disabledDate={(current) => current && current.valueOf() < Date.now()}
                   />
                 </Space>
                   </p>
@@ -222,6 +223,8 @@ wifi
                     name="currentDay"
                     onChange={(selectedDate) => handleDateChange(selectedDate,'nextDay')}
                     popupClassName="calendar-header"
+                    disabledDate={(current) => current && current.valueOf() < Date.now()}
+
                   />
                 </Space></p>
                 </div>
@@ -252,7 +255,7 @@ wifi
                     countClient>0?  
                      (
                       setCountClient(countClient-1)
-                    ) :  alertError('Thất bại bạn không thể cho dưới số 0');
+                    ) : countClient
                  }}
                     
                     >                      <IoIosRemove className="text-[2.5rem]"/>
