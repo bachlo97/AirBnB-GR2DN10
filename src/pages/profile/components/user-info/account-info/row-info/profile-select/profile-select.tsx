@@ -3,10 +3,9 @@ import { Select } from "antd";
 import {Form, Formik } from "formik";
 import { useContext } from "react";
 import { ContextStore } from "../../../context";
-import { getLocalStorage } from "@/utils";
+import { getLocalStorage, printSuccessDialog } from "@/utils";
 import { USER_ID } from "@/constant";
 import { updateUserThunk } from "@/redux/auth/auth.slice";
-import Swal from "sweetalert2";
 import _ from "lodash";
 type Props = {
   name: string;
@@ -24,13 +23,7 @@ export function ProfileSelect({ name }: Props) {
     }
      await dispatch(updateUserThunk({payload,id: getLocalStorage(USER_ID)}))
      setBgBlur(false)
-     Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Bạn đã cập nhật thành công",
-      showConfirmButton: false,
-      timer: 1500
-    });
+      printSuccessDialog('Bạn đã cập nhật giới tính thành công')
   };
   return (
     <Formik

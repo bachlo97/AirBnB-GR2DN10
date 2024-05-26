@@ -1,23 +1,29 @@
 import { NAME_REGEX } from "@/constant";
+import { printSuccessDialog } from "@/utils";
 import { DatePicker, Input, Select } from "antd";
 import { ErrorMessage, Form, Formik } from "formik";
-import React, { forwardRef, useEffect } from "react";
+import dayjs from "dayjs";
+import { forwardRef } from "react";
 import * as Yup from "yup";
+import { addUser } from "@/services/user";
+import { getUsersThunk } from "@/redux/admin/user-management/user-management.slice";
+import { useAppDispatch } from "@/redux/hooks";
 type Props = {};
 
 export const AddAdmin = forwardRef(function AddAdmin(
   {}: Props,
   addUserRef: any,
 ) {
+  const dispatch = useAppDispatch();
   return (
     <Formik
       initialValues={{
         email: "",
         password: "",
         name: "",
-        gender: "",
+        gender: undefined,
         phone: "",
-        birthday: "",
+        birthday: undefined,
       }}
       validationSchema={Yup.object({
         email: Yup.string().email("invalid email address").required("required"),
@@ -43,10 +49,30 @@ export const AddAdmin = forwardRef(function AddAdmin(
           )
           .required("required"),
       })}
-      onSubmit={(value) => alert(JSON.stringify(value, null, 2))}
+      onSubmit={(values, { resetForm }) => {
+        // alert(JSON.stringify(values, null, 2));
+        const payload: TPayloadSignup = {
+          ...values,
+          id: 0,
+          role: "ADMIN",
+          birthday: dayjs(values.birthday).format("DD/MM/YYYY"),
+          gender: Boolean(values.gender),
+        };
+        console.log({ payload });
+        addUser(payload)
+          .then((res) => {
+            console.log({ res });
+            dispatch(getUsersThunk());
+            resetForm();
+            printSuccessDialog("Thêm quản trị viên thành công");
+          })
+          .catch((e) => {
+            console.log({ e });
+          });
+
+      }}
     >
-      {({ values, setFieldValue, setFieldTouched, errors, touched }) => {
-        console.log({ errors });
+      {({ values, setFieldValue, setFieldTouched }) => {
         return (
           <Form>
             <div className="mb-10">
@@ -141,9 +167,9 @@ export const AddAdmin = forwardRef(function AddAdmin(
                   <DatePicker
                     placeholder="Select your birth day"
                     format={"DD/MM/YYYY"}
-                    allowClear
                     className="block"
                     name="birthday"
+                    value={values.birthday}
                     onChange={(date) => setFieldValue("birthday", date)}
                     onBlur={() => setFieldTouched("birthday", true)}
                   />
@@ -161,6 +187,7 @@ export const AddAdmin = forwardRef(function AddAdmin(
                   </label>
                   <Select
                     className="block"
+                    value={values.gender}
                     onBlur={() => {
                       setFieldTouched("gender", true);
                     }}

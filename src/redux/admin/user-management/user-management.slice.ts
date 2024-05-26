@@ -25,6 +25,7 @@ const initialState = {
   modalTitle: '',
   okText: '',
   btnColor: '',
+  selectedUser:{}
 }
 
 
@@ -43,6 +44,9 @@ const UserManagementSlice = createSlice({
       state.okText = payload.okText
       state.btnColor = payload.btnColor
     },
+    getUser: (state,{payload}) => {
+      state.selectedUser = payload
+    }
   },
   extraReducers: (builder) =>{
     builder.addCase(getUsersThunk.fulfilled,(state,{payload})=>{
@@ -53,6 +57,6 @@ const UserManagementSlice = createSlice({
   }
 });
 
-export const {openModal,closeModal,addForm} = UserManagementSlice.actions
+export const {openModal,closeModal,addForm,getUser} = UserManagementSlice.actions
 
 export const userManagementReducer =  UserManagementSlice.reducer

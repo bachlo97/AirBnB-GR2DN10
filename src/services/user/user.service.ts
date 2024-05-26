@@ -55,4 +55,17 @@ export const searchUsers = async (keyword:string) => {
   }
 }
 
+export const addUser = (payload:TPayloadSignup) => {
+  return axiosWithAuth("/users", {
+    method: "post",
+    data: payload,
+  });
+}
+
+export const deleteUser = (id: number) => {
+  return axiosWithAuth(`/users?id=${id}`, {
+    method: "delete",
+  });
+};
+
 

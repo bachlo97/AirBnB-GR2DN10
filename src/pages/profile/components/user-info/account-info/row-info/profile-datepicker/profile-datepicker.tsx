@@ -6,9 +6,8 @@ import * as Yup from "yup";
 import React, { useContext } from "react";
 import { ContextStore } from "../../../context";
 import { updateUserThunk } from "@/redux/auth/auth.slice";
-import { getLocalStorage } from "@/utils";
+import { getLocalStorage, printSuccessDialog } from "@/utils";
 import { USER_ID } from "@/constant";
-import Swal from "sweetalert2";
 import _ from "lodash";
 type Props = {
   name: string;
@@ -26,13 +25,7 @@ export function ProfileDatePicker({ name }: Props) {
     }
      await dispatch(updateUserThunk({payload,id: getLocalStorage(USER_ID)}))
      setBgBlur(false)
-     Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Bạn đã cập nhật thành công",
-      showConfirmButton: false,
-      timer: 1500
-    });
+     printSuccessDialog('Bạn đã cập nhật ngày sinh thành công')
   };
   return (
     <Formik

@@ -22,7 +22,7 @@ export function FormModal({}: Props) {
         break;
       case 'Lưu':
         updateUserRef.current && updateUserRef.current.click()
-        alert(123)
+        // alert(123)
         break;
       default :
        return 
@@ -38,7 +38,7 @@ export function FormModal({}: Props) {
       case 'Thêm':
         return <AddAdmin ref={addUserRef}/>
       case 'Lưu':
-        return <UpdateUser/>
+        return <UpdateUser ref={updateUserRef}/>
       default :
        return ''
     }

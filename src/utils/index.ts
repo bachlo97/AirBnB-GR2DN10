@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 export const IIFE = (cb: () => any) => {
     cb();
 };
@@ -25,3 +27,13 @@ export const truncateText = (text: string, limit: number) => {
       return text.substring(0, limit) + "...";
     }
   };
+
+export const printSuccessDialog =  (title:string) => {
+    Swal.fire({
+        position: "center",
+        icon: "success",
+        title: title,
+        showConfirmButton: false,
+        timer: 1500
+      });
+}

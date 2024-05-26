@@ -1,5 +1,6 @@
 import {
   addForm,
+  getUser,
   getUsersThunk,
   openModal,
   searchUsersThunk,
@@ -7,18 +8,16 @@ import {
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import type { TableColumnsType, TableProps } from "antd";
 import React, { useEffect, useRef, useState } from "react";
-import { Table, Input, Button, Popconfirm, Tag} from "antd";
+import { Table, Input, Button, Popconfirm, Tag } from "antd";
 import { IoSearchOutline } from "react-icons/io5";
 import { IoIosMale } from "react-icons/io";
 import { IoFemaleOutline } from "react-icons/io5";
 import { VscEdit } from "react-icons/vsc";
 import { TiDelete } from "react-icons/ti";
-import type { SearchProps } from "antd/es/input/Search";
-import { truncateText } from "@/utils";
+import { printSuccessDialog, truncateText } from "@/utils";
 import { FormModal } from "./components/modal/";
-import { getUsers, searchUsers } from "@/services/user";
-import { AddAdmin } from "./components/modal/add-admin";
-import { EditUser } from "./components/modal/update-user";
+import { deleteUser, getProfile } from "@/services/user";
+import { use } from "i18next";
 type Props = {};
 
 interface DataType {
@@ -37,7 +36,6 @@ export default function UserManagement({}: Props) {
   const userRef = useRef<any>(null);
   const dispatch = useAppDispatch();
   const { userList } = useAppSelector((state) => state.userManagementReducer);
-  // const [value, setValue] = useState("");
   console.log({ userList });
   useEffect(() => {
     dispatch(getUsersThunk());
@@ -94,20 +92,27 @@ export default function UserManagement({}: Props) {
     {
       title: "Action",
       dataIndex: "action",
-      render: (_, { action }) => {
+      render: (_, user) => {
         return (
           <div className="flex gap-4">
             <div
               className="cursor-pointer self-center text-blue-500"
-              onClick={() => {
-                dispatch(openModal());
-                dispatch(
-                  addForm({
-                    modalTitle: "Chỉnh sửa người dùng",
-                    okText: "Lưu",
-                    btnColor: '#ffc107'
-                  }),
-                );
+              onClick={async () => {
+                try {
+                  dispatch(openModal());
+                  dispatch(
+                    addForm({
+                      modalTitle: "Chỉnh sửa người dùng",
+                      okText: "Lưu",
+                      btnColor: "#ffc107",
+                    }),
+                  );
+                  const userAPI = await getProfile(user.id);
+                  const payload = userAPI.data.content
+                  dispatch(getUser(payload))
+                } catch (e) {
+                  console.log(e);
+                }
               }}
             >
               <VscEdit />
@@ -116,8 +121,9 @@ export default function UserManagement({}: Props) {
             <Popconfirm
               title="Bạn có muốn xóa "
               onConfirm={async () => {
-                // await dispatch(deleteUserThunk(taiKhoan));
-                // dispatch(getUsersThunk(""));
+                await deleteUser(user.id)
+                dispatch(getUsersThunk())
+                printSuccessDialog('Xoá người dùng thành công')
               }}
               cancelText="Huỷ"
               okText="Chắn chắn"
@@ -162,7 +168,7 @@ export default function UserManagement({}: Props) {
           dispatch(
             addForm({
               modalTitle: "Thêm quản trị viên",
-              okText: "Thêm"
+              okText: "Thêm",
             }),
           );
         }}

@@ -3,7 +3,7 @@ import { USER_ID } from "@/constant";
 import { getProfileThunk } from "@/redux/auth/auth.slice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { uploadAvatar } from "@/services/user";
-import { getLocalStorage } from "@/utils";
+import { getLocalStorage, printSuccessDialog } from "@/utils";
 import React, { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
 
@@ -52,13 +52,7 @@ export function Upload({}: Props) {
               const formFile = new FormData()
               formFile.append("formFile",event.target.files[0])
               await uploadAvatar(formFile)
-              Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Bạn đã cập nhật thành công",
-                showConfirmButton: false,
-                timer: 1500
-              });
+              printSuccessDialog('Bạn đã cập nhật avatar thành công')
               setUrlImage(URL.createObjectURL(event.target.files[0]));
               dispatch(getProfileThunk(getLocalStorage(USER_ID)))
             }catch(err){

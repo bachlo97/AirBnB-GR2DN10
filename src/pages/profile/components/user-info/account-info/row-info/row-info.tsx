@@ -47,7 +47,7 @@ export function RowInfo({
               setBgBlur(!open)
             }}
           >
-            {bgBlur? "Huỷ" : "Chỉnh sửa"}
+            {bgBlur && open? "Huỷ" : "Chỉnh sửa"}
           </span>
         ) : null}
       </div>
