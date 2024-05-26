@@ -13,6 +13,14 @@ function TableRender() {
 const [data, setData] =useState<TLocaltion[]>([]);
 const listLocation:any = useAppSelector((state) => state.locationSlice.listLocation);
 const dispatch = useAppDispatch();
+const [loading, setLoading] = useState(false);
+const [tableParams, setTableParams] = useState({
+  pagination: {
+    current: 1,
+    pageSize: 10,
+  },
+});
+
 
   const columns = [
     {
@@ -61,8 +69,10 @@ const dispatch = useAppDispatch();
           
                 <ModalLocationEdit data={record} />
                   <ButtonPrimary width='100px' height={3.5} onClick={() => {
+                    
                     delLocation(record.id)
                     dispatch(getAdminLocationThunk())
+               
                   }}>{"Xoá"}</ButtonPrimary>
 
         </div>
@@ -73,17 +83,9 @@ const dispatch = useAppDispatch();
   ];
 
   
-  console.log(listLocation);
-  
-  const [loading, setLoading] = useState(false);
-  const [tableParams, setTableParams] = useState({
-    pagination: {
-      current: 1,
-      pageSize: 10,
-    },
-  });
 
   
+
 console.log();
 
 useEffect(()=>{

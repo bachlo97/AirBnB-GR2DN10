@@ -64,8 +64,8 @@ function TableComment() {
         }
       };
       return (
-        <div>
-     <Table
+        <div className="border border-black border-solid">
+     {/* <Table
           columns={columns}
        
           dataSource={listCommentAll}
@@ -73,7 +73,25 @@ function TableComment() {
           loading={loading}
           onChange={handleTableChange}
           
-        />
+        /> */}
+<table className='w-[100%]'>
+  <thead>
+    <tr>
+      <th>STT</th>
+      <th>Tên</th>
+      <th>Số Lượng</th>
+      <th>Chỉnh sửa</th>
+    </tr>
+  </thead>
+  <tbody>
+   <tr className='text-center'>
+    <td>1</td>
+    <td>1</td>
+    <td>1</td>
+    <td>Xem Thêm</td>
+   </tr>
+  </tbody>
+</table>
         </div>
       )
 }
