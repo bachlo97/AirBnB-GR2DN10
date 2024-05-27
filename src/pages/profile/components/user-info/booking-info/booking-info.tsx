@@ -21,7 +21,7 @@ export default function BookingInfo({
   hearts,
   toggleHeart,
 }: Props) {
-  const roomBookingList = useAppSelector(
+  const roomBookingList:any = useAppSelector(
     (state) => state.bookingHistoryReducer.roomBookingList,
   );
   console.log({ hearts });

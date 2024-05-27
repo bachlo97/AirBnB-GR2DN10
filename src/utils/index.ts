@@ -1,5 +1,7 @@
 import Swal from "sweetalert2";
-
+import dayjs from "dayjs";
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+dayjs.extend(customParseFormat);
 export const IIFE = (cb: () => any) => {
     cb();
 };
@@ -37,3 +39,23 @@ export const printSuccessDialog =  (title:string) => {
         timer: 1500
       });
 }
+
+
+
+export const parseBirthday = (birthday:string) => {
+    if (!birthday) return undefined;
+  
+    // Check if the date is in "DD/MM/YYYY" format
+    const isValidDDMMYYYY = dayjs(birthday, "DD/MM/YYYY", true).isValid();
+    if (isValidDDMMYYYY) {
+      return dayjs(birthday, "DD/MM/YYYY");
+    }
+  
+    // Check if the date is in "YYYY-MM-DD" format
+    const isValidYYYYMMDD = dayjs(birthday, "YYYY-MM-DD", true).isValid();
+    if (isValidYYYYMMDD) {
+      const dateString =  dayjs(birthday, "YYYY-MM-DD").format("DD/MM/YYYY");
+      return dayjs(dateString,"DD/MM/YYYY")
+    }
+    return undefined;
+  };

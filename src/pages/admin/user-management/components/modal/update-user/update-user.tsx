@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 import * as Yup from "yup";
 import { editUser } from "@/services/user";
 import { closeModal, getUsersThunk } from "@/redux/admin/user-management/user-management.slice";
-import { printSuccessDialog } from "@/utils";
+import { parseBirthday, printSuccessDialog } from "@/utils";
 type Props = {};
 
 export const UpdateUser = forwardRef(function UpdateUser(
@@ -31,8 +31,8 @@ export const UpdateUser = forwardRef(function UpdateUser(
       initialValues={{
         name: selectedUser.name,
         email: selectedUser.email,
-        birthday: dayjs(selectedUser.birthday, "DD/MM/YYYY").isValid()
-          ? dayjs(selectedUser.birthday, "DD/MM/YYYY")
+        birthday: parseBirthday(selectedUser.birthday)
+          ? parseBirthday(selectedUser.birthday)
           : undefined,
         phone: selectedUser.phone,
         gender: selectedUser.gender,

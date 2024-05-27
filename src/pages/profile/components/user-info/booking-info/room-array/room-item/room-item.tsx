@@ -13,13 +13,7 @@ type Props = {
 
 export function RoomItem({ data, heartIndex, toggleHeart, hearts }: Props) {
   const navigate = useNavigate()
-  // const truncateText = (text: string, limit: number) => {
-  //   if (text.length <= limit) {
-  //     return text;
-  //   } else {
-  //     return text.substring(0, limit) + "...";
-  //   }
-  // };
+
   const convertEquiment: any = {
     mayGiat: "Máy giặt",
     banLa: "Bàn là",
@@ -64,8 +58,8 @@ export function RoomItem({ data, heartIndex, toggleHeart, hearts }: Props) {
   };
   return (
     <div className="mt-8">
-      <div className="flex gap-7">
-        <div className="relative h-[180px] w-[35%] bg-slate-950 group overflow-hidden">
+      <div className="flex ipad:flex-row mobile:flex-col ipad:items-start mobile:items-center gap-7">
+        <div className="relative mobile:h-[150px] mobile:w-[80%] ipad:h-[180px] ipad:w-[35%] bg-slate-950 group overflow-hidden">
           <img
             className="h-full w-full rounded-xl object-cover"
             src={data.hinhAnh}
@@ -77,30 +71,30 @@ export function RoomItem({ data, heartIndex, toggleHeart, hearts }: Props) {
           </button>
         </div>
 
-        <div className="w-[65%]">
-          <div className="flex justify-between">
-            <h4 className="tracking-normal text-gray-500">
+        <div className="ipad:w-[65%] mobile:w-[80%]">
+          <div className="flex justify-between ipad:gap-0 mobile:gap-2 mobile:mb-3 ipad:mb-0">
+            <h4 className="tracking-normal text-gray-500 desktop:text-[14px] ipad:text-[12px] mobile:text-[11.5px]">
               {`Toàn bộ căn hộ dịch vụ tại ${data.tenViTri}, ${data.tinhThanh}`}
             </h4>
             <FaRegHeart
-              className={`${hearts[heartIndex] ? "text-pink-500" : ""} mr-[70px] cursor-pointer text-[25px]`}
+              className={`${hearts[heartIndex] ? "text-pink-500" : ""} ipad:mr-[40px] cursor-pointer mobile:text-[20px] ipad:text-[25px]`}
               onClick={() => {
                 toggleHeart(heartIndex);
               }}
             />
           </div>
-          <h3 className="text-[20px] tracking-wider">
+          <h3 className="desktop:text-[20px] ipad:text-[15px] desktop:tracking-wider ipad:tracking-tight mobile:text-[12px] mobile:tracking-tighter">
             {truncateText(data.tenPhong, 50)}
           </h3>
           <hr className="my-3 w-[30%]" />
-          <p className="mt-2 tracking-wider text-gray-500">
+          <p className="mt-2 desktop:tracking-wider text-gray-500 ipad:text-[14px] ipad:tracking-tight mobile:text-[11px]">
             {`${data.soLuongKhach} khách - `}
             {truncateText(renderRoomParts(), 53)}
           </p>
-          <p className="mt-2 tracking-wider text-gray-500">
+          <p className="mt-2 desktop:tracking-wider text-gray-500 ipad:text-[14px] ipad:tracking-tight text-[11px]">
             {truncateText(renderEquiment(), 60)}
           </p>
-          <p className="mr-[70px] text-right text-[18px]">
+          <p className="desktop:mr-[70px] ipad:mr-[30px] ipad:mt-[30px] text-right text-[18px] mobile:mt-4">
             <span className="mr-1 inline-block font-bold">{`$${data.giaTien}`}</span>
             / tháng
           </p>

@@ -36,7 +36,7 @@ export function RowInfo({
   }
 
   return (
-    <div className={`${open ? "relative z-30" : null} mt-5 w-[55%]`}>
+    <div className={`${open ? "relative z-30" : null} mt-5 ipad:w-[55%] mobile:w-[80%] mobile:mx-auto ipad:mx-[0]`}>
       <div className="flex items-center justify-between">
         <h4 className="text-[18px] text-gray-700">{label}</h4>
         {edited ? (

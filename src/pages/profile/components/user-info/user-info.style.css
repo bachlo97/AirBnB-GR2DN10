@@ -8,6 +8,7 @@
     background: none;
 }
 
+
 .tab-user.ant-tabs .ant-tabs-tab {
     font-size: 16px;
     font-weight: 500;
@@ -19,5 +20,25 @@
 
 .tab-user.ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
     color: #f62682;
+}
+
+
+/* responsive */
+@media only screen and (min-width: 375px){
+    .tab-user.ant-tabs .ant-tabs-tab{
+        font-size: 14px;
+    }
+    .tab-user.ant-tabs .ant-tabs-nav-list{
+        margin: 0 auto
+    }
+}
+
+@media only screen and (min-width: 768px){
+    .tab-user.ant-tabs .ant-tabs-tab{
+        font-size: 16px;
+    }
+    .tab-user.ant-tabs .ant-tabs-nav-list{
+        margin: none;
+    }
 }
 
