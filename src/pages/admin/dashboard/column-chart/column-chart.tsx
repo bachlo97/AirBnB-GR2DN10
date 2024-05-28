@@ -47,7 +47,7 @@ export function ColumnChart({}: Props) {
     },
     series: [
       {
-        name: "series-1",
+        name: "Doanh thu",
         data: columnChart.length && columnChart.map((item: any) => item.value),
       },
     ],

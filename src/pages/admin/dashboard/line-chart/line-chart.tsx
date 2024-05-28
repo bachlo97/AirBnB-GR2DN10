@@ -48,7 +48,7 @@ export function LineChart({}: Props) {
     },
     series: [
       {
-        name: "series-1",
+        name: "số lượng đặt phòng",
         data: lineChart.length  &&  lineChart.map((item:any) => item.value),
       },
     ],

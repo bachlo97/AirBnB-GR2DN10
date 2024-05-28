@@ -10,6 +10,7 @@ export function BarChart({}: Props) {
   const [state, setState] = useState({
     series: [
       {
+        name: 'Số lượng khách',
         data: barChart.length && barChart.map((item:any) => item.soLuong),
       },
     ],
