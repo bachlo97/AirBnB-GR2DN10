@@ -1,1 +1,1 @@
-export { getRoomBookingViaUser,getRoomBookingList,getRoomLocationList,getBookingList } from "./booking.service";
+export { getRoomBookingViaUser,getRoomBookingList,getRoomLocationList,getBookingList,deleteBooking } from "./booking.service";

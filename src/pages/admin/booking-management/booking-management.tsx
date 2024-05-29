@@ -1,21 +1,18 @@
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import type { TableColumnsType, TableProps } from "antd";
-import React, { useEffect, useRef, useState } from "react";
-import { Table, Input, Button, Popconfirm, Tag } from "antd";
+import React, { useEffect, useRef} from "react";
+import { Table, Input, Popconfirm, } from "antd";
 import { IoSearchOutline } from "react-icons/io5";
 import { GrOverview } from "react-icons/gr";
-import { IoIosMale } from "react-icons/io";
-import { IoFemaleOutline } from "react-icons/io5";
-import { VscEdit } from "react-icons/vsc";
+
 import { TiDelete } from "react-icons/ti";
-import { printSuccessDialog, truncateText } from "@/utils";
-import { FormModal } from "./components/modal/";
-import { deleteUser, getProfile } from "@/services/user";
-import { use } from "i18next";
+
 import {
   changeModalState,
   getBookingListThunk,
   handleModalDetailThunk,
+  setLoading,
+  setSucess,
 } from "@/redux/admin/booking-management/booking.management.slice";
 import { BookingModal } from "./components";
 type Props = {};
@@ -35,7 +32,7 @@ export default function BookingManagement({}: Props) {
   const { Search } = Input;
   const userRef = useRef<any>(null);
   const dispatch = useAppDispatch();
-  const { bookingList } = useAppSelector(
+  const { bookingList} = useAppSelector(
     (state) => state.BookingManagementReducer,
   );
   console.log({ bookingList });
@@ -52,11 +49,11 @@ export default function BookingManagement({}: Props) {
 
     {
       title: "departure date",
-      dataIndex: "ngayDen",
+      dataIndex: "ngayDi",
     },
     {
       title: "arrival date",
-      dataIndex: "ngayDi",
+      dataIndex: "ngayDen",
     },
 
     {
@@ -82,11 +79,16 @@ export default function BookingManagement({}: Props) {
             <div
               className="cursor-pointer self-center text-blue-500"
               onClick={async () => {
+                await dispatch(setLoading())
                 await dispatch(changeModalState(true));
-                dispatch(handleModalDetailThunk({
+                await dispatch(handleModalDetailThunk({
                   maPhong : booking.maPhong,
-                  maNguoiDung: booking.maNguoiDung
+                  maNguoiDung: booking.maNguoiDung,
+                  soLuongKhach: booking.soLuongKhach,
+                  ngayDen: booking.ngayDen,
+                  ngayDi: booking.ngayDi,
                 }))
+                dispatch(setSucess())
               }}
             >
               <GrOverview />
@@ -100,7 +102,9 @@ export default function BookingManagement({}: Props) {
             >
               <span
                 className={" mr-3 cursor-pointer text-[20px] text-red-500"}
-                onClick={async () => {}}
+                onClick={async () => {
+                  await dele
+                }}
               >
                 <TiDelete />
               </span>

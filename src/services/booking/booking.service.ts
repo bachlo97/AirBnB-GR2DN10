@@ -64,3 +64,9 @@ export const getBookingList = async () => {
     throw new Error(e);
   }
 }
+
+export const deleteBooking = (id: number) => {
+  return axiosWithAuth(`/dat-phong/${id}`, {
+    method: "delete",
+  });
+};

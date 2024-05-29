@@ -59,3 +59,14 @@ export const parseBirthday = (birthday:string) => {
     }
     return undefined;
   };
+
+
+  export const formatDate = (dateString:string) => {
+    const [year, month, day] = dateString.split('-');
+    return `${day}/${month}/${year}`;
+  }
+
+
+  export const  allFieldsNotEmpty = (obj:any) => {
+    return Object.values(obj).every(value => value !== '');
+  }
