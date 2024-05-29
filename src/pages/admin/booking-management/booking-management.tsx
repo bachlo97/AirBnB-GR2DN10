@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import type { TableColumnsType, TableProps } from "antd";
-import React, { useEffect, useRef} from "react";
-import { Table, Input, Popconfirm, } from "antd";
+import React, { useEffect, useRef } from "react";
+import { Table, Input, Popconfirm } from "antd";
 import { IoSearchOutline } from "react-icons/io5";
 import { GrOverview } from "react-icons/gr";
 
@@ -15,6 +15,8 @@ import {
   setSucess,
 } from "@/redux/admin/booking-management/booking.management.slice";
 import { BookingModal } from "./components";
+import { deleteBooking } from "@/services/booking";
+import { printSuccessDialog } from "@/utils";
 type Props = {};
 
 interface DataType {
@@ -32,7 +34,7 @@ export default function BookingManagement({}: Props) {
   const { Search } = Input;
   const userRef = useRef<any>(null);
   const dispatch = useAppDispatch();
-  const { bookingList} = useAppSelector(
+  const { bookingList } = useAppSelector(
     (state) => state.BookingManagementReducer,
   );
   console.log({ bookingList });
@@ -73,22 +75,24 @@ export default function BookingManagement({}: Props) {
     {
       title: "Action",
       dataIndex: "action",
-      render: (_,booking) => {
+      render: (_, booking) => {
         return (
           <div className="flex gap-4">
             <div
               className="cursor-pointer self-center text-blue-500"
               onClick={async () => {
-                await dispatch(setLoading())
+                await dispatch(setLoading());
                 await dispatch(changeModalState(true));
-                await dispatch(handleModalDetailThunk({
-                  maPhong : booking.maPhong,
-                  maNguoiDung: booking.maNguoiDung,
-                  soLuongKhach: booking.soLuongKhach,
-                  ngayDen: booking.ngayDen,
-                  ngayDi: booking.ngayDi,
-                }))
-                dispatch(setSucess())
+                await dispatch(
+                  handleModalDetailThunk({
+                    maPhong: booking.maPhong,
+                    maNguoiDung: booking.maNguoiDung,
+                    soLuongKhach: booking.soLuongKhach,
+                    ngayDen: booking.ngayDen,
+                    ngayDi: booking.ngayDi,
+                  }),
+                );
+                dispatch(setSucess());
               }}
             >
               <GrOverview />
@@ -96,16 +100,19 @@ export default function BookingManagement({}: Props) {
 
             <Popconfirm
               title="Bạn có muốn xóa "
-              onConfirm={async () => {}}
+              onConfirm={async () => {
+                try {
+                  await deleteBooking(booking.id);
+                  await dispatch(getBookingListThunk(""));
+                  printSuccessDialog("Xoá thành công");
+                } catch (e) {
+                  console.log(e);
+                }
+              }}
               cancelText="Huỷ"
               okText="Chắn chắn"
             >
-              <span
-                className={" mr-3 cursor-pointer text-[20px] text-red-500"}
-                onClick={async () => {
-                  await dele
-                }}
-              >
+              <span className={" mr-3 cursor-pointer text-[20px] text-red-500"}>
                 <TiDelete />
               </span>
             </Popconfirm>

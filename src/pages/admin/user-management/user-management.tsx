@@ -186,7 +186,7 @@ export default function UserManagement({}: Props) {
           if (userRef.current) {
             clearTimeout(userRef.current);
           }
-          userRef.current = setTimeout(async () => {
+         userRef.current = setTimeout(async () => {
             if (e.target.value) {
               dispatch(searchUsersThunk(e.target.value));
             } else {

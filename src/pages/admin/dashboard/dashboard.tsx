@@ -9,7 +9,7 @@ import { getDashBoardInfoThunk } from "@/redux/admin/dashboard/dashboard.slice";
 type Props = {};
 
 export default function DashBoard({}: Props) {
-
+  console.log("first")
   return (
     <div>
       <OverView />
