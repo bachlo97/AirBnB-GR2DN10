@@ -122,7 +122,7 @@ export default function BookingManagement({}: Props) {
     },
   ];
 
-  const data = bookingList.map((item: DataType, index) => ({
+  const data = bookingList.map((item: DataType, index:number) => ({
     ...item,
     stt: index + 1,
   }));
