@@ -38,7 +38,7 @@
         font-size: 16px;
     }
     .tab-user.ant-tabs .ant-tabs-nav-list{
-        margin: none;
+        margin: 0;
     }
 }
 
