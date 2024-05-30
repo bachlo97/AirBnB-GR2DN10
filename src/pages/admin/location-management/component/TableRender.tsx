@@ -10,56 +10,49 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { delAdminLocationThunk, getAdminLocationThunk } from '@/redux/admin-location/AdminLocation.slice';
 import ModalLocationEdit from './ModalLocationEdixt';
 function TableRender() {
-const [data, setData] =useState<TLocaltion[]>([]);
-const listLocation:any = useAppSelector((state) => state.locationSlice.listLocation);
-const dispatch = useAppDispatch();
-const [loading, setLoading] = useState(false);
-const [tableParams, setTableParams] = useState({
-  pagination: {
-    current: 1,
-    pageSize: 10,
-  },
-});
-
+  const [data, setData] = useState<TLocaltion[]>([]);
+  const listLocation: any = useAppSelector(
+    (state) => state.locationSlice.listLocation,
+  );
+  const dispatch = useAppDispatch();
+  const [loading, setLoading] = useState(false);
+  const [tableParams, setTableParams] = useState({
+    pagination: {
+      current: 1,
+      pageSize: 10,
+    },
+  });
 
   const columns = [
     {
-      title: 'STT',
-      dataIndex: 'id',
-      key: 'id',
-   
-      render: (id:number, record:string, index:any) => {
-        const reverseIndex = index+1 // Tính số thứ tự ngược
+      title: "STT",
+      dataIndex: "id",
+      key: "id",
+
+      render: (id: number, record: string, index: any) => {
+        const reverseIndex = index + 1; // Tính số thứ tự ngược
         return reverseIndex;
       },
-      
     },
     {
-      title: 'Hinh Ảnh',
-      dataIndex: 'hinhAnh',
-       render: (imageUrl:string) => (
-        <img src={imageUrl} alt="Hình ảnh" style={{ maxWidth: '100px' }} />
-      ), 
- 
+      title: "Hinh Ảnh",
+      dataIndex: "hinhAnh",
+      render: (imageUrl: string) => (
+        <img src={imageUrl} alt="Hình ảnh" style={{ maxWidth: "100px" }} />
+      ),
     },
     {
-      title: 'Tên Vị Trí',
-      dataIndex: 'tenViTri',
-
- 
+      title: "Tên Vị Trí",
+      dataIndex: "tenViTri",
     },
 
     {
-      title: 'Tỉnh Thành',
-      dataIndex: 'tinhThanh',
-     
- 
+      title: "Tỉnh Thành",
+      dataIndex: "tinhThanh",
     },
     {
-      title: 'Quốc Gia',
-      dataIndex: 'quocGia',
-      
- 
+      title: "Quốc Gia",
+      dataIndex: "quocGia",
     },
     {
       title: 'Chỉnh sửa',
@@ -77,22 +70,15 @@ const [tableParams, setTableParams] = useState({
 
         </div>
       ),
- 
     },
-
   ];
 
-  
+  console.log();
 
-  
-
-console.log();
-
-useEffect(()=>{
-
-  dispatch(getAdminLocationThunk())
-},[dispatch])
-  const handleTableChange = (pagination:any, filters:any, sorter:any) => {
+  useEffect(() => {
+    dispatch(getAdminLocationThunk());
+  }, [dispatch]);
+  const handleTableChange = (pagination: any, filters: any, sorter: any) => {
     setTableParams({
       pagination,
       filters,
@@ -106,18 +92,15 @@ useEffect(()=>{
   };
   return (
     <div>
- <Table
-      columns={columns}
-   
-      dataSource={listLocation}
-      pagination={tableParams.pagination}
-      loading={loading}
-      onChange={handleTableChange}
-      
-    />
+      <Table
+        columns={columns}
+        dataSource={listLocation}
+        pagination={tableParams.pagination}
+        loading={loading}
+        onChange={handleTableChange}
+      />
     </div>
-  )
+  );
 }
 
-export default TableRender
-
+export default TableRender;

@@ -2,19 +2,18 @@ import { addLocation, delLocation, getLocaltion, putLocaltion } from "@/services
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const getAdminLocationThunk = createAsyncThunk(
-    "getAdminLocation",
-    async () => {
-      try{
-        const resp = await getLocaltion();
-        console.log(resp.content);
-        return resp.content.reverse();
-      }catch(e){
-        console.log(e)
-      }
-  
-    },
-  );
-  
+  "getAdminLocation",
+  async () => {
+    try {
+      const resp = await getLocaltion();
+      console.log("getLocaltion: ",resp.content);
+      return resp.content.reverse();
+    } catch (e) {
+      console.log(e);
+    }
+  },
+);
+
 export const delAdminLocationThunk = createAsyncThunk(
     "delAdminLocationThunk",
     async (id:any) => {
