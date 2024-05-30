@@ -6,6 +6,9 @@ import { bookingHistoryReducer } from './booking-history/booking-history.slice'
 import { commentSlice } from './comment/Comment.slice'
 import { locationSlice } from './admin-location/AdminLocation.slice'
 import { roomSlice } from './room/Room.slice'
+import { dashBoardReducer } from './admin/dashboard/dashboard.slice'
+import { userManagementReducer } from './admin/user-management/user-management.slice'
+import { BookingManagementReducer } from './admin/booking-management/booking.management.slice'
 
 export const store = configureStore({
   reducer: {
@@ -14,9 +17,12 @@ export const store = configureStore({
     GetCartsRoomSlice,
     authReducer,
     bookingHistoryReducer,
+    dashBoardReducer,
     commentSlice,
     locationSlice,
     roomSlice,
+    userManagementReducer,
+    BookingManagementReducer,
   },
 })
 

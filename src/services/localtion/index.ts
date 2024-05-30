@@ -1,0 +1,1 @@
+export { getLocaltion } from "./Localtion.service";

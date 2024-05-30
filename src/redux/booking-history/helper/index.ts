@@ -44,7 +44,3 @@ export const handleResult = (roomList:(TRoom|null)[],locationList:TLocation[]) =
     })
 };
 
-//   export const convertToLocationRoom = (list: TLocationApi[]):TLocation[] =>{
-//     return  _.map(list,({tenViTri,tinhThanh}) =>({tenViTri,tinhThanh}))
-// }
-  

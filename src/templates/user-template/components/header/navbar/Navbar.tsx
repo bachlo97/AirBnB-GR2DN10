@@ -59,7 +59,7 @@ function Navbar(props: Props) {
       ),
     },
     user?.role === "ADMIN"
-      ? { key: "3", label: <NavLink to={"/admin"}>Quản trị</NavLink> }
+      ? { key: "3", label: <NavLink to={"/admin/dashboard"}>Quản trị</NavLink> }
       : null,
   ];
 
