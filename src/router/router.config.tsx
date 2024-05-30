@@ -11,6 +11,7 @@ import UserTemplate from "@/templates/user-template/user.template";
 import { createBrowserRouter } from "react-router-dom";
 import Pay from "@/pages/pay/Pay";
 import AdminTemplate from "@/templates/admin-template/admin.template";
+import TableCommentId from "@/pages/admin/comment-management/component/TableCommentId";
 const DashBoard = lazy(() => import("@/pages/admin/dashboard"));
 // import DashBoard from "@/pages/admin/dashboard/dashboard";
 const UserManagement = lazy(() => import("@/pages/admin/user-management"));
@@ -85,6 +86,10 @@ export const router = createBrowserRouter([
           {
             path: "comments",
             element: <CommentManagement/>,
+          },
+          {
+            path: "comments/listComment/:id",
+            element: <TableCommentId/>,
           }
         ],
       },

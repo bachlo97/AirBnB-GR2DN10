@@ -3,7 +3,7 @@ import { FaStar } from 'react-icons/fa'
 import { Rate } from 'antd'
 import { ButtonPrimary } from '@/components/Button/Button'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { postCommentRoom } from '@/services/comment/comment.service'
 
 import PageCommentDetail from './component/PageCommentDetail'
@@ -19,6 +19,7 @@ function CommentDetail() {
   const listCommentRoom:any = useAppSelector((state) => state.commentSlice.listComment);
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
 
 
@@ -33,7 +34,7 @@ function CommentDetail() {
   })
 
   
-  const { id } = useParams();
+  const { id }:number = useParams();
   
 
   useEffect(() => {
@@ -83,10 +84,10 @@ const totalStarsRating=listCommentRoom.map((item:any)=>{
         <form action="" method="post" className='flex w-[100%] my-5 gap-5'>
             <div className='w-[20%] flex flex-col items-center'>
                     <SImg>
-            <img  src={ user?.avatar} alt="" />
+            <img  src={ user?.avatar ||'https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png'} alt="" />
            
           </SImg> 
-          <div>Phạm Duy</div>
+          <div>{user?.name||'User'}</div>
           <Rate onChange={(value)=>{   setPostComment({...postComment,saoBinhLuan:value})
 
           
@@ -101,26 +102,39 @@ const totalStarsRating=listCommentRoom.map((item:any)=>{
           }}
             ></textarea> <br />
             <div className='text-right'>
-              <ButtonPrimary width='150px' height={3.5} type="submit"
-              onClick={async (e)=>{
-                e.preventDefault();
-           setPostComment({
-                  ...postComment,
-                  id: 0,
-                  ngayBinhLuan: moment().format('DD/MM/YYYY'),
-        
-                  maPhong: id,
-                  
-                  maNguoiBinhLuan:user.id,
-                })
-                try {
-                  await postCommentRoom(postComment);
-                  dispatch(getCommentThunk(id)); // Re-fetch comments after posting
-                } catch (e) {
-                  console.error(e);
-                }
-              }}
-              >Thêm Bình Luận</ButtonPrimary>
+              {user ?(
+
+<ButtonPrimary width='150px' height={3.5} type="submit"
+onClick={async (e)=>{
+  e.preventDefault();
+setPostComment({
+    ...postComment,
+    id: 0,
+    ngayBinhLuan: moment().format('DD/MM/YYYY'),
+
+    maPhong: id,
+    
+    maNguoiBinhLuan:user.id,
+  })
+  try {
+    await postCommentRoom(postComment);
+    dispatch(getCommentThunk(id)); // Re-fetch comments after posting
+  } catch (e) {
+    console.error(e);
+  }
+}}
+>Thêm Bình Luận</ButtonPrimary>
+              ):(
+<ButtonPrimary width='150px' height={3.5} type="submit"
+onClick={(e)=>{
+  navigate('/auth/signin')
+
+ 
+}}
+>Thêm Bình Luận</ButtonPrimary>
+                
+              )}
+             
 
             </div> 
  </div>

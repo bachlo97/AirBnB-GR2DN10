@@ -1,12 +1,14 @@
 import { ButtonPrimary } from '@/components/Button/Button'
 import { Breadcrumb } from 'antd'
-import React from 'react'
+import React, { useRef } from 'react'
 import TableRoom from './component/TableRoom'
 import ModalAddRoom from './Modal/ModalAddRoom'
 
 type Props = {}
 
-export default function RoomManagement({}: Props) {
+export default function RoomManagement(props: object) {
+  const addUserRef = useRef<HTMLButtonElement>(null)
+
   return (
     <div>
     <Breadcrumb

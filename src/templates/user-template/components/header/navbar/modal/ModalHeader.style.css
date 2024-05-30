@@ -1,0 +1,10 @@
+.panelStyle :where(.css-dev-only-do-not-override-1qfezbu).ant-modal{
+    top: 0;
+}
+.panelStyle :where(.css-dev-only-do-not-override-1qfezbu).ant-modal-root .ant-modal-mask{
+    background-color: white;
+}
+.panelStyle :where(.css-dev-only-do-not-override-1qfezbu).ant-modal .ant-modal-content{
+    box-shadow: 0;
+    height:100vh
+}

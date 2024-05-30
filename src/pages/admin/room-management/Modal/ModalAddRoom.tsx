@@ -3,12 +3,14 @@ import React, { useEffect, useState } from 'react'
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getAdminLocationThunk } from '@/redux/admin-location/AdminLocation.slice';
+import { addRoomThunk } from '@/redux/room/Room.slice';
 
 
 function ModalAddRoom() {
     const [open, setOpen] = useState(false);
     const listLocation:any = useAppSelector((state) => state.locationSlice.listLocation);
     const dispatch = useAppDispatch();
+
     useEffect(()=>{
 
         dispatch(getAdminLocationThunk())
@@ -53,10 +55,10 @@ function ModalAddRoom() {
       )}
     >
 <Formik
-      initialValues={{ tenPhong: '', giaTien: '' ,hinhAnh:'',khach:'',phongNgu:'',guong:'',phongTam:'',quocGia:'',mayGiat:false,banLa:false,tivi:false,dieuHoa:false,wifi:false,bep:false,doXe:false,banUi:false}}
+      initialValues={{ tenPhong: '', giaTien: '' ,hinhAnh:'',khach:'',phongNgu:'',giuong:'',phongTam:'',quocGia:'',mayGiat:false,banLa:false,tivi:false,dieuHoa:false,wifi:false,bep:false,doXe:false,banUi:false}}
       onSubmit={(values) => {
     
-        console.log(values);
+        dispatch(addRoomThunk(values))
         
        
   
@@ -103,8 +105,8 @@ function ModalAddRoom() {
                <div className='mt-1 w-[50%]'>
             <label htmlFor="hinhAnh">Gường:</label>
             
-            <Field type="text" id="guong" name="guong" className="outline-none border block w-[100%] h-[30px] px-3 mb-3" />
-            <ErrorMessage name="guong" component="div" className="text-red-500" />
+            <Field type="text" id="giuong" name="guong" className="outline-none border block w-[100%] h-[30px] px-3 mb-3" />
+            <ErrorMessage name="giuong" component="div" className="text-red-500" />
           </div>
           <div className='mt-1 w-[50%]'>
             <label htmlFor="hinhAnh">Phòng Tắm:</label>

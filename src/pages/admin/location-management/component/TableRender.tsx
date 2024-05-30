@@ -7,7 +7,7 @@ import { delLocation, getLocaltion, getLocaltionId } from '@/services/localtion/
 import { converToLocations } from '@/templates/user-template/components/header/search-bar/helper/ConvertToLocations';
 import { ButtonPrimary } from '../../../../components/Button/Button';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { getAdminLocationThunk } from '@/redux/admin-location/AdminLocation.slice';
+import { delAdminLocationThunk, getAdminLocationThunk } from '@/redux/admin-location/AdminLocation.slice';
 import ModalLocationEdit from './ModalLocationEdixt';
 function TableRender() {
 const [data, setData] =useState<TLocaltion[]>([]);
@@ -70,7 +70,7 @@ const [tableParams, setTableParams] = useState({
                 <ModalLocationEdit data={record} />
                   <ButtonPrimary width='100px' height={3.5} onClick={() => {
                     
-                    delLocation(record.id)
+                    dispatch(delAdminLocationThunk(record.id))
                     dispatch(getAdminLocationThunk())
                
                   }}>{"Xoá"}</ButtonPrimary>

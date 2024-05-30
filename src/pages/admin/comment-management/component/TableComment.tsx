@@ -2,11 +2,13 @@ import { getCommentThunkAll } from '@/redux/comment/Comment.slice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { Table } from 'antd';
 import React, { useEffect, useState } from 'react'
+import { NavLink } from 'react-router-dom';
 
 function TableComment() {
     const [data, setData] =useState<[]>([]);
-    const listCommentAll:any = useAppSelector((state) => state.commentSlice.listCommentAll);
+    const listRoomAll:any = useAppSelector((state) => state.roomSlice.listRoom);
     const dispatch = useAppDispatch();
+    
     
       const columns = [
         {
@@ -18,20 +20,35 @@ function TableComment() {
           
         },
         {
-          title: 'maPhong',
-          dataIndex:'maPhong',
+          title: 'Hinh Ảnh',
+          dataIndex: 'hinhAnh',
+           render: (imageUrl:string) => (
+            <img src={imageUrl} alt="Hình ảnh" style={{ maxWidth: '100px' }} />
+          ), 
+     
+        },
+        {
+          title: 'tenPhong',
+          dataIndex:'tenPhong',
         
-          render:(text:string)=>{
-            <div>
-            {text}
-               
-            </div>
-          }
+      
      
           
         },
        
-      
+        {
+          title: 'Chỉnh sửa',
+          dataIndex: 'chinhSua',
+          render: (text:string, record:any) => (
+            <div className='flex gap-3'>
+              
+                      <NavLink to={`listComment/${record.id}`} onClick={()=>{
+                        
+                      }}>Xem Thêm</NavLink>
+            </div>
+          ),
+     
+        },
     
       ];
     
@@ -64,35 +81,16 @@ function TableComment() {
         }
       };
       return (
-        <div className="border border-black border-solid">
-     {/* <Table
-          columns={columns}
-       
-          dataSource={listCommentAll}
-          pagination={tableParams.pagination}
-          loading={loading}
-          onChange={handleTableChange}
-          
-        /> */}
-<table className='w-[100%]'>
-  <thead>
-    <tr>
-      <th>STT</th>
-      <th>Tên</th>
-      <th>Số Lượng</th>
-      <th>Chỉnh sửa</th>
-    </tr>
-  </thead>
-  <tbody>
-   <tr className='text-center'>
-    <td>1</td>
-    <td>1</td>
-    <td>1</td>
-    <td>Xem Thêm</td>
-   </tr>
-  </tbody>
-</table>
-        </div>
+
+<Table
+columns={columns}
+
+dataSource={listRoomAll}
+pagination={tableParams.pagination}
+loading={loading}
+onChange={handleTableChange}
+
+/>
       )
 }
 

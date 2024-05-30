@@ -1,9 +1,10 @@
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { getRoomThunk } from '@/redux/room/Room.slice';
+import { delRoomThunk, getRoomThunk } from '@/redux/room/Room.slice';
 import { Table } from 'antd';
 import React, { useEffect, useState } from 'react'
 import ModalMoTa from '../Modal/ModalMoTa';
 import { ButtonPrimary } from '@/components/Button/Button';
+import ModalEditRoom from '../Modal/ModalEditRoom';
 
 function TableRoom() {
     const [data, setData] =useState<[]>([]);
@@ -87,8 +88,16 @@ function TableRoom() {
           render(text:string,record:any){
             return (
               <div className='flex gap-3'>
-                <ButtonPrimary width='80px' height={3} >Chỉnh sửa</ButtonPrimary>
-                <ButtonPrimary width='80px' height={3}> Xoá</ButtonPrimary>
+               
+                <ModalEditRoom
+                data={record}
+                />
+                <ButtonPrimary width='80px' height={3}
+                onClick={()=>{
+              
+                  dispatch(delRoomThunk(record.id))
+                }}
+                > Xoá</ButtonPrimary>
               </div>
             )
           }

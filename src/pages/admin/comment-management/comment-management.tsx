@@ -1,6 +1,6 @@
 import { ButtonPrimary } from '@/components/Button/Button'
 import { Breadcrumb } from 'antd'
-import React from 'react'
+
 import TableComment from './component/TableComment'
 
 

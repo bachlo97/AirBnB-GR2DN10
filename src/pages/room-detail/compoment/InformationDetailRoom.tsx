@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { TextPrimary } from "@/components/style-compoment/StyleCompoment";
 import { useSearchBarHook } from "@/templates/user-template/components/header/hooks/useSearchBarHook";
 import moment from 'moment';
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { setDisCount, setIdRoom, setImg, setName, setPrice } from "@/redux/cart/Cart.slice";
 import { setCustomers, setEndDayRoom, setStartDayRoom } from "@/redux/room/Date.slice";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
@@ -30,11 +30,12 @@ function InformationDetailRoom(props:Props) {
   const {alertError}=useAlertHook();
 
   const navigate = useNavigate();
-  const[countClient,setCountClient]=useState(0);
+  const[countClient,setCountClient]=useState(1);
 
   const [countDay,setCountDay]=useState(0);
   const [discount,setDiscount]=useState(0);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const user: any = useAppSelector((state) => state.authReducer.user);
 
   const dispatch=useAppDispatch();
   const { 
@@ -63,6 +64,7 @@ useEffect(()=>{
   setIsButtonDisabled(true);
 }
 },[countClient, valueEndDay, valueStartDay])
+
 
 
   return (
@@ -237,7 +239,7 @@ wifi
                   <button onClick={(e)=>{
                     e.preventDefault();
                     if(countClient>props.data.khach){
-                      alertError('Thất bại vì đã đủ thành viên');
+                      
                       return 
                   
                     }
@@ -252,7 +254,7 @@ wifi
                       <p>{countClient} Khách</p>   
                       <button onClick={(e)=>{
                     e.preventDefault()
-                    countClient>0?  
+                    countClient>1?  
                      (
                       setCountClient(countClient-1)
                     ) : countClient
@@ -265,7 +267,7 @@ wifi
            
               </div>
             </div>
-
+           
           {isButtonDisabled?(
                <ButtonPrimary
                width="100%"
@@ -275,29 +277,48 @@ wifi
              >
                Xac Nhan
              </ButtonPrimary>
-            ):(            <ButtonPrimary
+            ):(     
+              user ?(
+                <ButtonPrimary
+                width="100%"
+                height={4}
+                className="mt-5 rounded-[1rem] border border-solid"
+               
+                onClick={()=>{
+                 
+                  navigate('/pay')
+                  dispatch(setDisCount(discount))
+                  dispatch(setPrice(props.data.giaTien))
+                  dispatch(setStartDayRoom(valueStartDay))
+                  dispatch(setEndDayRoom(valueEndDay))
+                  dispatch(setCustomers(countClient))
+                  dispatch(setImg(props.data.hinhAnh))
+                  dispatch(setName(props.data.tenPhong))
+                  dispatch(setIdRoom(props.data.id))
+  
+  
+  
+                }}
+              >
+                Xac Nhan
+              </ButtonPrimary>
+              ) :         <ButtonPrimary
               width="100%"
               height={4}
               className="mt-5 rounded-[1rem] border border-solid"
              
               onClick={()=>{
                
-                navigate('/pay')
-                dispatch(setDisCount(discount))
-                dispatch(setPrice(props.data.giaTien))
-                dispatch(setStartDayRoom(valueStartDay))
-                dispatch(setEndDayRoom(valueEndDay))
-                dispatch(setCustomers(countClient))
-                dispatch(setImg(props.data.hinhAnh))
-                dispatch(setName(props.data.tenPhong))
-                dispatch(setIdRoom(props.data.id))
+                navigate('/auth/signin')
+              
 
 
 
               }}
             >
               Xac Nhan
-            </ButtonPrimary>)}
+            </ButtonPrimary>
+        )}
 
           </form>
           <p className="text-center text-[1.6rem] text-gray-500">

@@ -12,7 +12,7 @@ export const getCommentRoomId=async (id:string|undefined)=>{
        
     }
 }
-export const getCommentRoom=async (id:string|undefined)=>{
+export const getCommentRoom=async ()=>{
     try{
         const resp=await axiosWithAuth(`/binh-luan`);
      

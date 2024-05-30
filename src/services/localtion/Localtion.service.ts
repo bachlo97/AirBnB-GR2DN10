@@ -1,4 +1,6 @@
+import { useAppDispatch } from "@/redux/hooks";
 import { axiosWithAuth,axiosWithAuthToken } from "../axios.config"
+import { getAdminLocationThunk } from "@/redux/admin-location/AdminLocation.slice";
 
 export const getLocaltion=async ()=>{
     try{
@@ -13,7 +15,7 @@ export const getLocaltion=async ()=>{
 }
 export const putLocaltion=async (id:any,data:any)=>{
     try{
-        return axiosWithAuthToken(`/vi-tri/${id}`,{
+        const resp= await axiosWithAuthToken(`/vi-tri/${id}`,{
 
               method: "put",
         data: data,
@@ -21,7 +23,7 @@ export const putLocaltion=async (id:any,data:any)=>{
     
     
     );
-     
+    return resp.data;
        
 
     }catch(e:any){
@@ -31,22 +33,29 @@ export const putLocaltion=async (id:any,data:any)=>{
 }
 export const addLocation=async(data:object)=>{
     try{
-        return axiosWithAuthToken("/vi-tri", {
+        const resp=await axiosWithAuthToken("/vi-tri", {
             method: "post",
             data: data,
           
             
         });
+
+        
+        return resp.data;  
     }catch(e:any){
         console.log(e.response?.data);
     }
 }
 export const delLocation=async(id:any)=>{
     try{
+    
+
         const resp=await axiosWithAuthToken(`/vi-tri/${id}`,{
             method: 'delete',
         });
-     
+      
+        
+       
         return resp.data;  
     }catch(e:any){
         console.log(e.response?.data);

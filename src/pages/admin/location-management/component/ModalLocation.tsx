@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { addLocation } from '@/services/localtion/Localtion.service';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { getAdminLocationThunk } from '@/redux/admin-location/AdminLocation.slice';
+import { addAdminLocationThunk, getAdminLocationThunk } from '@/redux/admin-location/AdminLocation.slice';
 
 function ModalLocation() {
     const [open, setOpen] = useState(false);
@@ -56,14 +56,15 @@ function ModalLocation() {
       )}
     >
 
+
 <Formik
       initialValues={{ tenViTri: '', tinhThanh: '' ,quocGia:'',hinhAnh:''}}
-      onSubmit={(values) => {
+      onSubmit={(values,{resetForm}) => {
     
-       addLocation(values)  
+       dispatch(addAdminLocationThunk(values))  
         dispatch(getAdminLocationThunk())
        setOpen(false);
-       
+       resetForm();
   
      
       }}

@@ -102,6 +102,8 @@ function HeaderSearchBar(props: any) {
                     name="currentDay"
                     open={isOpen.ngayden}
                     popupClassName="calendar-header"
+                    disabledDate={(current) => current && current.valueOf() < Date.now()}
+
                   />
                 </Space>
               </p>
@@ -124,6 +126,8 @@ function HeaderSearchBar(props: any) {
                   name="nextDay"
                   open={isOpen.ngayVe}
                   popupClassName="calendar-header"
+                  disabledDate={(current) => current && current.valueOf() < Date.now()}
+
                   />
                 </Space>
               </p>

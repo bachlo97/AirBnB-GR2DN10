@@ -3,9 +3,9 @@ import { useState } from 'react'
 
 import * as Yup from 'yup';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { addLocation, putLocaltion } from '@/services/localtion/Localtion.service';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { getAdminLocationThunk } from '@/redux/admin-location/AdminLocation.slice';
+import { getAdminLocationThunk, putAdminLocationThunk } from '@/redux/admin-location/AdminLocation.slice';
+import { putLocaltion } from '@/services/localtion/Localtion.service';
 
 function ModalLocationEdit(props:any) {
 
@@ -58,13 +58,15 @@ function ModalLocationEdit(props:any) {
     >
 
 <Formik
-      initialValues={{ tenViTri:props.data.tenViTri, tinhThanh: props.data.tinhThanh ,quocGia:props.data.quocGia,hinhAnh:props.data.hinhAnh}}
-      onSubmit={(values) => {
+      initialValues={{
+        id:props.data.id,
+        tenViTri:props.data.tenViTri, tinhThanh: props.data.tinhThanh ,quocGia:props.data.quocGia,hinhAnh:props.data.hinhAnh}}
+      onSubmit={(values:object) => {
     
       console.log(values);
       
-       setOpen(false);
-       putLocaltion(props.data.id,values)
+     setOpen(false)
+      dispatch(putAdminLocationThunk(values))
        dispatch(getAdminLocationThunk())
        
       }}
