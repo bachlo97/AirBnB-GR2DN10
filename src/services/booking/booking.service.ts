@@ -55,3 +55,18 @@ export const getRoomLocationList = async (roomList: (TRoom | null)[]) => {
     throw new Error(e);
   }
 };
+
+export const getBookingList = async () => {
+  try {
+    const resp = await axiosWithAuth(`/dat-phong/`);
+    return resp;
+  } catch (e: any) {
+    throw new Error(e);
+  }
+}
+
+export const deleteBooking = (id: number) => {
+  return axiosWithAuth(`/dat-phong/${id}`, {
+    method: "delete",
+  });
+};

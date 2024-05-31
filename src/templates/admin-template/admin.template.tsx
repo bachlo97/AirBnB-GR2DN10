@@ -4,7 +4,7 @@ import { CiLocationOn } from "react-icons/ci";
 import { FaUserGroup } from "react-icons/fa6";
 import { MdOutlineMeetingRoom } from "react-icons/md";
 import { TbBrandBooking } from "react-icons/tb";
-import { FaRegCommentDots } from "react-icons/fa";
+import { FaRegCommentDots, FaUserCircle } from "react-icons/fa";
 import { TbDeviceAnalytics } from "react-icons/tb";
 import { CgPlayTrackNextO } from "react-icons/cg";
 import { TeamOutlined, DownOutlined } from "@ant-design/icons";
@@ -12,6 +12,11 @@ import type { MenuProps } from "antd";
 import { Breadcrumb, Dropdown, Layout, Menu, Space, Spin, theme } from "antd";
 import { useTransition, animated } from "@react-spring/web";
 import { LogoIcon } from "@/assets/icons";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { getDashBoardInfoThunk } from "@/redux/admin/dashboard/dashboard.slice";
+import { getProfileThunk, setUser } from "@/redux/auth/auth.slice";
+import { getLocalStorage, removeLocalStorage, truncateText } from "@/utils";
+import { ACCESS_TOKEN, USER_ID } from "@/constant";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -19,6 +24,34 @@ type MenuItem = Required<MenuProps>["items"][number];
 
 const AdminTemplate: React.FC = () => {
   const location = useLocation();
+  console.log({ location });
+  const [dashBoardState, setDashBoardState] = useState(false);
+  const dispatch = useAppDispatch();
+  const { user }: any = useAppSelector((state) => state.authReducer);
+
+  const handlelogout = () => {
+    dispatch(setUser(null));
+    removeLocalStorage(ACCESS_TOKEN);
+    removeLocalStorage(USER_ID);
+    navigate("/");
+  };
+
+  useEffect(() => {
+    dispatch(getProfileThunk(getLocalStorage(USER_ID)));
+  }, []);
+
+  useEffect(() => {
+    if (location.pathname === "/admin/dashboard") {
+      console.log(123456123);
+      setDashBoardState(true);
+    } else {
+      setDashBoardState(false);
+    }
+  }, [location]);
+  useEffect(() => {
+    dispatch(getDashBoardInfoThunk());
+  }, [dashBoardState]);
+
   const navigate = useNavigate();
   const transitions = useTransition(location, {
     from: {
@@ -43,7 +76,7 @@ const AdminTemplate: React.FC = () => {
     {
       key: "2",
       danger: true,
-      label: <button onClick={() => {}}>Đăng xuất</button>,
+      label: <button onClick={handlelogout}>Đăng xuất</button>,
     },
   ];
 
@@ -128,9 +161,25 @@ const AdminTemplate: React.FC = () => {
             <Dropdown menu={{ items: dropDownItems }}>
               <span>
                 <Space>
-                  <div className="space-x-2">
-                    <i className="fa-regular fa-user rounded-full bg-slate-200 p-3"></i>
-                    <span>{/* {user.taiKhoan} */}</span>
+                  <div className="flex items-center justify-center gap-2 space-x-2">
+                    <span>
+                      {" "}
+                      Xin chào, {user && truncateText(user.name, 20)}
+                    </span>
+                    {user ? (
+                      <div
+                        className={`h-16 w-16 rounded-full ${user.avatar ? "bg-cover bg-center bg-no-repeat" : "bg-[#F62682] text-[16px] text-white "} `}
+                        style={{
+                          backgroundImage: user.avatar
+                            ? `url(${user.avatar})`
+                            : "none",
+                        }}
+                      >
+                        {user.avatar === "" ? user.name[0].toUpperCase() : null}
+                      </div>
+                    ) : (
+                      <FaUserCircle />
+                    )}
                   </div>
                   <DownOutlined />
                 </Space>
@@ -138,7 +187,7 @@ const AdminTemplate: React.FC = () => {
             </Dropdown>
           </div>
         </Header>
-        <Content style={{ margin: "0 16px", overflow:'hidden' }}>
+        <Content style={{ margin: "0 16px", overflow: "hidden" }}>
           <Breadcrumb style={{ margin: "16px 0" }}>
             {/* <Breadcrumb.Item>User</Breadcrumb.Item>
                         <Breadcrumb.Item>Bill</Breadcrumb.Item> */}

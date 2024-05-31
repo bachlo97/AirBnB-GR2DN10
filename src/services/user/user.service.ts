@@ -36,3 +36,36 @@ export const editUser = (payload: any, id: number) => {
     data: payload,
   });
 };
+
+export const getUsers = async () => {
+  try {
+    const resp = await axiosWithAuth(`/users`);
+    return resp;
+  } catch (e: any) {
+    throw new Error(e);
+  }
+};
+
+export const searchUsers = async (keyword:string) => {
+  try{
+    const resp = await axiosWithAuth(`/users/search/${keyword}`);
+    return resp;
+  } catch (e: any) {
+    throw new Error(e);
+  }
+}
+
+export const addUser = (payload:TPayloadSignup) => {
+  return axiosWithAuth("/users", {
+    method: "post",
+    data: payload,
+  });
+}
+
+export const deleteUser = (id: number) => {
+  return axiosWithAuth(`/users?id=${id}`, {
+    method: "delete",
+  });
+};
+
+

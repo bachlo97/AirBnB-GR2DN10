@@ -4,13 +4,14 @@ import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
 import _ from "lodash";
 import { updateUserThunk } from "@/redux/auth/auth.slice";
-import { getLocalStorage } from "@/utils";
+import { getLocalStorage, printSuccessDialog } from "@/utils";
+import Swal from "sweetalert2";
 import { USER_ID } from "@/constant";
 import { useContext } from "react";
 import { ContextStore } from "../../../context";
-import Swal from "sweetalert2";
+import { mappingProfile } from "./helper";
 type Props = {
-  name: string;
+  name: 'email' | 'name' | 'phone' | 'password';
 };
 
 export function ProfileInput({ name }: Props) {
@@ -43,7 +44,6 @@ export function ProfileInput({ name }: Props) {
   };
 
   const handleSubmit = async (values: any) => {
-    // alert(JSON.stringify(values, null, 2));
     let subUser = _.omit(user,['avatar','password'])
     const payload = {
       ...subUser,
@@ -51,13 +51,8 @@ export function ProfileInput({ name }: Props) {
     }
      await dispatch(updateUserThunk({payload,id: getLocalStorage(USER_ID)}))
      setBgBlur(false)
-     Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Bạn đã cập nhật thành công",
-      showConfirmButton: false,
-      timer: 1500
-    });
+     printSuccessDialog(`Bạn đã cập nhật ${mappingProfile[name]} thành công`)
+
   };
   return (
     <Formik

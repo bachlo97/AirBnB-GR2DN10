@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaRegHeart } from "react-icons/fa";
-import { RoomItem } from "./room-array/room-item";
+
 import ReactPaginate from "react-paginate";
 import { RoomArray } from "./room-array";
 import {
@@ -22,19 +21,11 @@ export default function BookingInfo({
   hearts,
   toggleHeart,
 }: Props) {
-  const roomBookingList = useAppSelector(
+  const roomBookingList:any = useAppSelector(
     (state) => state.bookingHistoryReducer.roomBookingList,
   );
   console.log({ hearts });
-  const roomList: any = [];
-  for (let i = 0; i < 20; i++) {
-    roomList.push(
-      <div>
-        <p className="text-1">{i}</p>
-        <RoomItem />
-      </div>,
-    );
-  }
+
 
   const [prev, setPrev] = useState(false);
   const [next, setNext] = useState(true);

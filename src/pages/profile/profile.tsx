@@ -18,11 +18,11 @@ export default function Profile({}: Props) {
     
   }, []);
   return (
-    <div className="mx-auto my-10 grid w-[95%] grid-cols-4 gap-7">
-      <div className="cols-span bg-white-300 flex flex-col items-center justify-center rounded-3xl border-[1px] border-solid border-gray-300">
+    <div className="mx-auto my-10 grid w-[95%] ipad:grid-cols-4 mobile:grid-cols-1 gap-7">
+      <div className="ipad:cols-span bg-white-300 flex flex-col items-center justify-center rounded-3xl border-[1px] border-solid border-gray-300">
         <Upload />
       </div>
-      <div className="col-span-3">
+      <div className=" mobile:cols-span ipad:col-span-3 ipad:mx-[0] mobile:mx-auto">
         <UserInfo />
       </div>
     </div>

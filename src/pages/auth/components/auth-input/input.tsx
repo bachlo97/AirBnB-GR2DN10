@@ -15,7 +15,7 @@ export const AuthInput = ({ type, label, icon, ...props }: Props) => {
         <div
             className={`relative mx-0 my-[10px] border-b-2 border-solid border-b-white`}
         >
-            <div className=" absolute right-[8px] top-[17px] text-[1.2rem] text-white">
+            <div className=" absolute mobile:right-[-3px] ipad:right-[8px] top-[17px] text-[1.2rem] text-white">
                 {icon ? (
                     icon
                 ) : (

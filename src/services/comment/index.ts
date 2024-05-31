@@ -1,0 +1,1 @@
+export { getCommentRooms } from "./comment.service";
