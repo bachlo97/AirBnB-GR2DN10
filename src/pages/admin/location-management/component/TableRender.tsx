@@ -9,6 +9,7 @@ import { ButtonPrimary } from '../../../../components/Button/Button';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { delAdminLocationThunk, getAdminLocationThunk } from '@/redux/admin-location/AdminLocation.slice';
 import ModalLocationEdit from './ModalLocationEdixt';
+import '../css/style.css';
 function TableRender() {
   const [data, setData] = useState<TLocaltion[]>([]);
   const listLocation: any = useAppSelector(
@@ -38,7 +39,10 @@ function TableRender() {
       title: "Hinh Ảnh",
       dataIndex: "hinhAnh",
       render: (imageUrl: string) => (
-        <img src={imageUrl} alt="Hình ảnh" style={{ maxWidth: "100px" }} />
+        <div className='flex justify-center'>
+<img src={imageUrl} alt="Hình ảnh" style={{ maxWidth: "100px" }} />
+        </div>
+        
       ),
     },
     {
@@ -58,7 +62,7 @@ function TableRender() {
       title: 'Chỉnh sửa',
       dataIndex: 'chinhSua',
       render: (text:string, record:any) => (
-        <div className='flex gap-3'>
+        <div className='flex gap-3 flex justify-center'>
           
                 <ModalLocationEdit data={record} />
                   <ButtonPrimary width='100px' height={3.5} onClick={() => {
@@ -98,6 +102,7 @@ function TableRender() {
         pagination={tableParams.pagination}
         loading={loading}
         onChange={handleTableChange}
+        className='tablePrimary'
       />
     </div>
   );

@@ -88,7 +88,7 @@ export const router = createBrowserRouter([
             element: <CommentManagement/>,
           },
           {
-            path: "comments/listComment/:id",
+            path: "comments/listComment/:idPhong",
             element: <TableCommentId/>,
           }
         ],

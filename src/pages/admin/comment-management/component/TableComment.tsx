@@ -89,6 +89,7 @@ dataSource={listRoomAll}
 pagination={tableParams.pagination}
 loading={loading}
 onChange={handleTableChange}
+className='tablePrimary'
 
 />
       )

@@ -1,4 +1,4 @@
-import { getCommentRoom, getCommentRoomId } from "@/services/comment/comment.service";
+import { deleteCommentRoom, getCommentRoom, getCommentRoomId } from "@/services/comment/comment.service";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const getCommentThunk = createAsyncThunk(
@@ -28,6 +28,24 @@ export const getCommentThunkAll = createAsyncThunk(
   
     },
   );
+export const delCommentThunk = createAsyncThunk(
+    "delCommentThunk",
+    async (arr:any) => {
+      try{
+        const resp = await deleteCommentRoom(arr[0].id);
+       const getData= await getCommentRoomId(arr[1]);
+       console.log(arr[0].id);
+       
+        
+       return getData.content;
+       
+        
+      }catch(e){
+        console.log(e)
+      }
+  
+    },
+  );
   const initialState = {
     listComment: [],
     listCommentAll:[],
@@ -49,6 +67,9 @@ export const getCommentThunkAll = createAsyncThunk(
       });
       builder.addCase(getCommentThunkAll.fulfilled, (state, { payload }) => {
         state.listCommentAll = payload;
+      });
+      builder.addCase(delCommentThunk.fulfilled, (state, { payload }) => {
+        state.listComment = payload;
       });
     },
   });

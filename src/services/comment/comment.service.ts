@@ -39,14 +39,14 @@ export const postCommentRoom=async (data:object)=>{
        
     }
 }
-export const deleteCommentRoom=async(id:number)=>{
+export const deleteCommentRoom=async(id:any)=>{
     try{
      
-        return axiosWithAuthToken(`/binh-luan/${id}`, {
+      const resp=await axiosWithAuthToken(`/binh-luan/${id}`, {
             method: "detele",
            
         });
-  
+        return resp.data;  
     }catch(e:any){
        console.log(e.response?.data);
        

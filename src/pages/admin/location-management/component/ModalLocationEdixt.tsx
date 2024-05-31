@@ -6,6 +6,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getAdminLocationThunk, putAdminLocationThunk } from '@/redux/admin-location/AdminLocation.slice';
 import { putLocaltion } from '@/services/localtion/Localtion.service';
+import { ButtonPrimary } from '@/components/Button/Button';
 
 function ModalLocationEdit(props:any) {
 
@@ -38,9 +39,9 @@ function ModalLocationEdit(props:any) {
   return (
     <>
     <Space>
-      <Button type="primary" onClick={showModal}>
-        Open Modal
-      </Button>
+      <ButtonPrimary width='100px' height={3.5} onClick={showModal}>
+        Chỉnh sửa
+      </ButtonPrimary>
  
     </Space>
     <Modal

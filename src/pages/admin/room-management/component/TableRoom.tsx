@@ -27,7 +27,10 @@ function TableRoom() {
           title: 'Hinh Ảnh',
           dataIndex: 'hinhAnh',
            render: (imageUrl:string) => (
-            <img src={imageUrl} alt="Hình ảnh" style={{ maxWidth: '150px' }} />
+            <div className="flex justify-center">
+                          <img src={imageUrl} alt="Hình ảnh" style={{ maxWidth: '150px' }} />
+
+            </div>
           ), 
      
         },
@@ -87,7 +90,7 @@ function TableRoom() {
           dataIndex: 'quocGia',
           render(text:string,record:any){
             return (
-              <div className='flex gap-3'>
+              <div className='flex gap-3 flex justify-center'>
                
                 <ModalEditRoom
                 data={record}
@@ -146,7 +149,7 @@ function TableRoom() {
           pagination={tableParams.pagination}
           loading={loading}
           onChange={handleTableChange}
-          
+          className='tablePrimary'
         />
         </div>
       )

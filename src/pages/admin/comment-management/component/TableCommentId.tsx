@@ -1,12 +1,12 @@
 import { ButtonPrimary } from '@/components/Button/Button';
-import { getCommentThunk } from '@/redux/comment/Comment.slice';
+import { delCommentThunk, getCommentThunk } from '@/redux/comment/Comment.slice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { Breadcrumb, Table } from 'antd';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 
 function TableCommentId() {
-    const { id } = useParams();
+    const { idPhong } = useParams();
     const [data, setData] =useState<[]>([]);
     const listCommentId:any = useAppSelector((state) => state.commentSlice.listComment);
     const dispatch = useAppDispatch();
@@ -52,9 +52,14 @@ function TableCommentId() {
           title: 'Chỉnh sửa',
           dataIndex: 'chinhSua',
           render: (text:string, record:any) => (
+          
             <div className='flex gap-3'>
               
-                <button>Xoá</button>
+                <button onClick={()=>{
+                  const arr=[record,idPhong]
+                  console.log(arr);
+                  dispatch(delCommentThunk(arr))
+                }}>Xoá</button>
             </div>
           ),
      
@@ -76,9 +81,9 @@ function TableCommentId() {
       
     
     useEffect(()=>{
-    dispatch(getCommentThunk(id))
+    dispatch(getCommentThunk(idPhong))
 
-    },[dispatch, id])
+    },[dispatch, idPhong])
       const handleTableChange = (pagination:any, filters:any, sorter:any) => {
         setTableParams({
           pagination,
@@ -93,7 +98,7 @@ function TableCommentId() {
       };
   return (
     <div>
-     {id}
+     {idPhong}
      <Breadcrumb
     items={[
       {
@@ -121,6 +126,7 @@ dataSource={listCommentId}
 pagination={tableParams.pagination}
 loading={loading}
 onChange={handleTableChange}
+className='tablePrimary'
 
 />
     </div>
