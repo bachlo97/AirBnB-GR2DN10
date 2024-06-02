@@ -12,9 +12,9 @@ export const Container=styled.div`
     margin: 0 auto;
    
  }
- @media  (min-width: 1024px) {
+ /* @media  (min-width: 1024px) {
     width: 90%;
     margin: 0 auto;
- }
+ } */
 
 `
