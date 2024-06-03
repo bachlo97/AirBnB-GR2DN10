@@ -1,21 +1,26 @@
 import { InputNumber, Slider } from "antd";
-import { useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import "./index.css";
+import { ContextStore } from "@/pages/home/context/filter-rooms.context";
 type Props = {};
 
 export function PriceRange({}: Props) {
-  const [inputValue, setInputValue] = useState<number[]>([20, 50]);
+  const [{ rangePrice, openModal, clear }, { setRangePrice }] =
+    useContext(ContextStore);
   const [borderInput1, setBorderInput1] = useState(false);
   const [borderInput2, setBorderInput2] = useState(false);
   const inputRef1 = useRef(null);
   const inputRef2 = useRef(null);
+  useEffect(() => {
+    setRangePrice([20, 50]);
+  }, [openModal, clear]);
   const handleChange = (value: number[]) => {
     if (value[1] <= 21) {
-      setInputValue([20, 21]);
+      setRangePrice([20, 21]);
     } else if (value[0] >= 49) {
-      setInputValue([49, 50]);
+      setRangePrice([49, 50]);
     } else {
-      setInputValue(value);
+      setRangePrice(value);
     }
   };
   const handleFocus = (ref: any) => {
@@ -28,7 +33,7 @@ export function PriceRange({}: Props) {
         range
         min={20}
         max={50}
-        value={inputValue}
+        value={rangePrice}
         classNames={{
           track: "track-custom",
           rail: "rail-custom",
@@ -51,14 +56,14 @@ export function PriceRange({}: Props) {
               className="w-full border-none focus-within:shadow-none"
               min={20}
               max={49}
-              value={inputValue[0]}
+              value={rangePrice[0]}
               onFocus={() => setBorderInput1(true)}
               onBlur={() => setBorderInput1(false)}
               onChange={(value) => {
                 if (value) {
-                  const temp = [...inputValue];
+                  const temp = [...rangePrice];
                   temp[0] = value;
-                  setInputValue(temp);
+                  setRangePrice(temp);
                 }
               }}
             />
@@ -79,14 +84,14 @@ export function PriceRange({}: Props) {
               className="w-full border-none focus-within:shadow-none"
               min={21}
               max={50}
-              value={inputValue[1]}
+              value={rangePrice[1]}
               onFocus={() => setBorderInput2(true)}
               onBlur={() => setBorderInput2(false)}
               onChange={(value) => {
                 if (value) {
-                  const temp = [...inputValue];
+                  const temp = [...rangePrice];
                   temp[1] = value;
-                  setInputValue(temp);
+                  setRangePrice(temp);
                 }
               }}
             />

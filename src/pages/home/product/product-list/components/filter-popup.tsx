@@ -1,15 +1,18 @@
-import { ContextStore } from "@/pages/home/context/filter-rooms.context";
+import {
+  ContextStore,
+  ContextType,
+} from "@/pages/home/context/filter-rooms.context";
 import { Button, Modal } from "antd";
 import React, { useContext } from "react";
 import { PriceRange } from "./price-range";
 import { CountRoom } from "./count-room";
 import { Necessities } from "./necessities";
-import "./index.css"
+import "./index.css";
 type Props = {};
 
 export default function FilterPopup({}: Props) {
-  const [{openModal}, {setOpenModal}] = useContext(ContextStore);
-
+  const [{ openModal, clear }, { setOpenModal, setClear }] =
+    useContext<ContextType>(ContextStore);
   const modalTitle = (
     <div>
       <div className="mb-3 text-center font-semibold">Bộ lọc</div>
@@ -27,7 +30,10 @@ export default function FilterPopup({}: Props) {
         <div className="border-t border-gray-200">
           <hr className="my-2 w-full" />
           <div className="mt-5 flex justify-between">
-            <button className="rounded-xl border-none px-3 py-1 text-[16px] font-semibold hover:bg-gray-100">
+            <button
+              className="rounded-xl border-none px-3 py-1 text-[16px] font-semibold hover:bg-gray-100"
+              onClick={() => setClear(!clear)}
+            >
               Xoá tất cả
             </button>
             <button

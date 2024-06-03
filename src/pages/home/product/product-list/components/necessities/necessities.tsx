@@ -1,4 +1,5 @@
 import React from "react";
+import { CheckBoxFilter } from "./checkbox-filter";
 
 type Props = {};
 
@@ -11,95 +12,29 @@ export function Necessities({}: Props) {
       <div className="grid grid-cols-2">
         <div>
           <div className="my-5 flex items-center gap-3">
-            <input
-              id="default-checkbox"
-              type="checkbox"
-              className="h-[24px] w-[24px] rounded accent-black"
-              value={""}
-            />
-            <label
-              htmlFor="default-checkbox"
-              className="ms-2 text-[16px] text-gray-900"
-            >
-              Wi-fi
-            </label>
+            <CheckBoxFilter name="wifi" title="Wi-fi" />
           </div>
 
           <div className="my-5 flex items-center gap-3">
-            <input
-              id="default-checkbox"
-              type="checkbox"
-              className="h-[24px] w-[24px] rounded accent-black"
-              value={""}
-            />
-            <label
-              htmlFor="default-checkbox"
-              className="ms-2 text-[16px] text-gray-900"
-            >
-              Máy giặt
-            </label>
+            <CheckBoxFilter name="mayGiat" title="Máy giặt" />
           </div>
 
           <div className="my-5 flex items-center gap-3">
-            <input
-              id="default-checkbox"
-              type="checkbox"
-              className="h-[24px] w-[24px] rounded accent-black"
-              value={""}
-            />
-            <label
-              htmlFor="default-checkbox"
-              className="ms-2 text-[16px] text-gray-900"
-            >
-              Điều hòa nhiệt độ
-            </label>
+            <CheckBoxFilter name="dieuHoa" title="Điều hòa nhiệt độ" />
           </div>
         </div>
 
         <div>
           <div className="my-5 flex items-center gap-3">
-            <input
-              id="default-checkbox"
-              type="checkbox"
-              className="h-[24px] w-[24px] rounded accent-black"
-              value={""}
-            />
-            <label
-              htmlFor="default-checkbox"
-              className="ms-2 text-[16px] text-gray-900"
-            >
-              Bếp
-            </label>
+            <CheckBoxFilter name="bep" title="Bếp" />
           </div>
 
           <div className="my-5 flex items-center gap-3">
-            <input
-              id="default-checkbox"
-              type="checkbox"
-              className="h-[24px] w-[24px] rounded accent-black"
-              value={""}
-            />
-            <label
-              htmlFor="default-checkbox"
-              className="ms-2 text-[16px] text-gray-900"
-            >
-             Ti vi
-            </label>
+            <CheckBoxFilter name="tivi" title="Ti vi" />
           </div>
 
           <div className="my-5 flex items-center gap-3">
-            <input
-              id="default-checkbox"
-              type="checkbox"
-              className="h-[24px] w-[24px] rounded accent-black"
-              value={""}
-            />
-            <label
-              htmlFor="default-checkbox"
-              className="ms-2 text-[16px] text-gray-900"
-            >
-              Bàn ủi
-            </label>
+            <CheckBoxFilter name="banUi" title="Bàn ủi" />
           </div>
         </div>
       </div>
