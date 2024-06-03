@@ -3,11 +3,12 @@ import { Button, Modal } from "antd";
 import React, { useContext } from "react";
 import { PriceRange } from "./price-range";
 import { CountRoom } from "./count-room";
-
+import { Necessities } from "./necessities";
+import "./index.css"
 type Props = {};
 
 export default function FilterPopup({}: Props) {
-  const [openModal, setOpenModal] = useContext(ContextStore);
+  const [{openModal}, {setOpenModal}] = useContext(ContextStore);
 
   const modalTitle = (
     <div>
@@ -25,7 +26,7 @@ export default function FilterPopup({}: Props) {
       footer={
         <div className="border-t border-gray-200">
           <hr className="my-2 w-full" />
-          <div className="flex justify-between mt-5">
+          <div className="mt-5 flex justify-between">
             <button className="rounded-xl border-none px-3 py-1 text-[16px] font-semibold hover:bg-gray-100">
               Xoá tất cả
             </button>
@@ -39,9 +40,14 @@ export default function FilterPopup({}: Props) {
         </div>
       }
     >
-      <PriceRange />
-      <div className="mt-8">
-        <CountRoom />
+      <div className="filter-popup h-[60vh] w-full overflow-y-auto overflow-x-hidden px-2">
+        <PriceRange />
+        <div className="mt-8">
+          <CountRoom />
+        </div>
+        <div className="mt-8">
+          <Necessities />
+        </div>
       </div>
     </Modal>
   );
