@@ -1,0 +1,7 @@
+.track-custom {
+    background-color: black !important;
+}
+
+.handle-custom::after{
+    box-shadow: 0 0 0 2px #000 !important;
+}
