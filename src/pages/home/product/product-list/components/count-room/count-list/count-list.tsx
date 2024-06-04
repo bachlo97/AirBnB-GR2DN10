@@ -2,9 +2,8 @@ import {
   ContextStore,
   ContextType,
 } from "@/pages/home/context/filter-rooms.context";
-import { IIFE } from "@/utils";
-import { set } from "lodash";
-import React, { useContext, useEffect, useState } from "react";
+
+import { useContext, useEffect, useState } from "react";
 
 type Props = {
   type: "phongNgu" | "giuong" | "phongTam";
@@ -51,7 +50,7 @@ export function CountList({ type }: Props) {
   return (
     <>
       <button
-        className={`rounded-full ${statuses.every((status, index) => (index === 0 ? true : !status)) ? "bg-slate-950 text-white" : ""} border-[1px] border-solid px-8 py-3`}
+        className={`rounded-full ${statuses.every((status, index) => (index === 0 ? true : !status)) ? "bg-slate-950 text-white" : ""} border-[1px] border-solid ipad:px-8 ipad:py-3 mobile:px-3 mobile:py-3`}
         onClick={() => handleStatuses(0)}
       >
         Bất kì
@@ -60,7 +59,7 @@ export function CountList({ type }: Props) {
       {Array.from({ length: 6 }, (_, index) => (
         <button
           key={index}
-          className={`${statuses[index + 1] ? "bg-slate-950 text-white" : ""} rounded-full border-[1px] border-solid px-8 py-3`}
+          className={`${statuses[index + 1] ? "bg-slate-950 text-white" : ""} rounded-full border-[1px] border-solid ipad:px-8 ipad:py-3 mobile:px-4 mobile:py-1`}
           onClick={() => handleStatuses(index + 1)}
         >
           {index + 1}

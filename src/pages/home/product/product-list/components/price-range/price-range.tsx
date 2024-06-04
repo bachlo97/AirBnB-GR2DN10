@@ -1,7 +1,12 @@
 import { InputNumber, Slider } from "antd";
 import { useContext, useEffect, useRef, useState } from "react";
 import "./index.css";
-import { ContextStore } from "@/pages/home/context/filter-rooms.context";
+import {
+  ContextStore,
+  handleRangeSlider,
+} from "@/pages/home/context/filter-rooms.context";
+import { getRooms } from "@/services/room";
+import { IIFE } from "@/utils";
 type Props = {};
 
 export function PriceRange({}: Props) {
@@ -9,18 +14,38 @@ export function PriceRange({}: Props) {
     useContext(ContextStore);
   const [borderInput1, setBorderInput1] = useState(false);
   const [borderInput2, setBorderInput2] = useState(false);
+  const [defaultValue, setDefaultValue] = useState<number[]>();
   const inputRef1 = useRef(null);
   const inputRef2 = useRef(null);
+  console.log({ rangePrice });
   useEffect(() => {
-    setRangePrice([20, 50]);
+    IIFE(async () => {
+      try {
+        const data = await getRooms();
+        const content = data.content;
+        const range = handleRangeSlider(content);
+        setRangePrice(range);
+        setDefaultValue(range);
+      } catch (e) {
+        console.log(e);
+      }
+    });
   }, [openModal, clear]);
+
   const handleChange = (value: number[]) => {
-    if (value[1] <= 21) {
-      setRangePrice([20, 21]);
-    } else if (value[0] >= 49) {
-      setRangePrice([49, 50]);
-    } else {
-      setRangePrice(value);
+    if (defaultValue)
+      if (value[1] <= defaultValue[0]) {
+        setRangePrice([defaultValue[0], defaultValue[0] + 1]);
+      } else if (value[0] >= defaultValue[1]) {
+        setRangePrice([defaultValue[1] - 1, defaultValue[1]]);
+      } else {
+        setRangePrice(value);
+      }
+  };
+
+  const handleChangeComplete = (value: number[]) => {
+    if (value[0] == value[1]) {
+      setRangePrice([value[0] - 1, value[0]]);
     }
   };
   const handleFocus = (ref: any) => {
@@ -31,8 +56,8 @@ export function PriceRange({}: Props) {
       <h2 className="text-[22px]">Khoảng giá</h2>
       <Slider
         range
-        min={20}
-        max={50}
+        min={defaultValue && defaultValue[0]}
+        max={defaultValue && defaultValue[1]}
         value={rangePrice}
         classNames={{
           track: "track-custom",
@@ -40,6 +65,7 @@ export function PriceRange({}: Props) {
           handle: "handle-custom",
         }}
         onChange={handleChange}
+        onChangeComplete={handleChangeComplete}
       />
       <div className="mt-10 flex items-center justify-between">
         <div
@@ -54,15 +80,19 @@ export function PriceRange({}: Props) {
             <InputNumber
               ref={inputRef1}
               className="w-full border-none focus-within:shadow-none"
-              min={20}
-              max={49}
+              min={defaultValue && defaultValue[0]}
+              max={defaultValue && defaultValue[1] - 1}
               value={rangePrice[0]}
               onFocus={() => setBorderInput1(true)}
               onBlur={() => setBorderInput1(false)}
               onChange={(value) => {
                 if (value) {
                   const temp = [...rangePrice];
-                  temp[0] = value;
+                  if (value >= temp[1]) {
+                    temp[0] = temp[1] - 1;
+                  } else {
+                    temp[0] = value;
+                  }
                   setRangePrice(temp);
                 }
               }}
@@ -82,15 +112,19 @@ export function PriceRange({}: Props) {
             <InputNumber
               ref={inputRef2}
               className="w-full border-none focus-within:shadow-none"
-              min={21}
-              max={50}
+              min={defaultValue && defaultValue[0] + 1}
+              max={defaultValue && defaultValue[1]}
               value={rangePrice[1]}
               onFocus={() => setBorderInput2(true)}
               onBlur={() => setBorderInput2(false)}
               onChange={(value) => {
                 if (value) {
                   const temp = [...rangePrice];
-                  temp[1] = value;
+                  if (value <= temp[0]) {
+                    temp[1] = temp[0] + 1;
+                  } else {
+                    temp[1] = value;
+                  }
                   setRangePrice(temp);
                 }
               }}

@@ -11,7 +11,7 @@ import "./index.css";
 type Props = {};
 
 export default function FilterPopup({}: Props) {
-  const [{ openModal, clear }, { setOpenModal, setClear }] =
+  const [{ openModal, clear,dataRooms }, { setOpenModal, setClear }] =
     useContext<ContextType>(ContextStore);
   const modalTitle = (
     <div>
@@ -40,7 +40,7 @@ export default function FilterPopup({}: Props) {
               className="rounded-xl bg-[#222222] px-8 py-4 text-[16px] text-white hover:bg-[#000000]"
               onClick={() => alert(123)}
             >
-              Hiển thị 1000 địa điểm
+              Hiển thị {dataRooms?.length} địa điểm
             </button>
           </div>
         </div>

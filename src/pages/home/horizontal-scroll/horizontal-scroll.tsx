@@ -41,7 +41,7 @@ export function HorizontalScroll(props: Props) {
             <BiChevronRight className="text-[20px]" />
           </div>
           <ul
-            className="tab-menu select-none list-none overflow-x-auto scroll-smooth whitespace-nowrap rounded-md mobile:max-w-[200px]  mobilePlus:max-w-[250px] ipad:max-w-[600px] desktop:max-w-[1000px]"
+            className="tab-menu select-none list-none overflow-x-auto scroll-smooth whitespace-nowrap rounded-md mobile:max-w-[200px]  mobilePlus:max-w-[250px] ipad:max-w-[600px] ipadPro:max-w-[800px] desktop:max-w-[130vh] desktopMax:max-w-[1500px]"
             ref={tabMenuRef}
           >
             {dataIcon.map((item, index) => (

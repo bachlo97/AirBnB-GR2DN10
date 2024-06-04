@@ -36,7 +36,7 @@ export function CheckBoxFilter({ name, title }: Props) {
       />
       <label
         htmlFor={name}
-        className="ms-2 text-[16px] font-thin text-gray-900"
+        className="ms-2 ipad:text-[16px] mobile:text-[13px] font-thin text-gray-900"
       >
         {title}
       </label>
