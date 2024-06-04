@@ -23,7 +23,15 @@ export type TPopUpProp = {
   chooseRooms: TRoomsCount;
   chooseNecessities: TNecessities;
   clear: boolean;
+  count: number;
 };
+type FilterParams = Pick<
+  TPopUpProp,
+  "rangePrice" | "chooseRooms" | "chooseNecessities"
+>;
+
+type THandleFilter = (filter: FilterParams, data: TRoomAPI[]) => any;
+
 export type TPopUpMethod = {
   setDataRooms: React.Dispatch<React.SetStateAction<TRoomAPI[]>>;
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -31,6 +39,8 @@ export type TPopUpMethod = {
   setChooseNecessities: React.Dispatch<React.SetStateAction<TNecessities>>;
   setClear: React.Dispatch<React.SetStateAction<boolean>>;
   setRangePrice: React.Dispatch<React.SetStateAction<number[]>>;
+  setCount: React.Dispatch<React.SetStateAction<number>>;
+  handleFilter: THandleFilter;
 };
 
 export type ContextType = [TPopUpProp, TPopUpMethod];
@@ -48,6 +58,7 @@ export const ContextStore = createContext<ContextType>([
       tivi: false,
       banUi: false,
     },
+    count: -1,
     clear: false,
   },
 
@@ -58,10 +69,12 @@ export const ContextStore = createContext<ContextType>([
     setChooseNecessities: () => {},
     setClear: () => {},
     setRangePrice: () => {},
+    setCount: () => {},
+    handleFilter: () => {},
   },
 ]);
 
-export const handleRangeSlider = (data: TRoomAPI[] |any) => {
+export const handleRangeSlider = (data: TRoomAPI[] | any) => {
   return [
     Math.min.apply(
       Math,
@@ -74,8 +87,35 @@ export const handleRangeSlider = (data: TRoomAPI[] |any) => {
   ];
 };
 
-export function Provider({ children }: { children: ReactNode }) {
+const checkChooseRooms = (data: TRoomsCount) => {
+  return Object.values(data).every((value) => value === 0);
+};
 
+
+const handleFilter = (filter: FilterParams, data: TRoomAPI[]) => {
+  const { chooseNecessities, chooseRooms, rangePrice } = filter;
+  const [start, end] = rangePrice;
+
+  let filteredData = data.filter(
+    (item: TRoomAPI) => item.giaTien >= start && item.giaTien <= end,
+  );
+
+  const selectedNecessities = Object.keys(chooseNecessities).filter(
+    (key) => chooseNecessities[key as keyof TNecessities],
+  );
+  if (selectedNecessities.length) {
+    filteredData = filteredData.filter((item: TRoomAPI) => {
+      return selectedNecessities.every(
+        (necessity) => item[necessity as keyof TNecessities],
+      );
+    });
+  }
+
+  if (!checkChooseRooms(chooseRooms)) {
+  }
+};
+
+export function Provider({ children }: { children: ReactNode }) {
   const [dataRooms, setDataRooms] = useState<TRoomAPI[]>([]);
   const [openModal, setOpenModal] = useState(false);
   const [rangePrice, setRangePrice] = useState([20, 50]);
@@ -92,6 +132,7 @@ export function Provider({ children }: { children: ReactNode }) {
     tivi: false,
     banUi: false,
   });
+  const [count, setCount] = useState(-1);
 
   const [clear, setClear] = useState(false);
 
@@ -101,7 +142,7 @@ export function Provider({ children }: { children: ReactNode }) {
         const data = await getRooms();
         const content = data.content;
         setDataRooms(content);
-        setRangePrice(handleRangeSlider(content))
+        setRangePrice(handleRangeSlider(content));
       } catch (e) {
         console.log(e);
       }
@@ -116,6 +157,7 @@ export function Provider({ children }: { children: ReactNode }) {
       chooseRooms,
       chooseNecessities,
       clear,
+      count,
     },
     {
       setDataRooms,
@@ -124,32 +166,29 @@ export function Provider({ children }: { children: ReactNode }) {
       setChooseNecessities,
       setClear,
       setRangePrice,
+      setCount,
+      handleFilter,
     },
   ];
-  const dataTest = [
-    {
-      name: 'A',
-      giaTien: 3,
-    },
-    {
-      name: 'B',
-      giaTien: 5,
-    },
-    {
-      name: 'C',
-      giaTien: 31,
-    },    {
-      name: 'D',
-      giaTien: 2,
-    }
-  ]
 
-
-  const resultTest = handleRangeSlider(dataTest)
-  console.log({resultTest})
-  console.log({dataRooms})
-  console.log({rangePrice})
   return (
     <ContextStore.Provider value={value}>{children}</ContextStore.Provider>
   );
 }
+
+
+
+// const filteredData: TRoomAPI[] = [];
+
+// const hasValue6 = Object.values(filteredChooseRooms).includes(6);
+
+// filteredData = filteredData.filter((item) => {
+//   for (const [key, value] of Object.entries(filteredChooseRooms)) {
+//     if (hasValue6 && item[key] >= 6) return true;
+//     if (!hasValue6 && item[key] === value) return true;
+//   }
+//   return false;
+// });
+
+// console.log(filteredData);
+

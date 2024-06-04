@@ -25,7 +25,7 @@ export function CheckBoxFilter({ name, title }: Props) {
       banUi: false,
     });
   }, [openModal,clear]);
-  return (
+  return (    
     <>
       <input
         id={name}

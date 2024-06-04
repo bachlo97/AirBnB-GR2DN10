@@ -16,25 +16,16 @@ function ProductList() {
   const [{dataRooms}] = useContext(ContextStore)
   const [num, setNum] = useState(getNumColumns());
   const [list, setList] = useState(_.chunk(converToRooms(dataRooms), num));
-  // useEffect(() => {
-  //   IIFE(async () => {
-  //     try {
-  //       const data = await getRooms();
-  //       const content = data.content;
-  //       setDataRooms(converToRooms(content));
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   });
-  // }, []);
+
 
   //DevCuong add
   useEffect(() => {
     setList(_.chunk(converToRooms(dataRooms), num));
     const handleReSize = () => {
       const newNum = getNumColumns();
+      const dataRoom = converToRooms(dataRooms)
       setNum(newNum);
-      setList(_.chunk(converToRooms(dataRooms), newNum));
+      setList(_.chunk(dataRoom, newNum));
     };
     window.addEventListener("resize", handleReSize);
     return () => {
@@ -46,6 +37,7 @@ function ProductList() {
 
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 1000);
+
   }, []);
 
   if (isLoading) {

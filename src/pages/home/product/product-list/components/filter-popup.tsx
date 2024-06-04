@@ -11,7 +11,7 @@ import "./index.css";
 type Props = {};
 
 export default function FilterPopup({}: Props) {
-  const [{ openModal, clear,dataRooms }, { setOpenModal, setClear }] =
+  const [{ openModal, clear,count,dataRooms}, { setOpenModal, setClear }] =
     useContext<ContextType>(ContextStore);
   const modalTitle = (
     <div>
@@ -31,7 +31,7 @@ export default function FilterPopup({}: Props) {
           <hr className="my-2 w-full" />
           <div className="mt-5 flex justify-between">
             <button
-              className="rounded-xl border-none px-3 py-1 text-[16px] font-semibold hover:bg-gray-100"
+              className="rounded-xl border-none px-3 py-1 font-semibold hover:bg-gray-100 text-[16px]"
               onClick={() => setClear(!clear)}
             >
               Xoá tất cả
@@ -40,7 +40,8 @@ export default function FilterPopup({}: Props) {
               className="rounded-xl bg-[#222222] px-8 py-4 text-[16px] text-white hover:bg-[#000000]"
               onClick={() => alert(123)}
             >
-              Hiển thị {dataRooms?.length} địa điểm
+              {count ? `Hiển thị ${count === -1 ? dataRooms?.length : count } địa điểm` : 'Không có kết quả tìm kiếm phù hợp'   }
+              
             </button>
           </div>
         </div>

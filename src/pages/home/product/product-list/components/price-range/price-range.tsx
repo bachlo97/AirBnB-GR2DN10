@@ -6,11 +6,13 @@ import {
   handleRangeSlider,
 } from "@/pages/home/context/filter-rooms.context";
 import { getRooms } from "@/services/room";
-import { IIFE } from "@/utils";
+import { IIFE, getLocalStorage } from "@/utils";
+import { getProfile } from "@/services/user";
+import { USER_ID } from "@/constant";
 type Props = {};
 
 export function PriceRange({}: Props) {
-  const [{ rangePrice, openModal, clear }, { setRangePrice }] =
+  const [{ rangePrice, openModal, clear }, { setRangePrice, setCount }] =
     useContext(ContextStore);
   const [borderInput1, setBorderInput1] = useState(false);
   const [borderInput2, setBorderInput2] = useState(false);
@@ -22,7 +24,8 @@ export function PriceRange({}: Props) {
     IIFE(async () => {
       try {
         const data = await getRooms();
-        const content = data.content;
+        const { content } = data;
+        console.log({ content });
         const range = handleRangeSlider(content);
         setRangePrice(range);
         setDefaultValue(range);
@@ -31,6 +34,17 @@ export function PriceRange({}: Props) {
       }
     });
   }, [openModal, clear]);
+
+  useEffect(() => {
+    IIFE(async () => {
+      const data = await getRooms();
+      const filterData = data.content.filter(
+        (item: TRoomAPI) =>
+          item.giaTien >= rangePrice[0] && item.giaTien <= rangePrice[1],
+      );
+      setCount(filterData.length);
+    });
+  }, [borderInput1, borderInput2]);
 
   const handleChange = (value: number[]) => {
     if (defaultValue)
@@ -43,14 +57,31 @@ export function PriceRange({}: Props) {
       }
   };
 
-  const handleChangeComplete = (value: number[]) => {
-    if (value[0] == value[1]) {
-      setRangePrice([value[0] - 1, value[0]]);
+  const handleChangeComplete = async (value: number[]) => {
+    try {
+      const data = await getRooms();
+      let start = value[0]
+      let end = value[1]
+      if (value[0] == value[1]) {
+        setRangePrice([value[0] - 1, value[0]]);
+        start = value[0] - 1
+      }
+      console.log(12345,value)
+      
+      console.log(data.content)
+      const filterData = data.content.filter(
+        (item: TRoomAPI) =>
+          item.giaTien >= start && item.giaTien <= end,
+      );
+      setCount(filterData.length);
+    } catch (e) {
+      console.log(e);
     }
   };
   const handleFocus = (ref: any) => {
     ref.current.focus();
   };
+
   return (
     <div>
       <h2 className="text-[22px]">Khoảng giá</h2>
@@ -84,7 +115,9 @@ export function PriceRange({}: Props) {
               max={defaultValue && defaultValue[1] - 1}
               value={rangePrice[0]}
               onFocus={() => setBorderInput1(true)}
-              onBlur={() => setBorderInput1(false)}
+              onBlur={() => {
+                setBorderInput1(false);
+              }}
               onChange={(value) => {
                 if (value) {
                   const temp = [...rangePrice];
@@ -116,7 +149,9 @@ export function PriceRange({}: Props) {
               max={defaultValue && defaultValue[1]}
               value={rangePrice[1]}
               onFocus={() => setBorderInput2(true)}
-              onBlur={() => setBorderInput2(false)}
+              onBlur={() => {
+                setBorderInput2(false);
+              }}
               onChange={(value) => {
                 if (value) {
                   const temp = [...rangePrice];
