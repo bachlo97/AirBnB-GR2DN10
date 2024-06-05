@@ -1,5 +1,5 @@
-import { Space, Table, Tag } from 'antd';
-import React, { useEffect, useState } from 'react'
+import { Input, Space, Table, Tag } from 'antd';
+import React, { useEffect, useRef, useState } from 'react'
 import qs from 'qs';
 import { TLocaltion } from '@/services/localtion/Localtion.type';
 import { IIFE } from '@/utils';
@@ -10,7 +10,10 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { delAdminLocationThunk, getAdminLocationThunk } from '@/redux/admin-location/AdminLocation.slice';
 import ModalLocationEdit from './ModalLocationEdixt';
 import '../css/style.css';
+import { IoSearchOutline } from 'react-icons/io5';
 function TableRender() {
+  const { Search } = Input;
+
   const [data, setData] = useState<TLocaltion[]>([]);
   const listLocation: any = useAppSelector(
     (state) => state.locationSlice.listLocation,
@@ -30,10 +33,7 @@ function TableRender() {
       dataIndex: "id",
       key: "id",
 
-      render: (id: number, record: string, index: any) => {
-        const reverseIndex = index + 1; // Tính số thứ tự ngược
-        return reverseIndex;
-      },
+      sorter: (a:any, b:any) => a.id - b.id,
     },
     {
       title: "Hinh Ảnh",
@@ -68,7 +68,7 @@ function TableRender() {
                   <ButtonPrimary width='100px' height={3.5} onClick={() => {
                     
                     dispatch(delAdminLocationThunk(record.id))
-                    dispatch(getAdminLocationThunk())
+                    dispatch(getAdminLocationThunk(''))
                
                   }}>{"Xoá"}</ButtonPrimary>
 
@@ -78,9 +78,10 @@ function TableRender() {
   ];
 
   console.log();
+  const userRef = useRef<any>(null);
 
   useEffect(() => {
-    dispatch(getAdminLocationThunk());
+    dispatch(getAdminLocationThunk(''));
   }, [dispatch]);
   const handleTableChange = (pagination: any, filters: any, sorter: any) => {
     setTableParams({
@@ -96,6 +97,22 @@ function TableRender() {
   };
   return (
     <div>
+         <Search
+        className="mb-4"
+        placeholder="input search room code"
+        allowClear
+        enterButton={<IoSearchOutline />}
+        size="large"
+        onChange={async (e) => {
+          if (userRef.current) {
+            clearTimeout(userRef.current);
+          }
+          userRef.current = setTimeout(async () => {
+            console.log(e.target.value);
+            dispatch(getAdminLocationThunk(e.target.value))
+          }, 400);
+        }}
+      />
       <Table
         columns={columns}
         dataSource={listLocation}

@@ -1,14 +1,17 @@
 import { getCommentThunkAll } from '@/redux/comment/Comment.slice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { Table } from 'antd';
-import React, { useEffect, useState } from 'react'
+import { Input, Table } from 'antd';
+import React, { useEffect, useState,useRef } from 'react'
+import { IoSearchOutline } from 'react-icons/io5';
 import { NavLink } from 'react-router-dom';
 
 function TableComment() {
     const [data, setData] =useState<[]>([]);
     const listRoomAll:any = useAppSelector((state) => state.roomSlice.listRoom);
     const dispatch = useAppDispatch();
-    
+    const { Search } = Input;
+    const userRef = useRef<any>(null);
+
     
       const columns = [
         {
@@ -40,7 +43,7 @@ function TableComment() {
           title: 'Chỉnh sửa',
           dataIndex: 'chinhSua',
           render: (text:string, record:any) => (
-            <div className='flex gap-3'>
+            <div className='flex gap-3 justify-center'>
               
                       <NavLink to={`listComment/${record.id}`} onClick={()=>{
                         
@@ -66,7 +69,7 @@ function TableComment() {
     
     useEffect(()=>{
     
-      dispatch(getCommentThunkAll())
+      dispatch(getCommentThunkAll(''))
     },[dispatch])
       const handleTableChange = (pagination:any, filters:any, sorter:any) => {
         setTableParams({
@@ -81,17 +84,30 @@ function TableComment() {
         }
       };
       return (
+        <><Search
+          className="mb-4"
+          placeholder="input search room code"
+          allowClear
+          enterButton={<IoSearchOutline />}
+          size="large"
+          onChange={async (e) => {
+            if (userRef.current) {
+              clearTimeout(userRef.current);
+            }
+            userRef.current = setTimeout(async () => {
+             dispatch(getCommentThunkAll(e.target.value))
 
-<Table
-columns={columns}
+            }, 400);
+          } } />
+          
+          <Table
+            columns={columns}
 
-dataSource={listRoomAll}
-pagination={tableParams.pagination}
-loading={loading}
-onChange={handleTableChange}
-className='tablePrimary'
-
-/>
+            dataSource={listRoomAll}
+            pagination={tableParams.pagination}
+            loading={loading}
+            onChange={handleTableChange}
+            className='tablePrimary' /></>
       )
 }
 

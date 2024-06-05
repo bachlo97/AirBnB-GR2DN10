@@ -4,6 +4,8 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getAdminLocationThunk } from '@/redux/admin-location/AdminLocation.slice';
 import { addRoomThunk } from '@/redux/room/Room.slice';
+import * as Yup from 'yup';
+import { ButtonPrimary } from '@/components/Button/Button';
 
 
 function ModalAddRoom() {
@@ -13,7 +15,7 @@ function ModalAddRoom() {
 
     useEffect(()=>{
 
-        dispatch(getAdminLocationThunk())
+        dispatch(getAdminLocationThunk(''))
       },[dispatch])
 
     
@@ -32,7 +34,21 @@ function ModalAddRoom() {
     const onChange = (checked: boolean) => {
         console.log(`switch to ${checked}`);
       };
-      
+      const SignupSchema = Yup.object().shape({
+        tenPhong: Yup.string().min(2).max(50).required('Tên phòng là bắt buộc'),
+        giaTien: Yup.number().required('Giá tiền là bắt buộc'),
+        hinhAnh: Yup.string().required('Hình ảnh là bắt buộc'),
+        khach: Yup.number().required('Số khách là bắt buộc'),
+        phongNgu: Yup.number().min(2).max(50).required('Phòng ngủ là bắt buộc'),
+        moTa: Yup.string().required('Mô tả là bắt buộc'),
+        giuong: Yup.number().required('Số giường là bắt buộc'),
+        phongTam: Yup.number().required('Số phòng tắm là bắt buộc'),
+        quocGia: Yup.string().required('Tên vị trí là bắt buộc'),
+    
+    
+       
+    
+      });
   return (
     <>
     <Space>
@@ -43,27 +59,26 @@ function ModalAddRoom() {
     </Space>
     <Modal
       open={open}
-      title="Title"
+      title="Thêm sản phẩm"
       onOk={handleOk}
       onCancel={handleCancel}
-      footer={(_, { OkBtn, CancelBtn }) => (
-        <>
-          
-          <CancelBtn />
-          <OkBtn />
-        </>
-      )}
+      className="modalSetup"
+
     >
 <Formik
-      initialValues={{ tenPhong: '', giaTien: '' ,hinhAnh:'',khach:'',phongNgu:'',giuong:'',phongTam:'',quocGia:'',mayGiat:false,banLa:false,tivi:false,dieuHoa:false,wifi:false,bep:false,doXe:false,banUi:false}}
-      onSubmit={(values) => {
+      initialValues={{ tenPhong: '', giaTien: '' ,hinhAnh:'',khach:'',phongNgu:'',giuong:'',phongTam:'',quocGia:'',moTa:'',mayGiat:false,banLa:false,tivi:false,dieuHoa:false,wifi:false,bep:false,doXe:false,banUi:false}}
+      onSubmit={(values,{resetForm}) => {
     
         dispatch(addRoomThunk(values))
+        setOpen(false);
+        resetForm();
+        
         
        
   
      
       }}
+      validationSchema={SignupSchema}
 
     >
       {({ handleSubmit,setFieldValue,values }) => (
@@ -105,7 +120,7 @@ function ModalAddRoom() {
                <div className='mt-1 w-[50%]'>
             <label htmlFor="hinhAnh">Gường:</label>
             
-            <Field type="text" id="giuong" name="guong" className="outline-none border block w-[100%] h-[30px] px-3 mb-3" />
+            <Field type="text" id="giuong" name="giuong" className="outline-none border block w-[100%] h-[30px] px-3 mb-3" />
             <ErrorMessage name="giuong" component="div" className="text-red-500" />
           </div>
           <div className='mt-1 w-[50%]'>
@@ -237,7 +252,14 @@ function ModalAddRoom() {
   </div>
    
         
-          <button type="submit">Gửi</button>
+  <div className="flex gap-3 items-end justify-end mt-5">
+          <div
+          onClick={handleCancel}
+          className='cursor-pointer border-solid border w-[50px] h-[3rem] text-center' style={{lineHeight:'2.5rem'}}
+          >Huỷ</div>
+          <ButtonPrimary width='50px' height={3} type="submit">Gửi</ButtonPrimary>
+         
+          </div>
         </Form>
       )}
     </Formik>

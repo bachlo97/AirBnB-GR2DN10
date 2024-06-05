@@ -38,15 +38,11 @@ function ModalEditRoom(props: any) {
       </Space>
       <Modal
         open={open}
-        title="Title"
+        title="Chỉnh sửa sản phẩm"
         onOk={handleOk}
         onCancel={handleCancel}
-        footer={(_, { OkBtn, CancelBtn }) => (
-          <>
-            <CancelBtn />
-            <OkBtn />
-          </>
-        )}
+        className="modalSetup"
+
       >
         <Formik
           initialValues={{
@@ -162,12 +158,12 @@ function ModalEditRoom(props: any) {
 
                   <Field
                     type="text"
-                    id="guong"
-                    name="guong"
+                    id="giuong"
+                    name="giuong"
                     className="mb-3 block h-[30px] w-[100%] border px-3 outline-none"
                   />
                   <ErrorMessage
-                    name="guong"
+                    name="giuong"
                     component="div"
                     className="text-red-500"
                   />
@@ -346,7 +342,14 @@ function ModalEditRoom(props: any) {
                 </div>
               </div>
 
-              <button type="submit">Gửi</button>
+              <div className="flex gap-3 items-end justify-end mt-5">
+          <div
+          onClick={handleCancel}
+          className='cursor-pointer border-solid border w-[50px] h-[3rem] text-center' style={{lineHeight:'2.5rem'}}
+          >Huỷ</div>
+          <ButtonPrimary width='50px' height={3} type="submit">Gửi</ButtonPrimary>
+         
+          </div>
             </Form>
           )}
         </Formik>

@@ -1,17 +1,20 @@
 import { Button, Modal, Space, Upload } from 'antd';
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import * as Yup from 'yup';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getAdminLocationThunk, putAdminLocationThunk } from '@/redux/admin-location/AdminLocation.slice';
 import { putLocaltion } from '@/services/localtion/Localtion.service';
-import { ButtonPrimary } from '@/components/Button/Button';
+import { ButtonPrimary, ButtonPrimaryTwo } from '@/components/Button/Button';
 
 function ModalLocationEdit(props:any) {
 
     const [open, setOpen] = useState(false);
-   
+    const [key, setKey] = useState(false);
+    useEffect(() => {
+      setKey(!key);
+    }, [open]);
     const showModal = () => {
       setOpen(true);
     };
@@ -23,18 +26,19 @@ function ModalLocationEdit(props:any) {
       setOpen(false);
     };
     const listLocation:any = useAppSelector((state) => state.locationSlice.listLocation);
+    const modal:any = useAppSelector((state) => state.locationSlice.modal);
     const dispatch = useAppDispatch();
 
     const SignupSchema = Yup.object().shape({
-        
-      tenViTri: Yup.string().min(2).max(50).required('Tên là bắt buộc'),
+      tenViTri: Yup.string().min(2).max(50).required('Tên vị trí là bắt buộc'),
   
   
-      tinhThanh: Yup.string().required('Email là bắt buộc'),
-      quocGia:Yup.string().required('Không được bỏ trống'),
-      hinhAnh:Yup.string().required('Không được bỏ trống'),
+      tinhThanh: Yup.string().required('Tên tỉnh thành là bắt buộc'),
+      quocGia:Yup.string().required('Tên quốc gia được bỏ trống'),
+      hinhAnh:Yup.string().required('Hình ảnh được bỏ trống'),
   
     });
+  
 
   return (
     <>
@@ -46,21 +50,19 @@ function ModalLocationEdit(props:any) {
     </Space>
     <Modal
       open={open}
-      title="Title"
+      title="Chỉnh sửa vị trí"
       onOk={handleOk}
       onCancel={handleCancel}
-      footer={(_, { OkBtn, CancelBtn }) => (
-        <>
-          
-          <CancelBtn />
-          <OkBtn />
-        </>
-      )}
+      className="modalSetup"
+   
+
     >
 
 <Formik
+  key={key ? 1 : 0}
       initialValues={{
         id:props.data.id,
+        
         tenViTri:props.data.tenViTri, tinhThanh: props.data.tinhThanh ,quocGia:props.data.quocGia,hinhAnh:props.data.hinhAnh}}
       onSubmit={(values:object) => {
     
@@ -68,13 +70,15 @@ function ModalLocationEdit(props:any) {
       
      setOpen(false)
       dispatch(putAdminLocationThunk(values))
-       dispatch(getAdminLocationThunk())
+       dispatch(getAdminLocationThunk(''))
        
       }}
       validationSchema={SignupSchema}
     >
       {({ handleSubmit,handleChange }) => (
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit
+
+        }>
           <div>
             <label htmlFor="name">Vị Trí:</label>
             <Field type="text"
@@ -113,7 +117,14 @@ function ModalLocationEdit(props:any) {
             type="text" id="hinhAnh" name="hinhAnh" className="outline-none border block w-[100%] h-[30px] px-3 mb-3" />
             <ErrorMessage name="hinhAnh" component="div" className="text-red-500" />
           </div>
-          <button type="submit">Gửi</button>
+          <div className="flex gap-3 items-end justify-end">
+          <div
+          onClick={handleCancel}
+          className='cursor-pointer border-solid border w-[50px] h-[3rem] text-center' style={{lineHeight:'2.5rem'}}
+          >Huỷ</div>
+          <ButtonPrimary width='50px' height={3} type="submit">Gửi</ButtonPrimary>
+         
+          </div>
         
         </Form>
       )}

@@ -27,7 +27,7 @@ function ItemComment(props:Tcomment) {
    
        </div>
       </div>
-    <div className='w-[200px]'>
+    <div className='md:w-[200px]'>
          <div className='cursor-pointer flex items-center justify-center'>
           <button onClick={()=>{
             setActive(!active);

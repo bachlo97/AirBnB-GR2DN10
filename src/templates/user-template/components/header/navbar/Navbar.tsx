@@ -24,6 +24,7 @@ import { useTranslation } from "react-i18next";
 import { animated } from "@react-spring/web";
 import { IoMdSearch } from "react-icons/io";
 import ModalHeader from "./modal/ModalHeader";
+import { useScrollToTop } from "@/hooks/scroll-to-top.hook";
 type Props = object;
 
 function Navbar(props: Props) {
@@ -94,18 +95,25 @@ function Navbar(props: Props) {
 {props.scrollY
  ? (
   <animated.div style={navbarStyle}>
-  <NavItem className="flex items-center gap-5" id="navItem">
+
+       <NavItem className="flex items-center gap-5" id="navItem">
     <div className="lg:text-[17px]">{t("header.stays")}</div>
 
     <div className="lg:text-[17px]">{t("header.experiences")}</div>
     <div className="lg:text-[17px]">{t("header.onlineExperiences")}</div>
   </NavItem>
+  
+ 
   </animated.div>
 
 ) : (
   <animated.div style={navbarStyle2}>
 <NavItem>
-    <SearchBarNav className="">
+  <button onClick={()=>{
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  }}>
+       <SearchBarNav className="">
       <div className="flex items-center justify-between px-8">
         <h5 className="text-[1.4rem]">{t("header.anyWhere")}</h5>
         <h5 className="text-[1.4rem]">{t("header.anyWeek")}</h5>
@@ -117,6 +125,8 @@ function Navbar(props: Props) {
         </HeaderSearchIconSubmit>
       </div>
     </SearchBarNav>
+  </button>
+ 
   </NavItem>
   </animated.div>
 
@@ -164,7 +174,7 @@ function Navbar(props: Props) {
 
 </div>
 
-      <div className="absolute bg-white w-[100%] sm:bottom-[-920%] ssm:bottom-[-1040%] ssm2:bottom-[-1072%]  left-0 h-[65px] md:hidden">
+      <div className="absolute bg-white w-[100%] sm:bottom-[-810%] xsm:bottom-[-1050%] mobilePlus:bottom-[-910%] left-0 h-[65px] md:hidden">
         <div className="w-[80%] m-auto">
           <div className="flex gap-5 justify-center  mt-3">
         

@@ -1,12 +1,16 @@
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { delRoomThunk, getRoomThunk } from '@/redux/room/Room.slice';
-import { Table } from 'antd';
-import React, { useEffect, useState } from 'react'
+import { Input, Table } from 'antd';
+import React, { useEffect, useRef, useState } from 'react'
 import ModalMoTa from '../Modal/ModalMoTa';
 import { ButtonPrimary } from '@/components/Button/Button';
 import ModalEditRoom from '../Modal/ModalEditRoom';
+import { IoSearchOutline } from 'react-icons/io5';
 
 function TableRoom() {
+  const { Search } = Input;
+  const userRef = useRef<any>(null);
+
     const [data, setData] =useState<[]>([]);
     const listRoom:any = useAppSelector((state) => state.roomSlice.listRoom);
     const dispatch = useAppDispatch();
@@ -90,7 +94,7 @@ function TableRoom() {
           dataIndex: 'quocGia',
           render(text:string,record:any){
             return (
-              <div className='flex gap-3 flex justify-center'>
+              <div className='flex gap-3 justify-center'>
                
                 <ModalEditRoom
                 data={record}
@@ -126,7 +130,7 @@ function TableRoom() {
     
     useEffect(()=>{
     
-      dispatch(getRoomThunk())
+      dispatch(getRoomThunk(''))
     },[dispatch])
       const handleTableChange = (pagination:any, filters:any, sorter:any) => {
         setTableParams({
@@ -142,6 +146,22 @@ function TableRoom() {
       };
       return (
         <div>
+            <Search
+        className="mb-4"
+        placeholder="input search room code"
+        allowClear
+        enterButton={<IoSearchOutline />}
+        size="large"
+        onChange={async (e) => {
+          if (userRef.current) {
+            clearTimeout(userRef.current);
+          }
+          userRef.current = setTimeout(async () => {
+            console.log(e.target.value);
+            dispatch(getRoomThunk(e.target.value))
+          }, 400);
+        }}
+      />
      <Table
           columns={columns}
        

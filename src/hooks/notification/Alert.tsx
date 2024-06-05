@@ -15,6 +15,20 @@ function useAlertHook() {
 
     });
   }
+  const alertSuccessCenter=(title:string)=>{
+    Swal.fire({
+      position: "center",
+      title: `${title}`,
+     
+      
+      showConfirmButton: false,
+
+      timer: 1500,
+      timerProgressBar: true,
+
+
+    });
+  }
   const alertError=(text:string)=>{
     Swal.fire({
  
@@ -27,7 +41,7 @@ function useAlertHook() {
       color:'white'
     });
   }
-  return {alertSuccess,alertError}
+  return {alertSuccess,alertError,alertSuccessCenter}
 }
 
 export default useAlertHook

@@ -18,10 +18,19 @@ export const getCommentThunk = createAsyncThunk(
   );
 export const getCommentThunkAll = createAsyncThunk(
     "getCommentThunkAll",
-    async () => {
+    async (searchKey:string) => {
       try{
         const resp = await getCommentRoom();
-        return resp.content;
+        const result = resp.content;
+        if (searchKey.trim()) {
+          const filteredResults = result.filter((item:any) =>
+            item.tenViTri.toLowerCase().includes(searchKey.toLowerCase())
+          );
+          return filteredResults;
+        } else {
+          // Return all results if no search key is provided
+          return result.reverse();
+        }
       }catch(e){
         console.log(e)
       }
@@ -32,12 +41,14 @@ export const delCommentThunk = createAsyncThunk(
     "delCommentThunk",
     async (arr:any) => {
       try{
-        const resp = await deleteCommentRoom(arr[0].id);
-       const getData= await getCommentRoomId(arr[1]);
-       console.log(arr[0].id);
-       
         
-       return getData.content;
+        const resp = await deleteCommentRoom(arr[0].id);
+        // console.log(arr[0].id);
+        
+        // const getData= await getCommentRoomId(arr[1]);
+  
+        
+       return resp.data;
        
         
       }catch(e){

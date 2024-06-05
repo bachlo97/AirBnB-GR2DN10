@@ -53,7 +53,7 @@ function TableCommentId() {
           dataIndex: 'chinhSua',
           render: (text:string, record:any) => (
           
-            <div className='flex gap-3'>
+            <div className='flex gap-3 justify-center'>
               
                 <button onClick={()=>{
                   const arr=[record,idPhong]

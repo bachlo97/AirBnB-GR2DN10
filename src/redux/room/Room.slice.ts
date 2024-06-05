@@ -3,12 +3,22 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const getRoomThunk = createAsyncThunk(
     "getRoomThunk",
-    async () => {
+    async (searchKey:string) => {
       try{
         const resp = await getRooms();
      
         
-        return resp.content.reverse();
+        const result = resp.content;
+        if (searchKey.trim()) {
+          const filteredResults = result.filter((item:any) =>
+            item.tenPhong.toLowerCase().includes(searchKey.toLowerCase())
+          );
+          console.log(`Filtered results based on search key:`, filteredResults);
+          return filteredResults;
+        } else {
+          // Return all results if no search key is provided
+          return result.reverse();
+        }
 
       }catch(e){
         console.log(e)
@@ -24,6 +34,8 @@ export const getRoomThunk = createAsyncThunk(
  
         const getData = await getRooms();
         return getData.content.reverse();
+      
+        
       }catch(e){
         console.log(e)
       }
@@ -48,17 +60,17 @@ export const getRoomThunk = createAsyncThunk(
     "putRoomThunk",
     async (data:any) => {
       try {
-        const resp = await putRoomAPI(data.id,data); // Assuming putLocaltion takes both id and data
+        const resp = await putRoomAPI(data.id,data); 
   
         console.log("Location updated successfully:", resp);
   
-        // Assuming getLocaltion() fetches all locations after update
+        
         const updatedLocations = await getRooms();
-        return updatedLocations.content.reverse(); // Return updated location data
+        return updatedLocations.content.reverse(); 
   
       } catch (error) {
         console.error("Error updating location:", error);
-        // Dispatch an error action to notify UI (optional)
+      
       }
     }
   );

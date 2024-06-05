@@ -6,7 +6,7 @@ function ListCommentDetail(props:any) {
   return (
     <div className='flex flex-wrap'>
       {  props.listComemt.map((item:Tcomment)=>{
-      return  <div className='border-b border-solid mt-3 w-[49%]'>
+      return  <div className='border-b border-solid mt-3 md:w-[49%] sm:w-[100%]'>
      <ItemComment
          id={item.id}
          ngayBinhLuan={item.ngayBinhLuan}

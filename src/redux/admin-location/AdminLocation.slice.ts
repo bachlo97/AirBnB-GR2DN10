@@ -3,11 +3,22 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const getAdminLocationThunk = createAsyncThunk(
   "getAdminLocation",
-  async () => {
+  async (searchKey:string) => {
     try {
+      
       const resp = await getLocaltion();
-      console.log("getLocaltion: ",resp.content);
-      return resp.content.reverse();
+      const result = resp.content;
+      if (searchKey.trim()) {
+        const filteredResults = result.filter((item:any) =>
+          item.tenViTri.toLowerCase().includes(searchKey.toLowerCase())
+        );
+        console.log(`Filtered results based on search key:`, filteredResults);
+        return filteredResults;
+      } else {
+        // Return all results if no search key is provided
+        return result.reverse();
+      }
+      // return resp.content.reverse();
     } catch (e) {
       console.log(e);
     }
@@ -63,12 +74,19 @@ export const addAdminLocationThunk = createAsyncThunk(
   );
   const initialState = {
     listLocation: [],
+    modal: false,
   };
   const LocationSlice = createSlice({
     name: "getAdminLocation",
     initialState,
     reducers: {
-     
+    
+      openModal : (state) => {
+        state.modal = true
+      },
+      closeModal: (state) =>{
+        state.modal = false
+      },
       setLocation: (state, { payload }) => {
         state.listLocation = payload;
     
@@ -89,6 +107,6 @@ export const addAdminLocationThunk = createAsyncThunk(
       })
     },
   });
-  export const {setLocation} = LocationSlice.actions;
+  export const {setLocation,openModal,closeModal} = LocationSlice.actions;
   
 export const locationSlice = LocationSlice.reducer;

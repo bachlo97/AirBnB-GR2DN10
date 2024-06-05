@@ -11,12 +11,15 @@ export const getRooms=async()=>{
 }
 export const postRoomAPI=async(data:object)=>{
     try{
-        return axiosWithAuthToken("/phong-thue", {
+        const resp=await axiosWithAuthToken("/phong-thue", {
             method: "post",
             data: data,
           
             
         });
+        return resp.data
+     
+        
     }catch(e:any){
         console.log(e.response?.data);
     }
