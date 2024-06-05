@@ -1,4 +1,6 @@
 import { ContextStore } from "@/pages/home/context/filter-rooms.context";
+import { getRooms } from "@/services/room";
+import { IIFE } from "@/utils";
 import React, { useContext, useEffect } from "react";
 
 type Props = {
@@ -15,16 +17,17 @@ export function CheckBoxFilter({ name, title }: Props) {
     temp[name] = e.target.checked;
     setChooseNecessities(temp);
   };
-  useEffect(() => {
-    setChooseNecessities({
-      wifi: false,
-      mayGiat: false,
-      dieuHoa: false,
-      bep: false,
-      tivi: false,
-      banUi: false,
-    });
-  }, [openModal,clear]);
+  // useEffect(() => {
+  //   setChooseNecessities({
+  //     wifi: false,
+  //     mayGiat: false,
+  //     dieuHoa: false,
+  //     bep: false,
+  //     tivi: false,
+  //     banUi: false,
+  //   });
+  // }, [openModal,clear]);
+
   return (    
     <>
       <input

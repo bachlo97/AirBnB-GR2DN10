@@ -1,6 +1,5 @@
 import { getRooms } from "@/services/room";
 import { ReactNode, createContext, useEffect, useState } from "react";
-import { converToRooms } from "../product/product-list/helpers/ConverToRooms";
 import { IIFE } from "@/utils";
 
 export type TRoomsCount = {
@@ -87,12 +86,8 @@ export const handleRangeSlider = (data: TRoomAPI[] | any) => {
   ];
 };
 
-const checkChooseRooms = (data: TRoomsCount) => {
-  return Object.values(data).every((value) => value === 0);
-};
 
-
-const handleFilter = (filter: FilterParams, data: TRoomAPI[]) => {
+export const handleFilter = (filter: FilterParams, data: TRoomAPI[]) => {
   const { chooseNecessities, chooseRooms, rangePrice } = filter;
   const [start, end] = rangePrice;
 
@@ -103,6 +98,7 @@ const handleFilter = (filter: FilterParams, data: TRoomAPI[]) => {
   const selectedNecessities = Object.keys(chooseNecessities).filter(
     (key) => chooseNecessities[key as keyof TNecessities],
   );
+
   if (selectedNecessities.length) {
     filteredData = filteredData.filter((item: TRoomAPI) => {
       return selectedNecessities.every(
@@ -110,9 +106,20 @@ const handleFilter = (filter: FilterParams, data: TRoomAPI[]) => {
       );
     });
   }
+  const filteredChooseRooms = Object.fromEntries(
+    Object.entries(chooseRooms).filter(([_, value]) => value !== 0),
+  );
 
-  if (!checkChooseRooms(chooseRooms)) {
+  console.log(2222222,filteredChooseRooms)
+  if (Object.keys(filteredChooseRooms).length) {
+
+    filteredData = filteredData.filter((item: TRoomAPI) => {
+      return Object.entries(filteredChooseRooms).every(([key, value]) => {
+        return item.hasOwnProperty(key) && (item[key as keyof TRoomsCount] === value || (value == 6 && item[key as keyof TRoomsCount] >= 6))
+      });
+    });
   }
+  return filteredData
 };
 
 export function Provider({ children }: { children: ReactNode }) {
@@ -149,6 +156,25 @@ export function Provider({ children }: { children: ReactNode }) {
     });
   }, []);
 
+  useEffect(() => {
+    IIFE(async () => {
+      try {
+        const dataAPI = await getRooms();
+        const roomData = dataAPI.content;
+        const filteredData = handleFilter(
+          { rangePrice, chooseRooms, chooseNecessities },
+          roomData,
+        );
+        console.log(111111, filteredData);
+        setCount(filteredData.length);
+      } catch (e) {
+        console.log(e);
+      }
+    });
+  }, [chooseRooms,rangePrice,chooseNecessities]);
+
+  
+
   const value: ContextType = [
     {
       dataRooms,
@@ -175,8 +201,6 @@ export function Provider({ children }: { children: ReactNode }) {
     <ContextStore.Provider value={value}>{children}</ContextStore.Provider>
   );
 }
-
-
 
 // const filteredData: TRoomAPI[] = [];
 

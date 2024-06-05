@@ -3,6 +3,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import "./index.css";
 import {
   ContextStore,
+  handleFilter,
   handleRangeSlider,
 } from "@/pages/home/context/filter-rooms.context";
 import { getRooms } from "@/services/room";
@@ -12,8 +13,10 @@ import { USER_ID } from "@/constant";
 type Props = {};
 
 export function PriceRange({}: Props) {
-  const [{ rangePrice, openModal, clear }, { setRangePrice, setCount }] =
-    useContext(ContextStore);
+  const [
+    { rangePrice, chooseRooms, chooseNecessities, openModal, clear },
+    { setRangePrice, setCount,setChooseRooms,setChooseNecessities },
+  ] = useContext(ContextStore);
   const [borderInput1, setBorderInput1] = useState(false);
   const [borderInput2, setBorderInput2] = useState(false);
   const [defaultValue, setDefaultValue] = useState<number[]>();
@@ -29,6 +32,19 @@ export function PriceRange({}: Props) {
         const range = handleRangeSlider(content);
         setRangePrice(range);
         setDefaultValue(range);
+        setChooseRooms({
+          phongNgu: 0,
+          giuong: 0,
+          phongTam: 0,
+        })
+        setChooseNecessities({
+          wifi: false,
+          mayGiat: false,
+          dieuHoa: false,
+          bep: false,
+          tivi: false,
+          banUi: false,
+        });
       } catch (e) {
         console.log(e);
       }
@@ -37,12 +53,17 @@ export function PriceRange({}: Props) {
 
   useEffect(() => {
     IIFE(async () => {
-      const data = await getRooms();
-      const filterData = data.content.filter(
-        (item: TRoomAPI) =>
-          item.giaTien >= rangePrice[0] && item.giaTien <= rangePrice[1],
-      );
-      setCount(filterData.length);
+      try {
+        const dataAPI = await getRooms();
+        const roomData = dataAPI.content;
+        const filteredData = handleFilter(
+          { rangePrice, chooseRooms, chooseNecessities },
+          roomData,
+        );
+        setCount(filteredData.length)
+      } catch (e) {
+        console.log(e)
+      }
     });
   }, [borderInput1, borderInput2]);
 
@@ -59,21 +80,26 @@ export function PriceRange({}: Props) {
 
   const handleChangeComplete = async (value: number[]) => {
     try {
-      const data = await getRooms();
-      let start = value[0]
-      let end = value[1]
+      let start = value[0];
+      let end = value[1];
       if (value[0] == value[1]) {
         setRangePrice([value[0] - 1, value[0]]);
-        start = value[0] - 1
+        start = value[0] - 1;
       }
-      console.log(12345,value)
-      
-      console.log(data.content)
-      const filterData = data.content.filter(
-        (item: TRoomAPI) =>
-          item.giaTien >= start && item.giaTien <= end,
-      );
-      setCount(filterData.length);
+      // console.log(12345, value);
+      // const rangePrice = [start,end]
+      // const dataAPI = await getRooms();
+      // const roomData = dataAPI.content;
+      // const filteredData = handleFilter(
+      //   { rangePrice, chooseRooms, chooseNecessities },
+      //   roomData,
+      // );
+      // setCount(filteredData.length)
+      // console.log(data.content);
+      // const filterData = data.content.filter(
+      //   (item: TRoomAPI) => item.giaTien >= start && item.giaTien <= end,
+      // );
+      // setCount(filterData.length);
     } catch (e) {
       console.log(e);
     }
