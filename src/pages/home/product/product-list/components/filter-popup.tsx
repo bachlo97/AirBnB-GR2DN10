@@ -1,6 +1,8 @@
 import {
   ContextStore,
   ContextType,
+  FilterParams,
+  handleNumFilter,
 } from "@/pages/home/context/filter-rooms.context";
 import { Button, Modal } from "antd";
 import React, { useContext } from "react";
@@ -9,11 +11,13 @@ import { CountRoom } from "./count-room";
 import { Necessities } from "./necessities";
 import "./index.css";
 import { getRooms } from "@/services/room";
+import { removeLocalStorage, saveLocalStorage } from "@/utils";
+import { COUNT_FILTER, ROOM_FILTER } from "@/constant";
 type Props = {};
 
 export default function FilterPopup({}: Props) {
   const [
-    { openModal, clear, count},
+    { openModal, clear, count,rangePrice,chooseRooms,chooseNecessities,rangeDefault},
     { setOpenModal, setClear},
   ] = useContext<ContextType>(ContextStore);
   const modalTitle = (
@@ -38,13 +42,25 @@ export default function FilterPopup({}: Props) {
               className="rounded-xl border-none px-3 py-1 text-[16px] font-semibold hover:bg-gray-100"
               onClick={() => {
                 setClear(!clear);
+                removeLocalStorage(ROOM_FILTER)
+                removeLocalStorage(COUNT_FILTER)
               }}
             >
               Xoá tất cả
             </button>
             <button
               className="rounded-xl bg-[#222222] px-8 py-4 text-[16px] text-white hover:bg-[#000000]"
-              onClick={() => alert(123)}
+              onClick={() => {
+                const data:FilterParams = {
+                  rangePrice,
+                  chooseNecessities,
+                  chooseRooms
+                }
+                const count:number = handleNumFilter(data,rangeDefault)
+                saveLocalStorage(ROOM_FILTER,data)
+                saveLocalStorage(COUNT_FILTER,count)
+                setOpenModal(false)
+              }}
               disabled={count ? false : true}
             >
               {count

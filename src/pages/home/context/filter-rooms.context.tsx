@@ -1,6 +1,7 @@
 import { getRooms } from "@/services/room";
 import { ReactNode, createContext, useEffect, useState } from "react";
-import { IIFE } from "@/utils";
+import { IIFE, getLocalStorage } from "@/utils";
+import { ROOM_FILTER } from "@/constant";
 
 export type TRoomsCount = {
   phongNgu: number;
@@ -19,12 +20,13 @@ export type TPopUpProp = {
   dataRooms: TRoomAPI[];
   openModal: boolean;
   rangePrice: number[];
+  rangeDefault: number[];
   chooseRooms: TRoomsCount;
   chooseNecessities: TNecessities;
   clear: boolean;
   count: number;
 };
-type FilterParams = Pick<
+export type FilterParams = Pick<
   TPopUpProp,
   "rangePrice" | "chooseRooms" | "chooseNecessities"
 >;
@@ -40,6 +42,7 @@ export type TPopUpMethod = {
   setRangePrice: React.Dispatch<React.SetStateAction<number[]>>;
   setCount: React.Dispatch<React.SetStateAction<number>>;
   handleFilter: THandleFilter;
+  setRangeDefault: React.Dispatch<React.SetStateAction<number[]>>;
 };
 
 export type ContextType = [TPopUpProp, TPopUpMethod];
@@ -47,7 +50,8 @@ export const ContextStore = createContext<ContextType>([
   {
     dataRooms: [],
     openModal: false,
-    rangePrice: [20, 50],
+    rangePrice: [],
+    rangeDefault: [],
     chooseRooms: { phongNgu: 0, phongTam: 0, giuong: 0 },
     chooseNecessities: {
       wifi: false,
@@ -68,6 +72,7 @@ export const ContextStore = createContext<ContextType>([
     setChooseNecessities: () => {},
     setClear: () => {},
     setRangePrice: () => {},
+    setRangeDefault: () => {},
     setCount: () => {},
     handleFilter: () => {},
   },
@@ -85,7 +90,6 @@ export const handleRangeSlider = (data: TRoomAPI[] | any) => {
     ),
   ];
 };
-
 
 export const handleFilter = (filter: FilterParams, data: TRoomAPI[]) => {
   const { chooseNecessities, chooseRooms, rangePrice } = filter;
@@ -110,22 +114,50 @@ export const handleFilter = (filter: FilterParams, data: TRoomAPI[]) => {
     Object.entries(chooseRooms).filter(([_, value]) => value !== 0),
   );
 
-  console.log(2222222,filteredChooseRooms)
+  console.log(2222222, filteredChooseRooms);
   if (Object.keys(filteredChooseRooms).length) {
-
     filteredData = filteredData.filter((item: TRoomAPI) => {
       return Object.entries(filteredChooseRooms).every(([key, value]) => {
-        return item.hasOwnProperty(key) && (item[key as keyof TRoomsCount] === value || (value == 6 && item[key as keyof TRoomsCount] >= 6))
+        return (
+          item.hasOwnProperty(key) &&
+          (item[key as keyof TRoomsCount] === value ||
+            (value == 6 && item[key as keyof TRoomsCount] >= 6))
+        );
       });
     });
   }
-  return filteredData
+  return filteredData;
+};
+const arraysEqual = (arr1: number[], arr2: number[]) => {
+  return arr1.every((element, index) => element === arr2[index]);
+};
+export const handleNumFilter = (
+  filter: FilterParams,
+  rangeDefault: number[],
+) => {
+  const { chooseNecessities, chooseRooms, rangePrice } = filter;
+  let count = 0;
+
+  if (!arraysEqual(rangePrice, rangeDefault)) {
+    count++;
+  }
+
+  count += Object.values(chooseRooms).reduce(
+    (acc, value) => acc + (value > 0 ? 1 : 0),
+    0,
+  );
+  count += Object.values(chooseNecessities).reduce(
+    (acc, value) => acc + (value ? 1 : 0),
+    0,
+  );
+  return count;
 };
 
 export function Provider({ children }: { children: ReactNode }) {
   const [dataRooms, setDataRooms] = useState<TRoomAPI[]>([]);
   const [openModal, setOpenModal] = useState(false);
   const [rangePrice, setRangePrice] = useState([20, 50]);
+  const [rangeDefault, setRangeDefault] = useState([20, 50]);
   const [chooseRooms, setChooseRooms] = useState({
     phongNgu: 0,
     giuong: 0,
@@ -147,14 +179,35 @@ export function Provider({ children }: { children: ReactNode }) {
     IIFE(async () => {
       try {
         const data = await getRooms();
-        const content = data.content;
-        setDataRooms(content);
-        setRangePrice(handleRangeSlider(content));
+        let { content } = data;
+        await setRangeDefault(handleRangeSlider(content));
+        if (getLocalStorage(ROOM_FILTER)) {
+          const { rangePrice, chooseRooms, chooseNecessities } = getLocalStorage(ROOM_FILTER);
+          content = handleFilter(getLocalStorage(ROOM_FILTER), content);
+          setRangePrice(rangePrice);
+          setChooseRooms(chooseRooms);
+          setChooseNecessities(chooseNecessities)
+        } else {
+          setChooseRooms({
+            phongNgu: 0,
+            giuong: 0,
+            phongTam: 0,
+          });
+          setChooseNecessities({
+            wifi: false,
+            mayGiat: false,
+            dieuHoa: false,
+            bep: false,
+            tivi: false,
+            banUi: false,
+          });
+        }
+        setDataRooms(content)
       } catch (e) {
         console.log(e);
       }
     });
-  }, []);
+  }, [openModal]);
 
   useEffect(() => {
     IIFE(async () => {
@@ -171,15 +224,41 @@ export function Provider({ children }: { children: ReactNode }) {
         console.log(e);
       }
     });
-  }, [chooseRooms,rangePrice,chooseNecessities]);
+  }, [chooseRooms, rangePrice, chooseNecessities]);
 
-  
+  useEffect(() => {
+    IIFE(async () => {
+      try {
+        const data = await getRooms();
+        const { content } = data;
+        console.log({ content });
+        const range = handleRangeSlider(content);
+        setRangePrice(range);
+        setChooseRooms({
+          phongNgu: 0,
+          giuong: 0,
+          phongTam: 0,
+        });
+        setChooseNecessities({
+          wifi: false,
+          mayGiat: false,
+          dieuHoa: false,
+          bep: false,
+          tivi: false,
+          banUi: false,
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    });
+  }, [clear]);
 
   const value: ContextType = [
     {
       dataRooms,
       openModal,
       rangePrice,
+      rangeDefault,
       chooseRooms,
       chooseNecessities,
       clear,
@@ -194,6 +273,7 @@ export function Provider({ children }: { children: ReactNode }) {
       setRangePrice,
       setCount,
       handleFilter,
+      setRangeDefault,
     },
   ];
 
@@ -201,18 +281,3 @@ export function Provider({ children }: { children: ReactNode }) {
     <ContextStore.Provider value={value}>{children}</ContextStore.Provider>
   );
 }
-
-// const filteredData: TRoomAPI[] = [];
-
-// const hasValue6 = Object.values(filteredChooseRooms).includes(6);
-
-// filteredData = filteredData.filter((item) => {
-//   for (const [key, value] of Object.entries(filteredChooseRooms)) {
-//     if (hasValue6 && item[key] >= 6) return true;
-//     if (!hasValue6 && item[key] === value) return true;
-//   }
-//   return false;
-// });
-
-// console.log(filteredData);
-

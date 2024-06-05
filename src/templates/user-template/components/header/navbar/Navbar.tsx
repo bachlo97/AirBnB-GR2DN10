@@ -19,7 +19,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { setUser } from "@/redux/auth/auth.slice";
 import { removeLocalStorage } from "@/utils";
-import { ACCESS_TOKEN, USER_ID } from "@/constant";
+import { ACCESS_TOKEN, COUNT_FILTER, ROOM_FILTER, USER_ID } from "@/constant";
 import { useTranslation } from "react-i18next";
 import { animated } from "@react-spring/web";
 import { IoMdSearch } from "react-icons/io";
@@ -38,6 +38,8 @@ function Navbar(props: Props) {
     dispatch(setUser(null));
     removeLocalStorage(ACCESS_TOKEN);
     removeLocalStorage(USER_ID);
+    removeLocalStorage(ROOM_FILTER)
+    removeLocalStorage(COUNT_FILTER)
     navigate("/");
   };
 

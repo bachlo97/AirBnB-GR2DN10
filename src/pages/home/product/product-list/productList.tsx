@@ -57,8 +57,8 @@ function ProductList() {
     };
     return (
       <div key={key} style={style} className={`grid ${gridCol[num]} gap-8`}>
-        {list[index].map((item) => (
-          <div className="mx-auto">
+        {list[index].map((item,index) => (
+          <div className="mx-auto" key={index}>
             <ProductItem
               id={item.id}
               tenPhong={item.tenPhong}

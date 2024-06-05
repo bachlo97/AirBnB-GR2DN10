@@ -8,6 +8,8 @@ import { useScrollHorizontal } from "./hook";
 import LoadingHorizontalScroll from "./loading/LoadingHorizontalScroll";
 import { useContext, useEffect, useState } from "react";
 import { ContextStore } from "../context/filter-rooms.context";
+import { getLocalStorage } from "@/utils";
+import { COUNT_FILTER } from "@/constant";
 export function HorizontalScroll(props: Props) {
   const [
     { tabMenuRef, btnLeftRef, btnRightRef },
@@ -62,6 +64,10 @@ export function HorizontalScroll(props: Props) {
             Bộ lọc
           </span>
         </button>
+        {getLocalStorage(COUNT_FILTER) ? <div className='absolute flex justify-center items-center h-7 w-7 rounded-full bg-black text-white right-[-2px] top-[-2px] text-[11px]'>
+          {getLocalStorage(COUNT_FILTER)}
+        </div> : null }
+
       </div>
     </section>
   );
