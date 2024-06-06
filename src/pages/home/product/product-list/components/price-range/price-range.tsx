@@ -57,6 +57,8 @@ export function PriceRange({}: Props) {
     if (value[0] == value[1]) {
       setRangePrice([value[0] - 1, value[0]]);
     }
+
+    
   };
   const handleFocus = (ref: any) => {
     ref.current.focus();
