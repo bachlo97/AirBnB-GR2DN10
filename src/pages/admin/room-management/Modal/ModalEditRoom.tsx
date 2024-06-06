@@ -7,8 +7,12 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
 import { putRoomThunk } from "@/redux/room/Room.slice";
 import { ButtonPrimary } from "@/components/Button/Button";
+import { VscEdit } from "react-icons/vsc";
+import useAlertHook from "@/hooks/notification/Alert";
 
 function ModalEditRoom(props: any) {
+  const {alertSuccessCenter}=useAlertHook()
+
   const [open, setOpen] = useState(false);
   const listLocation: any = useAppSelector(
     (state) => state.locationSlice.listLocation,
@@ -32,9 +36,9 @@ function ModalEditRoom(props: any) {
   return (
     <>
       <Space>
-        <ButtonPrimary onClick={showModal} width="80px" height={3}>
-          Chỉnh sửa
-        </ButtonPrimary>
+      <div  className="cursor-pointer self-center text-blue-500" onClick={showModal}>
+      <VscEdit />
+      </div>
       </Space>
       <Modal
         open={open}
@@ -70,6 +74,7 @@ function ModalEditRoom(props: any) {
             
             setOpen(false)
             dispatch(putRoomThunk(values))
+            alertSuccessCenter('Cập nhật dữ liệu thành công')
           }}
         >
           {({ handleSubmit, setFieldValue, values }) => (

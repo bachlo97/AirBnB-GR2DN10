@@ -2,8 +2,15 @@ import { ButtonPrimary, ButtonPrimaryTwo } from '@/components/Button/Button'
 import { Container } from '@/components/style-compoment/Container'
 import { IoIosArrowBack } from 'react-icons/io'
 import usePayHook from './hooks/usePayHook'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+
+import { GetCartsRoomSlice } from '../../redux/cart/Cart.slice';
 function Pay() {
  const {countDay,user,dateRoom,payRoom,navigate,handleSubmit}=usePayHook();
+ const roomID: any = useAppSelector(
+  (state) => state.GetCartsRoomSlice.idRoom,
+);
+
 
   return (
     <Container>
@@ -87,7 +94,11 @@ function Pay() {
                 <input type="text"  value={user.phone} className='p-3 w-[100%]' disabled/>              
             </div>
             <div className='flex justify-between'>
-            <ButtonPrimaryTwo width='10rem' height={3.5} className='my-6'>Quay lại</ButtonPrimaryTwo>
+            <ButtonPrimaryTwo width='10rem' height={3.5} className='my-6'
+            onClick={()=>{
+              navigate(`/roomdetail/${roomID}`)
+            }}
+            >Quay lại</ButtonPrimaryTwo>
             <ButtonPrimary width='10rem' height={3.5} className='my-6'
             onClick={()=>{
               handleSubmit();

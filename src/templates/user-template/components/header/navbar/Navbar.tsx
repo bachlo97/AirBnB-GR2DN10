@@ -146,6 +146,7 @@ function Navbar(props: Props) {
     placement="bottomLeft"
     arrow
     trigger={["click"]}
+    
   >
     <Button
       className="flex h-[40px] items-center gap-3"

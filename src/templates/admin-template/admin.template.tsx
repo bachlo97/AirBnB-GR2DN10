@@ -17,6 +17,7 @@ import { getDashBoardInfoThunk } from "@/redux/admin/dashboard/dashboard.slice";
 import { getProfileThunk, setUser } from "@/redux/auth/auth.slice";
 import { getLocalStorage, removeLocalStorage, truncateText } from "@/utils";
 import { ACCESS_TOKEN, USER_ID } from "@/constant";
+import { getRoomThunk } from "@/redux/room/Room.slice";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -38,6 +39,7 @@ const AdminTemplate: React.FC = () => {
 
   useEffect(() => {
     dispatch(getProfileThunk(getLocalStorage(USER_ID)));
+    dispatch(getRoomThunk(''))
   }, []);
 
   useEffect(() => {

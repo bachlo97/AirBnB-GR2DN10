@@ -37,26 +37,19 @@ export const getCommentThunkAll = createAsyncThunk(
   
     },
   );
-export const delCommentThunk = createAsyncThunk(
+  export const delCommentThunk = createAsyncThunk(
     "delCommentThunk",
-    async (arr:any) => {
-      try{
-        
-        const resp = await deleteCommentRoom(arr[0].id);
-        // console.log(arr[0].id);
-        
-        // const getData= await getCommentRoomId(arr[1]);
-  
-        
-       return resp.data;
-       
-        
-      }catch(e){
-        console.log(e)
-      }
-  
+    async (arr: any) => {
+        try {
+            const resp = await deleteCommentRoom(arr[0].id);
+            // console.log(arr[0].id);
+            const getData= await getCommentRoomId(arr[1]);
+            return getData.content;
+        } catch (e) {
+            console.log(e)
+        }
     },
-  );
+);
   const initialState = {
     listComment: [],
     listCommentAll:[],

@@ -1,12 +1,16 @@
 import { ButtonPrimary } from '@/components/Button/Button';
+import useAlertHook from '@/hooks/notification/Alert';
 import { delCommentThunk, getCommentThunk } from '@/redux/comment/Comment.slice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { Breadcrumb, Table } from 'antd';
+import { Breadcrumb, Popconfirm, Table } from 'antd';
 import React, { useEffect, useState } from 'react'
+import { TiDelete } from 'react-icons/ti';
 import { useParams } from 'react-router-dom';
 
 function TableCommentId() {
     const { idPhong } = useParams();
+    const {alertSuccessCenter}=useAlertHook()
+
     const [data, setData] =useState<[]>([]);
     const listCommentId:any = useAppSelector((state) => state.commentSlice.listComment);
     const dispatch = useAppDispatch();
@@ -54,12 +58,27 @@ function TableCommentId() {
           render: (text:string, record:any) => (
           
             <div className='flex gap-3 justify-center'>
+    
+<Popconfirm
+              title="Bạn có muốn xóa "
+              onConfirm={async () => {
+                const arr=[record,idPhong]
               
-                <button onClick={()=>{
-                  const arr=[record,idPhong]
-                  console.log(arr);
-                  dispatch(delCommentThunk(arr))
-                }}>Xoá</button>
+                dispatch(delCommentThunk(arr))
+                alertSuccessCenter('Xoá dữ liệu thành công')
+
+              }}
+              cancelText="Huỷ"
+              okText="Chắn chắn"
+            >
+              <span
+                className={" mr-3 cursor-pointer text-[20px] text-red-500"}
+                onClick={async () => {}}
+              >
+                <TiDelete />
+              </span>
+            </Popconfirm>
+
             </div>
           ),
      

@@ -58,10 +58,12 @@ useEffect(()=>{
   }
 },[startDate, endDate])
 useEffect(()=>{
- if(valueStartDay!==null&&valueEndDay!==null&&countClient>0){
+ if(valueStartDay==''&&valueEndDay==''){
+  setIsButtonDisabled(true)
+
+
+}else{
   setIsButtonDisabled(false)
-} else{
-  setIsButtonDisabled(true);
 }
 },[countClient, valueEndDay, valueStartDay])
 
@@ -222,7 +224,7 @@ wifi
                   <p>  <Space direction="vertical">
                   <DatePicker
                     placeholder="Ngày về"
-                    name="currentDay"
+                    name="nextDay"
                     onChange={(selectedDate) => handleDateChange(selectedDate,'nextDay')}
                     popupClassName="calendar-header"
                     disabledDate={(current) => current && current.valueOf() < Date.now()}
@@ -268,7 +270,10 @@ wifi
               </div>
             </div>
            
-          {isButtonDisabled?(
+          {isButtonDisabled
+          ?
+          
+          (
                <ButtonPrimary
                width="100%"
                height={4}
@@ -277,7 +282,9 @@ wifi
              >
                Xac Nhan
              </ButtonPrimary>
-            ):(     
+       
+          )
+            :(     
               user ?(
                 <ButtonPrimary
                 width="100%"
@@ -318,7 +325,9 @@ wifi
             >
               Xac Nhan
             </ButtonPrimary>
-        )}
+        )
+ 
+        }
 
           </form>
           <p className="text-center text-[1.6rem] text-gray-500">

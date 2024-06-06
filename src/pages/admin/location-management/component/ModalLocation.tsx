@@ -45,9 +45,9 @@ function ModalLocation() {
     <>
   
   <Space>
-      <div onClick={showModal} className='cursor-pointer'>
+      <Button onClick={showModal} className='cursor-pointer mb-3'>
         Thêm mới
-      </div>
+      </Button>
  
     </Space>
     <Modal

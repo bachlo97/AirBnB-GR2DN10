@@ -1,5 +1,6 @@
 import { Button, Modal, Space, Upload } from 'antd';
 import { useEffect, useState } from 'react'
+import { VscEdit } from "react-icons/vsc";
 
 import * as Yup from 'yup';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
@@ -7,8 +8,10 @@ import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getAdminLocationThunk, putAdminLocationThunk } from '@/redux/admin-location/AdminLocation.slice';
 import { putLocaltion } from '@/services/localtion/Localtion.service';
 import { ButtonPrimary, ButtonPrimaryTwo } from '@/components/Button/Button';
+import useAlertHook from '@/hooks/notification/Alert';
 
 function ModalLocationEdit(props:any) {
+  const {alertSuccessCenter}=useAlertHook()
 
     const [open, setOpen] = useState(false);
     const [key, setKey] = useState(false);
@@ -43,9 +46,9 @@ function ModalLocationEdit(props:any) {
   return (
     <>
     <Space>
-      <ButtonPrimary width='100px' height={3.5} onClick={showModal}>
-        Chỉnh sửa
-      </ButtonPrimary>
+      <div  className="cursor-pointer self-center text-blue-500" onClick={showModal}>
+      <VscEdit />
+      </div>
  
     </Space>
     <Modal
@@ -66,11 +69,12 @@ function ModalLocationEdit(props:any) {
         tenViTri:props.data.tenViTri, tinhThanh: props.data.tinhThanh ,quocGia:props.data.quocGia,hinhAnh:props.data.hinhAnh}}
       onSubmit={(values:object) => {
     
-      console.log(values);
+  
       
      setOpen(false)
       dispatch(putAdminLocationThunk(values))
        dispatch(getAdminLocationThunk(''))
+       alertSuccessCenter('Cập nhật dữ liệu thành công')
        
       }}
       validationSchema={SignupSchema}

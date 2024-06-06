@@ -1,0 +1,11 @@
+.tablePrimary:where(.css-dev-only-do-not-override-1qfezbu).ant-table-wrapper .ant-table-thead >tr>th,.tablePrimary:where(.css-dev-only-do-not-override-1qfezbu).ant-table-wrapper .ant-table-thead >tr>td {
+text-align: center;
+
+
+}
+.tablePrimary:where(.css-dev-only-do-not-override-1qfezbu)[class^="ant-table"] [class^="ant-table"], :where(.css-dev-only-do-not-override-1qfezbu)[class*=" ant-table"] [class^="ant-table"], :where(.css-dev-only-do-not-override-1qfezbu)[class^="ant-table"] [class*=" ant-table"], :where(.css-dev-only-do-not-override-1qfezbu)[class*=" ant-table"] [class*=" ant-table"] {
+    text-align: center;
+}
+.modalSetup:where(.css-dev-only-do-not-override-1qfezbu).ant-modal .ant-modal-footer{
+    display: none;
+}

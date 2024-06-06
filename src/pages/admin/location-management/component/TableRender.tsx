@@ -1,4 +1,4 @@
-import { Input, Space, Table, Tag } from 'antd';
+import { Input, Popconfirm, Space, Table, Tag } from 'antd';
 import React, { useEffect, useRef, useState } from 'react'
 import qs from 'qs';
 import { TLocaltion } from '@/services/localtion/Localtion.type';
@@ -11,8 +11,11 @@ import { delAdminLocationThunk, getAdminLocationThunk } from '@/redux/admin-loca
 import ModalLocationEdit from './ModalLocationEdixt';
 import '../css/style.css';
 import { IoSearchOutline } from 'react-icons/io5';
+import { TiDelete } from 'react-icons/ti';
+import useAlertHook from '@/hooks/notification/Alert';
 function TableRender() {
   const { Search } = Input;
+  const {alertSuccessCenter}=useAlertHook()
 
   const [data, setData] = useState<TLocaltion[]>([]);
   const listLocation: any = useAppSelector(
@@ -65,12 +68,25 @@ function TableRender() {
         <div className='flex gap-3 flex justify-center'>
           
                 <ModalLocationEdit data={record} />
-                  <ButtonPrimary width='100px' height={3.5} onClick={() => {
-                    
-                    dispatch(delAdminLocationThunk(record.id))
-                    dispatch(getAdminLocationThunk(''))
-               
-                  }}>{"Xoá"}</ButtonPrimary>
+         
+
+<Popconfirm
+              title="Bạn có muốn xóa "
+              onConfirm={async () => {
+                dispatch(delAdminLocationThunk(record.id))
+                dispatch(getAdminLocationThunk(''))
+                alertSuccessCenter('Xoá dữ liệu thành công')
+              }}
+              cancelText="Huỷ"
+              okText="Chắn chắn"
+            >
+              <span
+                className={" mr-3 cursor-pointer text-[20px] text-red-500"}
+                onClick={async () => {}}
+              >
+                <TiDelete />
+              </span>
+            </Popconfirm>
 
         </div>
       ),

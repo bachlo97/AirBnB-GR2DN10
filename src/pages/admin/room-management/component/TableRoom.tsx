@@ -1,15 +1,18 @@
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { delRoomThunk, getRoomThunk } from '@/redux/room/Room.slice';
-import { Input, Table } from 'antd';
+import { Input, Popconfirm, Table } from 'antd';
 import React, { useEffect, useRef, useState } from 'react'
 import ModalMoTa from '../Modal/ModalMoTa';
 import { ButtonPrimary } from '@/components/Button/Button';
 import ModalEditRoom from '../Modal/ModalEditRoom';
 import { IoSearchOutline } from 'react-icons/io5';
+import { TiDelete } from 'react-icons/ti';
+import useAlertHook from '@/hooks/notification/Alert';
 
 function TableRoom() {
   const { Search } = Input;
   const userRef = useRef<any>(null);
+  const {alertSuccessCenter}=useAlertHook()
 
     const [data, setData] =useState<[]>([]);
     const listRoom:any = useAppSelector((state) => state.roomSlice.listRoom);
@@ -99,12 +102,24 @@ function TableRoom() {
                 <ModalEditRoom
                 data={record}
                 />
-                <ButtonPrimary width='80px' height={3}
-                onClick={()=>{
               
-                  dispatch(delRoomThunk(record.id))
-                }}
-                > Xoá</ButtonPrimary>
+                <Popconfirm
+              title="Bạn có muốn xóa "
+              onConfirm={async () => {
+                dispatch(delRoomThunk(record.id))
+                alertSuccessCenter('Xoá dữ liệu thành công')
+
+              }}
+              cancelText="Huỷ"
+              okText="Chắn chắn"
+            >
+              <span
+                className={" mr-3 cursor-pointer text-[20px] text-red-500"}
+                onClick={async () => {}}
+              >
+                <TiDelete />
+              </span>
+            </Popconfirm>
               </div>
             )
           }

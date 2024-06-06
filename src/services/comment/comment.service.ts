@@ -39,19 +39,13 @@ export const postCommentRoom=async (data:object)=>{
        
     }
 }
-export const deleteCommentRoom=async(id:any)=>{
-    try{
-     
-      const resp=await axiosWithAuthToken(`/binh-luan/${id}`, {
-            method: "detele",
-           
+export const deleteCommentRoom = async (id: any) => {
+    try {
+        return axiosWithAuthToken(`/binh-luan/${id}`, {
+            method: "delete", // Corrected "delete" spelling
         });
-        return resp.data;  
-
-    
-    }catch(e:any){
-       console.log(e.response?.data);
-       
+    } catch (e: any) {
+        console.log(e.response?.data);
     }
 }
 

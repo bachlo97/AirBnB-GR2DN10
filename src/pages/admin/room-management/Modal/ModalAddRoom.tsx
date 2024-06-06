@@ -1,4 +1,4 @@
-import { Modal, Space, Switch } from 'antd';
+import { Button, Modal, Space, Switch } from 'antd';
 import React, { useEffect, useState } from 'react'
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
@@ -6,12 +6,14 @@ import { getAdminLocationThunk } from '@/redux/admin-location/AdminLocation.slic
 import { addRoomThunk } from '@/redux/room/Room.slice';
 import * as Yup from 'yup';
 import { ButtonPrimary } from '@/components/Button/Button';
-
+import useAlertHook from '@/hooks/notification/Alert';
+import '../css/style.css'
 
 function ModalAddRoom() {
     const [open, setOpen] = useState(false);
     const listLocation:any = useAppSelector((state) => state.locationSlice.listLocation);
     const dispatch = useAppDispatch();
+    const {alertSuccessCenter}=useAlertHook()
 
     useEffect(()=>{
 
@@ -52,9 +54,9 @@ function ModalAddRoom() {
   return (
     <>
     <Space>
-      <div onClick={showModal} className='cursor-pointer'>
+      <Button onClick={showModal} className='cursor-pointer mb-3'>
         Thêm mới
-      </div>
+      </Button>
  
     </Space>
     <Modal
@@ -72,7 +74,8 @@ function ModalAddRoom() {
         dispatch(addRoomThunk(values))
         setOpen(false);
         resetForm();
-        
+        alertSuccessCenter('Thêm dữ liệu thành công')
+
         
        
   
