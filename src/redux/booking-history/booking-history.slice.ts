@@ -20,7 +20,7 @@ export const getRoomBookingThunk = createAsyncThunk(
       const locationListData = locationListApi.map((item:any) => item.data.content)
       const result = handleResult(roomCombine,locationListData)
       console.log({result})
-      return result
+      return result.reverse()
     } catch (e) {
       console.log(e);
     }
