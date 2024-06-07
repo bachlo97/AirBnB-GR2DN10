@@ -102,7 +102,7 @@ function Pay() {
             <ButtonPrimary width='10rem' height={3.5} className='my-6'
             onClick={()=>{
               handleSubmit();
-              navigate('/')
+              // navigate('/')
               // setInterval(()=>{
               //   navigate('/')
               // },2000)
