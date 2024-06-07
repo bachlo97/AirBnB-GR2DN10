@@ -19,8 +19,10 @@ export default {
       mobile: "375px",
       mobilePlus: "414px",
       ipad: "768px",
+      ipadPro: '1024px',
       desktop: "1200px",
       desktopPlus: "1400px",
+      desktopMax: '1920px'
     },
   },
   plugins: [],

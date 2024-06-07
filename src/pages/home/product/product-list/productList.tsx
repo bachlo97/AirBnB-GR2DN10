@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { TRoom } from "@/services/room/Room.type";
 import { IIFE } from "@/utils";
 import { getRooms } from "@/services/room/Room.service";
@@ -10,31 +10,22 @@ import { getNumColumns} from "./helpers";
 import { AutoSizer, List, WindowScroller } from "react-virtualized";
 
 import _ from "lodash";
-import { Modal } from "antd";
 import FilterPopup from "./components/filter-popup";
+import { ContextStore } from "../../context/filter-rooms.context";
 function ProductList() {
-  const [dataRooms, setDataRooms] = useState<TRoom[]>([]);
+  const [{dataRooms}] = useContext(ContextStore)
   const [num, setNum] = useState(getNumColumns());
-  const [list, setList] = useState(_.chunk(dataRooms, num));
-  useEffect(() => {
-    IIFE(async () => {
-      try {
-        const data = await getRooms();
-        const content = data.content;
-        setDataRooms(converToRooms(content));
-      } catch (e) {
-        console.log(e);
-      }
-    });
-  }, []);
+  const [list, setList] = useState(_.chunk(converToRooms(dataRooms), num));
+
 
   //DevCuong add
   useEffect(() => {
-    setList(_.chunk(dataRooms, num));
+    setList(_.chunk(converToRooms(dataRooms), num));
     const handleReSize = () => {
       const newNum = getNumColumns();
+      const dataRoom = converToRooms(dataRooms)
       setNum(newNum);
-      setList(_.chunk(dataRooms, newNum));
+      setList(_.chunk(dataRoom, newNum));
     };
     window.addEventListener("resize", handleReSize);
     return () => {
@@ -46,6 +37,7 @@ function ProductList() {
 
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 1000);
+
   }, []);
 
   if (isLoading) {
@@ -65,8 +57,8 @@ function ProductList() {
     };
     return (
       <div key={key} style={style} className={`grid ${gridCol[num]} gap-8`}>
-        {list[index].map((item) => (
-          <div className="mx-auto">
+        {list[index].map((item,index) => (
+          <div className="mx-auto" key={index}>
             <ProductItem
               id={item.id}
               tenPhong={item.tenPhong}
