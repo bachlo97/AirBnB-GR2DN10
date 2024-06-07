@@ -36,7 +36,7 @@ function ModalRoomDetail(props:Props) {
         </ButtonPrimaryTwo> 
         <Modal
         open={open}
-        title="Địa điểm này có gì"
+        // title="Địa điểm này có gì"
         onOk={handleOk}
         onCancel={handleCancel}
    
@@ -49,16 +49,16 @@ function ModalRoomDetail(props:Props) {
         )}
       >
     <div className=""> 
-    <h2 className='font-semibold text-[1.7rem]'>Đồ gia dụng</h2>
+    <h2 className='font-semibold text-[1.9rem] mt-5'>Đồ gia dụng</h2>
     {props.tivi ? (
-                <div className="flex  items-center gap-3  text-[2.0rem] py-3 border-b border-b-gray-300 border-solid">
+                <div className="flex  items-center gap-3  text-[1.8rem] py-3 border-b border-b-gray-300 border-solid">
          
               <PiTelevisionSimpleBold />
               Tivi
             </div>
               ):''}
     {props.mayGiat ? (
-                <div className="flex  items-center gap-3  text-[2.0rem] py-3 border-b border-b-gray-300 border-solid">
+                <div className="flex  items-center gap-3  text-[1.8rem] py-3 border-b border-b-gray-300 border-solid">
          
          <GiWashingMachine />
 
@@ -67,14 +67,14 @@ function ModalRoomDetail(props:Props) {
               ):''}
     
     {props.banLa ? (
-                <div className="flex  items-center gap-3  text-[2.0rem] py-3 border-b border-b-gray-300 border-solid">
+                <div className="flex  items-center gap-3  text-[1.8rem] py-3 border-b border-b-gray-300 border-solid">
          
          <MdIron />
               banLa
             </div>
               ):''}
     {props.banUi ? (
-                <div className="flex  items-center gap-3  text-[2.0rem] py-3 border-b border-b-gray-300 border-solid">
+                <div className="flex  items-center gap-3  text-[1.8rem] py-3 border-b border-b-gray-300 border-solid">
     <MdIron />
 
               banUi
@@ -88,9 +88,9 @@ function ModalRoomDetail(props:Props) {
           
           </div>
     <div className=""> 
-    <h2 className='font-semibold text-[1.7rem]'>Phòng</h2>
+    <h2 className='font-semibold text-[1.9rem] mt-5'>Phòng</h2>
     {props.doXe ? (
-                <div className="flex  items-center gap-3  text-[2.0rem] py-3 border-b border-b-gray-300 border-solid">
+                <div className="flex  items-center gap-3  text-[1.8rem] py-3 border-b border-b-gray-300 border-solid">
          
          <FaCar />
 
@@ -98,7 +98,7 @@ function ModalRoomDetail(props:Props) {
             </div>
               ):''}
     {props.bep ? (
-                <div className="flex  items-center gap-3  text-[2.0rem] py-3 border-b border-b-gray-300 border-solid">
+                <div className="flex  items-center gap-3  text-[1.8rem] py-3 border-b border-b-gray-300 border-solid">
          
          <MdKitchen />
 
@@ -108,7 +108,7 @@ function ModalRoomDetail(props:Props) {
     
 
     {props.tivi ? (
-                <div className="flex  items-center gap-3  text-[2.0rem] py-3 border-b border-b-gray-300 border-solid">
+                <div className="flex  items-center gap-3  text-[1.8rem] py-3 border-b border-b-gray-300 border-solid">
          
          <MdBedroomChild />
 
@@ -123,16 +123,16 @@ function ModalRoomDetail(props:Props) {
           
           </div>
     <div className=""> 
-    <h2 className='font-semibold text-[1.7rem]'>Các Thứ Khác</h2>
+    <h2 className='font-semibold text-[1.9rem] mt-5'>Các Thứ Khác</h2>
     {props.dieuHoa ? (
-                <div className="flex  items-center gap-3  text-[2.0rem] py-3 border-b border-b-gray-300 border-solid">
+                <div className="flex  items-center gap-3  text-[1.8rem] py-3 border-b border-b-gray-300 border-solid">
          
               <PiTelevisionSimpleBold />
               dieuHoa
             </div>
               ):''}
     {props.wifi ? (
-                <div className="flex  items-center gap-3 text-[2.0rem] py-3 border-b border-b-gray-300 border-solid">
+                <div className="flex  items-center gap-3 text-[1.8rem] py-3 border-b border-b-gray-300 border-solid">
          
          <FaWifi />
 
@@ -141,7 +141,7 @@ function ModalRoomDetail(props:Props) {
               ):''}
     
     {props.hoBoi ? (
-                <div className="flex  items-center gap-3  text-[2.0rem] py-3 border-b border-b-gray-300 border-solid">
+                <div className="flex  items-center gap-3  text-[1.8rem] py-3 border-b border-b-gray-300 border-solid">
          
          <FaSwimmingPool />
 

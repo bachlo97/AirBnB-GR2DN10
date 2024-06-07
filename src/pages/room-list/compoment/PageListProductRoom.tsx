@@ -31,7 +31,7 @@ export default function PaginatedItems({ itemsPerPage,data}:any) {
   };
 
   return (
-    <>
+    <div className='flex flex-col'>
       <ListProductRoom data={currentItems} />
       <ReactPaginate
         breakLabel="..."
@@ -43,6 +43,6 @@ export default function PaginatedItems({ itemsPerPage,data}:any) {
         renderOnZeroPageCount={null}
         activeClassName='activePage'
       />
-    </>
+    </div>
   );
 }

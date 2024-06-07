@@ -62,7 +62,7 @@ function RoomList() {
            </SRespon>
         <div className='page-product-list'>
 
-        <PaginatedItems itemsPerPage={1} data={dataLocation} className='page-product-list'
+        <PaginatedItems itemsPerPage={3} data={dataLocation} className='page-product-list'
           ></PaginatedItems></div>      
           
             </div>   

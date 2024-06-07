@@ -15,9 +15,9 @@ function ProductItemRoom(props:TRoom) {
       }
   return (
     <NavLink  className='2sm:w-[49%] 2xl:w-[32%]' to={`/roomdetail/${props.id}`}>  
-       <div>
+      
     <div className='relative mt-4'>
-     <img className='rounded-[1rem]'  style={{height:'250px'}} src={props.hinhAnh} alt="" />
+     <img className='rounded-[1rem]'  style={{height:'250px',width:'100%'}} src={props.hinhAnh} alt="" />
      <FaRegHeart className='absolute top-[5%] right-[5%] text-[2.5rem] text-white' />
 
     </div>
@@ -49,7 +49,8 @@ function ProductItemRoom(props:TRoom) {
         </div>
        
      </SProductItemText>
-   </div></NavLink>
+
+   </NavLink>
  
   )
 }
