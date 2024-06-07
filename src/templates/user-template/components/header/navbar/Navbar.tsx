@@ -17,6 +17,7 @@ import { ACCESS_TOKEN, COUNT_FILTER, ROOM_FILTER, USER_ID } from "@/constant";
 import { useTranslation } from "react-i18next";
 import { IoMdSearch } from "react-icons/io";
 import ModalHeader from "./modal/ModalHeader";
+import { useTransition, animated } from "@react-spring/web";
 type Props = object;
 
 function Navbar(props: Props) {
@@ -117,11 +118,11 @@ function Navbar(props: Props) {
           <HeaderLogoText>AirBnB</HeaderLogoText>
         </NavLink>
 
-{props.scrollY
- ? (
-  <animated.div style={navbarStyle}>
-  <NavItem className="flex items-center gap-5" id="navItem">
-    <div className="lg:text-[17px]">{t("header.stays")}</div>
+        {props.scrollY
+          ? transitionsA((props) => (
+              <animated.div style={props}>
+                <NavItem className="flex items-center gap-5" id="navItem">
+                  <div className="lg:text-[17px]">{t("header.stays")}</div>
 
                   <div className="lg:text-[17px]">
                     {t("header.experiences")}
@@ -167,52 +168,47 @@ function Navbar(props: Props) {
 
           <ToogleHeader></ToogleHeader>
 
-{/* user */}
-<Dropdown
-    menu={{
-      items,
-    }}
-    placement="bottomLeft"
-    arrow
-    trigger={["click"]}
-  >
-    <Button
-      className="flex h-[40px] items-center gap-3"
-      style={{ borderRadius: "30px" }}
-    >
-      <FaBars />
-      <div className="text-[25px]">
-        {user ? (
-          <div
-            className={`flex h-12 w-12 items-center justify-center rounded-full ${user.avatar ? "bg-cover bg-center bg-no-repeat" : "bg-[#F62682] text-[16px] text-white "} `}
-            style={{
-              backgroundImage: user.avatar
-                ? `url(${user.avatar})`
-                : "none",
+          {/* user */}
+          <Dropdown
+            menu={{
+              items,
             }}
+            placement="bottomLeft"
+            arrow
+            trigger={["click"]}
           >
-            {user.avatar === "" ? user.name[0].toUpperCase() : null}
-          </div>
-        ) : (
-          <FaUserCircle />
-        )}
-      </div>
-    </Button>
-  </Dropdown>
-</div>
-
-</div>
-
-      <div className="absolute bg-white w-[100%] sm:bottom-[-920%] ssm:bottom-[-1040%] ssm2:bottom-[-1072%]  left-0 h-[65px] md:hidden">
-        <div className="w-[80%] m-auto">
-          <div className="flex gap-5 justify-center  mt-3">
-        
-<ModalHeader/>
-                 <div className="flex flex-col justify-center items-center"
-      
+            <Button
+              className="flex h-[40px] items-center gap-3"
+              style={{ borderRadius: "30px" }}
             >
-              
-              <FaRegHeart className="text-[2.3rem]"/>
+              <FaBars />
+              <div className="text-[25px]">
+                {user ? (
+                  <div
+                    className={`flex h-12 w-12 items-center justify-center rounded-full ${user.avatar ? "bg-cover bg-center bg-no-repeat" : "bg-[#F62682] text-[16px] text-white "} `}
+                    style={{
+                      backgroundImage: user.avatar
+                        ? `url(${user.avatar})`
+                        : "none",
+                    }}
+                  >
+                    {user.avatar === "" ? user.name[0].toUpperCase() : null}
+                  </div>
+                ) : (
+                  <FaUserCircle />
+                )}
+              </div>
+            </Button>
+          </Dropdown>
+        </div>
+      </div>
+
+      <div className="absolute left-0 h-[65px] w-[100%] bg-white sm:bottom-[-920%]  ssm:bottom-[-1040%] ssm2:bottom-[-1072%] md:hidden">
+        <div className="m-auto w-[80%]">
+          <div className="mt-3 flex justify-center  gap-5">
+            <ModalHeader />
+            <div className="flex flex-col items-center justify-center">
+              <FaRegHeart className="text-[2.3rem]" />
               <div className="text-[1.5rem]">Yêu thích</div>
             </div>
           </div>
