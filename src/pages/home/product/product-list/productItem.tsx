@@ -36,15 +36,16 @@ function ProductItem(props: TRoom) {
           <p className="text-[1.8rem] font-bold">${props.giaTien}/Đêm</p>
           <div className="product-icons flex gap-3">
             <div className="flex items-center">
-              <IoBedOutline />:{props.giuong}
+              
+              <IoBedOutline />: {props.giuong}
             </div>
             <div className="flex items-center">
               {" "}
-              <MdBedroomChild />:{props.phongNgu}
+              <MdBedroomChild />: {props.phongNgu}
             </div>
             <div className="flex items-center">
               {" "}
-              <FaRegUser />:{props.khach}
+              <FaRegUser />: {props.khach}
             </div>
           </div>
         </SProductItemText>

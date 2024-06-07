@@ -2,6 +2,7 @@ import { ButtonPrimary, ButtonPrimaryTwo } from "@/components/Button/Button";
 import '../css/RoomDetail.css'
 
 import { DatePicker, Space } from "antd";
+const { RangePicker } = DatePicker;
 
 import ModalRoomDetail from "../modal/ModalRoomDetail";
 import { useNavigate } from "react-router-dom";
@@ -186,7 +187,7 @@ wifi
       </div>
 
       <div
-        className=" h-[430px] 2sm:w-[40%] lg:w-[35%] xl:w-[35%]  2xl:w-[38%] border border-solid border-white p-8 md:sticky md:top-36 md:right-0 "
+        className=" h-[430px] 2sm:w-[40%] lg:w-[35%] xl:w-[32%]  2xl:w-[38%] border border-solid border-white p-8 md:sticky md:top-36 md:right-0 "
         style={{ boxShadow: " rgba(16, 20, 24, 0.2) 0px 8px 24px" }}
         id="dateSearchbar"
       >
@@ -194,7 +195,7 @@ wifi
           <h3 className="mb-6 text-3xl font-semibold">${props.data.giaTien}/ đêm </h3>
           <form action="" onSubmit={handleSubmit} className="search-bar">
             <div className="rounded-[1rem] border border-solid border-gray-400 ">
-              <div className="flex border-b border-solid border-gray-400">
+              {/* <div className="flex border-b border-solid border-gray-400">
                 <div className="dateSearchbar group-form w-1/2 border-r border-solid border-gray-400 px-4 py-3">
                   <label
                     htmlFor=""
@@ -211,6 +212,7 @@ wifi
                     popupClassName="calendar-header"
                       disabledDate={(current) => current && current.valueOf() < Date.now()}
                   />
+                   <RangePicker />
                 </Space>
                   </p>
                 </div>
@@ -232,6 +234,21 @@ wifi
                   />
                 </Space></p>
                 </div>
+              </div> */}
+              <div className="w-[100%] border-b border-solid h-[45px]">
+              
+                <Space direction="vertical" className="w-[100%] px-3">
+                
+                   <RangePicker className="rangePicker w-[100%]"
+                     onChange={(selectedDate:any)=>{
+                      handleDateChange(selectedDate[0],'currentDay')
+                      handleDateChange(selectedDate[1],'nextDay')
+                     }}
+                     
+                     disabledDate={(current) => current && current.valueOf() < Date.now()}
+
+                   />
+                </Space>
               </div>
               <div className="group-form px-4 py-3">
                 <label htmlFor="" className="block text-[1.4rem] font-semibold">

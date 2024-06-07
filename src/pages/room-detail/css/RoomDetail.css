@@ -18,3 +18,22 @@
     border-top: 1px solid white;
 }
 
+.rangePicker .search-bar :where(.css-dev-only-do-not-override-1qfezbu).ant-picker {
+padding: 0;
+
+}
+.rangePicker:where(.css-dev-only-do-not-override-1qfezbu).ant-picker-range .ant-picker-range-separator{
+    display: none;
+}
+.rangePicker:where(.css-dev-only-do-not-override-1qfezbu).ant-picker .ant-picker-input >input{
+    height: 35px;
+    padding-left: 10px;
+}
+.rangePicker:where(.css-dev-only-do-not-override-1qfezbu).ant-picker-outlined:hover {
+    border-color:transparent;
+    background-color: transparent;
+    
+}
+.rangePicker:where(.css-dev-only-do-not-override-1qfezbu).ant-picker .ant-picker-input:first-child{
+   border-right: 1px solid black;
+}
