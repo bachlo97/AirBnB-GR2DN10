@@ -9,7 +9,7 @@ export const getRoomBookingThunk = createAsyncThunk(
     try {
       const bookingApi = await getRoomBookingViaUser(id);
       const bookingData = convertToBookRoom(bookingApi.data.content);
-
+  
       const roomListApi = await getRoomBookingList(bookingData);
       const roomListData = roomListApi.map((item: any) => item.data.content);
       console.log({ bookingData });

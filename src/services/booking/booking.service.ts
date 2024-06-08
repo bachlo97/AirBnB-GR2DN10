@@ -46,6 +46,7 @@ export const getRoomLocationList = async (roomList: (TRoom | null)[]) => {
     const validRoomList: TRoom[] = roomList.filter(
       (room): room is TRoom => room !== null,
     );
+    
     const promises = validRoomList.map(async ({ maViTri }) => {
       return getLocationViaCode(maViTri);
     });

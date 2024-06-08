@@ -180,7 +180,8 @@ export function Provider({ children }: { children: ReactNode }) {
       try {
         const data = await getRooms();
         let { content } = data;
-        await setRangeDefault(handleRangeSlider(content));
+        let range = handleRangeSlider(content)
+        await setRangeDefault(range);
         if (getLocalStorage(ROOM_FILTER)) {
           const { rangePrice, chooseRooms, chooseNecessities } = getLocalStorage(ROOM_FILTER);
           content = handleFilter(getLocalStorage(ROOM_FILTER), content);
@@ -201,6 +202,7 @@ export function Provider({ children }: { children: ReactNode }) {
             tivi: false,
             banUi: false,
           });
+          setRangePrice(range)
         }
         setDataRooms(content)
       } catch (e) {

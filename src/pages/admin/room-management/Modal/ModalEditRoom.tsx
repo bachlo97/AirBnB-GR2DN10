@@ -1,4 +1,4 @@
-import { Button, Modal, Space, Switch, Upload } from "antd";
+import { Button, Modal, Space, Switch, Tooltip, Upload } from "antd";
 import { useEffect, useState } from "react";
 
 import * as Yup from "yup";
@@ -11,14 +11,13 @@ import { VscEdit } from "react-icons/vsc";
 import useAlertHook from "@/hooks/notification/Alert";
 
 function ModalEditRoom(props: any) {
-  const {alertSuccessCenter}=useAlertHook()
+  const { alertSuccessCenter } = useAlertHook();
 
   const [open, setOpen] = useState(false);
   const listLocation: any = useAppSelector(
     (state) => state.locationSlice.listLocation,
   );
   const dispatch = useAppDispatch();
-
 
   const showModal = () => {
     setOpen(true);
@@ -36,9 +35,14 @@ function ModalEditRoom(props: any) {
   return (
     <>
       <Space>
-      <div  className="cursor-pointer self-center text-blue-500" onClick={showModal}>
-      <VscEdit />
-      </div>
+        <div
+          className="cursor-pointer self-center text-blue-500"
+          onClick={showModal}
+        >
+          <Tooltip title="Sửa">
+            <VscEdit />
+          </Tooltip>
+        </div>
       </Space>
       <Modal
         open={open}
@@ -46,22 +50,21 @@ function ModalEditRoom(props: any) {
         onOk={handleOk}
         onCancel={handleCancel}
         className="modalSetup"
-
       >
         <Formik
           initialValues={{
-            id:props.data.id,
+            id: props.data.id,
             tenPhong: props.data.tenPhong,
             giaTien: props.data.giaTien,
-            hinhAnh:props.data.hinhAnh,
-            khach:props.data.khach,
-            phongNgu:props.data.phongNgu,
+            hinhAnh: props.data.hinhAnh,
+            khach: props.data.khach,
+            phongNgu: props.data.phongNgu,
             giuong: props.data.giuong,
-            phongTam:props.data.phongTam,
+            phongTam: props.data.phongTam,
             quocGia: props.data.quocGia,
             moTa: props.data.moTa,
             mayGiat: props.data.mayGiat,
-            banLa:props.data.banLa,
+            banLa: props.data.banLa,
             tivi: props.data.tivi,
             dieuHoa: props.data.dieuHoa,
             wifi: props.data.wifi,
@@ -71,10 +74,10 @@ function ModalEditRoom(props: any) {
           }}
           onSubmit={(values) => {
             console.log(values);
-            
-            setOpen(false)
-            dispatch(putRoomThunk(values))
-            alertSuccessCenter('Cập nhật dữ liệu thành công')
+
+            setOpen(false);
+            dispatch(putRoomThunk(values));
+            alertSuccessCenter("Cập nhật dữ liệu thành công");
           }}
         >
           {({ handleSubmit, setFieldValue, values }) => (
@@ -347,14 +350,18 @@ function ModalEditRoom(props: any) {
                 </div>
               </div>
 
-              <div className="flex gap-3 items-end justify-end mt-5">
-          <div
-          onClick={handleCancel}
-          className='cursor-pointer border-solid border w-[50px] h-[3rem] text-center' style={{lineHeight:'2.5rem'}}
-          >Huỷ</div>
-          <ButtonPrimary width='50px' height={3} type="submit">Gửi</ButtonPrimary>
-         
-          </div>
+              <div className="mt-5 flex items-end justify-end gap-3">
+                <div
+                  onClick={handleCancel}
+                  className="h-[3rem] w-[50px] cursor-pointer border border-solid text-center"
+                  style={{ lineHeight: "2.5rem" }}
+                >
+                  Huỷ
+                </div>
+                <ButtonPrimary width="50px" height={3} type="submit">
+                  Gửi
+                </ButtonPrimary>
+              </div>
             </Form>
           )}
         </Formik>
