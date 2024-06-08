@@ -37,7 +37,7 @@ const getItems = (panelStyle:any) => [
     
     <p className="text-[1.5rem] text-gray-500">
       <Select
-        // placeholder={'asdsad'}
+        placeholder={'Địa điểm'}
         className=" w-[100%]"
         allowClear
 
