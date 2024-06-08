@@ -48,14 +48,13 @@ export default function BookingManagement({}: Props) {
       dataIndex: "stt",
       sorter: (a, b) => a.stt - b.stt,
     },
-
     {
-      title: "departure date",
-      dataIndex: "ngayDi",
+      title: "check in",
+      dataIndex: "ngayDen",
     },
     {
-      title: "arrival date",
-      dataIndex: "ngayDen",
+      title: "check out",
+      dataIndex: "ngayDi",
     },
 
     {

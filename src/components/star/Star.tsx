@@ -13,7 +13,6 @@ function Star({roomId}:Props) {
   const filledStars = Array(5)
     .fill("gold", 0, goldStar)
     .fill("gray", goldStar);
-  console.log({roomId})
 
   useEffect(() => {
     IIFE(async() => {

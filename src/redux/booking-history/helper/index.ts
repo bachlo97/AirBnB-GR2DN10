@@ -2,7 +2,7 @@
 import _ from "lodash";
 
 export const convertToBookRoom = (list: TBookRoomApi[]):TBookRoom[] =>{
-    return  _.map(list,({maPhong,soLuongKhach}) =>({maPhong,soLuongKhach}))
+    return  _.map(list,({maPhong,soLuongKhach,ngayDen,ngayDi}) =>({maPhong,soLuongKhach,ngayDen,ngayDi}))
 }
 
 
@@ -14,6 +14,8 @@ export const combineRoom = (bookingList:TBookRoom[],roomList:TRoomAPI[]) => {
           const sample = _.omit(matchingItem,['khach','moTa'])
           return {
             soLuongKhach: bookingItem.soLuongKhach,
+            ngayDen: bookingItem.ngayDen,
+            ngayDi: bookingItem.ngayDi,
             ...sample,
           };    
         }
