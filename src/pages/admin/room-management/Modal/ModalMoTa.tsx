@@ -1,10 +1,11 @@
-import { Button, Modal, Space, Upload } from 'antd';
+import { Button, Modal, Space, Tooltip, Upload } from 'antd';
 import { useState } from 'react'
+import { GrView } from 'react-icons/gr';
 
 
 function ModalMoTa(props:any) {
     const [open, setOpen] = useState(false);
-   
+
     const showModal = () => {
       setOpen(true);
     };
@@ -22,8 +23,12 @@ function ModalMoTa(props:any) {
   return (
     <>
     <Space>
+
       <div onClick={showModal} className='cursor-pointer'>
-        Xem Thêm
+     
+      <Tooltip title="Xem chi tiet">
+      <GrView />
+  </Tooltip>
       </div>
  
     </Space>

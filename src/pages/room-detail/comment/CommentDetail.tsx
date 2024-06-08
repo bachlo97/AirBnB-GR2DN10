@@ -10,11 +10,12 @@ import PageCommentDetail from './component/PageCommentDetail'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import moment from 'moment'
 import { getCommentThunk } from '@/redux/comment/Comment.slice'
+import useAlertHook from '@/hooks/notification/Alert'
 
 
 function CommentDetail() {
 
- 
+ const {alertSuccessCenter}=useAlertHook()
 
   const user:any = useAppSelector((state) => state.authReducer.user);
   const listCommentRoom:any = useAppSelector((state) => state.commentSlice.listComment);
@@ -125,7 +126,7 @@ setPostComment({
   } catch (e) {
     console.error(e);
   }
-    // reset();
+  alertSuccessCenter('Thêm bình luận thành công');
 
 }}
 >Thêm Bình Luận</ButtonPrimary>
