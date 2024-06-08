@@ -65,15 +65,10 @@ function RoomDetailLoading() {
           
         </div>
         <form action="" method="post" className='flex w-[100%] my-5 gap-5'>
-          <SImg>
-            <img className='w-[10rem]' src="https://yt3.ggpht.com/Lw90L5d4JrRQGyUInde_DyOdHWJKjG0g8CvWzQkjXamdTkdg2QgiZy6VzPVmtoNgwiFmXTvVlw=s48-c-k-c0x00ffffff-no-rj" alt="" />
-          </SImg>
+        <Skeleton width={50} height={50}></Skeleton>
           <div className="w-[100%] group-form">
-            <textarea name="" id="" className='border w-[100%] h-[20rem] px-4 py-3 outline-none'></textarea> <br />
-            <div className='text-right'>
-              {/* <ButtonPrimary width='150px' height={3.5} type="submit">Thêm Bình Luận</ButtonPrimary> */}
-
-            </div>
+          <Skeleton width='100%' height='10rem' className='my-5'></Skeleton>
+  
           </div>
 
         </form>

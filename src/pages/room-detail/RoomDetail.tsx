@@ -37,7 +37,7 @@ const RoomDetail = (_props: Props) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => setIsLoading(false), 2000);
+    setTimeout(() => setIsLoading(false), 1000);
   }, []);
 
   if (isLoading) {

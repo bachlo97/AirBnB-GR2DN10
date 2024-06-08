@@ -16,7 +16,7 @@ export function HorizontalScroll(props: Props) {
   const [isLoading, setIsLoading] = useState(true);
   const [,{setOpenModal}] = useContext(ContextStore);
   useEffect(() => {
-    setTimeout(() => setIsLoading(false), 1500);
+    setTimeout(() => setIsLoading(false), 1000);
   }, []);
 
   if (isLoading) {

@@ -65,7 +65,7 @@ function Navbar(props: Props) {
   ];
 
   useEffect(() => {
-    setTimeout(() => setIsLoading(false), 2000); // Mô phỏng thời gian tải dữ liệu
+    setTimeout(() => setIsLoading(false), 1000); // Mô phỏng thời gian tải dữ liệu
   }, []);
 
   if (isLoading) {
