@@ -6,24 +6,23 @@ import { converToRooms } from "./helpers/ConverToRooms";
 import ProductItem from "./productItem";
 import { Container } from "@/components/style-compoment/Container";
 import ProductListLoading from "./loading/ProductListLoading";
-import { getNumColumns} from "./helpers";
+import { getNumColumns } from "./helpers";
 import { AutoSizer, List, WindowScroller } from "react-virtualized";
 
 import _ from "lodash";
 import FilterPopup from "./components/filter-popup";
-import { ContextStore } from "../../context/filter-rooms.context";
+import { ContextStore } from "../../../context/filter-rooms.context";
 function ProductList() {
-  const [{dataRooms}] = useContext(ContextStore)
+  const [{ dataRooms }] = useContext(ContextStore);
   const [num, setNum] = useState(getNumColumns());
   const [list, setList] = useState(_.chunk(converToRooms(dataRooms), num));
-
 
   //DevCuong add
   useEffect(() => {
     setList(_.chunk(converToRooms(dataRooms), num));
     const handleReSize = () => {
       const newNum = getNumColumns();
-      const dataRoom = converToRooms(dataRooms)
+      const dataRoom = converToRooms(dataRooms);
       setNum(newNum);
       setList(_.chunk(dataRoom, newNum));
     };
@@ -37,7 +36,6 @@ function ProductList() {
 
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 1000);
-
   }, []);
 
   if (isLoading) {
@@ -57,7 +55,7 @@ function ProductList() {
     };
     return (
       <div key={key} style={style} className={`grid ${gridCol[num]} gap-8`}>
-        {list[index].map((item,index) => (
+        {list[index].map((item, index) => (
           <div className="mx-auto" key={index}>
             <ProductItem
               id={item.id}
@@ -79,7 +77,7 @@ function ProductList() {
   //DevCuong use react virtualize to optimize perfomance
   return (
     <Container>
-      <FilterPopup/>
+      <FilterPopup />
       {list.length ? (
         <WindowScroller>
           {({ height, scrollTop }) => (

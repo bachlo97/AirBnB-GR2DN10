@@ -1,4 +1,6 @@
+import { changeNecessities } from "@/pages/home/actions/filter-room.actions";
 import { ContextStore } from "@/pages/home/context/filter-rooms.context";
+import { useFilterRoom } from "@/pages/home/hooks/filter-rooms.hook";
 import  { useContext,} from "react";
 
 type Props = {
@@ -7,15 +9,8 @@ type Props = {
 };
 
 export function CheckBoxFilter({ name, title }: Props) {
-  const [{ chooseNecessities }, { setChooseNecessities }] =
-    useContext(ContextStore);
+  const [{ chooseNecessities }, dispatch] = useFilterRoom();
   console.log({ chooseNecessities });
-  const handleChange = (e: any) => {
-    const temp = { ...chooseNecessities };
-    temp[name] = e.target.checked;
-    setChooseNecessities(temp);
-  };
-
 
   return (    
     <>
@@ -23,7 +18,7 @@ export function CheckBoxFilter({ name, title }: Props) {
         id={name}
         type="checkbox"
         className="h-[24px] w-[24px] rounded accent-black"
-        onChange={handleChange}
+        onChange={(e) => dispatch(changeNecessities(e,name))}
         checked={chooseNecessities[name]}
       />
       <label

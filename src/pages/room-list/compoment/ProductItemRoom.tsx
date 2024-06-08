@@ -1,5 +1,5 @@
 
-import { SProductItemText } from '@/pages/home/product/product-list/Product.style'
+import { SProductItemText } from '@/pages/home/components/product/product-list/Product.style'
 import { TRoom } from '@/services/room/Room.type'
 import { FaRegHeart, FaRegUser, FaStar } from 'react-icons/fa'
 import { IoBedOutline } from 'react-icons/io5'

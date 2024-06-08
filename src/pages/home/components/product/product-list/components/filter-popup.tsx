@@ -1,25 +1,31 @@
-import {
-  ContextStore,
-  ContextType,
-  FilterParams,
-  handleNumFilter,
-} from "@/pages/home/context/filter-rooms.context";
-import { Button, Modal } from "antd";
-import React, { useContext } from "react";
+
+import { Modal } from "antd";
 import { PriceRange } from "./price-range";
 import { CountRoom } from "./count-room";
 import { Necessities } from "./necessities";
 import "./index.css";
-import { getRooms } from "@/services/room";
-import { removeLocalStorage, saveLocalStorage } from "@/utils";
+import {removeLocalStorage, saveLocalStorage } from "@/utils";
 import { COUNT_FILTER, ROOM_FILTER } from "@/constant";
+import { useFilterRoom } from "@/pages/home/hooks/filter-rooms.hook";
+import { checkModal, clearForm } from "@/pages/home/actions/filter-room.actions";
+import { FilterParams } from "@/pages/home/types/context.type";
+import { handleNumFilter } from "@/pages/home/context/helper";
 type Props = {};
 
 export default function FilterPopup({}: Props) {
   const [
-    { openModal, clear, count,rangePrice,chooseRooms,chooseNecessities,rangeDefault},
-    { setOpenModal, setClear},
-  ] = useContext<ContextType>(ContextStore);
+    {
+      openModal,
+      clear,
+      count,
+      rangePrice,
+      chooseRooms,
+      chooseNecessities,
+      rangeDefault,
+    },
+    dispatch
+    // { setOpenModal, setClear },
+  ] = useFilterRoom();
   const modalTitle = (
     <div>
       <div className="mb-3 text-center font-semibold">Bộ lọc</div>
@@ -31,7 +37,7 @@ export default function FilterPopup({}: Props) {
     <Modal
       open={openModal}
       onCancel={() => {
-        setOpenModal(false);
+        dispatch(checkModal(false))
       }}
       title={modalTitle}
       footer={
@@ -41,9 +47,9 @@ export default function FilterPopup({}: Props) {
             <button
               className="rounded-xl border-none px-3 py-1 text-[16px] font-semibold hover:bg-gray-100"
               onClick={() => {
-                setClear(!clear);
-                removeLocalStorage(ROOM_FILTER)
-                removeLocalStorage(COUNT_FILTER)
+                dispatch(clearForm(!clear))
+                removeLocalStorage(ROOM_FILTER);
+                removeLocalStorage(COUNT_FILTER);
               }}
             >
               Xoá tất cả
@@ -51,15 +57,17 @@ export default function FilterPopup({}: Props) {
             <button
               className="rounded-xl bg-[#222222] px-8 py-4 text-[16px] text-white hover:bg-[#000000]"
               onClick={() => {
-                const data:FilterParams = {
+                const data: FilterParams = {
                   rangePrice,
                   chooseNecessities,
-                  chooseRooms
+                  chooseRooms,
+                };
+                const count: number = handleNumFilter(data, rangeDefault);
+                if (count) {
+                  saveLocalStorage(ROOM_FILTER, data);
+                  saveLocalStorage(COUNT_FILTER, count);
                 }
-                const count:number = handleNumFilter(data,rangeDefault)
-                saveLocalStorage(ROOM_FILTER,data)
-                saveLocalStorage(COUNT_FILTER,count)
-                setOpenModal(false)
+                dispatch(checkModal(false));
               }}
               disabled={count ? false : true}
             >

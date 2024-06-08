@@ -1,22 +1,16 @@
 import { ROOM_FILTER } from "@/constant";
-import {
-  ContextStore,
-  ContextType,
-  handleFilter,
-} from "@/pages/home/context/filter-rooms.context";
-import { getRooms } from "@/services/room";
-import { IIFE, getLocalStorage } from "@/utils";
+import { chooseNumRoom } from "@/pages/home/actions/filter-room.actions";
 
-import { useContext, useEffect, useState } from "react";
+import { useFilterRoom } from "@/pages/home/hooks/filter-rooms.hook";
+import { getLocalStorage } from "@/utils";
+
+import { useEffect, useState } from "react";
 
 type Props = {
   type: "phongNgu" | "giuong" | "phongTam";
 };
 export function CountList({ type }: Props) {
-  const [
-    { chooseRooms, openModal, clear},
-    { setChooseRooms},
-  ] = useContext<ContextType>(ContextStore);
+  const [{ chooseRooms, openModal, clear }, dispatch] = useFilterRoom()
   const [value, setValue] = useState(0);
   const [statuses, setStatuses] = useState([
     false,
@@ -27,32 +21,35 @@ export function CountList({ type }: Props) {
     false,
     false,
   ]);
-  console.log(123456789,chooseRooms);
+  console.log(123456789, chooseRooms);
+
   useEffect(() => {
+    console.log("test132")
     const temp = { ...chooseRooms };
-    console.log('asdasdasdasd',temp)
+    console.log("asdasdasdasd", temp);
     temp[type] = statuses.every((status, index) =>
       index === 0 ? true : !status,
     )
       ? 0
       : value;
-    setChooseRooms(temp);
+    dispatch(chooseNumRoom(temp));
   }, [statuses]);
+
   useEffect(() => {
     setStatuses([false, false, false, false, false, false, false]);
   }, [clear]);
 
   useEffect(() => {
-    let arr: boolean[] = [false, false, false, false, false, false,false];
-    if(getLocalStorage(ROOM_FILTER)){
-      const {chooseRooms} = getLocalStorage(ROOM_FILTER)
-      const index = chooseRooms[type]
-      arr[index] = index ? true: false
-      setStatuses(arr)
-    }else{
-      setStatuses(arr)
+    let arr: boolean[] = [false, false, false, false, false, false, false];
+    if (getLocalStorage(ROOM_FILTER)) {
+      const { chooseRooms } = getLocalStorage(ROOM_FILTER);
+      const index = chooseRooms[type];
+      arr[index] = index ? true : false;
+      setStatuses(arr);
+    } else {
+      setStatuses(arr);
     }
-  },[openModal])
+  }, [openModal]);
 
   const handleStatuses = (idx: number) => {
     setValue(idx);

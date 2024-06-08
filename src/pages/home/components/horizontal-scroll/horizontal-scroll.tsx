@@ -6,19 +6,20 @@ import ScrollItem from "./components/scrollItem";
 import { FilterIcon } from "@/assets/icons";
 import { useScrollHorizontal } from "./hook";
 import LoadingHorizontalScroll from "./loading/LoadingHorizontalScroll";
-import { useContext, useEffect, useState } from "react";
-import { ContextStore } from "../context/filter-rooms.context";
+import { useEffect, useState } from "react";
 import { getLocalStorage } from "@/utils";
 import { COUNT_FILTER } from "@/constant";
+import { useFilterRoom } from "../../hooks/filter-rooms.hook";
+import { checkModal } from "../../actions/filter-room.actions";
 export function HorizontalScroll(props: Props) {
   const [
     { tabMenuRef, btnLeftRef, btnRightRef },
     { handleScrollLeft, handleScrollRight },
   ] = useScrollHorizontal();
   const [isLoading, setIsLoading] = useState(true);
-  const [,{setOpenModal}] = useContext(ContextStore);
+  const [,dispatch] = useFilterRoom();
   useEffect(() => {
-    setTimeout(() => setIsLoading(false), 1000);
+    setTimeout(() => setIsLoading(false), 1500);
   }, []);
 
   if (isLoading) {
@@ -56,7 +57,7 @@ export function HorizontalScroll(props: Props) {
         <button
           className="flex items-center gap-2 rounded-3xl border-[1px] border-solid border-[#dddddd] p-[14px_15px] hover:border-black hover:bg-gray-100"
           onClick={() => {
-            setOpenModal(true)
+            dispatch(checkModal(true))
           }}
         >
           <FilterIcon />
