@@ -235,7 +235,7 @@ wifi
                 </Space></p>
                 </div>
               </div> */}
-              <div className="w-[100%] border-b border-solid h-[45px]">
+              <div className="w-[100%] border-b border-solid h-[50px]">
               
                 <Space direction="vertical" className="w-[100%] px-3">
                 

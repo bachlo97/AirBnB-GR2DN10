@@ -27,7 +27,7 @@ function ToogleHeader() {
         </TextPrimary> }
 
      
-       <Switch defaultChecked={on} onChange={onChange} />
+       <Switch defaultChecked={on} onChange={onChange} className='switch' />
    
        {on?   <TextPrimary className='text'>
         EN

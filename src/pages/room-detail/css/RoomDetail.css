@@ -1,6 +1,6 @@
-#dateSearchbar :where(.css-dev-only-do-not-override-1qfezbu).ant-picker-dropdown .ant-picker-panel-container .ant-picker-panel{
-    background: linear-gradient(to left, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
-    color: white;
+#dateSearchbar .ant-picker-dropdown .ant-picker-panel-container .ant-picker-panel{
+    /* background: linear-gradient(to left, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+    color: white; */
 }
 /* #dateSearchbar :where(.css-dev-only-do-not-override-1qfezbu).ant-picker-dropdown .ant-picker-content th, :where(.css-dev-only-do-not-override-1qfezbu).ant-picker-dropdown .ant-picker-content td {
     color: white;
@@ -8,32 +8,32 @@
 #dateSearchbar :where(.css-dev-only-do-not-override-1qfezbu).ant-picker-dropdown .ant-picker-header button{
     color: white;
 } */
- :where(.css-dev-only-do-not-override-1qfezbu).ant-btn-primary{
+ .model:where(.css-dev-only-do-not-override-1qfezbu).ant-btn-primary{
     background: linear-gradient(to left, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
 }
-#dateSearchbar :where(.css-dev-only-do-not-override-1qfezbu).ant-picker-dropdown .ant-picker-header{
+#dateSearchbar .ant-picker-header{
     border-bottom: 1px solid white;
 }
-#dateSearchbar :where(.css-dev-only-do-not-override-1qfezbu).ant-picker-dropdown .ant-picker-footer{
+#dateSearchbar .ant-picker-footer{
     border-top: 1px solid white;
 }
 
-.rangePicker .search-bar :where(.css-dev-only-do-not-override-1qfezbu).ant-picker {
-padding: 0;
+.rangePicker .search-bar {
+padding: 4px;
 
 }
-.rangePicker:where(.css-dev-only-do-not-override-1qfezbu).ant-picker-range .ant-picker-range-separator{
+.rangePicker .ant-picker-range-separator{
     display: none;
 }
-.rangePicker:where(.css-dev-only-do-not-override-1qfezbu).ant-picker .ant-picker-input >input{
-    height: 35px;
+.rangePicker .ant-picker-input >input{
+    height: 38px;
     padding-left: 10px;
 }
-.rangePicker:where(.css-dev-only-do-not-override-1qfezbu).ant-picker-outlined:hover {
+.rangePicker .ant-picker-outlined:hover {
     border-color:transparent;
     background-color: transparent;
     
 }
-.rangePicker:where(.css-dev-only-do-not-override-1qfezbu).ant-picker .ant-picker-input:first-child{
+.rangePicker .ant-picker-input:first-child{
    border-right: 1px solid black;
 }

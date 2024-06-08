@@ -1,7 +1,7 @@
 
-:where(.css-dev-only-do-not-override-1qfezbu).ant-switch.ant-switch-checked {
+.switch.ant-switch.ant-switch-checked {
     background: #F62682;
 }
-:where(.css-dev-only-do-not-override-1qfezbu).ant-switch.ant-switch-checked:hover:not(.ant-switch-disabled) {
+.switch.ant-switch.ant-switch-checked:hover:not(.ant-switch-disabled) {
     background: #F62682;
 }

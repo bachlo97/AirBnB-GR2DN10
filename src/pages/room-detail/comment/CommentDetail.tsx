@@ -13,7 +13,8 @@ import { getCommentThunk } from '@/redux/comment/Comment.slice'
 
 
 function CommentDetail() {
-  
+
+ 
 
   const user:any = useAppSelector((state) => state.authReducer.user);
   const listCommentRoom:any = useAppSelector((state) => state.commentSlice.listComment);
@@ -41,7 +42,7 @@ function CommentDetail() {
     dispatch(getCommentThunk(id));
   }, [dispatch, id]);  
   
-  console.log(listCommentRoom);
+  
 
   // gui binh luan
 
@@ -57,6 +58,7 @@ const totalStarsRating=listCommentRoom.map((item:any)=>{
    total+=item.saoBinhLuan;
   averageStar=Math.floor(total/listCommentRoom.length)
 })
+
   return (
     <div className='2xl:w-3/4 mx-auto mt-8 border-t border-solid py-5'>
         <h3 className='font-semibold text-3xl mb-6'>Khách hàng đánh giá</h3>
@@ -118,10 +120,13 @@ setPostComment({
   })
   try {
     await postCommentRoom(postComment);
-    dispatch(getCommentThunk(id)); // Re-fetch comments after posting
+    dispatch(getCommentThunk(id)); 
+
   } catch (e) {
     console.error(e);
   }
+    // reset();
+
 }}
 >Thêm Bình Luận</ButtonPrimary>
               ):(

@@ -39,12 +39,12 @@ function ModalRoomDetail(props:Props) {
         // title="Địa điểm này có gì"
         onOk={handleOk}
         onCancel={handleCancel}
-   
+    className='model'
         footer={(_, { OkBtn, CancelBtn }) => (
           <>
             
             <CancelBtn />
-            <OkBtn/>
+            <OkBtn />
           </>
         )}
       >

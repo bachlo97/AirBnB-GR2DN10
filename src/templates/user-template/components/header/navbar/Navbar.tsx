@@ -175,7 +175,7 @@ function Navbar(props: Props) {
 
 </div>
 
-      <div className="absolute bg-white w-[100%] sm:bottom-[-810%] xsm:bottom-[-1050%] mobilePlus:bottom-[-910%] left-0 h-[65px] md:hidden">
+      <div className="fixed bg-white w-[100%] bottom-0 left-0 h-[65px] md:hidden">
         <div className="w-[80%] m-auto">
           <div className="flex gap-5 justify-center  mt-3">
         
