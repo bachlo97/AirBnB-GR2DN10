@@ -66,7 +66,7 @@ export function Provider({ children }: { children: ReactNode }) {
         console.log(e);
       }
     });
-  }, [openModal]);
+  }, [openModal,user]);
 
   useEffect(() => {
     IIFE(async () => {
