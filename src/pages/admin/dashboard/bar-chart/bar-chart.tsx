@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { bookingData, roomData, locationData } from "../data";
+
 import Chart from "react-apexcharts";
-import { truncateText } from "@/utils";
 import { useAppSelector } from "@/redux/hooks";
 type Props = {};
 

@@ -1,9 +1,7 @@
-import React, { useState } from "react";
 import { FaRegHeart } from "react-icons/fa";
 import { LuSend } from "react-icons/lu";
-import _ from "lodash";
-import { useNavigate } from "react-router-dom";
 import { formatDate, truncateText } from "@/utils";
+import { useRoomItem } from "./hook/room-item.hook";
 type Props = {
   data: TBookingHistory;
   heartIndex: number;
@@ -12,50 +10,8 @@ type Props = {
 };
 
 export function RoomItem({ data, heartIndex, toggleHeart, hearts }: Props) {
-  const navigate = useNavigate();
-
-  const convertEquiment: any = {
-    mayGiat: "Máy giặt",
-    banLa: "Bàn là",
-    tivi: "Ti vi",
-    dieuHoa: "Điều hoà",
-    wifi: "wifi",
-    bep: "Bếp",
-    doXe: "Đỗ xe",
-    hoBoi: "Hồ bơi",
-    banUi: "Bàn ủi",
-  };
-  const convertRoomParts: any = {
-    phongNgu: "Phòng ngủ",
-    giuong: "Giường",
-    phongTam: "Phòng tắm",
-  };
-  const renderEquiment = () => {
-    const equipment = _.pick(data, [
-      "mayGiat",
-      "banLa",
-      "tivi",
-      "dieuHoa",
-      "wifi",
-      "bep",
-      "doXe",
-      "hoBoi",
-      "banUi",
-    ]);
-    const filteredEqm = Object.entries(equipment)
-      .filter(([key, value]) => value)
-      .map(([key]) => convertEquiment[key]);
-
-    return filteredEqm.join(" - ");
-  };
-  const renderRoomParts = () => {
-    const parts = _.pick(data, ["phongNgu", "giuong", "phongTam"]);
-    const filteredParts = Object.entries(parts)
-      .filter(([key, value]) => value >= 1)
-      .map(([key, value]) => `${value} ${convertRoomParts[key]}`);
-
-    return filteredParts.join(" - ");
-  };
+  const [, { navigate, renderEquiment, renderRoomParts }]: any =
+    useRoomItem(data);
   return (
     <div className="mt-8">
       <div className="flex gap-7 mobile:flex-col mobile:items-center ipad:flex-row ipad:items-start">
