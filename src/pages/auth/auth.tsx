@@ -29,7 +29,7 @@ export default function Auth({}: Props) {
       className="flex h-[100vh] w-[100vw] items-center justify-center bg-cover bg-center bg-no-repeat after:absolute after:bottom-0 after:left-0 after:right-0 after:top-0 after:-z-10 after:bg-[#00000026] after:content-[''] "
       style={{
         backgroundImage:
-          "url(../../assets/imgs/bg-auth.avif)",
+          "url(img/bg-auth.avif)",
       }}
     >
       {transitions((props) => {
