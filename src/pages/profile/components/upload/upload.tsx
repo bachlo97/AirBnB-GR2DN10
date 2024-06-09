@@ -1,40 +1,15 @@
 import { CheckIcon, VIcon } from "@/assets/icons";
-import { USER_ID } from "@/constant";
-import { getProfileThunk } from "@/redux/auth/auth.slice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { uploadAvatar } from "@/services/user";
-import { getLocalStorage, printSuccessDialog } from "@/utils";
-import React, { useEffect, useRef, useState } from "react";
-import Swal from "sweetalert2";
+import { useUpload } from "./hook/upload.hook";
 
 type Props = {};
 
 export function Upload({}: Props) {
-  const user: any = useAppSelector((state) => state.authReducer.user);
-  const dispatch = useAppDispatch()
-  const inpRef = useRef<any>();
-
-  const [urlImage, setUrlImage] = useState('');
-  const truncateText=(text:string)=> {  
-    if (text.length <= 18) {
-      return text;
-    } else {
-      return text.substring(0, 16) + "...";
-    }
-  }
-  useEffect(()=>{
-    user && setUrlImage(user.avatar)
-  },[user])
-
-  useEffect(() => {
-    return () => {
-      URL.revokeObjectURL(urlImage);
-    };
-  }, [urlImage]);
+  const [{ user, inpRef, urlImage }, { handleChange, renderName }]: any =
+    useUpload();
   return (
     <>
       <div
-        className="mt-10 flex h-48 w-48 items-center justify-center rounded-full bg-pink-500 bg-center bg-cover bg-no-repeat"
+        className="mt-10 flex h-48 w-48 items-center justify-center rounded-full bg-pink-500 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: urlImage ? `url(${urlImage})` : "none" }}
       >
         {!urlImage ? (
@@ -43,27 +18,21 @@ export function Upload({}: Props) {
           </h1>
         ) : null}
       </div>
-      <span className="mt-2 text-[14px] underline cursor-pointer" onClick={() => {
-            inpRef.current.click();
-          }}>Cập nhật ảnh</span>
-           <input
-          onChange={async(event:any) => {
-            try{
-              const formFile = new FormData()
-              formFile.append("formFile",event.target.files[0])
-              await uploadAvatar(formFile)
-              printSuccessDialog('Bạn đã cập nhật avatar thành công')
-              setUrlImage(URL.createObjectURL(event.target.files[0]));
-              dispatch(getProfileThunk(getLocalStorage(USER_ID)))
-            }catch(err){
-              console.log(err)
-            }
-          }}
-          ref={inpRef}
-          className="hidden"
-          type="file"
-          accept="image/png, image/jpeg, image/gif"
-        />
+      <span
+        className="mt-2 cursor-pointer text-[14px] underline"
+        onClick={() => {
+          inpRef?.current.click();
+        }}
+      >
+        Cập nhật ảnh
+      </span>
+      <input
+        onChange={handleChange}
+        ref={inpRef}
+        className="hidden"
+        type="file"
+        accept="image/png, image/jpeg, image/gif"
+      />
       <div className="mt-10 w-[85%] text-left">
         <CheckIcon />
       </div>
@@ -84,7 +53,7 @@ export function Upload({}: Props) {
         <hr />
       </div>
       <div className="mt-10 w-[85%] text-left text-[19px] font-semibold">
-        <h3 className="">{user && truncateText(user?.name)} đã xác nhận</h3>
+        <h3 className="">{user && renderName()} đã xác nhận</h3>
       </div>
       <div className="mb-16 mt-4 flex w-[85%] space-x-2 text-left text-[13px]">
         <VIcon />

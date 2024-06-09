@@ -8,74 +8,31 @@ import * as Yup from "yup";
 import { editUser } from "@/services/user";
 import { closeModal, getUsersThunk } from "@/redux/admin/user-management/user-management.slice";
 import { parseBirthday, printSuccessDialog } from "@/utils";
+import { useUpdateUser } from "./hook/update-user.hook";
 type Props = {};
 
 export const UpdateUser = forwardRef(function UpdateUser(
   {}: Props,
   updateUserRef: any,
 ) {
-  const { selectedUser, modal }: any = useAppSelector(
-    (state) => state.userManagementReducer,
-  );
-  const dispatch =  useAppDispatch()
-  const [key, setKey] = useState(false);
+  // const { selectedUser, modal }: any = useAppSelector(
+  //   (state) => state.userManagementReducer,
+  // );
+  // const dispatch =  useAppDispatch()
+  // const [key, setKey] = useState(false);
 
-  useEffect(() => {
-    setKey(!key);
-  }, [modal]);
-  console.log({ selectedUser });
+  // useEffect(() => {
+  //   setKey(!key);
+  // }, [modal]);
+  // console.log({ selectedUser });
+  const [{key,initialValues,validationSchema},{onSubmit}] = useUpdateUser()
   return (
     <Formik
       enableReinitialize
       key={key ? 1 : 0}
-      initialValues={{
-        name: selectedUser.name,
-        email: selectedUser.email,
-        birthday: parseBirthday(selectedUser.birthday)
-          ? parseBirthday(selectedUser.birthday)
-          : undefined,
-        phone: selectedUser.phone,
-        gender: selectedUser.gender,
-        role: selectedUser.role,
-      }}
-      validationSchema={Yup.object({
-        email: Yup.string().email("invalid email address").required("required"),
-
-        name: Yup.string()
-          .matches(NAME_REGEX, "must be in letters")
-          .required("Required"),
-        phone: Yup.string()
-          .matches(/^\d{10,11}$/, "invalid")
-          .required("Required"),
-        birthday: Yup.date()
-          .min(
-            new Date(new Date().getFullYear() - 150, 0, 1),
-            "must be over 150 yrs",
-          )
-          .max(
-            new Date(new Date().getFullYear() - 4, 11, 31),
-            "must be over 3 yrs",
-          )
-          .required("required"),
-      })}
-      onSubmit={(values) => {
-        // alert(JSON.stringify(values, null, 2));
-        const payload = {
-          ...values,
-          id: selectedUser.id,
-          birthday: dayjs(values.birthday).format("DD/MM/YYYY"),
-        };
-        console.log({payload})
-        editUser(payload,payload.id)
-        .then((res)=>{
-          console.log({res})
-          dispatch(closeModal())
-          dispatch(getUsersThunk());
-          printSuccessDialog('Cập nhật user thành công')
-        }).catch((e)=>{
-          console.log({e})
-        })
-      }}
+      initialValues={initialValues!}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit!}
     >
       {({ values, setFieldValue, setFieldTouched }) => {
         console.log({ values });
@@ -191,6 +148,7 @@ export const UpdateUser = forwardRef(function UpdateUser(
                     onChange={(value: any) => {
                       setFieldValue("gender", value);
                     }}
+                    
                   />
                 </div>
                 <div className="w-[50%]">

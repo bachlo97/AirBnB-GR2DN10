@@ -33,7 +33,7 @@ export function DatePickerCustom({ handleDatePicker,handleBlur,label,touch,error
                     format={"DD/MM/YYYY"}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                />
+                />  
                 <label
                     htmlFor=""
                     className={`absolute ${check ? "left-0 top-[-1px] ipad:text-[1.25rem]  mobile:text-[0.75rem] italic " : "left-[5px] top-[30%] ipad:text-[16px] mobile:text-[10px]"} text-white transition-all duration-500 ease-in-out`}

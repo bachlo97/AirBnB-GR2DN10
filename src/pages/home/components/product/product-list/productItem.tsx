@@ -17,7 +17,6 @@ function ProductItem(props: TRoom) {
     }
   };
   return (
-    // <NavLink className='sm:w-[100%] 2sm:w-[49%] lg:w-[32%] xl:w-[24%] mt-[1.5rem]' to={`roomdetail/${props.id}`}>
     <NavLink className="block" to={`roomdetail/${props.id}`}>
       <div>
         <div className="relative">

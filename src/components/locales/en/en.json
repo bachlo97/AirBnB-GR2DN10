@@ -10,7 +10,9 @@
        "anyWeek":"Any week",
         "startDay":"Start day",
         "endDay":"End day",
-       "addGuests":"Add guests"  
+       "addGuests":"Add guests"  ,
+         "look":"Search",
+       "love":"Love"
       
         
     },

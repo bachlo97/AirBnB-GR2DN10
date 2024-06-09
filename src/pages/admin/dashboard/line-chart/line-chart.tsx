@@ -1,6 +1,3 @@
-import React, { useState } from "react";
-import { bookingData } from "../data";
-import { redirect } from "react-router-dom";
 import { useAppSelector } from "@/redux/hooks";
 import ReactApexChart from "react-apexcharts";
 type Props = {};

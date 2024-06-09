@@ -1,7 +1,4 @@
-import { Fragment, useContext, useEffect, useState } from "react";
-import { TRoom } from "@/services/room/Room.type";
-import { IIFE } from "@/utils";
-import { getRooms } from "@/services/room/Room.service";
+import {useContext, useEffect, useState } from "react";
 import { converToRooms } from "./helpers/ConverToRooms";
 import ProductItem from "./productItem";
 import { Container } from "@/components/style-compoment/Container";

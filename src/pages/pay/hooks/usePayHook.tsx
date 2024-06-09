@@ -49,7 +49,7 @@ const handleSubmit=()=>{
   soLuongKhach: dateRoom.customers,
   maNguoiDung: user.id,}
 )
-
+// navigate('/')
 }
   return {countDay,user,dateRoom,payRoom,navigate,handleSubmit}
 }

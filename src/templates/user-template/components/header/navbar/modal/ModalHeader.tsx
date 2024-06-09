@@ -5,7 +5,10 @@ import { IoMdSearch } from 'react-icons/io';
 import './ModalHeader.style.css';
 import { useSearchBarHook } from '../../hooks/useSearchBarHook';
 import { ButtonPrimary } from '@/components/Button/Button';
+import { useTranslation } from 'react-i18next';
 function ModalHeader() {
+  const { t } = useTranslation();
+
     const {  navigate,
         dispatch,
         isOpen,
@@ -115,7 +118,7 @@ const getItems = (panelStyle:any) => [
       >
         
         <IoMdSearch  className="text-[2.3rem]"/>
-        <div className="text-[1.5rem]">Tìm kiếm</div>
+        <div className="text-[1.5rem]">{t('header.look')}</div>
         
 </div> 
        
