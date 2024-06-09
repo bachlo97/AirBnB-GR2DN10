@@ -59,9 +59,7 @@ function HeaderSearchBar(props: any) {
     valueEndDay,
     dataOption,
     searchBarRef,
-    statuses,
-    checkAll,
-    checkStatus,
+
     handleFieldClick,
     handleDateChange,
     handleChange,
@@ -90,7 +88,7 @@ function HeaderSearchBar(props: any) {
         <SearchBar  className="search-bar-nav" ref={searchBarRef}>
           <form className="flex" onSubmit={handleSubmit} method="get" action="">
             <SearchIcoin  
-              className={`${checkAll||statuses[0]?'':'Searchbar'} ${!checkAll&&statuses[0] ?'activeSearchbar':''} search-icon `}
+              className={`${isOpen.location  ?'activeSearchbar' : ''} search-icon `}
               onClick={() => {
                 handleFieldClick("location");
                 checkStatus(0)
@@ -116,7 +114,7 @@ function HeaderSearchBar(props: any) {
             </SearchIcoin>
             <SearchIcoin
             ref={searchBarRef}
-              className={`${checkAll||statuses[1]?'':'Searchbar'} ${!checkAll&&statuses[1] ?'activeSearchbar':''} search-icon`}
+              className={`${isOpen.ngayden  ?'activeSearchbar' : ''}  search-icon`}
               onClick={() => {
                 handleFieldClick("ngayden");
                 checkStatus(1)
@@ -138,7 +136,7 @@ function HeaderSearchBar(props: any) {
               </p>
             </SearchIcoin>
             <SearchIcoin
-              className={`${checkAll||statuses[2]?'':'Searchbar'} ${!checkAll&&statuses[2] ?'activeSearchbar':''} search-icon`}
+              className={`${isOpen.ngayVe  ?'activeSearchbar' : ''} search-icon`}
               onClick={() => {
                 handleFieldClick("ngayVe");
                 checkStatus(2)
@@ -162,7 +160,7 @@ function HeaderSearchBar(props: any) {
               </p>
             </SearchIcoin>
             <SearchIcoin
-              className={`${checkAll||statuses[3]?'':'Searchbar'} ${!checkAll&&statuses[3] ?'activeSearchbar':''} search-icon`}
+              className={`${isOpen.soKhach  ?'activeSearchbar' : ''} search-icon`}
               onClick={() => {
                 handleFieldClick("soKhach");
                 checkStatus(3)

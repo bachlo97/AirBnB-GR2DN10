@@ -71,10 +71,10 @@ if (isLoading) {
 
             </div>
             <div className='box'>
-                <h4 className='text-[1.8rem] mb-3'>{t('support')}</h4>
+                <h4 className='text-[1.8rem] mb-3'>{t('footer.support')}</h4>
                 <p style={{lineHeight:'3rem'}}>
           
-                {t('helpCenter')}
+                {t('footer.helpCenter')}
 
                 </p>
                 <p style={{lineHeight:'3rem'}}>
@@ -84,68 +84,68 @@ if (isLoading) {
                 </p>
                 <p style={{lineHeight:'3rem'}}>
           
-                {t('antiDiscrimination')}
+                {t('footer.antiDiscrimination')}
 
                 </p>
                 <p style={{lineHeight:'3rem'}}>
           
-                {t('disabilitySupport')}
+                {t('footer.disabilitySupport')}
 
                 </p>
                 <p style={{lineHeight:'3rem'}}>
           
-                {t('cancellationOptions')}
+                {t('footer.cancellationOptions')}
 
                 </p>
                 <p style={{lineHeight:'3rem'}}>
           
-                {t('reportNeighborhood')}
+                {t('footer.reportNeighborhood')}
 
                 </p>
                
 
             </div>
             <div className='box'>
-                <h4 className='text-[1.8rem] mb-3' >{t('policies')}
+                <h4 className='text-[1.8rem] mb-3' >{t('footer.policies')}
                 </h4>
                 <p style={{lineHeight:'3rem'}}>
-                {t('terms')}
+                {t('footer.terms')}
 
 
                 </p>
                 <p style={{lineHeight:'3rem'}}>
                     
-                {t('payment')}
+                {t('footer.payment')}
 
                 </p>
                 <p style={{lineHeight:'3rem'}}>
                     
-                {t('information')}
+                {t('footer.information')}
 
 
                 </p>
                 <p style={{lineHeight:'3rem'}}>
                     
-                {t('operating')}
+                {t('footer.operating')}
 
                 </p>
                 <p style={{lineHeight:'3rem'}}>
                     
-                {t('loyalty')}
+                {t('footer.loyalty')}
 
                 </p>
                 <p style={{lineHeight:'3rem'}}>
                     
-                {t('experience')}
+                {t('footer.experience')}
 
                 </p>
                
 
             </div>
             <div className='box'>
-                <h4 className='text-[1.8rem] mb-3'>{t('moreInformation')}
+                <h4 className='text-[1.8rem] mb-3'>{t('footer.moreInformation')}
                 </h4>
-    <p style={{lineHeight:'3rem'}}>{t('discount')}
+    <p style={{lineHeight:'3rem'}}>{t('footer.discount')}
     y</p>
            <form action="" method="post" className='flex' ref={form} onSubmit={sendEmail}>
             <input type="email" placeholder='Vui lòng nhập email' name="user_email" className='px-3 h-[30px] text-black'/>
@@ -153,7 +153,7 @@ if (isLoading) {
             
             >Đăng Kí</ButtonPrimary>
            </form>
-               <h4 style={{lineHeight:'3rem'}}>{t('follow')}
+               <h4 style={{lineHeight:'3rem'}}>{t('footer.follow')}
                </h4>
           <div className="socials flex gap-3">
     <SocialItem>

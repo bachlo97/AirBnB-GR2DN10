@@ -118,7 +118,7 @@ const getItems = (panelStyle:any) => [
       >
         
         <IoMdSearch  className="text-[2.3rem]"/>
-        <div className="text-[1.5rem]">{t('look')}</div>
+        <div className="text-[1.5rem]">{t('header.look')}</div>
         
 </div> 
        

@@ -18,15 +18,7 @@ export const useSearchBarHook=()=>{
       soKhach: false, 
       
     });
-    const [statuses,setStatuses]=useState([false,false,false,false])
-    const checkAll=statuses.every((status)=>!status)
-    const checkStatus=(idx:number)=>{
-      setStatuses((prevStatuses)=>{
-        return prevStatuses.map((status,index)=> idx===index ? !status:false
 
-        )
-      })
-    }
     const [dataLocations, setDataLocations] = useState<TLocaltion[]>([]);
     const [valueId, setValueId] = useState(0);
     const [valueStartDay, setvalueStartDay] = useState("");
@@ -115,9 +107,7 @@ return {
     valueEndDay,
     dataOption,
     searchBarRef,
-    statuses,
-    checkAll,
-    checkStatus,
+
     handleFieldClick,
     handleDateChange,
     handleChange,

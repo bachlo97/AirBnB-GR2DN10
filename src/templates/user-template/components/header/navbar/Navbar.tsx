@@ -213,7 +213,7 @@ function Navbar(props: Props) {
             >
               
               <FaRegHeart className="text-[2.3rem]"/>
-              <div className="text-[1.5rem]">{t("love")}</div>
+              <div className="text-[1.5rem]">{t("header.love")}</div>
 </div> 
           </div>
         </div>
