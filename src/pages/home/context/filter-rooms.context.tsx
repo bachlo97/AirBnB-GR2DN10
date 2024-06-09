@@ -8,6 +8,7 @@ import { getRooms } from "@/services/room";
 import { handleFilter, handleRangeSlider } from "./helper";
 import { changDefaultRange, chooseNumRoom, choosePriceRange, countRoom, getDataRoom, resetChooseNecessities, resetChooseRoom, selectNecessities } from "../actions/filter-room.actions";
 import { ROOM_FILTER } from "@/constant";
+import { useAppSelector } from "@/redux/hooks";
 
 export type ContextType = [TPopUpProp, React.Dispatch<Action>];
 export const ContextStore = createContext<ContextType>([
@@ -37,6 +38,7 @@ export function Provider({ children }: { children: ReactNode }) {
 
   const { openModal, chooseRooms, chooseNecessities, clear ,rangePrice} = state
 
+  const user = useAppSelector(state=>state.authReducer.user)
 
   useEffect(() => {
     IIFE(async () => {
@@ -98,7 +100,7 @@ export function Provider({ children }: { children: ReactNode }) {
         console.log(e);
       }
     });
-  }, [clear]);
+  }, [clear,user]);
   return (
     <ContextStore.Provider value={[state, dispatch]}>
       {children}
