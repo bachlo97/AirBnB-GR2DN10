@@ -20,6 +20,11 @@
     .search-bar .ant-picker .ant-picker-suffix{
         display: none;
     }
+    .calendar-header .ant-picker-outlined,
+    .search-bar .ant-select-outlined .ant-select-selector{
+        background-color: transparent;
+        color: white;
+    }
     .calendar-header .ant-picker-header >button{
         color: white;
     }
@@ -42,3 +47,20 @@
     border-radius: 10rem;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     }
+  
+    .Searchbar{
+    background-color: rgba(128, 128, 128, 0.345);
+   
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    }
+.Searchbar:nth-child(1){
+        /* background-color: red; */
+        border-radius: 10rem 0 0 10rem;
+    }
+.Searchbar:nth-child(4){
+        /* background-color: red; */
+        border-radius: 0rem 10rem 10rem 0;
+    }
+    /* .Searchbar:first-child{
+        border-radius: 10rem;
+    } */

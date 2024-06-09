@@ -10,7 +10,10 @@
        "anyWeek":"Thời gian",
        "startDay":"Ngày đến",
        "endDay":"Ngày về",
-       "addGuests":"Số khách"
+       "addGuests":"Số khách",
+       "look":"Tìm kiếm",
+       "love":"Yêu thích"
+       
     },
     "footer":{
         "support":"Hỗ trợ",

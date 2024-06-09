@@ -11,9 +11,11 @@ import { useSendEmailHook } from './hooks/SendEmailHook';
 import { Container } from '@/components/style-compoment/Container';
 import FooterLoading from "./loading/FooterLoading";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 
 function Footer() {
+    const { t } = useTranslation();
 
 const {form,sendEmail}=useSendEmailHook();
 const [isLoading, setIsLoading] = useState(true);
@@ -69,10 +71,10 @@ if (isLoading) {
 
             </div>
             <div className='box'>
-                <h4 className='text-[1.8rem] mb-3'>Hỗ trợ</h4>
+                <h4 className='text-[1.8rem] mb-3'>{t('support')}</h4>
                 <p style={{lineHeight:'3rem'}}>
           
-                    Trung tâm trợ giúp
+                {t('helpCenter')}
 
                 </p>
                 <p style={{lineHeight:'3rem'}}>
@@ -82,70 +84,77 @@ if (isLoading) {
                 </p>
                 <p style={{lineHeight:'3rem'}}>
           
-                Chống phân biệt đối xử
+                {t('antiDiscrimination')}
 
                 </p>
                 <p style={{lineHeight:'3rem'}}>
           
-                Hỗ trợ người khuyết tật
+                {t('disabilitySupport')}
 
                 </p>
                 <p style={{lineHeight:'3rem'}}>
           
-                Các tùy chọn hủy
+                {t('cancellationOptions')}
 
                 </p>
                 <p style={{lineHeight:'3rem'}}>
           
-                Báo cáo lo ngại của khu dân cư
+                {t('reportNeighborhood')}
 
                 </p>
                
 
             </div>
             <div className='box'>
-                <h4 className='text-[1.8rem] mb-3' >Chính sách & Quy định</h4>
+                <h4 className='text-[1.8rem] mb-3' >{t('policies')}
+                </h4>
                 <p style={{lineHeight:'3rem'}}>
-                    
-                Điều khoản và điều kiện
+                {t('terms')}
+
 
                 </p>
                 <p style={{lineHeight:'3rem'}}>
                     
-                Quy định về thanh toán
-                </p>
-                <p style={{lineHeight:'3rem'}}>
-                    
-                Chính sách bảo mật thông tin
+                {t('payment')}
 
                 </p>
                 <p style={{lineHeight:'3rem'}}>
                     
-                Quy chế hoạt động
-                </p>
-                <p style={{lineHeight:'3rem'}}>
-                    
-                Chương trình khách hàng thân thiết
+                {t('information')}
+
 
                 </p>
                 <p style={{lineHeight:'3rem'}}>
                     
-                Chương trình đánh giá trải nghiệm 
+                {t('operating')}
+
+                </p>
+                <p style={{lineHeight:'3rem'}}>
+                    
+                {t('loyalty')}
+
+                </p>
+                <p style={{lineHeight:'3rem'}}>
+                    
+                {t('experience')}
 
                 </p>
                
 
             </div>
             <div className='box'>
-                <h4 className='text-[1.8rem] mb-3'>Thông tin thêm</h4>
-    <p style={{lineHeight:'3rem'}}>Bạn muốn mã giảm giá hãy đăng kí ngay tại đây</p>
+                <h4 className='text-[1.8rem] mb-3'>{t('moreInformation')}
+                </h4>
+    <p style={{lineHeight:'3rem'}}>{t('discount')}
+    y</p>
            <form action="" method="post" className='flex' ref={form} onSubmit={sendEmail}>
             <input type="email" placeholder='Vui lòng nhập email' name="user_email" className='px-3 h-[30px] text-black'/>
             <ButtonPrimary width='75px' height={ 3.2} type="submit" className='text-2xl'
             
             >Đăng Kí</ButtonPrimary>
            </form>
-               <h4 style={{lineHeight:'3rem'}}>Theo dõi chúng tôi qua</h4>
+               <h4 style={{lineHeight:'3rem'}}>{t('follow')}
+               </h4>
           <div className="socials flex gap-3">
     <SocialItem>
        <BiLogoFacebook />

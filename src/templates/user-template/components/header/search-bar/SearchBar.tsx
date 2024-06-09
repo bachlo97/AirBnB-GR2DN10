@@ -17,8 +17,15 @@ import { useTranslation } from "react-i18next";
 
 
 function HeaderSearchBar(props: any) {
+
+
   const {t}=useTranslation();
-  const myRef=useRef(null);
+
+
+  const handleButtonClick = (buttonRef:any) => {
+    // Xử lý khi người dùng nhấp vào nút
+    console.log('Người dùng đã nhấp vào nút:', buttonRef.current.innerText);
+  };
   const [showButton, setShowButton] = useState(true);
 
   const [isLoading, setIsLoading] = useState(true);
@@ -32,9 +39,13 @@ function HeaderSearchBar(props: any) {
     valueEndDay,
     dataOption,
     searchBarRef,
+    statuses,
+    checkAll,
+    checkStatus,
     handleFieldClick,
     handleDateChange,
     handleChange,
+
     handleSubmit}=useSearchBarHook();
 
    
@@ -60,11 +71,11 @@ function HeaderSearchBar(props: any) {
       {props.scrollY ? (
         <SearchBar  className="search-bar-nav" ref={searchBarRef}>
           <form className="flex" onSubmit={handleSubmit} method="get" action="">
-            <SearchIcoin  ref={myRef}
-              className={`${isOpen.location? "activeSearchbar" :""}  search-icon `}
+            <SearchIcoin  
+              className={`${checkAll||statuses[0]?'':'Searchbar'} ${!checkAll&&statuses[0] ?'activeSearchbar':''} search-icon `}
               onClick={() => {
                 handleFieldClick("location");
-             
+                checkStatus(0)
               }}
               
             >
@@ -87,10 +98,10 @@ function HeaderSearchBar(props: any) {
             </SearchIcoin>
             <SearchIcoin
             ref={searchBarRef}
-              className={`${isOpen.ngayden ? "activeSearchbar" : ""} search-icon`}
+              className={`${checkAll||statuses[1]?'':'Searchbar'} ${!checkAll&&statuses[1] ?'activeSearchbar':''} search-icon`}
               onClick={() => {
                 handleFieldClick("ngayden");
-         
+                checkStatus(1)
               }}
             >
               <h5 className="mt-3 text-[1.4rem]">{t('header.startDay')}</h5>
@@ -109,10 +120,10 @@ function HeaderSearchBar(props: any) {
               </p>
             </SearchIcoin>
             <SearchIcoin
-              className={`${isOpen.ngayVe ? "activeSearchbar" : ""} search-icon`}
+              className={`${checkAll||statuses[2]?'':'Searchbar'} ${!checkAll&&statuses[2] ?'activeSearchbar':''} search-icon`}
               onClick={() => {
                 handleFieldClick("ngayVe");
-              
+                checkStatus(2)
               }}
            
             >
@@ -133,9 +144,10 @@ function HeaderSearchBar(props: any) {
               </p>
             </SearchIcoin>
             <SearchIcoin
-              className={`${isOpen.soKhach ? "activeSearchbar" : ""} search-icon`}
+              className={`${checkAll||statuses[3]?'':'Searchbar'} ${!checkAll&&statuses[3] ?'activeSearchbar':''} search-icon`}
               onClick={() => {
                 handleFieldClick("soKhach");
+                checkStatus(3)
               }}
             >
               <h5 className="mt-3 text-[1.4rem]">{t('header.addGuests')} </h5>

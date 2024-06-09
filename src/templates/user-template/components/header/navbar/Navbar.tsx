@@ -185,7 +185,7 @@ function Navbar(props: Props) {
             >
               
               <FaRegHeart className="text-[2.3rem]"/>
-              <div className="text-[1.5rem]">Yêu thích</div>
+              <div className="text-[1.5rem]">{t("love")}</div>
 </div> 
           </div>
       
