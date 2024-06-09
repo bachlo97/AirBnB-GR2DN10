@@ -17,8 +17,15 @@ import { useTranslation } from "react-i18next";
 import { useTransition, animated } from "@react-spring/web";
 
 function HeaderSearchBar(props: any) {
-  const { t } = useTranslation();
-  const myRef = useRef(null);
+
+
+  const {t}=useTranslation();
+
+
+  const handleButtonClick = (buttonRef:any) => {
+    // Xử lý khi người dùng nhấp vào nút
+    console.log('Người dùng đã nhấp vào nút:', buttonRef.current.innerText);
+  };
   const [showButton, setShowButton] = useState(true);
 
   const transitions = useTransition(props.scrollY, {
@@ -52,11 +59,12 @@ function HeaderSearchBar(props: any) {
     valueEndDay,
     dataOption,
     searchBarRef,
+
     handleFieldClick,
     handleDateChange,
     handleChange,
-    handleSubmit,
-  } = useSearchBarHook();
+
+    handleSubmit}=useSearchBarHook();
 
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 1000);
@@ -75,143 +83,123 @@ function HeaderSearchBar(props: any) {
   }
 
   return (
-    <NavItem className="search-bar mb-5">
-      {props.scrollY
-        ? transitions((props) => (
-            <animated.div style={props}>
-              <SearchBar className="search-bar-nav" ref={searchBarRef}>
-                <form
-                  className="flex"
-                  onSubmit={handleSubmit}
-                  method="get"
-                  action=""
-                >
-                  <SearchIcoin
-                    ref={myRef}
-                    className={`${isOpen.location ? "activeSearchbar" : ""}  search-icon `}
-                    onClick={() => {
-                      handleFieldClick("location");
-                    }}
-                  >
-                    <h5 className="ml-4 mt-3 text-[1.4rem]">
-                      {t("header.anyWhere")}
-                    </h5>
-                    <p className="text-[1.5rem] text-gray-500">
-                      <Select
-                        placeholder={t("header.anyWhere")}
-                        className="my-select w-[150px]"
-                        allowClear
-                        onChange={handleChange}
-                        options={dataOption}
-                        open={isOpen.location}
-                        showSearch
-                        onSearch={onSearch}
-                        filterOption={filterOption}
-                      />
-                    </p>
-                  </SearchIcoin>
-                  <SearchIcoin
-                    ref={searchBarRef}
-                    className={`${isOpen.ngayden ? "activeSearchbar" : ""} search-icon`}
-                    onClick={() => {
-                      handleFieldClick("ngayden");
-                    }}
-                  >
-                    <h5 className="mt-3 text-[1.4rem]">
-                      {t("header.startDay")}
-                    </h5>
-                    <p className="text-[1.5rem] text-gray-500">
-                      <Space direction="vertical">
-                        <DatePicker
-                          placeholder={t("header.startDay")}
-                          onChange={(selectedDate) =>
-                            handleDateChange(selectedDate, "currentDay")
-                          }
-                          name="currentDay"
-                          open={isOpen.ngayden}
-                          popupClassName="calendar-header"
-                          disabledDate={(current) =>
-                            current && current.valueOf() < Date.now()
-                          }
-                        />
-                      </Space>
-                    </p>
-                  </SearchIcoin>
-                  <SearchIcoin
-                    className={`${isOpen.ngayVe ? "activeSearchbar" : ""} search-icon`}
-                    onClick={() => {
-                      handleFieldClick("ngayVe");
-                    }}
-                  >
-                    <h5 className="mt-3 text-[1.4rem]">{t("header.endDay")}</h5>
-                    <p className="text-[1.5rem] text-gray-500">
-                      <Space direction="vertical">
-                        <DatePicker
-                          placeholder={t("header.endDay")}
-                          className="date-picker-header"
-                          onChange={(selectedDate) =>
-                            handleDateChange(selectedDate, "nextDay")
-                          }
-                          name="nextDay"
-                          open={isOpen.ngayVe}
-                          popupClassName="calendar-header"
-                          disabledDate={(current) =>
-                            current && current.valueOf() < Date.now()
-                          }
-                        />
-                      </Space>
-                    </p>
-                  </SearchIcoin>
-                  <SearchIcoin
-                    className={`${isOpen.soKhach ? "activeSearchbar" : ""} search-icon`}
-                    onClick={() => {
-                      handleFieldClick("soKhach");
-                    }}
-                  >
-                    <h5 className="mt-3 text-[1.4rem]">
-                      {t("header.addGuests")}{" "}
-                    </h5>
-                    <p className="flex items-center gap-3 text-[1.8rem] text-gray-500">
-                      <button
-                        onClick={() => {
-                          valueGuess < 20
-                            ? setValueGuess((value) => value + 1)
-                            : valueGuess;
-                        }}
-                      >
-                        +
-                      </button>
-                      {valueGuess}
-                      <button
-                        onClick={() => {
-                          valueGuess > 0
-                            ? setValueGuess((value) => value - 1)
-                            : "0";
-                        }}
-                      >
-                        -
-                      </button>
-                    </p>
-                  </SearchIcoin>
-                  <button
-                    type="submit"
-                    onClick={(e) => {
-                      dispatch(setStartDayRoom(valueStartDay));
-                      dispatch(setEndDayRoom(valueEndDay));
-                      navigate(`/roomlist/${valueId}`);
-                    }}
-                  >
-                    <SearchIconSubmi>
-                      <div className="flex items-center justify-center">
-                        <FaMagnifyingGlass />
-                      </div>
-                    </SearchIconSubmi>
-                  </button>
-                </form>
-              </SearchBar>
-            </animated.div>
-          ))
-        : ``}
+    <NavItem className="mb-5 search-bar">
+      {props.scrollY ? (
+        <SearchBar  className="search-bar-nav" ref={searchBarRef}>
+          <form className="flex" onSubmit={handleSubmit} method="get" action="">
+            <SearchIcoin  
+              className={`${isOpen.location  ?'activeSearchbar' : ''} search-icon `}
+              onClick={() => {
+                handleFieldClick("location");
+                checkStatus(0)
+              }}
+              
+            >
+              <h5 className="ml-4 mt-3 text-[1.4rem]">{t('header.anyWhere')}</h5>
+              <p className="text-[1.5rem] text-gray-500">
+                <Select
+                  placeholder={t('header.anyWhere')}
+                  className="my-select w-[150px]"
+                  allowClear
+                  onChange={handleChange}
+                  options={dataOption}
+                  open={isOpen.location}
+
+                  showSearch
+ onSearch={onSearch}
+    filterOption={filterOption}
+    
+                />
+              </p>
+            </SearchIcoin>
+            <SearchIcoin
+            ref={searchBarRef}
+              className={`${isOpen.ngayden  ?'activeSearchbar' : ''}  search-icon`}
+              onClick={() => {
+                handleFieldClick("ngayden");
+                checkStatus(1)
+              }}
+            >
+              <h5 className="mt-3 text-[1.4rem]">{t('header.startDay')}</h5>
+              <p className="text-[1.5rem] text-gray-500">
+                <Space direction="vertical" className="verSpace">
+                  <DatePicker
+                    placeholder={t('header.startDay')}
+                    onChange={(selectedDate) => handleDateChange(selectedDate,'currentDay')}
+                    name="currentDay"
+                    open={isOpen.ngayden}
+                    popupClassName="calendar-header"
+                    disabledDate={(current) => current && current.valueOf() < Date.now()}
+
+                  />
+                </Space>
+              </p>
+            </SearchIcoin>
+            <SearchIcoin
+              className={`${isOpen.ngayVe  ?'activeSearchbar' : ''} search-icon`}
+              onClick={() => {
+                handleFieldClick("ngayVe");
+                checkStatus(2)
+              }}
+           
+            >
+              <h5 className="mt-3 text-[1.4rem]">{t('header.endDay')}</h5>
+              <p className="text-[1.5rem] text-gray-500">
+                <Space direction="vertical">
+                  <DatePicker 
+                  placeholder={t('header.endDay')}
+                   className="date-picker-header"
+                    onChange={(selectedDate) => handleDateChange(selectedDate,'nextDay')}
+                  name="nextDay"
+                  open={isOpen.ngayVe}
+                  popupClassName="calendar-header"
+                  disabledDate={(current) => current && current.valueOf() < Date.now()}
+
+                  />
+                </Space>
+              </p>
+            </SearchIcoin>
+            <SearchIcoin
+              className={`${isOpen.soKhach  ?'activeSearchbar' : ''} search-icon`}
+              onClick={() => {
+                handleFieldClick("soKhach");
+                checkStatus(3)
+              }}
+            >
+              <h5 className="mt-3 text-[1.4rem]">{t('header.addGuests')} </h5>
+              <p className="text-[1.8rem] flex gap-3 items-center text-gray-500">
+                <button onClick={()=>{
+                 valueGuess <20?  setValueGuess(value=>value+1): valueGuess;
+                }}>+</button>
+              {valueGuess}
+              <button onClick={()=>{
+           
+                  valueGuess >0?   ( setValueGuess(value=>value-1)) :'0'
+                }}>-</button>
+              </p>
+            </SearchIcoin>
+            <button
+              type="submit"
+              onClick={(e) => {
+               
+                dispatch(setStartDayRoom(valueStartDay));
+                dispatch(setEndDayRoom(valueEndDay));
+                navigate(`/roomlist/${valueId}`);
+                
+                
+              }}
+            >
+              <SearchIconSubmi>
+                <div className="flex items-center justify-center">
+                  <FaMagnifyingGlass />
+                </div>
+              </SearchIconSubmi>
+            </button>
+          </form>
+        </SearchBar>
+      ) : (
+        ``
+      )}
     </NavItem>
   );
 }

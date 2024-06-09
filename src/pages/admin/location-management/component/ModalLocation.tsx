@@ -66,7 +66,7 @@ function ModalLocation() {
        dispatch(addAdminLocationThunk(values))  
         dispatch(getAdminLocationThunk(''))
        setOpen(false);
-       resetForm();
+       resetForm(); 
        alertSuccessCenter('Thêm dữ liệu thành công')
      
       }}
@@ -114,6 +114,7 @@ function ModalLocation() {
         </Form>
       )}
     </Formik>
+    
     </Modal>
   </>
   )

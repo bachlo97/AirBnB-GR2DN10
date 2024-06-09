@@ -18,6 +18,7 @@ export const useSearchBarHook=()=>{
       soKhach: false, 
       
     });
+
     const [dataLocations, setDataLocations] = useState<TLocaltion[]>([]);
     const [valueId, setValueId] = useState(0);
     const [valueStartDay, setvalueStartDay] = useState("");
@@ -33,6 +34,8 @@ export const useSearchBarHook=()=>{
           Object.keys(prevIsOpen).filter((key) => key !== field).map((key) => [key, false])
         )),
       }));
+      
+   
     };
   
     useEffect(() => {
@@ -77,7 +80,7 @@ export const useSearchBarHook=()=>{
       const handleClickOutside = (event:any) => {
         if (searchBarRef.current && !searchBarRef.current.contains(event.target)) {
           // Click occurred outside of the search bar
-          console.log('asd');
+         
           setIsOpen({
             location: false,
             ngayden: false, 
@@ -104,10 +107,12 @@ return {
     valueEndDay,
     dataOption,
     searchBarRef,
+
     handleFieldClick,
     handleDateChange,
     handleChange,
-    handleSubmit
+    handleSubmit,
+
 }
   
    

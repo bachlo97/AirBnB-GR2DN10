@@ -20,6 +20,7 @@ box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 @media (min-width: 1280px) {
     width: 68%;
 }
+
 @media (min-width: 1700px) {
     width: 46%;
 }
@@ -29,7 +30,7 @@ export const SearchIcoin=styled.div`
 cursor: pointer;
 
 
-width:220px;
+width:25%;
 height: 60px;
 
 padding: 0 5rem;
