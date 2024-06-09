@@ -1,4 +1,4 @@
-import { Input, Popconfirm, Space, Table, Tag } from 'antd';
+import { Input, Popconfirm, Space, Table, Tag, Tooltip } from 'antd';
 import React, { useEffect, useRef, useState } from 'react'
 import qs from 'qs';
 import { TLocaltion } from '@/services/localtion/Localtion.type';
@@ -84,7 +84,10 @@ function TableRender() {
                 className={" mr-3 cursor-pointer text-[20px] text-red-500"}
                 onClick={async () => {}}
               >
+                <Tooltip title ='Xoá'>
                 <TiDelete />
+
+                </Tooltip>
               </span>
             </Popconfirm>
 

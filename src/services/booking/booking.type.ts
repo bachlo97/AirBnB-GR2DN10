@@ -6,7 +6,7 @@ type TBookRoomApi = {
   soLuongKhach: number;
   maNguoiDung: number;
 };
-type TBookRoom = Pick<TBookRoomApi, "maPhong" | "soLuongKhach">;
+type TBookRoom = Omit<TBookRoomApi, "id" | "maNguoiDung">;
 
 type TRoomAPI = {
   id: number;
@@ -30,7 +30,7 @@ type TRoomAPI = {
   hinhAnh: string;
 };
 
-type TRoom = Omit<TRoomAPI, "khach" | "moTa"> & Pick<TBookRoom, "soLuongKhach">;
+type TRoom = Omit<TRoomAPI, "khach" | "moTa"> & Pick<TBookRoom, "soLuongKhach" | "ngayDen" | 'ngayDi'>;
 
 type TLocationApi = {
   id: number;

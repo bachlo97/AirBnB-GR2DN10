@@ -9,7 +9,7 @@ export const getRoomBookingThunk = createAsyncThunk(
     try {
       const bookingApi = await getRoomBookingViaUser(id);
       const bookingData = convertToBookRoom(bookingApi.data.content);
-
+  
       const roomListApi = await getRoomBookingList(bookingData);
       const roomListData = roomListApi.map((item: any) => item.data.content);
       console.log({ bookingData });
@@ -20,7 +20,7 @@ export const getRoomBookingThunk = createAsyncThunk(
       const locationListData = locationListApi.map((item:any) => item.data.content)
       const result = handleResult(roomCombine,locationListData)
       console.log({result})
-      return result
+      return result.reverse()
     } catch (e) {
       console.log(e);
     }

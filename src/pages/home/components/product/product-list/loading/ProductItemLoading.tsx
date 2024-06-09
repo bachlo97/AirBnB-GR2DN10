@@ -1,6 +1,6 @@
 import React from 'react'
 import Skeleton from 'react-loading-skeleton'
-import { SProductItemText } from '@/pages/home/product/product-list/Product.style'
+import { SProductItemText } from '@/pages/home/components/product/product-list/Product.style'
 
 function ProductItemLoading() {
   return (

@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import type { TableColumnsType, TableProps } from "antd";
 import React, { useEffect, useRef } from "react";
-import { Table, Input, Popconfirm } from "antd";
+import { Table, Input, Popconfirm, Breadcrumb, Tooltip } from "antd";
 import { IoSearchOutline } from "react-icons/io5";
 import { GrOverview } from "react-icons/gr";
 
@@ -48,14 +48,13 @@ export default function BookingManagement({}: Props) {
       dataIndex: "stt",
       sorter: (a, b) => a.stt - b.stt,
     },
-
     {
-      title: "departure date",
-      dataIndex: "ngayDi",
+      title: "check in",
+      dataIndex: "ngayDen",
     },
     {
-      title: "arrival date",
-      dataIndex: "ngayDen",
+      title: "check out",
+      dataIndex: "ngayDi",
     },
 
     {
@@ -95,7 +94,9 @@ export default function BookingManagement({}: Props) {
                 dispatch(setSucess());
               }}
             >
-              <GrOverview />
+              <Tooltip title="View detail">
+                <GrOverview />
+              </Tooltip>
             </div>
 
             <Popconfirm
@@ -113,7 +114,9 @@ export default function BookingManagement({}: Props) {
               okText="Chắn chắn"
             >
               <span className={" mr-3 cursor-pointer text-[20px] text-red-500"}>
-                <TiDelete />
+                <Tooltip title="Delete">
+                  <TiDelete />
+                </Tooltip>
               </span>
             </Popconfirm>
           </div>
@@ -122,7 +125,7 @@ export default function BookingManagement({}: Props) {
     },
   ];
 
-  const data = bookingList.map((item: DataType, index:number) => ({
+  const data = bookingList.map((item: DataType, index: number) => ({
     ...item,
     stt: index + 1,
   }));
@@ -139,7 +142,18 @@ export default function BookingManagement({}: Props) {
 
   return (
     <div>
-      <h3 className="mb-5 text-4xl font-bold">Quản lý đặt phòng</h3>
+      <Breadcrumb
+        items={[
+          {
+            title: "Admin",
+          },
+
+          {
+            title: "Quản lý thông tin đặt phòng",
+          },
+        ]}
+      />
+      <h3 className="mb-5 text-center text-4xl font-bold">Quản lý đặt phòng</h3>
       <BookingModal />
       <Search
         className="mb-4"

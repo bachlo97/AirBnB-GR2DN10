@@ -20,7 +20,7 @@
     .search-bar .ant-picker .ant-picker-suffix{
         display: none;
     }
-    .calendar-header .ant-picker-outlined,
+    .Searchbar .ant-picker-outlined,
     .search-bar .ant-select-outlined .ant-select-selector{
         background-color: transparent;
         color: white;

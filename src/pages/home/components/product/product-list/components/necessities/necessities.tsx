@@ -9,7 +9,7 @@ export function Necessities({}: Props) {
       <h2 className="text-[22px]">Tiện nghi</h2>
       <h3 className="mt-2 font-normal">Đồ dùng thiết yếu</h3>
 
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-2 ipad:gap-0 mobile:gap-10">
         <div>
           <div className="my-5 flex items-center gap-3">
             <CheckBoxFilter name="wifi" title="Wi-fi" />

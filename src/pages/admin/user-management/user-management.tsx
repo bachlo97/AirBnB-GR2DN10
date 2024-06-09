@@ -8,7 +8,7 @@ import {
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import type { TableColumnsType, TableProps } from "antd";
 import React, { useEffect, useRef, useState } from "react";
-import { Table, Input, Button, Popconfirm, Tag } from "antd";
+import { Table, Input, Button, Popconfirm, Tag, Tooltip, Breadcrumb } from "antd";
 import { IoSearchOutline } from "react-icons/io5";
 import { IoIosMale } from "react-icons/io";
 import { IoFemaleOutline } from "react-icons/io5";
@@ -108,22 +108,24 @@ export default function UserManagement({}: Props) {
                     }),
                   );
                   const userAPI = await getProfile(user.id);
-                  const payload = userAPI.data.content
-                  dispatch(getUser(payload))
+                  const payload = userAPI.data.content;
+                  dispatch(getUser(payload));
                 } catch (e) {
                   console.log(e);
                 }
               }}
             >
-              <VscEdit />
+              <Tooltip title="Edit">
+                <VscEdit />
+              </Tooltip>
             </div>
 
             <Popconfirm
               title="Bạn có muốn xóa "
               onConfirm={async () => {
-                await deleteUser(user.id)
-                dispatch(getUsersThunk())
-                printSuccessDialog('Xoá người dùng thành công')
+                await deleteUser(user.id);
+                dispatch(getUsersThunk());
+                printSuccessDialog("Xoá người dùng thành công");
               }}
               cancelText="Huỷ"
               okText="Chắn chắn"
@@ -132,7 +134,9 @@ export default function UserManagement({}: Props) {
                 className={" mr-3 cursor-pointer text-[20px] text-red-500"}
                 onClick={async () => {}}
               >
-                <TiDelete />
+                <Tooltip title="Delete">
+                  <TiDelete />
+                </Tooltip>
               </span>
             </Popconfirm>
           </div>
@@ -160,7 +164,18 @@ export default function UserManagement({}: Props) {
 
   return (
     <div>
-      <h3 className="mb-5 text-4xl font-bold">Quản lý người dùng</h3>
+            <Breadcrumb
+        items={[
+          {
+            title: "Admin",
+          },
+
+          {
+            title: "Quản lý thông tin người dùng",
+          },
+        ]}
+      />
+      <h3 className="mb-5 text-4xl font-bold text-center">Quản lý người dùng</h3>
       <Button
         className="mb-4"
         onClick={() => {
@@ -186,7 +201,7 @@ export default function UserManagement({}: Props) {
           if (userRef.current) {
             clearTimeout(userRef.current);
           }
-         userRef.current = setTimeout(async () => {
+          userRef.current = setTimeout(async () => {
             if (e.target.value) {
               dispatch(searchUsersThunk(e.target.value));
             } else {

@@ -7,14 +7,14 @@ import {
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { DatePicker, Select, Space } from "antd";
 import "./style.css";
-import {  useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { setStartDayRoom, setEndDayRoom } from "@/redux/room/Date.slice";
 
 import SearchBarLoading from "../loading/SearchBarLoading";
 import { useSearchBarHook } from "../hooks/useSearchBarHook";
 import { useTranslation } from "react-i18next";
-
+import { useTransition, animated } from "@react-spring/web";
 
 function HeaderSearchBar(props: any) {
 
@@ -28,12 +28,32 @@ function HeaderSearchBar(props: any) {
   };
   const [showButton, setShowButton] = useState(true);
 
+  const transitions = useTransition(props.scrollY, {
+    from: {
+      opacity: 0.5,
+      transform: "scale(0.5) translateY(-40px)",
+      display: "block",
+    },
+    enter: {
+      opacity: 1,
+      transform: "scale(1) translateY(0px)",
+      display: "block",
+    },
+    leave: {
+      opacity: 0,
+      transform: "scale(0) translateY(-40px)",
+      display: "none",
+    },
+    config: { duration: 300 },
+  });
+
   const [isLoading, setIsLoading] = useState(true);
-  const [valueGuess,setValueGuess]=useState(0);
-  const {  navigate,
+  const [valueGuess, setValueGuess] = useState(0);
+  const {
+    navigate,
     dispatch,
     isOpen,
-   
+
     valueId,
     valueStartDay,
     valueEndDay,
@@ -48,23 +68,21 @@ function HeaderSearchBar(props: any) {
 
     handleSubmit}=useSearchBarHook();
 
-   
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 1000);
   }, []);
 
-  const onSearch = (value:any) => {
-    console.log('search:', value);
+  const onSearch = (value: any) => {
+    console.log("search:", value);
   };
-  
+
   // Filter `option.label` match the user type `input`
-  const filterOption = (input: string, option: { label: any; }) =>
-    (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
+  const filterOption = (input: string, option: { label: any }) =>
+    (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
 
   if (isLoading) {
     return <SearchBarLoading scrollY={props.scrollY}></SearchBarLoading>;
   }
-
 
   return (
     <NavItem className="mb-5 search-bar">
@@ -106,7 +124,7 @@ function HeaderSearchBar(props: any) {
             >
               <h5 className="mt-3 text-[1.4rem]">{t('header.startDay')}</h5>
               <p className="text-[1.5rem] text-gray-500">
-                <Space direction="vertical" >
+                <Space direction="vertical" className="verSpace">
                   <DatePicker
                     placeholder={t('header.startDay')}
                     onChange={(selectedDate) => handleDateChange(selectedDate,'currentDay')}

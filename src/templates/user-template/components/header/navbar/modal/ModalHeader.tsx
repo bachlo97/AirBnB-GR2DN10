@@ -40,7 +40,7 @@ const getItems = (panelStyle:any) => [
     
     <p className="text-[1.5rem] text-gray-500">
       <Select
-        // placeholder={'asdsad'}
+        placeholder={'Địa điểm'}
         className=" w-[100%]"
         allowClear
 
@@ -61,7 +61,7 @@ const getItems = (panelStyle:any) => [
     children: <Space direction="vertical" 
     className='w-[100%]'>
     <DatePicker
-      placeholder='sad'
+      placeholder='Ngày đến'
      
       name="currentDay"
       className='w-[100%]'
@@ -78,7 +78,7 @@ const getItems = (panelStyle:any) => [
     children: <Space direction="vertical" 
     className='w-[100%]'>
     <DatePicker
-      placeholder='sad'
+      placeholder='Ngày về'
      
       name="currentDay"
       className='w-[100%]'
@@ -87,12 +87,6 @@ const getItems = (panelStyle:any) => [
 
     />
   </Space>,
-    style: panelStyle,
-  },
-  {
-    key: '4',
-    label: 'Khách',
-    children: <p>asdasd</p>,
     style: panelStyle,
   },
 ];

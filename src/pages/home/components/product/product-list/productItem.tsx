@@ -2,6 +2,7 @@ import React from "react";
 import { FaRegHeart, FaRegUser } from "react-icons/fa";
 import { IoBedOutline } from "react-icons/io5";
 import { MdBedroomChild } from "react-icons/md";
+import { MdOutlineBathroom } from "react-icons/md";
 import { SProductItemText } from "./Product.style";
 import { TRoom } from "@/services/room/Room.type";
 import { NavLink } from "react-router-dom";
@@ -36,12 +37,15 @@ function ProductItem(props: TRoom) {
           <p className="text-[1.8rem] font-bold">${props.giaTien}/Đêm</p>
           <div className="product-icons flex gap-3">
             <div className="flex items-center">
-              
               <IoBedOutline />: {props.giuong}
             </div>
             <div className="flex items-center">
               {" "}
               <MdBedroomChild />: {props.phongNgu}
+            </div>
+            <div className="flex items-center">
+              {" "}
+              <MdOutlineBathroom />: {props.phongTam}
             </div>
             <div className="flex items-center">
               {" "}

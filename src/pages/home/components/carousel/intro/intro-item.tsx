@@ -18,7 +18,7 @@ export const IntroItem = ({
     // const
     return (
         <div
-            className={`wrapper ${index === currentIndex ? "pointer-events-auto" : "pointer-events-none"} absolute desktopPlus:bottom-0 left-0 flex h-fit w-full flex-col justify-end desktopPlus:p-[0_25px_0_50px] mobile:bottom-[-97px] mobile:left-[-26px] mobile:p-[0_0_0_50px] ipad:bottom-[-48px] desktop:bottom-[-40px]`}
+            className={`wrapper ${index === currentIndex ? "pointer-events-auto" : "pointer-events-none"} absolute desktopPlus:bottom-0 left-0 flex h-fit w-full flex-col justify-end desktopPlus:p-[0_25px_0_50px] mobile:bottom-[-97px] mobile:left-[-26px] mobile:p-[0_0_0_50px] ipad:bottom-[-48px] desktop:bottom-[-40px] ipadPro:bottom-[-20px]`}
         >
             <span className="overflow-hidden">
                 <h5
