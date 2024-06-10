@@ -26,9 +26,19 @@ export const useInputProfile = (
       ...subUser,
       [name]: values[name],
     };
-    await dispatch(updateUserThunk({ payload, id: getLocalStorage(USER_ID) }));
-    setBgBlur(false);
-    printSuccessDialog(`Bạn đã cập nhật ${mappingProfile[name]} thành công`);
+    try {
+      const resp = await dispatch(
+        updateUserThunk({ payload, id: getLocalStorage(USER_ID) }),
+      );
+      setBgBlur(false);
+      if (resp.payload) {
+        printSuccessDialog(
+          `Bạn đã cập nhật ${mappingProfile[name]} thành công`,
+        );
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return [{ initialValues }, { validationSchema, handleSubmit }];
