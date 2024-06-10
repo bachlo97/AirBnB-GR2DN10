@@ -21,7 +21,7 @@ export const updateUserThunk = createAsyncThunk(
       console.log(1234567,resp.data.content)
       return resp.data.content;
     } catch (e: any) {
-      console.log(e.response.data.content);
+      alert(e.response.data.content);
       throw new Error(e);
     }
   },
