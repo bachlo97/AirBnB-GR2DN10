@@ -2,7 +2,7 @@ import { closeModal } from "@/redux/admin/user-management/user-management.slice"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useRef } from "react";
 import { AddAdmin } from "../add-admin";
-import { UpdateUser } from "../update-user/update-user";
+import { UpdateUser } from "../update-user";
 
 export const useFormModal = () => {
   const { modal, modalTitle, okText, btnColor } = useAppSelector(

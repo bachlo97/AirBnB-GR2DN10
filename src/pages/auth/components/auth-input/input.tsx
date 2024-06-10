@@ -1,5 +1,5 @@
 import { ClosedEyeIcon, OpendEyeIcon } from "@/assets/icons";
-import React, { ReactNode, useState } from "react";
+import { ReactNode, useState } from "react";
 import { useField } from "formik";
 type Props = {
     type?: string;

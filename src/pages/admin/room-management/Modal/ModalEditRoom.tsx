@@ -1,7 +1,6 @@
-import { Button, Modal, Space, Switch, Tooltip, Upload } from "antd";
-import { useEffect, useState } from "react";
+import { Modal, Space, Switch, Tooltip } from "antd";
+import { useState } from "react";
 
-import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
@@ -27,9 +26,6 @@ function ModalEditRoom(props: any) {
   };
   const handleCancel = () => {
     setOpen(false);
-  };
-  const onChange = (checked: boolean) => {
-    console.log(`switch to ${checked}`);
   };
 
   return (

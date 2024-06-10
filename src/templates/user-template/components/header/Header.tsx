@@ -8,7 +8,7 @@ import Navbar from './navbar/Navbar';
 import HeaderSearchBar from './search-bar/SearchBar';
 import { useEffect, useState } from 'react';
 import { useAppSelector } from '@/redux/hooks';
-import { useTransition, animated } from "@react-spring/web";
+
 
 function Header() {
     const user = useAppSelector(state=>state.authReducer.user)

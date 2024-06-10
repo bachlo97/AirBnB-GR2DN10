@@ -1,12 +1,12 @@
 import { getCommentThunkAll } from "@/redux/comment/Comment.slice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { Input, Table, Tooltip } from "antd";
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 import { GrView } from "react-icons/gr";
 function TableComment() {
-  const [data, setData] = useState<[]>([]);
+  const [, setData] = useState<[]>([]);
   const listRoomAll: any = useAppSelector((state) => state.roomSlice.listRoom);
   const dispatch = useAppDispatch();
   const { Search } = Input;
@@ -32,7 +32,7 @@ function TableComment() {
     {
       title: "Chỉnh sửa",
       dataIndex: "chinhSua",
-      render: (text: string, record: any) => (
+      render: (_: string, record: any) => (
         <div className="flex justify-center gap-3">
           <NavLink to={`listComment/${record.id}`} onClick={() => {}}>
             <Tooltip title="Xem thêm">
@@ -44,7 +44,7 @@ function TableComment() {
     },
   ];
 
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
   const [tableParams, setTableParams] = useState({
     pagination: {
       current: 1,

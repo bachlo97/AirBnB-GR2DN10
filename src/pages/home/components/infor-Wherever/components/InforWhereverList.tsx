@@ -1,7 +1,7 @@
-import React from 'react'
+
 import { DataWherever } from '../data/DataWherever'
 
-function InforWhereverList(props:any) {
+function InforWhereverList() {
   
     const DataItem=DataWherever.map((item,index)=>{
         return (

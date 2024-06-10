@@ -1,1 +1,1 @@
-export { EditUser } from "./update-user";
+export { UpdateUser } from "./update-user";

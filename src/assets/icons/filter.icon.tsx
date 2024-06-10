@@ -1,8 +1,8 @@
-import React from "react";
 
-type Props = {};
 
-export const FilterIcon = (props: Props) => {
+
+
+export const FilterIcon = () => {
     return (
         <>
             <svg

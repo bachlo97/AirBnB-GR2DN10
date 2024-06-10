@@ -1,4 +1,4 @@
-import { ButtonPrimary, ButtonPrimaryTwo } from "@/components/Button/Button";
+import { ButtonPrimary} from "@/components/Button/Button";
 import '../css/RoomDetail.css'
 
 import { DatePicker, Space } from "antd";
@@ -23,18 +23,17 @@ import { GiWashingMachine } from "react-icons/gi";
 import {  FaWifi } from 'react-icons/fa';
 import { HiOutlineKey } from "react-icons/hi2";
 import { BsCalendarDate } from "react-icons/bs";
-import useAlertHook from "@/hooks/notification/Alert";
+
 
 type Props=any;
 
 function InformationDetailRoom(props:Props) {
-  const {alertError}=useAlertHook();
 
   const navigate = useNavigate();
   const[countClient,setCountClient]=useState(1);
 
   const [countDay,setCountDay]=useState(0);
-  const [discount,setDiscount]=useState(0);
+  const [discount]=useState(0);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const user: any = useAppSelector((state) => state.authReducer.user);
 

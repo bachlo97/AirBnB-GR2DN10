@@ -1,4 +1,3 @@
-import React from "react";
 import { Login } from "./login/login";
 import { Register } from "./register";
 import { useParams } from "react-router-dom";

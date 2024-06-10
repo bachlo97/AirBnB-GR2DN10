@@ -1,6 +1,6 @@
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import "./style.css";
-type Props = {};
+
 import { dataIcon } from "./data";
 import ScrollItem from "./components/scrollItem";
 import { FilterIcon } from "@/assets/icons";
@@ -11,13 +11,13 @@ import { getLocalStorage } from "@/utils";
 import { COUNT_FILTER } from "@/constant";
 import { useFilterRoom } from "../../hooks/filter-rooms.hook";
 import { checkModal } from "../../actions/filter-room.actions";
-export function HorizontalScroll(props: Props) {
+export function HorizontalScroll() {
   const [
     { tabMenuRef, btnLeftRef, btnRightRef },
     { handleScrollLeft, handleScrollRight },
   ] = useScrollHorizontal();
   const [isLoading, setIsLoading] = useState(true);
-  const [,dispatch] = useFilterRoom();
+  const [, dispatch] = useFilterRoom();
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 1500);
   }, []);
@@ -57,7 +57,7 @@ export function HorizontalScroll(props: Props) {
         <button
           className="flex items-center gap-2 rounded-3xl border-[1px] border-solid border-[#dddddd] p-[14px_15px] hover:border-black hover:bg-gray-100"
           onClick={() => {
-            dispatch(checkModal(true))
+            dispatch(checkModal(true));
           }}
         >
           <FilterIcon />
@@ -65,10 +65,11 @@ export function HorizontalScroll(props: Props) {
             Bộ lọc
           </span>
         </button>
-        {getLocalStorage(COUNT_FILTER) ? <div className='absolute flex justify-center items-center h-7 w-7 rounded-full bg-black text-white right-[-2px] top-[-2px] text-[11px]'>
-          {getLocalStorage(COUNT_FILTER)}
-        </div> : null }
-
+        {getLocalStorage(COUNT_FILTER) ? (
+          <div className="absolute right-[-2px] top-[-2px] flex h-7 w-7 items-center justify-center rounded-full bg-black text-[11px] text-white">
+            {getLocalStorage(COUNT_FILTER)}
+          </div>
+        ) : null}
       </div>
     </section>
   );

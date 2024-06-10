@@ -20,8 +20,8 @@ const initialState = {
     totalLocation: "",
   },
   lineChart: [],
-  columnChart:[],
-  barChart: []
+  columnChart: [],
+  barChart: [],
 };
 
 export const getDashBoardInfoThunk = createAsyncThunk(
@@ -46,8 +46,19 @@ export const getDashBoardInfoThunk = createAsyncThunk(
       const roomData = roomsAPI.content;
       const locationData = locationAPI.content;
 
+      //Drop elements in comment data if maNguoiBinhLuan in comment without id in user data
+
+      let commentsDataFilter = commentsData.filter((comment: any) =>
+        usersData.some((user: any) => user.id === comment.maNguoiBinhLuan),
+      );
+
+      //Drop elements in comment data if maPhong in comment without id in room data
+      commentsDataFilter = commentsDataFilter.filter((comment: any) =>
+        roomData.some((room: any) => room.id === comment.maPhong),
+      );
+
       //   handle overview
-      const commentOverView = handleCommentOverView(commentsData);
+      const commentOverView = handleCommentOverView(commentsDataFilter);
       result.push({
         ...commentOverView,
         totalUser: usersData.length,
@@ -72,7 +83,7 @@ export const getDashBoardInfoThunk = createAsyncThunk(
         roomData,
         locationData,
       );
-      result.push(barChartVirtulized)
+      result.push(barChartVirtulized);
       return result;
     } catch (e) {
       console.log("errr", e);
@@ -86,7 +97,7 @@ const DashBoardSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getDashBoardInfoThunk.fulfilled, (state, { payload }) => {
-      const [overView, lineChart, columnChart,barChart] = payload;
+      const [overView, lineChart, columnChart, barChart] = payload;
       state.overView = overView;
       state.lineChart = lineChart;
       state.columnChart = columnChart;
@@ -98,3 +109,4 @@ const DashBoardSlice = createSlice({
 export const {} = DashBoardSlice.actions;
 
 export const dashBoardReducer = DashBoardSlice.reducer;
+

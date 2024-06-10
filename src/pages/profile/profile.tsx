@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Upload } from "./components/upload/upload";
 import UserInfo from "./components/user-info/user-info";
-import { useAppSelector } from "@/redux/hooks";
 import { useNavigate } from "react-router-dom";
 import { getLocalStorage } from "@/utils";
 import { ACCESS_TOKEN } from "@/constant";

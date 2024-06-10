@@ -4,19 +4,21 @@ import { FaUserFriends } from "react-icons/fa";
 import { MdOutlineRoomPreferences } from "react-icons/md";
 import { MdOutlineMyLocation } from "react-icons/md";
 import { Rate } from "antd";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppSelector } from "@/redux/hooks";
 type Props = {};
 
 export function OverView({}: Props) {
-  const overView = useAppSelector(state => state.dashBoardReducer.overView)
-  console.log({overView})
+  const overView = useAppSelector((state) => state.dashBoardReducer.overView);
+  console.log({ overView });
 
-  const getFirstDecimalDigit = (num:number) => {
+  const getFirstDecimalDigit = (num: number) => {
     const decimalPart = num % 1;
     const firstDecimalDigit = Math.floor(decimalPart * 10);
-    return Math.floor(num) + '.' + firstDecimalDigit;
-  }
-  const averageStars = getFirstDecimalDigit(+overView.totalStars / +overView.totalComments )
+    return Math.floor(num) + "." + firstDecimalDigit;
+  };
+  const averageStars = getFirstDecimalDigit(
+    +overView.totalStars / +overView.totalComments,
+  );
 
   return (
     <div className="grid grid-cols-4 gap-10">
@@ -26,7 +28,13 @@ export function OverView({}: Props) {
         title="Bình luận"
         unit={`${overView.totalComments} (lượt)`}
         value={averageStars}
-        rate={<Rate value={Math.round(+averageStars)} disabled className="text-[12px]" />}
+        rate={
+          <Rate
+            value={Math.round(+averageStars)}
+            disabled
+            className="text-[12px]"
+          />
+        }
       />
 
       <Item

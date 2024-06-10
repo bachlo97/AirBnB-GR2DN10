@@ -1,13 +1,6 @@
-import { NAME_REGEX } from "@/constant";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { DatePicker, Input, Select } from "antd";
 import { ErrorMessage, Form, Formik } from "formik";
-import React, { forwardRef, useEffect, useState } from "react";
-import dayjs from "dayjs";
-import * as Yup from "yup";
-import { editUser } from "@/services/user";
-import { closeModal, getUsersThunk } from "@/redux/admin/user-management/user-management.slice";
-import { parseBirthday, printSuccessDialog } from "@/utils";
+import { forwardRef } from "react";
 import { useUpdateUser } from "./hook/update-user.hook";
 type Props = {};
 
@@ -15,17 +8,8 @@ export const UpdateUser = forwardRef(function UpdateUser(
   {}: Props,
   updateUserRef: any,
 ) {
-  // const { selectedUser, modal }: any = useAppSelector(
-  //   (state) => state.userManagementReducer,
-  // );
-  // const dispatch =  useAppDispatch()
-  // const [key, setKey] = useState(false);
-
-  // useEffect(() => {
-  //   setKey(!key);
-  // }, [modal]);
-  // console.log({ selectedUser });
-  const [{key,initialValues,validationSchema},{onSubmit}] = useUpdateUser()
+  const [{ key, initialValues, validationSchema }, { onSubmit }] =
+    useUpdateUser();
   return (
     <Formik
       enableReinitialize
@@ -148,7 +132,6 @@ export const UpdateUser = forwardRef(function UpdateUser(
                     onChange={(value: any) => {
                       setFieldValue("gender", value);
                     }}
-                    
                   />
                 </div>
                 <div className="w-[50%]">

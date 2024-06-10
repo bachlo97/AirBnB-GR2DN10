@@ -1,10 +1,9 @@
-import React from 'react'
 import { DataWherever } from '../data/DataWherever'
 import Skeleton from 'react-loading-skeleton'
 import { Container } from '@/components/style-compoment/Container'
 
 function InforWhereverLoading() {
-    const DataItem=DataWherever.map((item,index)=>{
+    const DataItem=DataWherever.map((_,index)=>{
         return (
           <div className='sm:w-[100%] 2sm:w-[49%] lg:w-[24%] mt-3' key={index}>
           <Skeleton style={{height:'250px',borderRadius:'1rem',width:'100%'}}  />

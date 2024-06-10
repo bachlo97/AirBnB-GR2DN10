@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ButtonPrimaryTwo } from '@/components/Button/Button';
-import { Button, Modal } from 'antd';
-import React, { useState } from 'react'
+import {  Modal } from 'antd';
+import { useState } from 'react'
 import { MdBedroomChild, MdIron, MdKitchen } from 'react-icons/md';
 import { PiTelevisionSimpleBold } from 'react-icons/pi';
 import { GiWashingMachine } from "react-icons/gi";

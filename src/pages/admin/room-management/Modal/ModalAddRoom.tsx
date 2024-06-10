@@ -1,5 +1,5 @@
 import { Button, Modal, Space, Switch } from 'antd';
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { getAdminLocationThunk } from '@/redux/admin-location/AdminLocation.slice';
@@ -33,9 +33,6 @@ function ModalAddRoom() {
       setOpen(false);
    
     };
-    const onChange = (checked: boolean) => {
-        console.log(`switch to ${checked}`);
-      };
       const SignupSchema = Yup.object().shape({
         tenPhong: Yup.string().min(2).max(50).required('Tên phòng là bắt buộc'),
         giaTien: Yup.number().required('Giá tiền là bắt buộc'),

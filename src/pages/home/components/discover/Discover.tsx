@@ -6,7 +6,6 @@ import { getLocaltionsPage } from '@/services/localtion/LocationsPage';
 import { converToLocationsPages } from './helpers/ConverToDiscover';
 import DiscoverLoading from './loading/DiscoverLoading';
 import { Container } from '@/components/style-compoment/Container';
-import DiscoverItem from './component/DiscoverItem';
 import ListDiscover from './component/ListDiscover';
 
 function Discover() {

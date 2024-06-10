@@ -1,5 +1,3 @@
-import { CommentManagement } from "@/pages/admin/comment-management/comment-management";
-import { BookingManagement } from "@/pages/admin/booking-management/booking-management";
 import { getBookingList } from "@/services/booking";
 import {
   getLocationViaCode,

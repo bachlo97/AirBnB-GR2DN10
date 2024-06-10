@@ -1,36 +1,37 @@
-import React from "react";
-import * as S from "../carousel.style";
 type TThumbail = {
-    img: string;
-}
+  img: string;
+};
 type Props = {
-    data: TThumbail[]
+  data: TThumbail[];
 };
 
-export const Thumbail = ({data}: Props) => {
-    return (
-        <>
-            <div className="thumbnail zoom">
-                <img src={data[0].img} alt="" className="w-full h-full object-cover" />
-            </div>
-            {(() => {
-                const elements = [];
-                for (let i = 1; i < data.length; i++) {
-                    elements.push(
-                        <div
-                            className={`thumbnail`}
-                            key={i}
-                            style={{
-                                ["--idx" as string]: i - 1,
-                            }}
-                        >
-                            <img src={data[i].img} alt="" className="h-full w-full object-cover" />
-                        </div>,
-                    );
-                }
-                return elements;
-            })()}
-        </>
-    );
+export const Thumbail = ({ data }: Props) => {
+  return (
+    <>
+      <div className="thumbnail zoom">
+        <img src={data[0].img} alt="" className="h-full w-full object-cover" />
+      </div>
+      {(() => {
+        const elements = [];
+        for (let i = 1; i < data.length; i++) {
+          elements.push(
+            <div
+              className={`thumbnail`}
+              key={i}
+              style={{
+                ["--idx" as string]: i - 1,
+              }}
+            >
+              <img
+                src={data[i].img}
+                alt=""
+                className="h-full w-full object-cover"
+              />
+            </div>,
+          );
+        }
+        return elements;
+      })()}
+    </>
+  );
 };
-

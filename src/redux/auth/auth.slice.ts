@@ -1,4 +1,4 @@
-import { editUser, getProfile, uploadAvatar } from "@/services/user";
+import { editUser, getProfile} from "@/services/user";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const getProfileThunk = createAsyncThunk(

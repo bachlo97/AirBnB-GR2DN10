@@ -31,7 +31,7 @@ export const getRoomThunk = createAsyncThunk(
     async (data:any) => {
       try{
         const resp = await postRoomAPI(data);
- 
+        console.log(resp)
         const getData = await getRooms();
         return getData.content.reverse();
       
@@ -47,7 +47,7 @@ export const getRoomThunk = createAsyncThunk(
     async (id:any) => {
       try{
         const resp = await delRoomAPI(id);
- 
+        console.log(resp)
         const getData = await getRooms();
         return getData.content.reverse();
       }catch(e){

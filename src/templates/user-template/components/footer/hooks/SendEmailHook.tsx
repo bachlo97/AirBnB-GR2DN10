@@ -3,7 +3,7 @@ import emailjs from '@emailjs/browser';
 import useAlertHook from "@/hooks/notification/Alert";
 
 export const useSendEmailHook=()=>{
-  const {alertSuccess}=useAlertHook('Gửi email')
+  const {alertSuccess}=useAlertHook()
 
     const form = useRef<HTMLFormElement>(null);
     const sendEmail = (e: {
@@ -26,7 +26,7 @@ export const useSendEmailHook=()=>{
           );
            
           e.target.reset();
-          alertSuccess();
+          alertSuccess('Gửi mail thành công');
       };
       return {form,sendEmail}
 }

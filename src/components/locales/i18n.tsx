@@ -4,6 +4,7 @@ import Backend from 'i18next-http-backend';
 import { initReactI18next } from "react-i18next";
 import en from './en/en.json'
 import vi from './vi/vi.json'
+//@ts-ignore
 i18n.use(Backend).use(LanguageDetector).use(initReactI18next).init({
     debug: true, 
     fallbackLng: "vi", 

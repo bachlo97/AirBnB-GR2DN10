@@ -1,4 +1,3 @@
-import React from "react";
 import { CountList } from "./count-list";
 
 type Props = {};
@@ -10,21 +9,21 @@ export function CountRoom({}: Props) {
       <div>
         <p className="my-3 text-[15px] font-light tracking-wide">Phòng ngủ</p>
         <div className="flex gap-3">
-          <CountList type='phongNgu' />
+          <CountList type="phongNgu" />
         </div>
       </div>
 
       <div>
         <p className="my-3 text-[15px] font-light tracking-wide">Giường</p>
         <div className="flex gap-3">
-          <CountList type='giuong' />
+          <CountList type="giuong" />
         </div>
       </div>
 
       <div>
         <p className="my-3 text-[15px] font-light tracking-wide">Phòng tắm</p>
         <div className="flex gap-3">
-          <CountList type='phongTam' />
+          <CountList type="phongTam" />
         </div>
       </div>
     </div>

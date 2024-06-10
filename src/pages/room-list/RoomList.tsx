@@ -2,7 +2,7 @@
 import { Fragment, useEffect, useState } from 'react'
 import { SButtonRoomList, SMap, SMapRespon, SRespon } from './RoomList.style'
 
-import ListProductRoom from './compoment/ListProductRoom'
+
 
 import LoadRoomList from './load/LoadRoomList'
 
@@ -12,7 +12,7 @@ import PaginatedItems from './compoment/PageListProductRoom'
 
 
 function RoomList() {
- const {roomDate,dispatch,dataLocation}=useRoomListHook();
+ const {roomDate,dataLocation}=useRoomListHook();
   const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {

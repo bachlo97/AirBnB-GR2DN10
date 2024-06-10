@@ -1,4 +1,4 @@
-import { ButtonPrimary } from "@/components/Button/Button";
+
 import useAlertHook from "@/hooks/notification/Alert";
 import {
   delCommentThunk,
@@ -6,7 +6,7 @@ import {
 } from "@/redux/comment/Comment.slice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { Breadcrumb, Popconfirm, Table, Tooltip } from "antd";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { TiDelete } from "react-icons/ti";
 import { useParams } from "react-router-dom";
 
@@ -14,7 +14,7 @@ function TableCommentId() {
   const { idPhong } = useParams();
   const { alertSuccessCenter } = useAlertHook();
 
-  const [data, setData] = useState<[]>([]);
+  const [, setData] = useState<[]>([]);
   const listCommentId: any = useAppSelector(
     (state) => state.commentSlice.listComment,
   );
@@ -45,7 +45,7 @@ function TableCommentId() {
     {
       title: "Chỉnh sửa",
       dataIndex: "chinhSua",
-      render: (text: string, record: any) => (
+      render: (_: string, record: any) => (
         <div className="flex justify-center gap-3">
           <Popconfirm
             title="Bạn có muốn xóa "
@@ -72,7 +72,7 @@ function TableCommentId() {
     },
   ];
 
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
   const [tableParams, setTableParams] = useState({
     pagination: {
       current: 1,
@@ -127,6 +127,3 @@ function TableCommentId() {
 }
 
 export default TableCommentId;
-function dayjs() {
-  throw new Error("Function not implemented.");
-}
