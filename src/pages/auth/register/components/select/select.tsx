@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import { ReactNode, useState } from "react";
 import { Select } from "antd";
 import { BsGenderFemale } from "react-icons/bs";
 import "./select.style.css";
@@ -10,6 +10,7 @@ type Props = {
   handleBlur: () => void;
   error: string | undefined;
   touch: undefined | boolean;
+  onClear: ()=> void
 };
 
 export function SelectCustom({
@@ -17,6 +18,7 @@ export function SelectCustom({
   label,
   handleChange,
   handleBlur,
+  onClear,
   error,
   touch,
 }: Props) {
@@ -39,10 +41,11 @@ export function SelectCustom({
         className="select-auth"
         popupClassName="popup-select-auth"
         suffixIcon={<BsGenderFemale className="left-2 h-7 w-7 text-white" />}
-        allowClear
         optionFilterProp="children"
         onChange={onChange}
         onBlur={handleBlur}
+        onClear={onClear}
+        allowClear
         onDropdownVisibleChange={(value) => setOpen(value)}
         options={[
           {

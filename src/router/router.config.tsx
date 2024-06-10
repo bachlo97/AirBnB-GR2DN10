@@ -13,17 +13,11 @@ import Pay from "@/pages/pay/Pay";
 import AdminTemplate from "@/templates/admin-template/admin.template";
 import TableCommentId from "@/pages/admin/comment-management/component/TableCommentId";
 const DashBoard = lazy(() => import("@/pages/admin/dashboard"));
-// import DashBoard from "@/pages/admin/dashboard/dashboard";
 const UserManagement = lazy(() => import("@/pages/admin/user-management"));
-// import UserManagement from "@/pages/admin/user-management/user-management";
 const LocationManagement = lazy(() => import("@/pages/admin/location-management"));
-// import LocationManagement from "@/pages/admin/location-management/location-management";
 const RoomManagement = lazy(() => import("@/pages/admin/room-management"));
-// import RoomManagement from "@/pages/admin/room-management/room-management";
 const BookingManagement = lazy(() => import("@/pages/admin/booking-management"));
-// import BookingManagement from "@/pages/admin/booking-management/booking-management";
 const CommentManagement = lazy(() => import("@/pages/admin/comment-management"));
-// import CommentManagement from "@/pages/admin/comment-management/comment-management";
 
 export const router = createBrowserRouter([
   {

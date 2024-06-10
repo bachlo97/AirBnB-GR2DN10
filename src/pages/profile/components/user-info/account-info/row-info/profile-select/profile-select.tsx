@@ -1,37 +1,17 @@
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { Select } from "antd";
-import {Form, Formik } from "formik";
-import { useContext } from "react";
-import { ContextStore } from "../../../context";
-import { getLocalStorage, printSuccessDialog } from "@/utils";
-import { USER_ID } from "@/constant";
-import { updateUserThunk } from "@/redux/auth/auth.slice";
+import { Form, Formik } from "formik";
 import _ from "lodash";
+import { useSelectProfile } from "./hook/profile-select.hook";
 type Props = {
   name: string;
 };
 
 export function ProfileSelect({ name }: Props) {
-  const user: any = useAppSelector((state) => state.authReducer.user);
-  const [, setBgBlur] = useContext(ContextStore)
-  const dispatch = useAppDispatch()
-  const handleSubmit = async (values: any) => {
-    let subUser = _.omit(user,['avatar','password'])
-    const payload = {
-      ...subUser,
-      [name] : values[name]
-    }
-     await dispatch(updateUserThunk({payload,id: getLocalStorage(USER_ID)}))
-     setBgBlur(false)
-      printSuccessDialog('Bạn đã cập nhật giới tính thành công')
-  };
+  const [{ user, initialValues }, { handleSubmit }] = useSelectProfile(name);
   return (
-    <Formik
-      initialValues={{ gender: user?.gender }}
-      onSubmit={handleSubmit}
-    >
-      {({ setFieldValue,values}) => {
-        console.log({values})
+    <Formik initialValues={initialValues} onSubmit={handleSubmit!}>
+      {({ setFieldValue, values }) => {
+        console.log({ values });
         return (
           <Form>
             <Select

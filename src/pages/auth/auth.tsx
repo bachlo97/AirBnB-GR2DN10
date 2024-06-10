@@ -29,7 +29,7 @@ export default function Auth({}: Props) {
       className="flex h-[100vh] w-[100vw] items-center justify-center bg-cover bg-center bg-no-repeat after:absolute after:bottom-0 after:left-0 after:right-0 after:top-0 after:-z-10 after:bg-[#00000026] after:content-[''] "
       style={{
         backgroundImage:
-          "url(https://images.unsplash.com/photo-1549615567-101937a79124?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+          "url(/img/bg-auth.avif)",
       }}
     >
       {transitions((props) => {

@@ -1,17 +1,13 @@
-import React, { useEffect } from "react";
 import { Item } from "./item";
 import { LiaComments } from "react-icons/lia";
 import { FaUserFriends } from "react-icons/fa";
 import { MdOutlineRoomPreferences } from "react-icons/md";
 import { MdOutlineMyLocation } from "react-icons/md";
-import { commentData } from "../data";
 import { Rate } from "antd";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { getDashBoardInfoThunk } from "@/redux/admin/dashboard/dashboard.slice";
 type Props = {};
 
 export function OverView({}: Props) {
-  const dispatch = useAppDispatch()
   const overView = useAppSelector(state => state.dashBoardReducer.overView)
   console.log({overView})
 
