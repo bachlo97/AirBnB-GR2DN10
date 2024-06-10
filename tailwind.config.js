@@ -11,6 +11,7 @@ export default {
       "2sm": "640px",
       // => @media (min-width: 640px) { ... }
       md: "768px",
+      mdm:'770px',
       lg: "1024px",
       xl: "1280px",
       "2xl": "1500px",
