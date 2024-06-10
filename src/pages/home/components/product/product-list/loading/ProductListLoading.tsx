@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { Fragment } from 'react'
+import { Fragment } from 'react'
 import ProductItemLoading from './ProductItemLoading'
 type Props={
     dataRooms:[]|any;

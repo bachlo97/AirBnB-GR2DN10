@@ -1,11 +1,5 @@
 import { Breadcrumb } from "antd";
-import React from "react";
-import {
-  ButtonPrimary,
-  ButtonPrimaryTwo,
-} from "../../../components/Button/Button";
 import TableRender from "./component/TableRender";
-import { NavLink } from "react-router-dom";
 import ModalLocation from "./component/ModalLocation";
 
 type Props = {};

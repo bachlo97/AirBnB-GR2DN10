@@ -1,5 +1,4 @@
 import { TLocaltion } from '@/services/localtion/Localtion.type'
-import React from 'react'
 import DiscoverItem from './DiscoverItem'
 import { NavLink } from 'react-router-dom'
 function ListDiscover(props:any) {

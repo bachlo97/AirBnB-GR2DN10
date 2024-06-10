@@ -1,14 +1,16 @@
-import { truncateText } from "@/utils";
+
 
 export const handleCommentOverView = (data: any) => {
+  console.log("hello world 1",data.length)
   const filteredComments = data.filter(
-    (comment: any) => comment.saoBinhLuan >= 0 && comment.saoBinhLuan <= 5,
+    (comment: any) => +comment.saoBinhLuan >= 0 && +comment.saoBinhLuan <= 5,
   );
   const totalStars = filteredComments.reduce(
     (sum: number, comment: any) => sum + comment.saoBinhLuan,
     0,
   );
 
+  console.log("hello world 2",filteredComments.length)
   return {
     totalComments: filteredComments.length,
     totalStars,

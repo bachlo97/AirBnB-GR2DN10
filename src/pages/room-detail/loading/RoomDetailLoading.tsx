@@ -1,5 +1,5 @@
 import { Container } from '@/components/style-compoment/Container'
-import React, { Fragment } from 'react'
+import { Fragment } from 'react'
 import { SImg } from '../Detail.style'
 import Skeleton from 'react-loading-skeleton'
 import InformationDetailLoading from './InformationDetailLoading'

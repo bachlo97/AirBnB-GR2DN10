@@ -30,7 +30,7 @@ export const delAdminLocationThunk = createAsyncThunk(
     async (id:any) => {
       try{
         const resp = await delLocation(id);
- 
+        console.log(resp)
         const getData = await getLocaltion();
         return getData.content.reverse();
       }catch(e){
@@ -45,7 +45,7 @@ export const addAdminLocationThunk = createAsyncThunk(
     async (data:any) => {
       try{
         const resp = await addLocation(data);
- 
+        console.log(resp)
         const getData = await getLocaltion();
         return getData.content.reverse();
       }catch(e){

@@ -1,13 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import "./style.css";
 import { data } from "./data";
 import { IntroItem } from "./intro";
 import { Thumbail } from "./thumbail";
 import { useHomeCarousel } from "./hook/";
 import LoadingCarousel from "./loading/LoadingCarousel";
-type Props = object;
 
-export function Carousel(props: Props) {
+export function Carousel() {
   const [{ currentIndex, btnState, thumbnailListWrapperRef }, { handleNext }] =
     useHomeCarousel(data);
   const [isLoading, setIsLoading] = useState(true);
@@ -20,7 +19,7 @@ export function Carousel(props: Props) {
     return <LoadingCarousel />;
   }
   return (
-    <div className="ipadPro:w-[900px] ipadPro:h-[480px] container relative m-auto flex flex-col justify-end overflow-hidden rounded-[20px] bg-[#767676] text-white mobile:h-[257px] mobile:w-[358px] ipad:h-[400px] ipad:w-[700px] desktop:h-[570px] desktop:w-[1100px] desktopPlus:h-[720px] desktopPlus:w-[1280px] desktopMax:w-[1700px] desktopMax:h-[800px]">
+    <div className="container relative m-auto flex flex-col justify-end overflow-hidden rounded-[20px] bg-[#767676] text-white mobile:h-[257px] mobile:w-[358px] ipad:h-[400px] ipad:w-[700px] ipadPro:h-[480px] ipadPro:w-[900px] desktop:h-[570px] desktop:w-[1100px] desktopPlus:h-[720px] desktopPlus:w-[1280px] desktopMax:h-[800px] desktopMax:w-[1700px]">
       <div className="flex w-full">
         <div className="introduce relative z-20 h-full w-[40%]">
           {data.map((item, index) => (
@@ -54,7 +53,7 @@ export function Carousel(props: Props) {
         </button>
         <span className="line h-[2px] flex-[1] bg-white"></span>
         <span className="ordinal-number relative flex h-[50px] w-[50px] items-center justify-center overflow-hidden">
-          {data.map((item, index: number) => (
+          {data.map((_, index: number) => (
             <h2
               key={index}
               className={`${index === currentIndex ? "translate-none" : "translate-y-[200%]"} absolute font-[400] leading-[1] transition duration-500 ease-in-out mobile:text-[19px] ipad:text-[25px] desktop:text-[30px] desktopPlus:text-[3.5rem]`}

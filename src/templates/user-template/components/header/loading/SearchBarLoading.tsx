@@ -2,11 +2,8 @@
 import Skeleton from 'react-loading-skeleton'
 import { NavItem } from '../search-bar/SearchBar.style'
 
-type Props={
-    scrollY: number | string
-}
 
-function SearchBarLoading(props:Props) {
+function SearchBarLoading() {
   return (
     <NavItem className='mb-5 w-[50%] mx-auto'>
       

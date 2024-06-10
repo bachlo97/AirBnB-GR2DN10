@@ -1,16 +1,16 @@
-import { Button, Modal, Space, Tooltip, Upload } from "antd";
+import { Modal, Space, Tooltip } from "antd";
 import { useEffect, useState } from "react";
 import { VscEdit } from "react-icons/vsc";
 
 import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch } from "@/redux/hooks";
 import {
   getAdminLocationThunk,
   putAdminLocationThunk,
 } from "@/redux/admin-location/AdminLocation.slice";
-import { putLocaltion } from "@/services/localtion/Localtion.service";
-import { ButtonPrimary, ButtonPrimaryTwo } from "@/components/Button/Button";
+
+import { ButtonPrimary } from "@/components/Button/Button";
 import useAlertHook from "@/hooks/notification/Alert";
 
 function ModalLocationEdit(props: any) {
@@ -30,10 +30,7 @@ function ModalLocationEdit(props: any) {
   const handleCancel = () => {
     setOpen(false);
   };
-  const listLocation: any = useAppSelector(
-    (state) => state.locationSlice.listLocation,
-  );
-  const modal: any = useAppSelector((state) => state.locationSlice.modal);
+
   const dispatch = useAppDispatch();
 
   const SignupSchema = Yup.object().shape({

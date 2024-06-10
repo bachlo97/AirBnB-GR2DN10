@@ -5,9 +5,9 @@ import ProductList from "./product-list/productList"
 
 function HomeProduct() {
   return (
+    <Container>
       <ProductList />
-    // <Container>
-    // </Container>
+    </Container>
   )
 }
 

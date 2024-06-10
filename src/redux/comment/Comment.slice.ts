@@ -42,7 +42,7 @@ export const getCommentThunkAll = createAsyncThunk(
     async (arr: any) => {
         try {
             const resp = await deleteCommentRoom(arr[0].id);
-            // console.log(arr[0].id);
+            console.log(resp)
             const getData= await getCommentRoomId(arr[1]);
             return getData.content;
         } catch (e) {

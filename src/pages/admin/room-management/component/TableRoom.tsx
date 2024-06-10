@@ -1,9 +1,8 @@
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { delRoomThunk, getRoomThunk } from "@/redux/room/Room.slice";
 import { Input, Popconfirm, Table, Tooltip } from "antd";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ModalMoTa from "../Modal/ModalMoTa";
-import { ButtonPrimary } from "@/components/Button/Button";
 import ModalEditRoom from "../Modal/ModalEditRoom";
 import { IoSearchOutline } from "react-icons/io5";
 import { TiDelete } from "react-icons/ti";
@@ -14,7 +13,7 @@ function TableRoom() {
   const userRef = useRef<any>(null);
   const { alertSuccessCenter } = useAlertHook();
 
-  const [data, setData] = useState<[]>([]);
+  const [, setData] = useState<[]>([]);
   const listRoom: any = useAppSelector((state) => state.roomSlice.listRoom);
   const dispatch = useAppDispatch();
 
@@ -59,7 +58,7 @@ function TableRoom() {
     {
       title: "Mô tả",
       dataIndex: "quocGia",
-      render(text: string, record: any) {
+      render(_: string, record: any) {
         console.log(record);
 
         return (
@@ -76,7 +75,7 @@ function TableRoom() {
     {
       title: "Chỉnh Sua",
       dataIndex: "quocGia",
-      render(text: string, record: any) {
+      render(_: string, record: any) {
         return (
           <div className="flex justify-center gap-3">
             <ModalEditRoom data={record} />
@@ -107,7 +106,7 @@ function TableRoom() {
 
   console.log(listRoom);
 
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
   const [tableParams, setTableParams] = useState({
     pagination: {
       current: 1,
@@ -155,6 +154,7 @@ function TableRoom() {
         }}
       />
       <Table
+        //@ts-ignore
         columns={columns}
         dataSource={dataRoom}
         pagination={tableParams.pagination}

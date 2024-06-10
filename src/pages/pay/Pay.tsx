@@ -2,9 +2,9 @@ import { ButtonPrimary, ButtonPrimaryTwo } from '@/components/Button/Button'
 import { Container } from '@/components/style-compoment/Container'
 import { IoIosArrowBack } from 'react-icons/io'
 import usePayHook from './hooks/usePayHook'
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useAppSelector } from '@/redux/hooks';
 
-import { GetCartsRoomSlice } from '../../redux/cart/Cart.slice';
+
 function Pay() {
  const {countDay,user,dateRoom,payRoom,navigate,handleSubmit}=usePayHook();
  const roomID: any = useAppSelector(

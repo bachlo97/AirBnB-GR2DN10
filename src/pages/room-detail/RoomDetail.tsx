@@ -4,10 +4,9 @@ import { BsTranslate } from 'react-icons/bs';
 import { CiHeart } from 'react-icons/ci';
 import { IoShareOutline } from 'react-icons/io5';
 import InformationDetailRoom from './compoment/InformationDetailRoom';
-import { ButtonPrimary } from '@/components/Button/Button';
-import { SImg } from './Detail.style';
+
 import { IoIosArrowBack } from "react-icons/io";
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { TRoomDetail } from '@/services/room-detail/RoomDetail.type';
 import { IIFE } from '@/utils';
 import { GetRoomDetail } from '@/services/room-detail/RoomDetail.service';
@@ -20,7 +19,7 @@ type Props = object
 const RoomDetail = (_props: Props) => {
   const { id } = useParams();
     
-
+  //@ts-ignore
   const [dataRoomDetail,setDataRoomDetail]=useState<TRoomDetail>({})
   useEffect(()=>{
     IIFE(async ()=>{

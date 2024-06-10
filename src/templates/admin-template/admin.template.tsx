@@ -6,10 +6,9 @@ import { MdOutlineMeetingRoom } from "react-icons/md";
 import { TbBrandBooking } from "react-icons/tb";
 import { FaRegCommentDots, FaUserCircle } from "react-icons/fa";
 import { TbDeviceAnalytics } from "react-icons/tb";
-import { CgPlayTrackNextO } from "react-icons/cg";
-import { TeamOutlined, DownOutlined } from "@ant-design/icons";
+import {  DownOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
-import { Breadcrumb, Dropdown, Layout, Menu, Space, Spin, theme } from "antd";
+import { Breadcrumb, Dropdown, Layout, Menu, Space, theme } from "antd";
 import { useTransition, animated } from "@react-spring/web";
 import { LogoIcon } from "@/assets/icons";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -21,7 +20,6 @@ import { getRoomThunk } from "@/redux/room/Room.slice";
 
 const { Header, Content, Footer, Sider } = Layout;
 
-type MenuItem = Required<MenuProps>["items"][number];
 
 const AdminTemplate: React.FC = () => {
   const location = useLocation();
@@ -201,8 +199,7 @@ const AdminTemplate: React.FC = () => {
           </Header>
           <Content style={{ margin: "0 16px", overflow: "hidden" }}>
             <Breadcrumb style={{ margin: "16px 0" }}>
-              {/* <Breadcrumb.Item>User</Breadcrumb.Item>
-                        <Breadcrumb.Item>Bill</Breadcrumb.Item> */}
+
             </Breadcrumb>
             <div
               style={{

@@ -1,4 +1,3 @@
-import React from 'react'
 import { HeaderLogo, HeaderLogoText } from '../header.style'
 
 import { NavItem } from '../search-bar/SearchBar.style'

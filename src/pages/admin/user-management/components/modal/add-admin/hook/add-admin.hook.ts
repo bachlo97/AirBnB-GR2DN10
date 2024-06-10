@@ -43,7 +43,7 @@ export const useAddAdmin = () => {
         printSuccessDialog("Thêm quản trị viên thành công");
       })
       .catch((e) => {
-        console.log({ e });
+        alert(e.response.data.content)
       });
   }
 

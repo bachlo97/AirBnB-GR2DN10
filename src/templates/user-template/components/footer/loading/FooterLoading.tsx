@@ -1,5 +1,4 @@
 import { Container } from '@/components/style-compoment/Container'
-import React from 'react'
 import { FooterTop, FooterWeb } from '../footer.style'
 import Skeleton from 'react-loading-skeleton'
 

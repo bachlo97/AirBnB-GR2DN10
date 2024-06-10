@@ -1,4 +1,4 @@
-import { editUser, getProfile, uploadAvatar } from "@/services/user";
+import { editUser, getProfile } from "@/services/user";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const getProfileThunk = createAsyncThunk(
@@ -18,9 +18,11 @@ export const updateUserThunk = createAsyncThunk(
   async ({ payload, id }: any) => {
     try {
       const resp = await editUser(payload, id);
+      console.log(1234567,resp.data.content)
       return resp.data.content;
-    } catch (e) {
-      console.log(e);
+    } catch (e: any) {
+      console.log(e.response.data.content);
+      throw new Error(e);
     }
   },
 );

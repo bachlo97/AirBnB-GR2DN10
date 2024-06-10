@@ -1,5 +1,3 @@
-import React from "react";
-
 type Props = {
     country: string;
     place: string;

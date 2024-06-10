@@ -1,7 +1,6 @@
-import {useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { converToRooms } from "./helpers/ConverToRooms";
 import ProductItem from "./productItem";
-import { Container } from "@/components/style-compoment/Container";
 import ProductListLoading from "./loading/ProductListLoading";
 import { getNumColumns } from "./helpers";
 import { AutoSizer, List, WindowScroller } from "react-virtualized";
@@ -36,11 +35,7 @@ function ProductList() {
   }, []);
 
   if (isLoading) {
-    return (
-      <Container>
-        <ProductListLoading dataRooms={dataRooms} />;
-      </Container>
-    );
+    return <ProductListLoading dataRooms={dataRooms} />;
   }
 
   const renderRow = ({ index, key, style }: any) => {
@@ -73,7 +68,7 @@ function ProductList() {
 
   //DevCuong use react virtualize to optimize perfomance
   return (
-    <Container>
+    <>
       <FilterPopup />
       {list.length ? (
         <WindowScroller>
@@ -96,7 +91,7 @@ function ProductList() {
           )}
         </WindowScroller>
       ) : null}
-    </Container>
+    </>
   );
 }
 

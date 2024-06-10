@@ -3,9 +3,9 @@ import {
   resetModalDetail,
 } from "@/redux/admin/booking-management/booking.management.slice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { allFieldsNotEmpty, truncateText } from "@/utils";
+import { truncateText } from "@/utils";
 import { Modal, Spin, Tooltip } from "antd";
-import React, { Suspense, useState } from "react";
+
 import { LoadingOutlined } from "@ant-design/icons";
 type Props = {};
 

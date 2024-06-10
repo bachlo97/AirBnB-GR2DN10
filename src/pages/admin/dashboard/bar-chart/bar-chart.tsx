@@ -1,4 +1,3 @@
-
 import Chart from "react-apexcharts";
 import { useAppSelector } from "@/redux/hooks";
 type Props = {};
@@ -48,6 +47,7 @@ export function BarChart({}: Props) {
   return (
     <div className="h-[320px] w-full min-w-0 flex-col overflow-hidden break-words rounded-[6px] border-0 bg-white px-7 py-3 text-[14px] text-[#333] shadow-[0_1px_4px_0_rgba(0,0,0,.14)]">
       <Chart
+        //@ts-ignore
         options={options}
         series={series}
         type="bar"

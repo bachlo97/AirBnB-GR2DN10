@@ -1,14 +1,13 @@
-import { Button, Modal, Space, Upload } from 'antd';
+import { Button, Modal, Space} from 'antd';
 import { useState } from 'react'
 
 import * as Yup from 'yup';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { addLocation } from '@/services/localtion/Localtion.service';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+
+import { useAppDispatch} from '@/redux/hooks';
 import { addAdminLocationThunk, getAdminLocationThunk } from '@/redux/admin-location/AdminLocation.slice';
 import { ButtonPrimary } from '@/components/Button/Button';
-import { ButtonPrimaryTwo } from '../../../../components/Button/Button';
-import Swal from 'sweetalert2';
+
 import useAlertHook from '@/hooks/notification/Alert';
 
 function ModalLocation() {

@@ -1,7 +1,6 @@
 import { changeNecessities } from "@/pages/home/actions/filter-room.actions";
-import { ContextStore } from "@/pages/home/context/filter-rooms.context";
 import { useFilterRoom } from "@/pages/home/hooks/filter-rooms.hook";
-import  { useContext,} from "react";
+
 
 type Props = {
   name: "wifi" | "mayGiat" | "dieuHoa" | "bep" | "tivi" | "banUi";

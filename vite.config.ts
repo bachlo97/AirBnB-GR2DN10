@@ -8,7 +8,7 @@ export default defineConfig(({ mode }) => {
 
     esbuild: {
       //Khi build thành product thì sẽ xoá đi các câu lệnh consle và debugger
-      drop: ['console','debugger']
+      // drop: ['console','debugger']
     },
 
     // Setup đường dẫn absolute

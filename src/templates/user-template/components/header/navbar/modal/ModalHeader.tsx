@@ -1,5 +1,5 @@
-import { Button, Collapse, DatePicker, Modal, Select, Space, theme } from 'antd';
-import React, { useState } from 'react'
+import { Collapse, DatePicker, Modal, Select, Space, theme } from 'antd';
+import { useState } from 'react'
 import { IoMdSearch } from 'react-icons/io';
 
 import './ModalHeader.style.css';
@@ -9,23 +9,15 @@ import { useTranslation } from 'react-i18next';
 function ModalHeader() {
   const { t } = useTranslation();
 
-    const {  navigate,
-        dispatch,
-        isOpen,
-       
+    const {  navigate,       
         valueId,
-        valueStartDay,
-        valueEndDay,
         dataOption,
-        searchBarRef,
-        handleFieldClick,
-        handleDateChange,
         handleChange,
         handleSubmit}=useSearchBarHook();
         const onSearch = (value:any) => {
             console.log('search:', value);
           };
-          const filterOption = (input: string, option: { label: any; }) =>
+          const filterOption:any = (input: string, option: { label: any; }) =>
             (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
         
 const getItems = (panelStyle:any) => [

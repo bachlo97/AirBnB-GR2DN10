@@ -15,10 +15,11 @@ import { setUser } from "@/redux/auth/auth.slice";
 import { removeLocalStorage } from "@/utils";
 import { ACCESS_TOKEN, COUNT_FILTER, ROOM_FILTER, USER_ID } from "@/constant";
 import { useTranslation } from "react-i18next";
-import { IoMdSearch } from "react-icons/io";
 import ModalHeader from "./modal/ModalHeader";
 import { useTransition, animated } from "@react-spring/web";
-type Props = object;
+type Props = {  
+  scrollY:boolean
+};
 
 function Navbar(props: Props) {
   const user: any = useAppSelector((state) => state.authReducer.user);

@@ -1,4 +1,4 @@
-import { Button, Modal, Space, Tooltip, Upload } from 'antd';
+import { Modal, Space, Tooltip} from 'antd';
 import { useState } from 'react'
 import { GrView } from 'react-icons/gr';
 

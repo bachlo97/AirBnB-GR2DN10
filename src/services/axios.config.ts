@@ -1,5 +1,5 @@
 
-import { ACCESS_TOKEN, TOKEN_CYBER, BASE_URL, USER_ID } from "@/constant";
+import { ACCESS_TOKEN, TOKEN_CYBER, BASE_URL} from "@/constant";
 import { getLocalStorage } from "@/utils";
 import axios from "axios";
 

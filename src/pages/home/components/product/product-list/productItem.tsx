@@ -1,4 +1,3 @@
-import React from "react";
 import { FaRegHeart, FaRegUser } from "react-icons/fa";
 import { IoBedOutline } from "react-icons/io5";
 import { MdBedroomChild } from "react-icons/md";

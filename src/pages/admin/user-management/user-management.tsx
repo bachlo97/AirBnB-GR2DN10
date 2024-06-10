@@ -7,7 +7,7 @@ import {
 } from "@/redux/admin/user-management/user-management.slice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import type { TableColumnsType, TableProps } from "antd";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef} from "react";
 import { Table, Input, Button, Popconfirm, Tag, Tooltip, Breadcrumb } from "antd";
 import { IoSearchOutline } from "react-icons/io5";
 import { IoIosMale } from "react-icons/io";
@@ -17,7 +17,6 @@ import { TiDelete } from "react-icons/ti";
 import { printSuccessDialog, truncateText } from "@/utils";
 import { FormModal } from "./components/modal/";
 import { deleteUser, getProfile } from "@/services/user";
-import { use } from "i18next";
 type Props = {};
 
 interface DataType {
@@ -46,13 +45,11 @@ export default function UserManagement({}: Props) {
       title: "STT",
       dataIndex: "stt",
       sorter: (a, b) => a.stt - b.stt,
-      // sortDirections: ["descend", "ascend"],
     },
 
     {
       title: "Name",
       dataIndex: "name",
-      // sorter: (a, b) => a.name.length - b.name.length,
       sorter: (a, b) => a.name.localeCompare(b.name),
     },
     {

@@ -54,7 +54,7 @@ export const useUpdateUser = () => {
         printSuccessDialog("Cập nhật user thành công");
       })
       .catch((e) => {
-        console.log({ e });
+        alert(e.response.data.content)
       });
   };
 

@@ -1,16 +1,20 @@
 import { InputNumber, Slider } from "antd";
-import {  useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./index.css";
 import { getRooms } from "@/services/room";
 import { IIFE } from "@/utils";
-import { choosePriceRange, countRoom } from "@/pages/home/actions/filter-room.actions";
+import {
+  choosePriceRange,
+  countRoom,
+} from "@/pages/home/actions/filter-room.actions";
 import { useFilterRoom } from "@/pages/home/hooks/filter-rooms.hook";
 import { handleFilter } from "@/pages/home/context/helper";
 type Props = {};
 
 export function PriceRange({}: Props) {
   const [
-    { rangePrice, chooseRooms, chooseNecessities, rangeDefault }, dispatch
+    { rangePrice, chooseRooms, chooseNecessities, rangeDefault },
+    dispatch,
     // { setRangePrice, setCount },
   ] = useFilterRoom();
   const [borderInput1, setBorderInput1] = useState(false);
@@ -28,7 +32,7 @@ export function PriceRange({}: Props) {
           { rangePrice, chooseRooms, chooseNecessities },
           roomData,
         );
-        dispatch(countRoom(filteredData.length))
+        dispatch(countRoom(filteredData.length));
         // setCount(filteredData.length);
       } catch (e) {
         console.log(e);
@@ -37,7 +41,17 @@ export function PriceRange({}: Props) {
   }, [borderInput1, borderInput2]);
 
   const handleChange = (value: number[]) => {
-    dispatch(choosePriceRange(value as [number, number]))
+    if (rangeDefault)
+      if (value[1] <= rangeDefault[0]) {
+        dispatch(choosePriceRange([rangeDefault[0], rangeDefault[0] + 1]));
+      } else if (value[0] >= rangeDefault[1]) {
+        // setRangePrice([rangeDefault[1] - 1, rangeDefault[1]]);
+        dispatch(choosePriceRange([rangeDefault[1] - 1, rangeDefault[1]]));
+      } else {
+        // setRangePrice(value);
+        dispatch(choosePriceRange(value as [number, number]));
+      }
+    // dispatch(choosePriceRange(value as [number, number]));
   };
 
   const handleChangeComplete = async (value: number[]) => {
@@ -45,11 +59,11 @@ export function PriceRange({}: Props) {
       let start = value[0];
       let end = value[1];
       if (value[0] == value[1]) {
-        dispatch(choosePriceRange([value[0] - 1, value[0]]))
+        dispatch(choosePriceRange([value[0] - 1, value[0]]));
         // setRangePrice([value[0] - 1, value[0]]);
         start = value[0] - 1;
       }
-      const rangePrice:[number,number] = [start,end]
+      const rangePrice: [number, number] = [start, end];
       const dataAPI = await getRooms();
       const roomData = dataAPI.content;
       const filteredData = handleFilter(
@@ -57,7 +71,7 @@ export function PriceRange({}: Props) {
         roomData,
       );
       // setCount(filteredData.length);
-      dispatch(countRoom(filteredData.length))
+      dispatch(countRoom(filteredData.length));
     } catch (e) {
       console.log(e);
     }
@@ -104,13 +118,13 @@ export function PriceRange({}: Props) {
               }}
               onChange={(value) => {
                 if (value) {
-                  const temp:[number,number]= [...rangePrice];
+                  const temp: [number, number] = [...rangePrice];
                   if (value >= temp[1]) {
                     temp[0] = temp[1] - 1;
                   } else {
                     temp[0] = value;
                   }
-                  dispatch(choosePriceRange(temp))
+                  dispatch(choosePriceRange(temp));
                 }
               }}
             />
@@ -138,13 +152,13 @@ export function PriceRange({}: Props) {
               }}
               onChange={(value) => {
                 if (value) {
-                  const temp:[number,number] = [...rangePrice];
+                  const temp: [number, number] = [...rangePrice];
                   if (value <= temp[0]) {
                     temp[1] = temp[0] + 1;
                   } else {
                     temp[1] = value;
                   }
-                  dispatch(choosePriceRange(temp))
+                  dispatch(choosePriceRange(temp));
                 }
               }}
             />
