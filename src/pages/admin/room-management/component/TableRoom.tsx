@@ -21,13 +21,10 @@ function TableRoom() {
   const columns = [
     {
       title: "STT",
-      dataIndex: "id",
+      dataIndex: "stt",
       key: "id",
 
-      render: (id: number, record: string, index: any) => {
-        const reverseIndex = index + 1; // Tính số thứ tự ngược
-        return reverseIndex;
-      },
+ 
     },
     {
       title: "Hinh Ảnh",
@@ -133,6 +130,12 @@ function TableRoom() {
       setData([]);
     }
   };
+  const dataRoom = listRoom.map((item:any, index:number) => ({
+    ...item,
+    stt: index + 1,
+
+  }));
+
   return (
     <div>
       <Search
@@ -153,7 +156,7 @@ function TableRoom() {
       />
       <Table
         columns={columns}
-        dataSource={listRoom}
+        dataSource={dataRoom}
         pagination={tableParams.pagination}
         loading={loading}
         onChange={handleTableChange}

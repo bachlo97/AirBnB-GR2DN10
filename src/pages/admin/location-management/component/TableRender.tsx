@@ -33,7 +33,7 @@ function TableRender() {
   const columns = [
     {
       title: "STT",
-      dataIndex: "id",
+      dataIndex: "stt",
       key: "id",
 
       sorter: (a:any, b:any) => a.id - b.id,
@@ -67,6 +67,8 @@ function TableRender() {
       render: (text:string, record:any) => (
         <div className='flex gap-3 flex justify-center'>
           
+            
+            
                 <ModalLocationEdit data={record} />
          
 
@@ -98,7 +100,11 @@ function TableRender() {
 
   console.log();
   const userRef = useRef<any>(null);
-
+  const dataLocation = listLocation.map((item:any, index:number) => ({
+    ...item,
+    stt: index + 1,
+   
+  }));
   useEffect(() => {
     dispatch(getAdminLocationThunk(''));
   }, [dispatch]);
@@ -134,7 +140,7 @@ function TableRender() {
       />
       <Table
         columns={columns}
-        dataSource={listLocation}
+        dataSource={dataLocation}
         pagination={tableParams.pagination}
         loading={loading}
         onChange={handleTableChange}

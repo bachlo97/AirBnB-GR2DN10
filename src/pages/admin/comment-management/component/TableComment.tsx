@@ -15,7 +15,7 @@ function TableComment() {
   const columns = [
     {
       title: "STT",
-      dataIndex: "id",
+      dataIndex: "stt",
     },
     {
       title: "Hinh Ảnh",
@@ -67,6 +67,11 @@ function TableComment() {
       setData([]);
     }
   };
+  const dataRoom = listRoomAll.map((item:any, index:number) => ({
+    ...item,
+    stt: index + 1,
+
+  }));
   return (
     <>
       <Search
@@ -87,7 +92,7 @@ function TableComment() {
 
       <Table
         columns={columns}
-        dataSource={listRoomAll}
+        dataSource={dataRoom}
         pagination={tableParams.pagination}
         loading={loading}
         onChange={handleTableChange}

@@ -19,11 +19,15 @@ function TableCommentId() {
     (state) => state.commentSlice.listComment,
   );
   const dispatch = useAppDispatch();
+  const dataComment = listCommentId.map((item:any, index:number) => ({
+    ...item,
+    stt: index + 1,
 
+  }));
   const columns = [
     {
       title: "STT",
-      dataIndex: "id",
+      dataIndex: "stt",
     },
     {
       title: "Ngày Bình Luận",
@@ -116,7 +120,7 @@ function TableCommentId() {
 
       <Table
         columns={columns}
-        dataSource={listCommentId}
+        dataSource={dataComment}
         pagination={tableParams.pagination}
         loading={loading}
         onChange={handleTableChange}
@@ -127,6 +131,4 @@ function TableCommentId() {
 }
 
 export default TableCommentId;
-function dayjs() {
-  throw new Error("Function not implemented.");
-}
+
