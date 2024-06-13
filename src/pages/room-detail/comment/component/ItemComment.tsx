@@ -6,6 +6,7 @@ import { Tcomment } from '@/services/comment/comment.type'
 import { Rate } from 'antd'
 import { useState } from 'react';
 import { VscEllipsis } from "react-icons/vsc";
+import moment from 'moment';
 
 function ItemComment(props:Tcomment) {
   const [active,setActive]=useState(false);
@@ -16,11 +17,36 @@ function ItemComment(props:Tcomment) {
     <div className='flex justify-between mr-12'>
       <div className='flex gap-5'>
       <SImg>
+        {props.avatar ? (
+                  <div
+                    className={`flex h-[100%] w-[100%] items-center justify-center rounded-full ${props.avatar ? "bg-cover bg-center bg-no-repeat" : "bg-[#F62682] text-[16px] text-white "} `}
+                    style={{
+                      backgroundImage: props.avatar
+                        ? `url(${props.avatar})`
+                        : "none",
+                    }}
+                  >
+                    {props.avatar === "" ? props.tenNguoiBinhLuan[0].toUpperCase() : null}
+                  </div>
+                  
+                ):(                
+                  <div
+                  className={`flex h-[100%] w-[100%] items-center justify-center rounded-full ${props.avatar ? "bg-cover bg-center bg-no-repeat" : "bg-[#F62682] text-[16px] text-white "} `}
+                  style={{
+                    backgroundImage: props.avatar
+                      ? `url(${props.avatar})`
+                      : "none",
+                  }}
+                >
+                  {props.avatar === "" ? props.tenNguoiBinhLuan[0].toUpperCase() : null}
+                </div>
+                  
+                )}
          <img className='w-[100%] h-[100%] bg-cover ' src={props.avatar} alt={props.tenNguoiBinhLuan} />
        </SImg>
        <div>
          <h4>{props.tenNguoiBinhLuan}</h4>
-         <p>{props.ngayBinhLuan}</p>
+         <p>{moment(props.ngayBinhLuan).format('DD/MM/YYYY')}</p>
        <Rate value={props.saoBinhLuan} disabled />
 
        <div className='my-5'>{props.noiDung}</div>

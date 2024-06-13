@@ -8,6 +8,7 @@ import { putRoomThunk } from "@/redux/room/Room.slice";
 import { ButtonPrimary } from "@/components/Button/Button";
 import { VscEdit } from "react-icons/vsc";
 import useAlertHook from "@/hooks/notification/Alert";
+import * as Yup from 'yup';
 
 function ModalEditRoom(props: any) {
   const { alertSuccessCenter } = useAlertHook();
@@ -17,7 +18,21 @@ function ModalEditRoom(props: any) {
     (state) => state.locationSlice.listLocation,
   );
   const dispatch = useAppDispatch();
+  const SignupSchema = Yup.object().shape({
+    tenPhong: Yup.string().min(2).max(50).required('Tên phòng là bắt buộc'),
+    giaTien: Yup.number().required('Giá tiền là bắt buộc'),
+    hinhAnh: Yup.string().required('Hình ảnh là bắt buộc'),
+    khach: Yup.number().required('Số khách là bắt buộc'),
+    phongNgu: Yup.number().min(2).max(50).required('Phòng ngủ là bắt buộc'),
+    moTa: Yup.string().required('Mô tả là bắt buộc'),
+    giuong: Yup.number().required('Số giường là bắt buộc'),
+    phongTam: Yup.number().required('Số phòng tắm là bắt buộc'),
+    quocGia: Yup.string().required('Tên vị trí là bắt buộc'),
 
+
+   
+
+  });
   const showModal = () => {
     setOpen(true);
   };
@@ -68,6 +83,8 @@ function ModalEditRoom(props: any) {
             doXe: props.data.doXe,
             banUi: props.data.banUi,
           }}
+          validationSchema={SignupSchema}
+
           onSubmit={(values) => {
             console.log(values);
 

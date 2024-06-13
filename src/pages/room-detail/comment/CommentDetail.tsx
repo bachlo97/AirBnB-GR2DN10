@@ -98,15 +98,32 @@ function CommentDetail() {
         {({ handleSubmit }) => (
           <Form onSubmit={handleSubmit} className="my-5 flex w-[100%] gap-5">
             <div className="flex w-[20%] flex-col items-center">
+          
               <SImg>
-                <img
+                    {user ? (
+                  <div
+                    className={`flex h-[100%] w-[100%] items-center justify-center rounded-full ${user.avatar ? "bg-cover bg-center bg-no-repeat" : "bg-[#F62682] text-[16px] text-white "} `}
+                    style={{
+                      backgroundImage: user.avatar
+                        ? `url(${user.avatar})`
+                        : "none",
+                    }}
+                  >
+                    {user.avatar === "" ? user.name[0].toUpperCase() : null}
+                  </div>
+                ) : (
+                  <img
                   src={
                     user?.avatar ||
                     "https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png"
                   }
                   alt=""
                 />
-              </SImg>
+
+                )
+                }
+           
+          </SImg> 
               <div>{user?.name || "User"}</div>
               <Rate
                 onChange={(value) => {
