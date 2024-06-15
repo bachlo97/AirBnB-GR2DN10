@@ -6,7 +6,7 @@ import { MdOutlineMeetingRoom } from "react-icons/md";
 import { TbBrandBooking } from "react-icons/tb";
 import { FaRegCommentDots, FaUserCircle } from "react-icons/fa";
 import { TbDeviceAnalytics } from "react-icons/tb";
-import {  DownOutlined } from "@ant-design/icons";
+import { DownOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Breadcrumb, Dropdown, Layout, Menu, Space, theme } from "antd";
 import { useTransition, animated } from "@react-spring/web";
@@ -19,7 +19,6 @@ import { ACCESS_TOKEN, USER_ID } from "@/constant";
 import { getRoomThunk } from "@/redux/room/Room.slice";
 
 const { Header, Content, Footer, Sider } = Layout;
-
 
 const AdminTemplate: React.FC = () => {
   const location = useLocation();
@@ -44,7 +43,7 @@ const AdminTemplate: React.FC = () => {
 
   useEffect(() => {
     dispatch(getProfileThunk(getLocalStorage(USER_ID)));
-    dispatch(getRoomThunk(''))
+    dispatch(getRoomThunk(""));
   }, []);
 
   useEffect(() => {
@@ -94,137 +93,137 @@ const AdminTemplate: React.FC = () => {
 
   if (user && user.role == "ADMIN")
     return (
-      <Layout style={{ minHeight: "100vh" }}>
-        <Sider
-          collapsible
-          collapsed={collapsed}
-          onCollapse={(value) => setCollapsed(value)}
-          width={235}
-        >
-          <div className="flex justify-center gap-2 py-8 text-[20px] text-[#ffa4a4]">
-            <LogoIcon width={30} height={30} fill="#ffa4a4" />
-            {collapsed ? "" : <span className="self-center">Airbnb</span>}
-          </div>
-
-          <Menu
-            theme="dark"
-            mode="inline"
-            defaultSelectedKeys={["1"]}
-            items={[
-              {
-                key: "1",
-                icon: <TbDeviceAnalytics className="h-[20px] w-[20px]" />,
-                label: "DashBoard",
-                onClick: () => {
-                  navigate("/admin/dashboard");
-                },
-              },
-
-              {
-                key: "2",
-                icon: <FaUserGroup className="h-[20px] w-[20px]" />,
-                label: "Quản lý người dùng",
-                onClick: () => {
-                  navigate("/admin/users");
-                },
-              },
-              {
-                key: "3",
-                icon: <CiLocationOn className="h-[20px] w-[20px]" />,
-                label: "Quản lý thông tin vị trí",
-                onClick: () => {
-                  navigate("/admin/locations");
-                },
-              },
-              {
-                key: "4",
-                icon: <MdOutlineMeetingRoom className="h-[20px] w-[20px]" />,
-                label: "Quản lý thông tin phòng",
-                onClick: () => {
-                  navigate("/admin/rooms");
-                },
-              },
-              {
-                key: "5",
-                icon: <TbBrandBooking className="h-[20px] w-[20px]" />,
-                label: "Quản lý đặt phòng",
-                onClick: () => {
-                  navigate("/admin/booking");
-                },
-              },
-              {
-                key: "6",
-                icon: <FaRegCommentDots className="h-[20px] w-[20px]" />,
-                label: "Quản lý bình luận",
-                onClick: () => {
-                  navigate("/admin/comments");
-                },
-              },
-            ]}
-          />
-        </Sider>
+      <div className="desktop:w-full mobile:w-[1200px] mobile:overflow-x-auto">
         <Layout>
-          <Header style={{ padding: 0, background: colorBgContainer }}>
-            <div className="pr-10 pt-1 text-right">
-              <Dropdown menu={{ items: dropDownItems }}>
-                <span>
-                  <Space>
-                    <div className="flex items-center justify-center gap-2 space-x-2">
-                      <span>
-                        {" "}
-                        Xin chào, {user && truncateText(user.name, 20)}
-                      </span>
-                      {user ? (
-                        <div
-                          className={`h-16 w-16 rounded-full ${user.avatar ? "bg-cover bg-center bg-no-repeat" : "bg-[#F62682] text-[16px] text-white "} `}
-                          style={{
-                            backgroundImage: user.avatar
-                              ? `url(${user.avatar})`
-                              : "none",
-                          }}
-                        >
-                          {user.avatar === ""
-                            ? user.name[0].toUpperCase()
-                            : null}
-                        </div>
-                      ) : (
-                        <FaUserCircle />
-                      )}
-                    </div>
-                    <DownOutlined />
-                  </Space>
-                </span>
-              </Dropdown>
+          <Sider
+            collapsible
+            collapsed={collapsed}
+            onCollapse={(value) => setCollapsed(value)}
+            width={235}
+          >
+            <div className="flex justify-center gap-2 py-8 text-[20px] text-[#ffa4a4]">
+              <LogoIcon width={30} height={30} fill="#ffa4a4" />
+              {collapsed ? "" : <span className="self-center">Airbnb</span>}
             </div>
-          </Header>
-          <Content style={{ margin: "0 16px", overflow: "hidden" }}>
-            <Breadcrumb style={{ margin: "16px 0" }}>
 
-            </Breadcrumb>
-            <div
-              style={{
-                padding: 24,
-                minHeight: 360,
-                background: colorBgContainer,
-                borderRadius: borderRadiusLG,
-              }}
-            >
-              {transitions((props) => {
-                return (
-                  <Suspense>
-                    <animated.div style={props}>
-                      <Outlet />
-                    </animated.div>
-                  </Suspense>
-                );
-              })}
-            </div>
-          </Content>
-          <Footer style={{ textAlign: "center" }}>
-            AirBnB ©{new Date().getFullYear()} Created by DN10-GR2
-          </Footer>
+            <Menu
+              theme="dark"
+              mode="inline"
+              defaultSelectedKeys={["1"]}
+              items={[
+                {
+                  key: "1",
+                  icon: <TbDeviceAnalytics className="h-[20px] w-[20px]" />,
+                  label: "DashBoard",
+                  onClick: () => {
+                    navigate("/admin/dashboard");
+                  },
+                },
+
+                {
+                  key: "2",
+                  icon: <FaUserGroup className="h-[20px] w-[20px]" />,
+                  label: "Quản lý người dùng",
+                  onClick: () => {
+                    navigate("/admin/users");
+                  },
+                },
+                {
+                  key: "3",
+                  icon: <CiLocationOn className="h-[20px] w-[20px]" />,
+                  label: "Quản lý thông tin vị trí",
+                  onClick: () => {
+                    navigate("/admin/locations");
+                  },
+                },
+                {
+                  key: "4",
+                  icon: <MdOutlineMeetingRoom className="h-[20px] w-[20px]" />,
+                  label: "Quản lý thông tin phòng",
+                  onClick: () => {
+                    navigate("/admin/rooms");
+                  },
+                },
+                {
+                  key: "5",
+                  icon: <TbBrandBooking className="h-[20px] w-[20px]" />,
+                  label: "Quản lý đặt phòng",
+                  onClick: () => {
+                    navigate("/admin/booking");
+                  },
+                },
+                {
+                  key: "6",
+                  icon: <FaRegCommentDots className="h-[20px] w-[20px]" />,
+                  label: "Quản lý bình luận",
+                  onClick: () => {
+                    navigate("/admin/comments");
+                  },
+                },
+              ]}
+            />
+          </Sider>
+          <Layout>
+            <Header style={{ padding: 0, background: colorBgContainer }}>
+              <div className="pr-10 pt-1 text-right">
+                <Dropdown menu={{ items: dropDownItems }}>
+                  <span>
+                    <Space>
+                      <div className="flex items-center justify-center gap-2 space-x-2">
+                        <span>
+                          {" "}
+                          Xin chào, {user && truncateText(user.name, 20)}
+                        </span>
+                        {user ? (
+                          <div
+                            className={`h-16 w-16 rounded-full ${user.avatar ? "bg-cover bg-center bg-no-repeat" : "bg-[#F62682] text-[16px] text-white "} `}
+                            style={{
+                              backgroundImage: user.avatar
+                                ? `url(${user.avatar})`
+                                : "none",
+                            }}
+                          >
+                            {user.avatar === ""
+                              ? user.name[0].toUpperCase()
+                              : null}
+                          </div>
+                        ) : (
+                          <FaUserCircle />
+                        )}
+                      </div>
+                      <DownOutlined />
+                    </Space>
+                  </span>
+                </Dropdown>
+              </div>
+            </Header>
+            <Content style={{ margin: "0 16px", overflow: "hidden" }}>
+              <Breadcrumb style={{ margin: "16px 0" }}></Breadcrumb>
+              <div
+                style={{
+                  padding: 24,
+                  minHeight: 360,
+                  background: colorBgContainer,
+                  borderRadius: borderRadiusLG,
+                }}
+              >
+                {transitions((props) => {
+                  return (
+                    <Suspense>
+                      <animated.div style={props}>
+                        <Outlet />
+                      </animated.div>
+                    </Suspense>
+                  );
+                })}
+              </div>
+            </Content>
+            <Footer style={{ textAlign: "center" }}>
+              AirBnB ©{new Date().getFullYear()} Created by DN10-GR2
+            </Footer>
+          </Layout>
         </Layout>
-      </Layout>
+      </div>
     );
 };
 

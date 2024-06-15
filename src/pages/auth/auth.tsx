@@ -1,11 +1,17 @@
 import { Login } from "./login/login";
 import { Register } from "./register";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useTransition, animated } from "@react-spring/web";
+import { useEffect } from "react";
+import { useAppSelector } from "@/redux/hooks";
+import { getLocalStorage } from "@/utils";
+import { ACCESS_TOKEN } from "@/constant";
 type Props = {};
 
 export default function Auth({}: Props) {
   const { sign } = useParams();
+  const {user} = useAppSelector(state => state.authReducer)
+  const navigate = useNavigate()
   const transitions = useTransition(sign, {
     from: { transform: "scale(0.85)", display: "block" },
     enter: { transform: "scale(1)", display: "block" },
@@ -22,6 +28,11 @@ export default function Auth({}: Props) {
         return null;
     }
   };
+  useEffect(() => {
+    if (getLocalStorage(ACCESS_TOKEN)) {
+      navigate("/");
+    }
+  }, [user]);
 
   return (
     <div
