@@ -1,3 +1,4 @@
+import { ROOM_DETAIL_PATH } from "@/router/router.config";
 import { useNavigate } from "react-router-dom";
 
 type Props = {
@@ -46,7 +47,7 @@ export const IntroItem = ({
             <span className="overflow-hidden">
                 <button
                     className={`${index === currentIndex ? "translate-y-0 opacity-100 delay-[calc(0.3)] " : "translate-y-[300px] opacity-0 delay-[calc(2.7)]"} desktopPlus:mt-[20px]  desktopPlus:h-[50px] desktopPlus:w-[250px]  rounded-full transition duration-500 ease-in-out bg-transparent border-[1px] border-solid border-white text-inherit font-[500] uppercase hover:cursor-pointer hover:bg-[rgb(255,255,255,0.4)] mobile:text-[5px] mobile:w-[58px] mobile:mt-[10px] mobile:h-[20px] ipad:text-[8px] ipad:w-[80px] ipad:h-[25px] desktop:text-[12px] desktop:w-[120px] desktop:h-[38px] desktop:mt-[15px]`}
-                 onClick={()=>navigate(`/roomdetail/${id}`)}>
+                 onClick={()=>navigate(`/${ROOM_DETAIL_PATH}/${id}`)}>
                     Discover now
                 </button>
             </span>

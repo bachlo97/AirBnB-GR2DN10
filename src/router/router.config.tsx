@@ -19,6 +19,23 @@ const RoomManagement = lazy(() => import("@/pages/admin/room-management"));
 const BookingManagement = lazy(() => import("@/pages/admin/booking-management"));
 const CommentManagement = lazy(() => import("@/pages/admin/comment-management"));
 
+export const PROFILE_PATH = 'profile'
+export const ROOM_DETAIL_PATH = "roomdetail"
+export const ROOM_LIST_PATH = "roomlist"
+export const PAY_PATH = "pay"
+export const AUTH_PATH = "auth"
+
+export const ADMIN_PATH = "admin"
+export const DASHBOARD_PATH = "dashboard"
+export const USER_MNG_PATH = "users"
+export const LOCATIONS_MNG_PATH = "locations"
+export const ROOMS_MNG_PATH = "rooms"
+export const BOOKING_MNG_PATH = "booking"
+export const COMMENTS_MNG_PATH ="comments"
+export const TABLE_COMMENT_ID_PATH = "comments/listComment"
+
+
+
 export const router = createBrowserRouter([
   {
     element: <ScrollToTop />,
@@ -32,57 +49,57 @@ export const router = createBrowserRouter([
           },
 
           {
-            path: "profile",
+            path: PROFILE_PATH,
             element: <Profile />,
           },
           {
-            path: "roomdetail/:id",
+            path: `${ROOM_DETAIL_PATH}/:id`,
             element: <RoomDetail />,
           },
           {
-            path: "roomlist/:location",
+            path: `${ROOM_LIST_PATH}/:location`,
             element: <RoomList />,
           },
           {
-            path: "pay",
+            path: PAY_PATH,
             element: <Pay />,
           },
         ],
       },
       {
-        path: "auth/:sign",
+        path: `${AUTH_PATH}/:sign`,
         element: <Auth />,
       },
       {
-        path: "admin",
+        path: ADMIN_PATH,
         element: <AdminTemplate />,
         children: [
           {
-            path: "dashboard",
+            path: DASHBOARD_PATH,
             element: <DashBoard />,
           },
           {
-            path: "users",
+            path: USER_MNG_PATH,
             element: <UserManagement />,
           },
           {
-            path: "locations",
+            path: LOCATIONS_MNG_PATH,
             element: <LocationManagement />,
           },
           {
-            path: "rooms",
+            path: ROOMS_MNG_PATH,
             element: <RoomManagement />,
           },
           {
-            path: "booking",
+            path: BOOKING_MNG_PATH,
             element: <BookingManagement />,
           },
           {
-            path: "comments",
+            path: COMMENTS_MNG_PATH,
             element: <CommentManagement/>,
           },
           {
-            path: "comments/listComment/:idPhong",
+            path: `${TABLE_COMMENT_ID_PATH}/:idPhong`,
             element: <TableCommentId/>,
           }
         ],

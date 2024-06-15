@@ -15,6 +15,7 @@ import SearchBarLoading from "../loading/SearchBarLoading";
 import { useSearchBarHook } from "../hooks/useSearchBarHook";
 import { useTranslation } from "react-i18next";
 import { useTransition, animated } from "@react-spring/web";
+import { ROOM_LIST_PATH } from "@/router/router.config";
 
 function HeaderSearchBar(props: any) {
   const { t } = useTranslation();

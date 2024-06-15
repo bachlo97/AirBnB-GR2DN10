@@ -1,0 +1,12 @@
+
+@media only screen and (min-width: 375px){
+    .sider-admin .ant-layout-sider-trigger{
+        position: relative;
+    }
+}
+
+@media only screen and (min-width: 1200px){
+    .sider-admin .ant-layout-sider-trigger{
+        position: fixed;
+    }
+}

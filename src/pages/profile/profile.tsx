@@ -4,6 +4,7 @@ import UserInfo from "./components/user-info/user-info";
 import { useNavigate } from "react-router-dom";
 import { getLocalStorage } from "@/utils";
 import { ACCESS_TOKEN } from "@/constant";
+import { AUTH_PATH } from "@/router/router.config";
 
 type Props = {};
 
@@ -11,7 +12,7 @@ export default function Profile({}: Props) {
   const navigate = useNavigate();
   useEffect(() => {
     if (!getLocalStorage(ACCESS_TOKEN)) {
-      navigate("/auth/signin");
+      navigate(`/${AUTH_PATH}/signin`);
     }
 
     

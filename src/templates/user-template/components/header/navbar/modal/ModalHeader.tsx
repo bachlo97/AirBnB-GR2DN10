@@ -6,6 +6,7 @@ import './ModalHeader.style.css';
 import { useSearchBarHook } from '../../hooks/useSearchBarHook';
 import { ButtonPrimary } from '@/components/Button/Button';
 import { useTranslation } from 'react-i18next';
+import { ROOM_LIST_PATH } from '@/router/router.config';
 function ModalHeader() {
   const { t } = useTranslation();
 
@@ -127,7 +128,7 @@ const getItems = (panelStyle:any) => [
             <ButtonPrimary type='submit' width='80px' height={3} className='ml-3'
         onClick={()=>{
             setOpen(false);
-            navigate(`/roomlist/${valueId}`);
+            navigate(`/${ROOM_LIST_PATH}/${valueId}`);
         }}>Tìm Kiếm</ButtonPrimary>
           </>
         )}

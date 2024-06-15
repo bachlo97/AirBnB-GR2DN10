@@ -17,8 +17,8 @@ import { getProfileThunk, setUser } from "@/redux/auth/auth.slice";
 import { getLocalStorage, removeLocalStorage, truncateText } from "@/utils";
 import { ACCESS_TOKEN, USER_ID } from "@/constant";
 import { getRoomThunk } from "@/redux/room/Room.slice";
-import ScrollToTopButton from "@/components/button-to-top/ButtonToTop";
-
+import "./index.css";
+import { ADMIN_PATH, BOOKING_MNG_PATH, COMMENTS_MNG_PATH, DASHBOARD_PATH, LOCATIONS_MNG_PATH, ROOMS_MNG_PATH, USER_MNG_PATH } from "@/router/router.config";
 const { Header, Content, Footer, Sider } = Layout;
 
 const AdminTemplate: React.FC = () => {
@@ -94,13 +94,14 @@ const AdminTemplate: React.FC = () => {
 
   if (user && user.role == "ADMIN")
     return (
-      <div className="desktop:w-full mobile:w-[1200px] mobile:overflow-x-auto">
+      <div className="block mobile:w-[1200px] mobile:overflow-x-auto desktop:w-full">
         <Layout>
           <Sider
             collapsible
             collapsed={collapsed}
             onCollapse={(value) => setCollapsed(value)}
             width={235}
+            className="sider-admin"
           >
             <div className="flex justify-center gap-2 py-8 text-[20px] text-[#ffa4a4]">
               <LogoIcon width={30} height={30} fill="#ffa4a4" />
@@ -117,7 +118,7 @@ const AdminTemplate: React.FC = () => {
                   icon: <TbDeviceAnalytics className="h-[20px] w-[20px]" />,
                   label: "DashBoard",
                   onClick: () => {
-                    navigate("/admin/dashboard");
+                    navigate(`/${ADMIN_PATH}/${DASHBOARD_PATH}`);
                   },
                 },
 
@@ -126,7 +127,7 @@ const AdminTemplate: React.FC = () => {
                   icon: <FaUserGroup className="h-[20px] w-[20px]" />,
                   label: "Quản lý người dùng",
                   onClick: () => {
-                    navigate("/admin/users");
+                    navigate(`/${ADMIN_PATH}/${USER_MNG_PATH}`);
                   },
                 },
                 {
@@ -134,7 +135,7 @@ const AdminTemplate: React.FC = () => {
                   icon: <CiLocationOn className="h-[20px] w-[20px]" />,
                   label: "Quản lý thông tin vị trí",
                   onClick: () => {
-                    navigate("/admin/locations");
+                    navigate(`/${ADMIN_PATH}/${LOCATIONS_MNG_PATH}`);
                   },
                 },
                 {
@@ -142,7 +143,7 @@ const AdminTemplate: React.FC = () => {
                   icon: <MdOutlineMeetingRoom className="h-[20px] w-[20px]" />,
                   label: "Quản lý thông tin phòng",
                   onClick: () => {
-                    navigate("/admin/rooms");
+                    navigate(`/${ADMIN_PATH}/${ROOMS_MNG_PATH}`);
                   },
                 },
                 {
@@ -150,7 +151,7 @@ const AdminTemplate: React.FC = () => {
                   icon: <TbBrandBooking className="h-[20px] w-[20px]" />,
                   label: "Quản lý đặt phòng",
                   onClick: () => {
-                    navigate("/admin/booking");
+                    navigate(`/${ADMIN_PATH}/${BOOKING_MNG_PATH}`);
                   },
                 },
                 {
@@ -158,7 +159,7 @@ const AdminTemplate: React.FC = () => {
                   icon: <FaRegCommentDots className="h-[20px] w-[20px]" />,
                   label: "Quản lý bình luận",
                   onClick: () => {
-                    navigate("/admin/comments");
+                    navigate(`/${ADMIN_PATH}/${COMMENTS_MNG_PATH}`);
                   },
                 },
               ]}
@@ -198,7 +199,7 @@ const AdminTemplate: React.FC = () => {
                 </Dropdown>
               </div>
             </Header>
-            <Content style={{ margin: "0 16px", overflow: "hidden" }}>
+            <Content style={{ margin: "0 16px" ,minHeight:'100vh'}}>
               <Breadcrumb style={{ margin: "16px 0" }}></Breadcrumb>
               <div
                 style={{
@@ -221,7 +222,7 @@ const AdminTemplate: React.FC = () => {
                 })}
               </div>
             </Content>
-            <Footer style={{ textAlign: "center" }}>
+            <Footer style={{ textAlign: "center", bottom: "0" }}>
               AirBnB ©{new Date().getFullYear()} Created by DN10-GR2
             </Footer>
           </Layout>

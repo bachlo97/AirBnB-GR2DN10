@@ -13,6 +13,7 @@ import moment from "moment";
 import { getCommentThunk } from "@/redux/comment/Comment.slice";
 import useAlertHook from "@/hooks/notification/Alert";
 import { Field, Formik } from "formik";
+import { AUTH_PATH } from "@/router/router.config";
 
 function CommentDetail() {
   const { alertSuccessCenter } = useAlertHook();
@@ -153,7 +154,7 @@ function CommentDetail() {
                     height={3.5}
                     type="submit"
                     onClick={() => {
-                      navigate("/auth/signin");
+                      navigate(`/${AUTH_PATH}/signin`);
                     }}
                   >
                     Thêm Bình Luận

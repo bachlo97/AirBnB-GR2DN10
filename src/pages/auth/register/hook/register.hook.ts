@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import dayjs from "dayjs";
 import { signup } from "@/services/user";
+import { AUTH_PATH } from "@/router/router.config";
 
 type TSignUpFormik = Omit<TPayloadSignup, "id" | "role" | "gender"> & {
   confirmPassword: string;
@@ -46,7 +47,7 @@ export const useRegister = () => {
     signup(payload)
       .then((res) => {
         console.log({ res });
-        navigate("/auth/signin");
+        navigate(`/${AUTH_PATH}/signin`);
       })
       .catch((e) => {
         alert(e.response.data.content);
