@@ -109,8 +109,8 @@ export const getRoomThunkId = createAsyncThunk(
       builder.addCase(getRoomThunk.fulfilled, (state, { payload }) => {
         state.listRoom = payload;
       });
-      builder.addCase(getRoomThunkId.fulfilled, (state, action) => {
-        state.listRoom = action.payload; 
+      builder.addCase(getRoomThunkId.fulfilled, (state, {payload}) => {
+        state.listRoom = payload; 
       })
       builder.addCase(addRoomThunk.fulfilled, (state, { payload }) => {
         state.listRoom = payload;
