@@ -6,7 +6,7 @@ import { IoShareOutline } from 'react-icons/io5';
 import InformationDetailRoom from './compoment/InformationDetailRoom';
 
 import { IoIosArrowBack } from "react-icons/io";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { TRoomDetail } from '@/services/room-detail/RoomDetail.type';
 import { IIFE } from '@/utils';
 import { GetRoomDetail } from '@/services/room-detail/RoomDetail.service';
@@ -34,7 +34,7 @@ const RoomDetail = (_props: Props) => {
     })
   },[id])
   const [isLoading, setIsLoading] = useState(true);
-
+  const navigate=useNavigate();
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 1000);
   }, []);
@@ -68,11 +68,11 @@ const RoomDetail = (_props: Props) => {
 
       </div>
       <div className='relative'>
-        <div className='absolute top-3 left-4 flex gap-3 items-center justify-center w-[35px] h-[35px] bg-white rounded-[50%] 2sm:hidden'>
+        <button onClick={()=>{navigate('/')}} className='absolute top-3 left-4 flex gap-3 items-center justify-center w-[35px] h-[35px] bg-white rounded-[50%] 2sm:hidden'>
           <IoIosArrowBack />
 
 
-        </div>
+        </button>
         <img src={dataRoomDetail.hinhAnh} className='rounded-[1.5rem] w-[100%] sm:h-[200px] 2sm:h-[100%] mb-3' alt="" />
         <div className='icons flex gap-3 text-3xl absolute top-3 text-black right-8 2sm:hidden'>
           <div className='flex gap-3 items-center justify-center w-[35px] h-[35px] bg-white rounded-[50%] '>

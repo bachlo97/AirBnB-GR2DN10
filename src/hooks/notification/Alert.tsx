@@ -35,7 +35,18 @@ function useAlertHook() {
       color: "white",
     });
   };
-  return { alertSuccess, alertError, alertSuccessCenter };
+  const alertErrorCenter = (text: string) => {
+    Swal.fire({
+      position: "center",
+      title: "Thất bại",
+      text: `${text}`,
+      showConfirmButton: false,
+      timer: 1500,
+      background: "red",
+      color: "white",
+    });
+  };
+  return { alertSuccess, alertError, alertSuccessCenter,alertErrorCenter };
 }
 
 export default useAlertHook;

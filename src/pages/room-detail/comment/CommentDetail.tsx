@@ -25,7 +25,7 @@ function CommentDetail() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const [postComment, setPostComment] = useState({
+  const [postComment, setPostComment] = useState<any>({
     id: 0,
     maPhong: 0,
     maNguoiBinhLuan: 0,
@@ -79,7 +79,7 @@ function CommentDetail() {
           setPostComment({
             ...postComment,
             id: 0,
-            ngayBinhLuan: moment().format("DD/MM/YYYY"),
+            ngayBinhLuan: new Date(),
 
             maPhong: id,
             noiDung: values.textarea,
@@ -88,6 +88,8 @@ function CommentDetail() {
           try {
             await postCommentRoom(postComment);
             dispatch(getCommentThunk(id));
+         
+            
           } catch (e) {
             console.error(e);
           }

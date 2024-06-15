@@ -194,46 +194,7 @@ wifi
           <h3 className="mb-6 text-3xl font-semibold">${props.data.giaTien}/ đêm </h3>
           <form action="" onSubmit={handleSubmit} className="search-bar">
             <div className="rounded-[1rem] border border-solid border-gray-400 ">
-              {/* <div className="flex border-b border-solid border-gray-400">
-                <div className="dateSearchbar group-form w-1/2 border-r border-solid border-gray-400 px-4 py-3">
-                  <label
-                    htmlFor=""
-                    className="block text-[1.4rem] font-semibold"
-                  >
-                    Checkin
-                  </label>
-                  <p>
-                  <Space direction="vertical">
-                  <DatePicker
-                    placeholder="Ngày tới"
-                    name="currentDay"
-                    onChange={(selectedDate) => handleDateChange(selectedDate,'currentDay')}
-                    popupClassName="calendar-header"
-                      disabledDate={(current) => current && current.valueOf() < Date.now()}
-                  />
-                   <RangePicker />
-                </Space>
-                  </p>
-                </div>
-                <div className="group-form w-1/2 px-4 py-3">
-                  <label
-                    htmlFor=""
-                    className="block text-[1.4rem] font-semibold"
-                  >
-                    Checkout
-                  </label>
-                  <p>  <Space direction="vertical">
-                  <DatePicker
-                    placeholder="Ngày về"
-                    name="nextDay"
-                    onChange={(selectedDate) => handleDateChange(selectedDate,'nextDay')}
-                    popupClassName="calendar-header"
-                    disabledDate={(current) => current && current.valueOf() < Date.now()}
-
-                  />
-                </Space></p>
-                </div>
-              </div> */}
+ 
               <div className="w-[100%] border-b border-solid h-[50px]">
               
                 <Space direction="vertical" className="w-[100%] px-3">
@@ -245,6 +206,7 @@ wifi
                      }}
                      
                      disabledDate={(current) => current && current.valueOf() < Date.now()}
+                     popupClassName="popupRagePicker"
 
                    />
                 </Space>

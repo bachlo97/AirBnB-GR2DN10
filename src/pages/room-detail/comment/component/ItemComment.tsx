@@ -7,10 +7,11 @@ import { Rate } from 'antd'
 import { useState } from 'react';
 import { VscEllipsis } from "react-icons/vsc";
 import moment from 'moment';
+import useAlertHook from '@/hooks/notification/Alert';
 
 function ItemComment(props:Tcomment) {
   const [active,setActive]=useState(false);
-  
+  const {alertSuccessCenter}=useAlertHook();
   return (
     <div>
           <div className='py-3'>
@@ -67,12 +68,15 @@ function ItemComment(props:Tcomment) {
      <div className=''>
        <div>
          <button
-        
+        onClick={()=>{
+          alertSuccessCenter('Tính năng đang cập nhận!')
+        }}
          >Chỉnh sửa</button> 
        </div>
        <div>
-         <button onClick={async ()=>{
-          await deleteCommentRoom(props.id);
+         <button onClick={ ()=>{
+                   alertSuccessCenter('Tính năng đang cập nhận!')
+
           
 
          }}>Xoá</button> 

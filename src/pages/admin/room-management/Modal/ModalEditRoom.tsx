@@ -15,7 +15,7 @@ function ModalEditRoom(props: any) {
 
   const [open, setOpen] = useState(false);
   const listLocation: any = useAppSelector(
-    (state) => state.locationSlice.listLocation,
+    (state:any) => state.locationSlice.listLocation,
   );
   const dispatch = useAppDispatch();
   const SignupSchema = Yup.object().shape({
@@ -150,6 +150,7 @@ function ModalEditRoom(props: any) {
                     id="khach"
                     name="khach"
                     className="mb-3 block h-[30px] w-[100%] border px-3 outline-none"
+                    
                   />
                   <ErrorMessage
                     name="khach"
@@ -228,6 +229,7 @@ function ModalEditRoom(props: any) {
                   id="quocGia"
                   name="quocGia"
                   className="mb-3 block h-[30px] w-[100%] border px-3 outline-none"
+                     defaultValue="quocGia"
                 >
                   <option value="">Chọn quốc gia</option>
                   {listLocation.map((item: any, index: number) => {

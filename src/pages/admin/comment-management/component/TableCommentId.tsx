@@ -6,6 +6,7 @@ import {
 } from "@/redux/comment/Comment.slice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { Breadcrumb, Popconfirm, Table, Tooltip } from "antd";
+import moment from "moment";
 import { useEffect, useState } from "react";
 import { TiDelete } from "react-icons/ti";
 import { useParams } from "react-router-dom";
@@ -32,6 +33,13 @@ function TableCommentId() {
     {
       title: "Ngày Bình Luận",
       dataIndex: "ngayBinhLuan",
+      render:(ngayBinhLuan:any)=>{
+        console.log(ngayBinhLuan);
+        
+       return (<div>
+         {moment(ngayBinhLuan).format('DD/MM/YYYY')}
+        </div>)
+      }
     },
     {
       title: "Người Bình Luận",

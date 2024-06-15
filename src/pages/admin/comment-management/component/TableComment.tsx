@@ -18,10 +18,17 @@ function TableComment() {
       dataIndex: "stt",
     },
     {
+      title: "Mã Phòng",
+      dataIndex: "id",
+    },
+    {
       title: "Hinh Ảnh",
       dataIndex: "hinhAnh",
       render: (imageUrl: string) => (
-        <img src={imageUrl} alt="Hình ảnh" style={{ maxWidth: "100px" }} />
+        <div className="flex justify-center gap-3">
+                  <img src={imageUrl} alt="Hình ảnh" style={{ maxWidth: "100px" }} />
+        </div>
+
       ),
     },
     {
@@ -74,21 +81,7 @@ function TableComment() {
   }));
   return (
     <>
-      <Search
-        className="mb-4"
-        placeholder="input search room code"
-        allowClear
-        enterButton={<IoSearchOutline />}
-        size="large"
-        onChange={async (e) => {
-          if (userRef.current) {
-            clearTimeout(userRef.current);
-          }
-          userRef.current = setTimeout(async () => {
-            dispatch(getCommentThunkAll(e.target.value));
-          }, 400);
-        }}
-      />
+   
 
       <Table
         columns={columns}

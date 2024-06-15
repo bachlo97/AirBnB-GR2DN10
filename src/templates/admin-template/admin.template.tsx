@@ -17,6 +17,7 @@ import { getProfileThunk, setUser } from "@/redux/auth/auth.slice";
 import { getLocalStorage, removeLocalStorage, truncateText } from "@/utils";
 import { ACCESS_TOKEN, USER_ID } from "@/constant";
 import { getRoomThunk } from "@/redux/room/Room.slice";
+import ScrollToTopButton from "@/components/button-to-top/ButtonToTop";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -212,6 +213,8 @@ const AdminTemplate: React.FC = () => {
                     <Suspense>
                       <animated.div style={props}>
                         <Outlet />
+                        {/* <ScrollToTopButton /> */}
+
                       </animated.div>
                     </Suspense>
                   );

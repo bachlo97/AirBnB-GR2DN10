@@ -123,12 +123,12 @@ function Navbar(props: Props) {
           ? transitionsA((props) => (
               <animated.div style={props}>
                 <NavItem className="flex items-center gap-5" id="navItem">
-                  <div className="lg:text-[17px]">{t("header.stays")}</div>
+                  <div className="lg:text-[17px] hover:cursor-pointer">{t("header.stays")}</div>
 
-                  <div className="lg:text-[17px]">
+                  <div className="lg:text-[17px] hover:cursor-pointer">
                     {t("header.experiences")}
                   </div>
-                  <div className="lg:text-[17px]">
+                  <div className="lg:text-[17px] hover:cursor-pointer">
                     {t("header.onlineExperiences")}
                   </div>
                 </NavItem>
