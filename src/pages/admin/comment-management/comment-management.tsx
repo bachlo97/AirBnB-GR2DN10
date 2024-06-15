@@ -2,7 +2,7 @@ import { Breadcrumb } from "antd";
 
 import TableComment from "./component/TableComment";
 
-export default function CommentManagement(y) {
+export default function CommentManagement() {
   return (
     <div>
       <Breadcrumb

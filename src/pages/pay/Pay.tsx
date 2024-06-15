@@ -3,6 +3,7 @@ import { Container } from '@/components/style-compoment/Container'
 import { IoIosArrowBack } from 'react-icons/io'
 import usePayHook from './hooks/usePayHook'
 import { useAppSelector } from '@/redux/hooks';
+import { ROOM_DETAIL_PATH } from '@/router/router.config';
 
 
 function Pay() {
@@ -96,7 +97,7 @@ function Pay() {
             <div className='flex justify-between'>
             <ButtonPrimaryTwo width='10rem' height={3.5} className='my-6'
             onClick={()=>{
-              navigate(`/roomdetail/${roomID}`)
+              navigate(`/${ROOM_DETAIL_PATH}/${roomID}`)
             }}
             >Quay lại</ButtonPrimaryTwo>
             <ButtonPrimary width='10rem' height={3.5} className='my-6'

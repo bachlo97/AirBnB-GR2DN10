@@ -7,8 +7,16 @@ import {
 } from "@/redux/admin/user-management/user-management.slice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import type { TableColumnsType, TableProps } from "antd";
-import React, { useEffect, useRef} from "react";
-import { Table, Input, Button, Popconfirm, Tag, Tooltip, Breadcrumb } from "antd";
+import React, { useEffect, useRef } from "react";
+import {
+  Table,
+  Input,
+  Button,
+  Popconfirm,
+  Tag,
+  Tooltip,
+  Breadcrumb,
+} from "antd";
 import { IoSearchOutline } from "react-icons/io5";
 import { IoIosMale } from "react-icons/io";
 import { IoFemaleOutline } from "react-icons/io5";
@@ -158,56 +166,58 @@ export default function UserManagement({}: Props) {
   ) => {
     console.log("params", pagination, filters, sorter, extra);
   };
+  if(userList.length)
+    return (
+      <div>
+        <Breadcrumb
+          items={[
+            {
+              title: "Admin",
+            },
 
-  return (
-    <div>
-            <Breadcrumb
-        items={[
-          {
-            title: "Admin",
-          },
-
-          {
-            title: "Quản lý thông tin người dùng",
-          },
-        ]}
-      />
-      <h3 className="mb-5 text-4xl font-bold text-center">Quản lý người dùng</h3>
-      <Button
-        className="mb-4"
-        onClick={() => {
-          dispatch(openModal());
-          dispatch(
-            addForm({
-              modalTitle: "Thêm quản trị viên",
-              okText: "Thêm",
-            }),
-          );
-        }}
-      >
-        Thêm quản trị viên
-      </Button>
-      <FormModal />
-      <Search
-        className="mb-4"
-        placeholder="input search name"
-        allowClear
-        enterButton={<IoSearchOutline />}
-        size="large"
-        onChange={async (e) => {
-          if (userRef.current) {
-            clearTimeout(userRef.current);
-          }
-          userRef.current = setTimeout(async () => {
-            if (e.target.value) {
-              dispatch(searchUsersThunk(e.target.value));
-            } else {
-              dispatch(getUsersThunk());
+            {
+              title: "Quản lý thông tin người dùng",
+            },
+          ]}
+        />
+        <h3 className="mb-5 text-center text-4xl font-bold">
+          Quản lý người dùng
+        </h3>
+        <Button
+          className="mb-4"
+          onClick={() => {
+            dispatch(openModal());
+            dispatch(
+              addForm({
+                modalTitle: "Thêm quản trị viên",
+                okText: "Thêm",
+              }),
+            );
+          }}
+        >
+          Thêm quản trị viên
+        </Button>
+        <FormModal />
+        <Search
+          className="mb-4"
+          placeholder="input search name"
+          allowClear
+          enterButton={<IoSearchOutline />}
+          size="large"
+          onChange={async (e) => {
+            if (userRef.current) {
+              clearTimeout(userRef.current);
             }
-          }, 500);
-        }}
-      />
-      <Table columns={columns} dataSource={data} onChange={onChange} />
-    </div>
-  );
+            userRef.current = setTimeout(async () => {
+              if (e.target.value) {
+                dispatch(searchUsersThunk(e.target.value));
+              } else {
+                dispatch(getUsersThunk());
+              }
+            }, 500);
+          }}
+        />
+        <Table columns={columns} dataSource={data} onChange={onChange} />
+      </div>
+    );
 }

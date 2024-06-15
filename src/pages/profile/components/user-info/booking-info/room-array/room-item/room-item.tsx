@@ -2,6 +2,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { LuSend } from "react-icons/lu";
 import { formatDate, truncateText } from "@/utils";
 import { useRoomItem } from "./hook/room-item.hook";
+import { ROOM_DETAIL_PATH } from "@/router/router.config";
 type Props = {
   data: TBookingHistory;
   heartIndex: number;
@@ -24,7 +25,7 @@ export function RoomItem({ data, heartIndex, toggleHeart, hearts }: Props) {
           <div className="absolute bottom-0 left-0 right-0 top-0 translate-x-[-100%] bg-[#00000099] opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100 "></div>
           <button
             className="absolute left-[50%] top-[50%] flex translate-x-[-100%] translate-y-[-50%] items-center justify-center gap-1 border-[1.5px] border-solid border-white px-5 py-2 font-semibold text-white opacity-0 transition-all duration-500 hover:border-pink-500 hover:text-pink-500 group-hover:translate-x-[-50%] group-hover:opacity-100"
-            onClick={() => navigate(`/roomdetail/${data.id}`)}
+            onClick={() => navigate(`/${ROOM_DETAIL_PATH}/${data.id}`)}
           >
             Chi tiết <LuSend className="inline" />
           </button>

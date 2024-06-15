@@ -23,6 +23,7 @@ import { GiWashingMachine } from "react-icons/gi";
 import {  FaWifi } from 'react-icons/fa';
 import { HiOutlineKey } from "react-icons/hi2";
 import { BsCalendarDate } from "react-icons/bs";
+import { AUTH_PATH, PAY_PATH } from "@/router/router.config";
 
 
 type Props=any;
@@ -309,7 +310,7 @@ wifi
                
                 onClick={()=>{
                  
-                  navigate('/pay')
+                  navigate(`/${PAY_PATH}`)
                   dispatch(setDisCount(discount))
                   dispatch(setPrice(props.data.giaTien))
                   dispatch(setStartDayRoom(valueStartDay))
@@ -332,7 +333,7 @@ wifi
              
               onClick={()=>{
                
-                navigate('/auth/signin')
+                navigate(`/${AUTH_PATH}/signin`)
               
 
 
