@@ -28,6 +28,7 @@ export function Carousel() {
               country={item.country}
               place={item.place}
               index={index}
+              id={item.id}
               currentIndex={currentIndex}
               key={index}
             />
