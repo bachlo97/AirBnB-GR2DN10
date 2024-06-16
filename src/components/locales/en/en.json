@@ -1,45 +1,69 @@
 {
-    "header":{
-       "stays":"Stays",
-       "experiences":"Experiences",
-       "onlineExperiences":"Online Experiences",
-       "logIn":"Log in",
-       "signUp":"Sign up",
-       "anyWhere":"Any Where",
-     
-       "anyWeek":"Any week",
-        "startDay":"Start day",
-        "endDay":"End day",
-       "addGuests":"Add guests"  ,
-         "look":"Search",
-       "love":"Love"
-      
-        
-    },
+  "header": {
+    "stays": "Stays",
+    "experiences": "Experiences",
+    "onlineExperiences": "Online Experiences",
+    "logIn": "Log in",
+    "signUp": "Sign up",
+    "anyWhere": "Any Where",
 
-    "footer":{
-        "support":"Support",
-        "helpCenter":"Help Center",
-        "antiDiscrimination":"Anti-discrimination",
-        "disabilitySupport":"Disability support",
-        "cancellationOptions":"Cancellation options",
-        "reportNeighborhood ":"Report neighborhood concern",
+    "anyWeek": "Any week",
+    "startDay": "Start day",
+    "endDay": "End day",
+    "addGuests": "Add guests",
+    "look": "Search",
+    "love": "Love"
+  },
 
-        "policies":"Policies & Regulations",
-        "terms":"Terms and condition",
-        "payment ":"Payment regulations",
-        "information":"Information security policy",
-        "operating":"Operating regulations",
-        "loyalty":"Loyalty program",
-        "experience":"Experience evaluation program",
+  "footer": {
+    "support": "Support",
+    "helpCenter": "Help Center",
+    "antiDiscrimination": "Anti-discrimination",
+    "disabilitySupport": "Disability support",
+    "cancellationOptions": "Cancellation options",
+    "reportNeighborhood ": "Report neighborhood concern",
 
-        "moreInformation":"More information",
-        "discount":"If you want a discount code, register right here",
-        "email":"Please enter your email",
-        "follow":"Follow us over"
-    }
-    
-  
+    "policies": "Policies & Regulations",
+    "terms": "Terms and condition",
+    "payment ": "Payment regulations",
+    "information": "Information security policy",
+    "operating": "Operating regulations",
+    "loyalty": "Loyalty program",
+    "experience": "Experience evaluation program",
 
-
+    "moreInformation": "More information",
+    "discount": "If you want a discount code, register right here",
+    "email": "Please enter your email",
+    "follow": "Follow us over"
+  },
+  "carousel": {
+    "discover": "discover now",
+    "next": "Next"
+  },
+  "profile": {
+    "updateAvatar": "Update avatar",
+    "vertifyTitle": "Identity verification",
+    "vertifyContent": "Authenticate your identity with the identity verification badge.",
+    "badge": "Receive a badge",
+    "confirm": "have confirmed",
+    "emailAdrress": "Email address",
+    "accountInfo": "ACCOUNT INFORMATION",
+    "bookingHistory": "BOOKING HISTORY",
+    "edit": "Edit",
+    "del": "Cancel",
+    "save": "Save",
+    "pw": "Password",
+    "userName": "User name",
+    "phone": "Phone number",
+    "birth": "Birthday",
+    "gender": "Gender",
+    "month": "month",
+    "detail": "Detail"
+  },
+  "place": {
+    "nearBy": "Explore nearby places"
+  },
+  "anyWhere": {
+    "where": "Any where"
+  }
 }

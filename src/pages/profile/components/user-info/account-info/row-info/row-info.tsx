@@ -1,6 +1,7 @@
 import { useAppSelector } from "@/redux/hooks";
 import {ReactElement, useContext, useEffect, useState } from "react";
 import {ContextStore} from "../../context";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   label: string;
@@ -18,7 +19,7 @@ export function RowInfo({
   const user: any = useAppSelector((state) => state.authReducer.user);
   const [open, setOpen] = useState<boolean>(false);
   const [bgBlur, setBgBlur] = useContext(ContextStore);
-
+  const {t} = useTranslation()
   useEffect(()=>{
     setOpen(false)
   },[user])
@@ -47,7 +48,7 @@ export function RowInfo({
               setBgBlur(!open)
             }}
           >
-            {bgBlur && open? "Huỷ" : "Chỉnh sửa"}
+            {bgBlur && open? t("profile.del") : t("profile.edit")}
           </span>
         ) : null}
       </div>

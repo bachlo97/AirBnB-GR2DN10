@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 import { ErrorMessage, Form, Formik } from "formik";
 
 import { useDatePickerProfile } from "./hook/profile-datepicker.hook";
+import { useTranslation } from "react-i18next";
 type Props = {
   name: string;
 };
@@ -10,7 +11,7 @@ type Props = {
 export function ProfileDatePicker({ name }: Props) {
   const [{ initialValues, validationSchema, user }, { handleSubmit }] =
     useDatePickerProfile(name);
-
+  const {t} = useTranslation()
   return (
     <Formik
       initialValues={initialValues}
@@ -40,7 +41,7 @@ export function ProfileDatePicker({ name }: Props) {
               type="submit"
               className="mt-4 rounded-xl   bg-[#222222] px-8 py-4 text-white hover:bg-[#000000]"
             >
-              Lưu
+              {t("profile.save")}
             </button>
           </Form>
         );

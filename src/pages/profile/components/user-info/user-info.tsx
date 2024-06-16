@@ -9,10 +9,11 @@ import {  getLocalStorage } from "@/utils";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { getRoomBookingThunk } from "@/redux/booking-history/booking-history.slice";
 import { USER_ID } from "@/constant";
+import { useTranslation } from "react-i18next";
 type Props = {};
 
 export default function UserInfo({}: Props) {
-  
+  const {t} = useTranslation()
   const dispatch = useAppDispatch()
   const roomBookingList = useAppSelector(state => state.bookingHistoryReducer.roomBookingList)
   useEffect(()=>{
@@ -34,12 +35,12 @@ export default function UserInfo({}: Props) {
   const items: TabsProps["items"] = [
     {
       key: "1",
-      label: "THÔNG TIN TÀI KHOẢN",
+      label: t('profile.accountInfo'),
       children: <Provider><AccountInfo/></Provider> ,
     },
     {
       key: "2",
-      label: "LỊCH SỬ ĐẶT PHÒNG",
+      label: t('profile.bookingHistory'),
       children: <BookingInfo itemsPerPage={2} data={roomBookingList} hearts={hearts} toggleHeart={toggleHeart}/>,
     },
   ];

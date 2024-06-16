@@ -2,12 +2,14 @@ import { Select } from "antd";
 import { Form, Formik } from "formik";
 import _ from "lodash";
 import { useSelectProfile } from "./hook/profile-select.hook";
+import { useTranslation } from "react-i18next";
 type Props = {
   name: string;
 };
 
 export function ProfileSelect({ name }: Props) {
   const [{ user, initialValues }, { handleSubmit }] = useSelectProfile(name);
+  const {t} = useTranslation()
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit!}>
       {({ setFieldValue, values }) => {
@@ -25,7 +27,7 @@ export function ProfileSelect({ name }: Props) {
                 },
                 {
                   value: false,
-                  label: "Nữ",
+                  label: "Nữ"
                 },
               ]}
             />
@@ -33,7 +35,7 @@ export function ProfileSelect({ name }: Props) {
               type="submit"
               className="mt-4 rounded-xl   bg-[#222222] px-8 py-4 text-white hover:bg-[#000000]"
             >
-              Lưu
+              {t("profile.save")}
             </button>
           </Form>
         );

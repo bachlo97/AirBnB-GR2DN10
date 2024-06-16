@@ -3,6 +3,7 @@ import { LuSend } from "react-icons/lu";
 import { formatDate, truncateText } from "@/utils";
 import { useRoomItem } from "./hook/room-item.hook";
 import { ROOM_DETAIL_PATH } from "@/router/router.config";
+import { useTranslation } from "react-i18next";
 type Props = {
   data: TBookingHistory;
   heartIndex: number;
@@ -13,6 +14,7 @@ type Props = {
 export function RoomItem({ data, heartIndex, toggleHeart, hearts }: Props) {
   const [, { navigate, renderEquiment, renderRoomParts }]: any =
     useRoomItem(data);
+    const {t} = useTranslation()
   return (
     <div className="mt-8">
       <div className="flex gap-7 mobile:flex-col mobile:items-center ipad:flex-row ipad:items-start">
@@ -27,7 +29,7 @@ export function RoomItem({ data, heartIndex, toggleHeart, hearts }: Props) {
             className="absolute left-[50%] top-[50%] flex translate-x-[-100%] translate-y-[-50%] items-center justify-center gap-1 border-[1.5px] border-solid border-white px-5 py-2 font-semibold text-white opacity-0 transition-all duration-500 hover:border-pink-500 hover:text-pink-500 group-hover:translate-x-[-50%] group-hover:opacity-100"
             onClick={() => navigate(`/${ROOM_DETAIL_PATH}/${data.id}`)}
           >
-            Chi tiết <LuSend className="inline" />
+            {t("profile.detail")} <LuSend className="inline" />
           </button>
         </div>
 
@@ -59,7 +61,7 @@ export function RoomItem({ data, heartIndex, toggleHeart, hearts }: Props) {
           </p>
           <p className="text-right text-[18px] mobile:mt-4 ipad:mr-[30px] ipad:mt-[30px] desktop:mr-[70px]">
             <span className="mr-1 inline-block font-bold">{`$${data.giaTien}`}</span>
-            / tháng
+            / {t("profile.month")}
           </p>
         </div>
       </div>
