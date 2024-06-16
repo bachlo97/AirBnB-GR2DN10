@@ -193,7 +193,7 @@ function InformationDetailRoom(props: Props) {
               
                 <Space direction="vertical" className="w-[100%] px-3">
                 
-                   <RangePicker className="rangePicker w-[100%]"
+                   <RangePicker className="rangePicker ipad:w-[100%] mobile:w-[95%]"
                      onChange={(selectedDate:any)=>{
                       handleDateChange(selectedDate[0],'currentDay')
                       handleDateChange(selectedDate[1],'nextDay')

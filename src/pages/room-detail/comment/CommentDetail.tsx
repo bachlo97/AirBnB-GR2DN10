@@ -9,7 +9,6 @@ import * as Yup from "yup";
 
 import PageCommentDetail from "./component/PageCommentDetail";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import moment from "moment";
 import { getCommentThunk } from "@/redux/comment/Comment.slice";
 import useAlertHook from "@/hooks/notification/Alert";
 import { Field, Formik } from "formik";
