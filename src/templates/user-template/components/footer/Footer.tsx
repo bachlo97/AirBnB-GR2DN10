@@ -36,7 +36,7 @@ if (isLoading) {
 <div className='grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-[10px]'>
             <div className='box'>
                 <h3 className='text-[2rem] mb-5'>Airbnb</h3>
-                <p className='flex gap-1 items-center' style={{lineHeight:'3rem'}}>
+                <p className='flex gap-1 items-center' style={{lineHeight:'3rem'}} >
                     <IoLocationSharp />
                     80 Quán Sứ, Hoàn Kiếm, Hồ Chí Minh
 
@@ -47,7 +47,7 @@ if (isLoading) {
 
                 </p>
                
-                <p className='flex gap-1 items-center' style={{lineHeight:'3rem'}}>
+                <p className='flex gap-1 items-center' style={{lineHeight:'3rem'}} >
                 <BsTelephone />
 
 
@@ -72,32 +72,32 @@ if (isLoading) {
             </div>
             <div className='box'>
                 <h4 className='text-[1.8rem] mb-3'>{t('footer.support')}</h4>
-                <p style={{lineHeight:'3rem'}}>
+                <p style={{lineHeight:'3rem'}} className="hover:text-red-600 cursor-pointer"> 
           
                 {t('footer.helpCenter')}
 
                 </p>
-                <p style={{lineHeight:'3rem'}}>
+                <p style={{lineHeight:'3rem'}} className="hover:text-red-600 cursor-pointer">
           
                 AirCover
 
                 </p>
-                <p style={{lineHeight:'3rem'}}>
+                <p style={{lineHeight:'3rem'}} className="hover:text-red-600 cursor-pointer">
           
                 {t('footer.antiDiscrimination')}
 
                 </p>
-                <p style={{lineHeight:'3rem'}}>
+                <p style={{lineHeight:'3rem'}} className="hover:text-red-600 cursor-pointer">
           
                 {t('footer.disabilitySupport')}
 
                 </p>
-                <p style={{lineHeight:'3rem'}}>
+                <p style={{lineHeight:'3rem'}} className="hover:text-red-600 cursor-pointer">
           
                 {t('footer.cancellationOptions')}
 
                 </p>
-                <p style={{lineHeight:'3rem'}}>
+                <p style={{lineHeight:'3rem'}} className="hover:text-red-600 cursor-pointer">
           
                 {t('footer.reportNeighborhood')}
 
@@ -108,33 +108,33 @@ if (isLoading) {
             <div className='box'>
                 <h4 className='text-[1.8rem] mb-3' >{t('footer.policies')}
                 </h4>
-                <p style={{lineHeight:'3rem'}}>
+                <p style={{lineHeight:'3rem'}} className="hover:text-red-600 cursor-pointer">
                 {t('footer.terms')}
 
 
                 </p>
-                <p style={{lineHeight:'3rem'}}>
+                <p style={{lineHeight:'3rem'}} className="hover:text-red-600 cursor-pointer">
                     
                 {t('footer.payment')}
 
                 </p>
-                <p style={{lineHeight:'3rem'}}>
+                <p style={{lineHeight:'3rem'}} className="hover:text-red-600 cursor-pointer">
                     
                 {t('footer.information')}
 
 
                 </p>
-                <p style={{lineHeight:'3rem'}}>
+                <p style={{lineHeight:'3rem'}} className="hover:text-red-600 cursor-pointer">
                     
                 {t('footer.operating')}
 
                 </p>
-                <p style={{lineHeight:'3rem'}}>
+                <p style={{lineHeight:'3rem'}} className="hover:text-red-600 cursor-pointer">
                     
                 {t('footer.loyalty')}
 
                 </p>
-                <p style={{lineHeight:'3rem'}}>
+                <p style={{lineHeight:'3rem'}} className="hover:text-red-600 cursor-pointer">
                     
                 {t('footer.experience')}
 
@@ -145,7 +145,7 @@ if (isLoading) {
             <div className='box'>
                 <h4 className='text-[1.8rem] mb-3'>{t('footer.moreInformation')}
                 </h4>
-    <p style={{lineHeight:'3rem'}}>{t('footer.discount')}
+    <p style={{lineHeight:'3rem'}} className="hover:text-red-600 cursor-pointer">{t('footer.discount')}
     y</p>
            <form action="" method="post" className='flex' ref={form} onSubmit={sendEmail}>
             <input type="email" placeholder='Vui lòng nhập email' name="user_email" className='px-3 h-[30px] text-black'/>
@@ -153,7 +153,7 @@ if (isLoading) {
             
             >Đăng Kí</ButtonPrimary>
            </form>
-               <h4 style={{lineHeight:'3rem'}}>{t('footer.follow')}
+               <h4 style={{lineHeight:'3rem'}} className="hover:text-red-600 cursor-pointer">{t('footer.follow')}
                </h4>
           <div className="socials flex gap-3">
     <SocialItem>

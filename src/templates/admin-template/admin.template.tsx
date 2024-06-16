@@ -214,6 +214,8 @@ const AdminTemplate: React.FC = () => {
                     <Suspense>
                       <animated.div style={props}>
                         <Outlet />
+                        {/* <ScrollToTopButton /> */}
+
                       </animated.div>
                     </Suspense>
                   );

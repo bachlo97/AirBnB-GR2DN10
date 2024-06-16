@@ -139,7 +139,7 @@ function TableRoom() {
     <div>
       <Search
         className="mb-4"
-        placeholder="input search room code"
+        placeholder="Mời bạn nhập tên phòng"
         allowClear
         enterButton={<IoSearchOutline />}
         size="large"

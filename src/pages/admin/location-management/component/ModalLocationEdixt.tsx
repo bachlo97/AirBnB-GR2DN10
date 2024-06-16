@@ -118,6 +118,8 @@ function ModalLocationEdit(props: any) {
                   id="quocGia"
                   name="quocGia"
                   className="mb-3 block h-[30px] w-[100%] border px-3 outline-none"
+                  defaultValue="vietNam"
+
                 >
                   <option value="">Chọn quốc gia</option>
                   <option value="vietNam">Việt Nam</option>

@@ -198,7 +198,10 @@ function HeaderSearchBar(props: any) {
                     onClick={() => {
                       dispatch(setStartDayRoom(valueStartDay));
                       dispatch(setEndDayRoom(valueEndDay));
-                      navigate(`/${ROOM_LIST_PATH}/${valueId}`);
+                      if(valueId>0){
+                         navigate(`/roomlist/${valueId}`);
+                      }
+                     
                     }}
                   >
                     <SearchIconSubmi>

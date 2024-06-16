@@ -188,18 +188,21 @@ function InformationDetailRoom(props: Props) {
           </h3>
           <form action="" onSubmit={handleSubmit} className="search-bar">
             <div className="rounded-[1rem] border border-solid border-gray-400 ">
-              <div className="h-[50px] w-[100%] border-b border-solid">
+ 
+              <div className="w-[100%] border-b border-solid h-[50px]">
+              
                 <Space direction="vertical" className="w-[100%] px-3">
-                  <RangePicker
-                    className="rangePicker mobile:w-[95%] ipad:w-[100%]"
-                    onChange={(selectedDate: any) => {
-                      handleDateChange(selectedDate[0], "currentDay");
-                      handleDateChange(selectedDate[1], "nextDay");
-                    }}
-                    disabledDate={(current) =>
-                      current && current.valueOf() < Date.now()
-                    }
-                  />
+                
+                   <RangePicker className="rangePicker w-[100%]"
+                     onChange={(selectedDate:any)=>{
+                      handleDateChange(selectedDate[0],'currentDay')
+                      handleDateChange(selectedDate[1],'nextDay')
+                     }}
+                     
+                     disabledDate={(current) => current && current.valueOf() < Date.now()}
+                     popupClassName="popupRagePicker"
+
+                   />
                 </Space>
               </div>
               <div className="group-form px-4 py-3">

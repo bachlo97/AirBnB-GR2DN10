@@ -15,7 +15,7 @@ function ModalEditRoom(props: any) {
 
   const [open, setOpen] = useState(false);
   const listLocation: any = useAppSelector(
-    (state) => state.locationSlice.listLocation,
+    (state:any) => state.locationSlice.listLocation,
   );
   const dispatch = useAppDispatch();
   const SignupSchema = Yup.object().shape({
@@ -27,7 +27,7 @@ function ModalEditRoom(props: any) {
     moTa: Yup.string().required('Mô tả là bắt buộc'),
     giuong: Yup.number().required('Số giường là bắt buộc'),
     phongTam: Yup.number().required('Số phòng tắm là bắt buộc'),
-    quocGia: Yup.string().required('Tên vị trí là bắt buộc'),
+    maViTri: Yup.string().required('Tên vị trí là bắt buộc'),
 
 
    
@@ -72,7 +72,7 @@ function ModalEditRoom(props: any) {
             phongNgu: props.data.phongNgu,
             giuong: props.data.giuong,
             phongTam: props.data.phongTam,
-            quocGia: props.data.quocGia,
+            maViTri: props.data.maViTri,
             moTa: props.data.moTa,
             mayGiat: props.data.mayGiat,
             banLa: props.data.banLa,
@@ -86,7 +86,8 @@ function ModalEditRoom(props: any) {
           validationSchema={SignupSchema}
 
           onSubmit={(values) => {
-            console.log(values);
+           
+            
 
             setOpen(false);
             dispatch(putRoomThunk(values));
@@ -150,6 +151,7 @@ function ModalEditRoom(props: any) {
                     id="khach"
                     name="khach"
                     className="mb-3 block h-[30px] w-[100%] border px-3 outline-none"
+                    
                   />
                   <ErrorMessage
                     name="khach"
@@ -222,12 +224,13 @@ function ModalEditRoom(props: any) {
                 />
               </div>
               <div>
-                <label htmlFor="quocGia">Vị Trí:</label>
+                <label htmlFor="maViTri">Vị Trí:</label>
                 <Field
                   as="select"
-                  id="quocGia"
-                  name="quocGia"
+                  id="maViTri"
+                  name="maViTri"
                   className="mb-3 block h-[30px] w-[100%] border px-3 outline-none"
+                     defaultValue="maViTri"
                 >
                   <option value="">Chọn quốc gia</option>
                   {listLocation.map((item: any, index: number) => {
@@ -239,7 +242,7 @@ function ModalEditRoom(props: any) {
                   })}
                 </Field>
                 <ErrorMessage
-                  name="quocGia"
+                  name="maViTri"
                   component="div"
                   className="text-red-500"
                 />

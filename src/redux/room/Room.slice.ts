@@ -1,4 +1,5 @@
 import { delRoomAPI, getRooms, postRoomAPI, putRoomAPI } from "@/services/room/Room.service";
+import { getRoomsList } from "@/services/room/RoomsList.style";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const getRoomThunk = createAsyncThunk(
@@ -19,6 +20,23 @@ export const getRoomThunk = createAsyncThunk(
           // Return all results if no search key is provided
           return result.reverse();
         }
+
+      }catch(e){
+        console.log(e)
+      }
+  
+    },
+  );
+export const getRoomThunkId = createAsyncThunk(
+    "getRoomThunkId",
+    async (id:any) => {
+      try{
+        console.log(id);
+        
+        const resp = await getRoomsList(id);
+        return resp.content;
+        
+
 
       }catch(e){
         console.log(e)
@@ -91,15 +109,20 @@ export const getRoomThunk = createAsyncThunk(
       builder.addCase(getRoomThunk.fulfilled, (state, { payload }) => {
         state.listRoom = payload;
       });
+      builder.addCase(getRoomThunkId.fulfilled, (state, {payload}) => {
+        state.listRoom = payload; 
+      })
       builder.addCase(addRoomThunk.fulfilled, (state, { payload }) => {
         state.listRoom = payload;
       });
+
       builder.addCase(delRoomThunk.fulfilled, (state, { payload }) => {
         state.listRoom = payload;
       });
       builder.addCase(putRoomThunk.fulfilled, (state, action) => {
         state.listRoom = action.payload; // Update state with new data
       })
+  
     },
   });
   export const {setRoom} = RoomSlice.actions;

@@ -6,11 +6,7 @@ export interface TLocaltionAPI {
     hinhAnh: string
   }
   
-export interface TLocaltion {
-    id: number
-    tenViTri: string
-    tinhThanh: string
-    quocGia: string
-    hinhAnh: string
+export interface TLocaltion extends TLocaltionAPI {
+
   }
   

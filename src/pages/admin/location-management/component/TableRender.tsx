@@ -12,14 +12,17 @@ import "../css/style.css";
 import { IoSearchOutline } from "react-icons/io5";
 import { TiDelete } from "react-icons/ti";
 import useAlertHook from "@/hooks/notification/Alert";
+import { getRoomThunkId } from "@/redux/room/Room.slice";
+import ScrollToTopButton from "@/components/button-to-top/ButtonToTop";
 function TableRender() {
   const { Search } = Input;
-  const { alertSuccessCenter } = useAlertHook();
+  const { alertSuccessCenter,alertErrorCenter} = useAlertHook();
 
   const [, setData] = useState<TLocaltion[]>([]);
   const listLocation: any = useAppSelector(
     (state) => state.locationSlice.listLocation,
   );
+
   const dispatch = useAppDispatch();
   const [loading] = useState(false);
   const [tableParams, setTableParams] = useState({
@@ -33,6 +36,13 @@ function TableRender() {
     {
       title: "STT",
       dataIndex: "stt",
+      key: "id",
+
+      sorter: (a: any, b: any) => a.id - b.id,
+    },
+    {
+      title: "Mã Phòng",
+      dataIndex: "id",
       key: "id",
 
       sorter: (a: any, b: any) => a.id - b.id,
@@ -69,9 +79,20 @@ function TableRender() {
           <Popconfirm
             title="Bạn có muốn xóa "
             onConfirm={async () => {
-              dispatch(delAdminLocationThunk(record.id));
+          
+              const listRoomLocaltion=await dispatch(getRoomThunkId(record.id));
+              if(listRoomLocaltion.payload.length>0){
+
+                alertErrorCenter('Xoá thất bại vì địa chỉ đã có phòng nên xoá phòng trước')
+                
+
+              }else{
+          dispatch(delAdminLocationThunk(record.id));
               dispatch(getAdminLocationThunk(""));
               alertSuccessCenter("Xoá dữ liệu thành công");
+                
+              }
+              
             }}
             cancelText="Huỷ"
             okText="Chắn chắn"
@@ -90,7 +111,7 @@ function TableRender() {
     },
   ];
 
-  console.log();
+ 
   const userRef = useRef<any>(null);
   const dataLocation = listLocation.map((item:any, index:number) => ({
     ...item,
@@ -114,9 +135,10 @@ function TableRender() {
   };
   return (
     <div>
+      
       <Search
         className="mb-4"
-        placeholder="input search room code"
+        placeholder="Mời bạn nhập tên phòng"
         allowClear
         enterButton={<IoSearchOutline />}
         size="large"
@@ -138,6 +160,7 @@ function TableRender() {
         onChange={handleTableChange}
         className="tablePrimary"
       />
+   
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { Breadcrumb } from "antd";
 import TableRender from "./component/TableRender";
 import ModalLocation from "./component/ModalLocation";
+import ScrollToTopButton from "@/components/button-to-top/ButtonToTop";
 
 type Props = {};
 
@@ -25,6 +26,11 @@ export default function LocationManagement({}: Props) {
       </div>
 
       <TableRender />
+ 
+
+
+      
+
     </div>
   );
 }

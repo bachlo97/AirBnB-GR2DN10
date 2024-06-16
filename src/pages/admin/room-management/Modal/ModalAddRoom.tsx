@@ -42,7 +42,7 @@ function ModalAddRoom() {
         moTa: Yup.string().required('Mô tả là bắt buộc'),
         giuong: Yup.number().required('Số giường là bắt buộc'),
         phongTam: Yup.number().required('Số phòng tắm là bắt buộc'),
-        quocGia: Yup.string().required('Tên vị trí là bắt buộc'),
+        maViTri: Yup.string().required('Tên vị trí là bắt buộc'),
     
     
        
@@ -65,13 +65,14 @@ function ModalAddRoom() {
 
     >
 <Formik
-      initialValues={{ tenPhong: '', giaTien: '' ,hinhAnh:'',khach:'',phongNgu:'',giuong:'',phongTam:'',quocGia:'',moTa:'',mayGiat:false,banLa:false,tivi:false,dieuHoa:false,wifi:false,bep:false,doXe:false,banUi:false}}
+      initialValues={{ tenPhong: '', giaTien: '' ,hinhAnh:'',khach:'',phongNgu:'',giuong:'',phongTam:'',maViTri:'',moTa:'',mayGiat:false,banLa:false,tivi:false,dieuHoa:false,wifi:false,bep:false,doXe:false,banUi:false}}
       onSubmit={(values,{resetForm}) => {
     
         dispatch(addRoomThunk(values))
         setOpen(false);
         resetForm();
         alertSuccessCenter('Thêm dữ liệu thành công')
+
 
         
        
@@ -138,8 +139,8 @@ function ModalAddRoom() {
             <ErrorMessage name="moTa" component="div" className="text-red-500" />
           </div>
           <div>
-            <label htmlFor="quocGia">Vị Trí:</label>
-            <Field as="select" id="quocGia" name="quocGia" className="outline-none border block w-[100%] h-[30px] px-3 mb-3">
+            <label htmlFor="maViTri">Vị Trí:</label>
+            <Field as="select" id="maViTri" name="maViTri" className="outline-none border block w-[100%] h-[30px] px-3 mb-3">
             <option value="">Chọn quốc gia</option>
              {listLocation.map((item:any,index:number)=>{
                 return <option key={index} value={item.id}>{item.tenViTri},{item.tinhThanh},{item.quocGia}</option>
@@ -149,7 +150,7 @@ function ModalAddRoom() {
             
     
             </Field>
-            <ErrorMessage name="quocGia" component="div" className="text-red-500" />
+            <ErrorMessage name="maViTri" component="div" className="text-red-500" />
           </div>
   <div className="flex gap-3 flex-wrap">
            <div className='w-[23%]'>

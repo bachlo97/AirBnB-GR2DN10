@@ -6,6 +6,7 @@ import { useAppDispatch } from '@/redux/hooks'
 import { getProfileThunk } from '@/redux/auth/auth.slice'
 import { getLocalStorage } from '@/utils'
 import { USER_ID } from '@/constant'
+import ScrollToTopButton from '@/components/button-to-top/ButtonToTop'
 
 
 
@@ -21,7 +22,9 @@ export default function UserTemplate(){
         <main>
             <Suspense>
                 <Outlet/>
+                <ScrollToTopButton />
             </Suspense>
+            
         </main>
         <Footer/>
     
