@@ -1,4 +1,5 @@
 import { ROOM_DETAIL_PATH } from "@/router/router.config";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 type Props = {
@@ -19,6 +20,7 @@ export const IntroItem = ({
     id
 }: Props) => {
     const navigate = useNavigate()
+    const {t} = useTranslation()
     return (
         <div
             className={`wrapper ${index === currentIndex ? "pointer-events-auto" : "pointer-events-none"} absolute desktopPlus:bottom-0 left-0 flex h-fit w-full flex-col justify-end desktopPlus:p-[0_25px_0_50px] mobile:bottom-[-97px] mobile:left-[-26px] mobile:p-[0_0_0_50px] ipad:bottom-[-48px] desktop:bottom-[-40px] ipadPro:bottom-[-20px]`}
@@ -48,7 +50,7 @@ export const IntroItem = ({
                 <button
                     className={`${index === currentIndex ? "translate-y-0 opacity-100 delay-[calc(0.3)] " : "translate-y-[300px] opacity-0 delay-[calc(2.7)]"} desktopPlus:mt-[20px]  desktopPlus:h-[50px] desktopPlus:w-[250px]  rounded-full transition duration-500 ease-in-out bg-transparent border-[1px] border-solid border-white text-inherit font-[500] uppercase hover:cursor-pointer hover:bg-[rgb(255,255,255,0.4)] mobile:text-[5px] mobile:w-[58px] mobile:mt-[10px] mobile:h-[20px] ipad:text-[8px] ipad:w-[80px] ipad:h-[25px] desktop:text-[12px] desktop:w-[120px] desktop:h-[38px] desktop:mt-[15px]`}
                  onClick={()=>navigate(`/${ROOM_DETAIL_PATH}/${id}`)}>
-                    Discover now
+                    {t('carousel.discover')}
                 </button>
             </span>
         </div>

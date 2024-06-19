@@ -16,27 +16,28 @@
        "share":"Chia sẽ"
        
     },
-    "footer":{
-        "support":"Hỗ trợ",
-        "helpCenter":"Trung tâm trợ giúp",
-        "antiDiscrimination":"Chống phân biệt đối xử",
-        "disabilitySupport":"Hỗ trợ người khuyết tật",
-        "cancellationOptions":"Các tùy chọn hủy",
-        "reportNeighborhood ":"Báo cáo lo ngại của khu dân cư",
 
-        "policies":"Chính sách & Quy định",
-        "terms":"Điều khoản và điều kiện",
-        "payment ":"Quy định về thanh toán",
-        "information":"Chính sách bảo mật thông tin",
-        "operating":"Quy chế hoạt động",
-        "loyalty":"Chương trình khách hàng thân thiết",
-        "experience":"Chương trình đánh giá trải nghiệm",
+  "footer": {
+    "support": "Hỗ trợ",
+    "helpCenter": "Trung tâm trợ giúp",
+    "antiDiscrimination": "Chống phân biệt đối xử",
+    "disabilitySupport": "Hỗ trợ người khuyết tật",
+    "cancellationOptions": "Các tùy chọn hủy",
+    "reportNeighborhood ": "Báo cáo lo ngại của khu dân cư",
 
-        "moreInformation":"Thông tin thêm",
-        "discount":"Bạn muốn mã giảm giá hãy đăng kí ngay tại đây",
-        "email":"Vui lòng nhập email",
-        "follow":"Theo dõi chúng tôi qua"
-    },
+    "policies": "Chính sách & Quy định",
+    "terms": "Điều khoản và điều kiện",
+    "payment ": "Quy định về thanh toán",
+    "information": "Chính sách bảo mật thông tin",
+    "operating": "Quy chế hoạt động",
+    "loyalty": "Chương trình khách hàng thân thiết",
+    "experience": "Chương trình đánh giá trải nghiệm",
+
+    "moreInformation": "Thông tin thêm",
+    "discount": "Bạn muốn mã giảm giá hãy đăng kí ngay tại đây",
+    "email": "Vui lòng nhập email",
+    "follow": "Theo dõi chúng tôi qua"
+  },
     "common": {
         "house": "Toàn bộ nhà",
         "live": "Chỗ ở độc đáo",
@@ -97,7 +98,37 @@
         "back":"Quay lại",
         "confirm":"Xác Nhận"
 
-      }
+      },
 
    
+  "carousel": {
+    "discover": "khám phá ngay",
+    "next": "Tiếp tục"
+  },
+  "profile": {
+    "updateAvatar": "Cập nhật ảnh",
+    "vertifyTitle": "Xác minh danh tính",
+    "vertifyContent": "Xác thực danh tính của bạn với huy hiệu xác minh danh tính.",
+    "badge": "Nhận huy hiêụ",
+    "confirm": "đã xác nhận",
+    "emailAdrress": "Địa chỉ email",
+    "accountInfo": "THÔNG TIN TÀI KHOẢN",
+    "bookingHistory": "LỊCH SỬ ĐẶT PHÒNG",
+    "edit": "Chỉnh sửa",
+    "del": "Huỷ",
+    "save": "Lưu",
+    "pw": "Mật khẩu",
+    "userName": "Tên người dùng",
+    "phone": "Số điện thoại",
+    "birth": "Ngày sinh",
+    "gender": "Giới tính",
+    "month": "tháng",
+    "detail": "Chi tiết"
+  },
+  "place": {
+    "nearBy": "Khám phá những địa điểm gần đây"
+  },
+  "anyWhere": {
+    "where": "Ở bất cứ đâu"
+  }
 }

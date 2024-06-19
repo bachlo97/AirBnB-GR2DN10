@@ -326,7 +326,7 @@ function InformationDetailRoom(props: Props) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 export default InformationDetailRoom;

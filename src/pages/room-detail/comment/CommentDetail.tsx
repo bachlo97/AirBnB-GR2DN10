@@ -3,18 +3,18 @@ import { FaStar } from "react-icons/fa";
 import { Rate } from "antd";
 import { ButtonPrimary } from "@/components/Button/Button";
 import { useEffect, useState } from "react";
-import { Form, useNavigate, useParams } from "react-router-dom";
+import { Form,useNavigate, useParams } from "react-router-dom";
 import { postCommentRoom } from "@/services/comment/comment.service";
 import * as Yup from "yup";
 
 import PageCommentDetail from "./component/PageCommentDetail";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import moment from "moment";
 import { getCommentThunk } from "@/redux/comment/Comment.slice";
 import useAlertHook from "@/hooks/notification/Alert";
 import { Field, Formik } from "formik";
 import { AUTH_PATH } from "@/router/router.config";
 import { useTranslation } from "react-i18next";
+
 
 function CommentDetail() {
   const { alertSuccessCenter } = useAlertHook();
@@ -38,7 +38,6 @@ function CommentDetail() {
   });
 
   const { id}:any = useParams();
-
   useEffect(() => {
     dispatch(getCommentThunk(id));
   }, [dispatch, id]);

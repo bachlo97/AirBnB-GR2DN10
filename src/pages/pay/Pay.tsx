@@ -51,7 +51,7 @@ function Pay() {
       <div>
         <div className='flex justify-between  py-7'>
           <p className='font-bold text-[1.6rem]'>{t("pagePay.total")}:</p>
-          <p>$116,97 CAD</p>
+          <p>${payRoom.priceRoom*countDay*(100-payRoom.discount)/100}</p>
         </div>
       </div>
         </div>   
@@ -79,7 +79,7 @@ function Pay() {
                 </div>
                 <div className='flex gap-3 mt-3'>
                             <input type="radio" name='check'/>
-                <label htmlFor="">T {t("pagePay.paymentMoMo")}</label>
+                <label htmlFor="">{t("pagePay.paymentMoMo")}</label>
                 </div>
         
             </form>
@@ -127,7 +127,7 @@ function Pay() {
            <div className='border-b border-solid border-gray-400 py-7'>
             <h4 className='font-bold text-[1.8rem] mb-3'>{t("pagePay.detailPrice")}</h4>
             <div className='flex justify-between mb-2'>
-                <p>${payRoom.priceRoom} x {countDay} đêm</p>
+                <p>${payRoom.priceRoom} x {countDay} {t("pageDetail.night")}</p>
                 <p>${payRoom.priceRoom*countDay}</p>
             </div>
           

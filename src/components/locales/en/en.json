@@ -16,28 +16,29 @@
        "share":"Share"
         
     },
+ 
 
-    "footer":{
-        "support":"Support",
-        "helpCenter":"Help Center",
-        "antiDiscrimination":"Anti-discrimination",
-        "disabilitySupport":"Disability support",
-        "cancellationOptions":"Cancellation options",
-        "reportNeighborhood ":"Report neighborhood concern",
+  "footer": {
+    "support": "Support",
+    "helpCenter": "Help Center",
+    "antiDiscrimination": "Anti-discrimination",
+    "disabilitySupport": "Disability support",
+    "cancellationOptions": "Cancellation options",
+    "reportNeighborhood ": "Report neighborhood concern",
+    "policies": "Policies & Regulations",
+    "terms": "Terms and condition",
+    "payment ": "Payment regulations",
+    "information": "Information security policy",
+    "operating": "Operating regulations",
+    "loyalty": "Loyalty program",
+    "experience": "Experience evaluation program",
 
-        "policies":"Policies & Regulations",
-        "terms":"Terms and condition",
-        "payment ":"Payment regulations",
-        "information":"Information security policy",
-        "operating":"Operating regulations",
-        "loyalty":"Loyalty program",
-        "experience":"Experience evaluation program",
-
-        "moreInformation":"More information",
-        "discount":"If you want a discount code, register right here",
-        "email":"Please enter your email",
-        "follow":"Follow us over"
-    },
+    "moreInformation": "More information",
+    "discount": "If you want a discount code, register right here",
+    "email": "Please enter your email",
+    "follow": "Follow us over"
+  },
+      
  
   "common": {
     "house": "Entire House",
@@ -102,8 +103,37 @@
 
 
   
-} 
+} ,
   
 
-
+  "carousel": {
+    "discover": "discover now",
+    "next": "Next"
+  },
+  "profile": {
+    "updateAvatar": "Update avatar",
+    "vertifyTitle": "Identity verification",
+    "vertifyContent": "Authenticate your identity with the identity verification badge.",
+    "badge": "Receive a badge",
+    "confirm": "have confirmed",
+    "emailAdrress": "Email address",
+    "accountInfo": "ACCOUNT INFORMATION",
+    "bookingHistory": "BOOKING HISTORY",
+    "edit": "Edit",
+    "del": "Cancel",
+    "save": "Save",
+    "pw": "Password",
+    "userName": "User name",
+    "phone": "Phone number",
+    "birth": "Birthday",
+    "gender": "Gender",
+    "month": "month",
+    "detail": "Detail"
+  },
+  "place": {
+    "nearBy": "Explore nearby places"
+  },
+  "anyWhere": {
+    "where": "Any where"
+  }
 }

@@ -5,7 +5,6 @@ import InforWherever from "./components/infor-Wherever/InforWherever";
 import { Carousel } from "./components/carousel";
 import { HorizontalScroll } from "./components/horizontal-scroll";
 import { Provider } from "./context/filter-rooms.context";
-import ScrollToTopButton from "@/components/button-to-top/ButtonToTop";
 
 function Home() {
   return (
@@ -19,7 +18,6 @@ function Home() {
       </Provider>
 
       <InforWherever />
-   
     </Fragment>
   );
 }
