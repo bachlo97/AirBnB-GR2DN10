@@ -14,6 +14,7 @@ import { getCommentThunk } from "@/redux/comment/Comment.slice";
 import useAlertHook from "@/hooks/notification/Alert";
 import { Field, Formik } from "formik";
 import { AUTH_PATH } from "@/router/router.config";
+import { useTranslation } from "react-i18next";
 
 function CommentDetail() {
   const { alertSuccessCenter } = useAlertHook();
@@ -25,6 +26,7 @@ function CommentDetail() {
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [postComment, setPostComment] = useState<any>({
     id: 0,
@@ -48,19 +50,22 @@ function CommentDetail() {
   }, [postComment]);
 
   console.log(postComment);
-
-  let averageStar = 0;
-
+let avar=0
+let avarageStar=0;
+ listCommentRoom.map((item: { saoBinhLuan: number; length: () => number; })=>{
+  avar+=item.saoBinhLuan;
+ 
+  })
   const commentSlice = Yup.object().shape({
     textarea: Yup.string().required("Nhập bình luận là bắt buộc"),
   });
   return (
     <div className="mx-auto mt-8 border-t border-solid py-5 2xl:w-3/4">
-      <h3 className="mb-6 text-3xl font-semibold">Khách hàng đánh giá</h3>
+      <h3 className="mb-6 text-3xl font-semibold"> {t("pageDetail.customerReviews")}</h3>
       <div className="border-b border-solid">
-        <p>Tổng quan</p>
+        <p> {t("pageDetail.overview")}</p>
         <div className="flex items-center gap-1 ">
-          <h3 className="text-[2.5rem] ">{averageStar}</h3>
+          <h3 className="text-[2.5rem] ">{avarageStar}</h3>
           <FaStar />
           <FaStar />
           <FaStar />
@@ -68,7 +73,7 @@ function CommentDetail() {
           <FaStar />
         </div>
 
-        <p className="mb-3">({listCommentRoom.length} đánh giá)</p>
+        <p className="mb-3">({listCommentRoom.length} {t("pageDetail.evaluate")})</p>
       </div>
 
       <PageCommentDetail data={listCommentRoom} itemsPerPage={6} />
@@ -146,7 +151,7 @@ function CommentDetail() {
               <div className="text-right">
                 {user ? (
                   <ButtonPrimary width="150px" height={3.5} type="submit">
-                    Thêm Bình Luận
+                  {t("pageDetail.addComment")}
                   </ButtonPrimary>
                 ) : (
                   <ButtonPrimary
@@ -157,7 +162,7 @@ function CommentDetail() {
                       navigate(`/${AUTH_PATH}/signin`);
                     }}
                   >
-                    Thêm Bình Luận
+                   {t("pageDetail.addComment")}
                   </ButtonPrimary>
                 )}
               </div>

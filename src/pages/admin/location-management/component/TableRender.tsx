@@ -40,13 +40,7 @@ function TableRender() {
 
       sorter: (a: any, b: any) => a.id - b.id,
     },
-    {
-      title: "Mã Phòng",
-      dataIndex: "id",
-      key: "id",
-
-      sorter: (a: any, b: any) => a.id - b.id,
-    },
+ 
     {
       title: "Hinh Ảnh",
       dataIndex: "hinhAnh",

@@ -12,7 +12,8 @@
        "endDay":"Ngày về",
        "addGuests":"Số khách",
        "look":"Tìm kiếm",
-       "love":"Yêu thích"
+       "love":"Yêu thích",
+       "share":"Chia sẽ"
        
     },
     "footer":{
@@ -35,6 +36,68 @@
         "discount":"Bạn muốn mã giảm giá hãy đăng kí ngay tại đây",
         "email":"Vui lòng nhập email",
         "follow":"Theo dõi chúng tôi qua"
-    }
+    },
+    "common": {
+        "house": "Toàn bộ nhà",
+        "live": "Chỗ ở độc đáo",
+        "FarmAndNature": "Trang trại và thiên nhiên",
+        "pets": "Mang thú cưng"
+      },
+      "pageListRoom":{
+        "Over":"Hơn 300 chỗ ở ",
+        "Accommodation":"Chỗ ở trong khu vực bản đồ đã chọn",
+        "Type":"Loại nơi ở",
+        "price":"Giá",
+        "bookNow":"Đặt ngay",
+        "bookRooms":"Đặt Phòng và phòng ngủ",
+        "otherFilters":"Bộ lọc khác"
+
+      },
+      "pageDetail":{
+  "houseSungwon":"Entire apartment. Owner Sungwon",
+  "Room":"Phòng trong một căn hộ chung cư",
+  "titleRoom":"Phòng riêng của bạn trong nhà, cộng với quyền sử dụng không gian chung.",
+  "location":"Vị trí tuyệt vời",
+  "titleLocation":"100% khách gần đây đã xếp hạng 5 sao cho địa điểm này.",
+  "check-in":"Trải nghiệm check-in tuyệt vời",
+  "titleCheck-in":"100% khách gần đây đã xếp hạng 5 sao cho quá trình nhận phòng",
+  "cancellation":"Hủy miễn phí trước ngày 19 tháng 9",
+  "titleCancellation":"Được hoàn lại tiền đầy đủ nếu bạn thay đổi ý định.",
+  "translated":"Một số thông tin đã được dịch tự động.",
+  "translatedB":"Hiển thị nguyên bản",
+  "aboutLocation":"Về địa điểm này",
+  "placeHave":"Địa điểm này có gì?",
+  "customerReviews":"Khách hàng đánh giá",
+  "overview":"Tổng quan",
+  "evaluate":"đánh giá",
+  "more":"Xem Thêm",
+  "chargedYet":"Bạn sẽ chưa bị tính phí",
+  "deal":"Giảm Giá",
+  "night":"đêm",
+        "discountCode":"Nhập mã giảm giá",
+        "addComment":"Thêm Bình Luận"
+
+
+
+},
+      "pagePay":{
+        "confirmation":"Xác nhận và thanh toán",
+        "yourTrip":"Chuyến đi của bạn",
+        "day":"Ngày",
+        "to":"tới",
+        "guest":"Khách",
+        "choosePayment":"Chọn cách thanh toán",
+        "paymentATM":"Thanh toán qua ATM",
+        "paymentMoMo":"Thanh toán qua MOMO",
+        "billingInformation":"Thông tin thanh toán",
+        "fullName":"Họ Tên",
+        "phone":"SDT",
+        "detailPrice":"Chi tiết giá",
+        "total":"Tổng cộng",
+        "back":"Quay lại",
+        "confirm":"Xác Nhận"
+
+      }
+
    
 }

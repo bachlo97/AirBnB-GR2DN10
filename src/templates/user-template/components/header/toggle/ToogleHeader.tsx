@@ -4,16 +4,9 @@ import "./Toggle.css";
 import { Switch } from "antd";
 import i18n from "@/components/locales/i18n";
 import { TextPrimary } from "@/components/style-compoment/StyleCompoment";
+import { usetransHook } from "./hooks/useTransHook";
 function ToogleHeader() {
-  const [on, setOn] = useState(false);
-  useEffect(() => {
-    i18n.changeLanguage("vi");
-  }, []);
-  const onChange = (checked: any) => {
-    const value = checked ? "en" : "vi";
-    setOn(checked);
-    i18n.changeLanguage(value);
-  };
+const {on,onChange}=usetransHook();
 
   return (
     <div className="flex gap-3 md:text-[15px] lg:text-[17px]">

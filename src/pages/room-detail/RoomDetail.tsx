@@ -13,12 +13,14 @@ import { GetRoomDetail } from '@/services/room-detail/RoomDetail.service';
 import { Container } from '@/components/style-compoment/Container';
 import RoomDetailLoading from './loading/RoomDetailLoading';
 import CommentDetail from './comment/CommentDetail';
+import { useTranslation } from 'react-i18next';
 
 type Props = object
 
 const RoomDetail = (_props: Props) => {
   const { id } = useParams();
-    
+  const { t } = useTranslation();
+
   //@ts-ignore
   const [dataRoomDetail,setDataRoomDetail]=useState<TRoomDetail>({})
   useEffect(()=>{
@@ -57,13 +59,13 @@ const RoomDetail = (_props: Props) => {
         <div className='flex gap-4'>
           <div className='flex gap-3 items-center'>
             <IoShareOutline />
-            Chia sẽ
-          </div>
+            {t("header.share")}
+            </div>
           <div className='flex gap-3 items-center'>
             <CiHeart />
 
-            Yêu thích
-          </div>
+            {t("header.love")}
+            </div>
         </div>
 
       </div>

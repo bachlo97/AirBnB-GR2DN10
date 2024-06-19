@@ -4,9 +4,12 @@ import { IoIosArrowBack } from 'react-icons/io'
 import usePayHook from './hooks/usePayHook'
 import { useAppSelector } from '@/redux/hooks';
 import { ROOM_DETAIL_PATH } from '@/router/router.config';
+import { useTranslation } from "react-i18next";
 
 
 function Pay() {
+  const { t } = useTranslation();
+
  const {countDay,user,dateRoom,payRoom,navigate,handleSubmit}=usePayHook();
  const roomID: any = useAppSelector(
   (state) => state.GetCartsRoomSlice.idRoom,
@@ -19,7 +22,7 @@ function Pay() {
         <h3 className='text-[2.3rem] font-bold flex items-center gap-3'>
         <IoIosArrowBack className='text-[1.8rem]'/>
 
-          Xác nhận và thanh toán</h3>
+         {t("pagePay.confirmation")}</h3>
         <div className="flex gap-[5%] flex-wrap gap mt-3">
         <div className='md:hidden sm:w-[100%] md:w-[35%] h-[300px] border border-solid border-gray-400 rounded-[1rem] p-8 mb-5'>
            <div className='flex gap-4 border-b border-solid border-gray-400 pb-7'>
@@ -31,15 +34,15 @@ function Pay() {
             </div>
            </div>
            <div className='border-b border-solid border-gray-400 py-7'>
-            <h4 className='font-bold text-[1.8rem] mb-3'>Chi tiết giá</h4>
+            <h4 className='font-bold text-[1.8rem] mb-3'>{t("pagePay.detailPrice")}</h4>
             <div className='flex justify-between mb-2'>
-                <p>20,50 CAD x 5 đêm</p>
-                <p>$102,50 CAD</p>
+                <p>${payRoom.priceRoom} x {countDay} đêm</p>
+                <p>${payRoom.priceRoom*countDay}</p>
             </div>
           
             <div className='flex justify-between'>
-                <p>Mã Giảm Giá(nếu có)</p>
-                <p>-30$</p>
+                <p>{t("pageDetail.deal")}</p>
+                <p>{payRoom.discount}%</p>
             </div>
 
           
@@ -47,36 +50,36 @@ function Pay() {
            </div>
       <div>
         <div className='flex justify-between  py-7'>
-          <p className='font-bold text-[1.6rem]'>Tổng cộng:</p>
+          <p className='font-bold text-[1.6rem]'>{t("pagePay.total")}:</p>
           <p>$116,97 CAD</p>
         </div>
       </div>
         </div>   
           <div className='sm:w-[100%] md:w-[50%]'>
-            <h4 className='text-[1.9rem] font-bold'>Chuyến đi của bạn</h4>
+            <h4 className='text-[1.9rem] font-bold'> {t("pagePay.yourTrip")}</h4>
             <div>
                 <p className='mt-5'>
-                    <span className='text-[1.8rem] font-bold'>Ngày:</span>
-                   {dateRoom.startDate} tới {dateRoom.endDate}
+                    <span className='text-[1.8rem] font-bold'> {t("pagePay.day")}:</span>
+                   {dateRoom.startDate}  {t("pagePay.to")} {dateRoom.endDate}
                 </p>
             </div>
             <div>
                 <p className='my-5'>
-                    <span className='text-[1.8rem] font-bold'>Khách:</span>
+                <span className='text-[1.8rem] font-bold'> {t("pagePay.guest")}:</span>
                    {dateRoom.customers}
                 </p>
             </div>
             <hr />
             <div className='my-5'>
-                <h4 className='text-[1.9rem] font-bold'>Chọn cách thanh toán</h4>
+                <h4 className='text-[1.9rem] font-bold'> {t("pagePay.choosePayment")}</h4>
             <form action="">
                 <div className='flex gap-3 mt-3'>
                             <input type="radio" name='check'/>
-                <label htmlFor="">Thanh toán qua ATM</label>
+                <label htmlFor=""> {t("pagePay.paymentATM")}</label>
                 </div>
                 <div className='flex gap-3 mt-3'>
                             <input type="radio" name='check'/>
-                <label htmlFor="">Thanh toán qua MOMO</label>
+                <label htmlFor="">T {t("pagePay.paymentMoMo")}</label>
                 </div>
         
             </form>
@@ -84,14 +87,14 @@ function Pay() {
             
             <hr />
             <div className='mt-5'>
-                <h4 className='text-[1.9rem] font-bold'>Thông tin thanh toán</h4>
+                <h4 className='text-[1.9rem] font-bold'>  {t("pagePay.billingInformation")}</h4>
             <div className="groupt-form mt-5">
-                <label htmlFor="" className='block mb-3'>Họ Tên</label>
+                <label htmlFor="" className='block mb-3'>  {t("pagePay.fullName")}</label>
                 <input type="text" value={user.name} className='p-3 w-[100%]' disabled/>
               
             </div>
             <div className="groupt-form mt-5">
-                <label htmlFor="" className='block mb-3'>SDT</label>
+                <label htmlFor="" className='block mb-3'>  {t("pagePay.phone")}</label>
                 <input type="text"  value={user.phone} className='p-3 w-[100%]' disabled/>              
             </div>
             <div className='flex justify-between'>
@@ -99,7 +102,7 @@ function Pay() {
             onClick={()=>{
               navigate(`/${ROOM_DETAIL_PATH}/${roomID}`)
             }}
-            >Quay lại</ButtonPrimaryTwo>
+            >{t("pagePay.back")}</ButtonPrimaryTwo>
             <ButtonPrimary width='10rem' height={3.5} className='my-6'
             onClick={()=>{
               handleSubmit();
@@ -107,7 +110,7 @@ function Pay() {
           
             }}
        
-            >Xác Nhận</ButtonPrimary>
+            >{t("pagePay.confirm")}</ButtonPrimary>
 
             </div>
             </div>
@@ -122,14 +125,14 @@ function Pay() {
             </div>
            </div>
            <div className='border-b border-solid border-gray-400 py-7'>
-            <h4 className='font-bold text-[1.8rem] mb-3'>Chi tiết giá</h4>
+            <h4 className='font-bold text-[1.8rem] mb-3'>{t("pagePay.detailPrice")}</h4>
             <div className='flex justify-between mb-2'>
                 <p>${payRoom.priceRoom} x {countDay} đêm</p>
                 <p>${payRoom.priceRoom*countDay}</p>
             </div>
           
             <div className='flex justify-between'>
-                <p>Mã Giảm Giá(nếu có)</p>
+            <p>{t("pageDetail.deal")}</p>
                 <p>{payRoom.discount}</p>
             </div>
 
@@ -138,7 +141,7 @@ function Pay() {
            </div>
       <div>
         <div className='flex justify-between  py-7'>
-          <p className='font-bold text-[1.6rem]'>Tổng cộng:</p>
+          <p className='font-bold text-[1.6rem]'>{t("pagePay.total")}:</p>
           <p>${payRoom.priceRoom*countDay*(100-payRoom.discount)/100}</p>
         </div>
       </div>

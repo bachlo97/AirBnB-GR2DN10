@@ -12,8 +12,8 @@
         "endDay":"End day",
        "addGuests":"Add guests"  ,
          "look":"Search",
-       "love":"Love"
-      
+       "love":"Love",
+       "share":"Share"
         
     },
 
@@ -37,8 +37,72 @@
         "discount":"If you want a discount code, register right here",
         "email":"Please enter your email",
         "follow":"Follow us over"
-    }
-    
+    },
+ 
+  "common": {
+    "house": "Entire House",
+    "live": "Unique Accommodation",
+    "FarmAndNature": "Farms and Nature",
+    "pets": "Bring Your Pets"
+  
+},
+"pageListRoom":{
+  "Over":"Over 300 accommodations ",
+  "Accommodation":"Accommodation in the selected map area",
+  "Type":"Type of accommodation",
+  "price":"price",
+  "bookNow":"Book now",
+  "bookRooms":"Book Rooms and bedrooms",
+  "otherFilters":"Other filters"
+},
+"pageDetail":{
+  "houseSungwon":"Entire apartment. Owner Sungwon",
+  "Room":"Room in an apartment",
+  "titleRoom":"Your own room in the house, plus access to shared spaces.",
+  "location":"Great location",
+  "titleLocation":"100% of recent guests gave this location a 5-star rating.",
+  "check-in":"Great check-in experience",
+  "titleCheck-in":"100% of recent guests gave the check-in process a 5-star rating.",
+  "cancellation":"Free cancellation before September 19",
+  "titleCancellation":"Get a full refund if you change your mind.",
+  "translated":"Some information has been automatically translated",
+  "translatedB":"Original display",
+  "aboutLocation":"About this location",
+  "placeHave":"What does this place have?",
+  "customerReviews":"Customer reviews",
+  "overview":"overview",
+  "evaluate":"Evaluate",
+  "more":"See more",
+  "chargedYet":"You won't be charged yet",
+  "deal":"Discount",
+   "night":"Night",
+   "discountCode":"Enter discount code",
+    "addComment":"Add Comment"
+
+
+
+
+},
+"pagePay":{
+  "confirmation":"Confirmation and payment",
+  "yourTrip":"Your trip",
+  "day":"day",
+  "to":"to",
+  "guest":"Guest",
+  "choosePayment":"Choose payment method",
+  "paymentATM":"Payment via ATM",
+  "paymentMoMo":"Payment via MOMO",
+  "billingInformation":"Billing Information",
+  "fullName":"Full Name",
+  "phone":"Phone number",
+  "detailPrice":"Price detail",
+  "total":"Total",
+  "back":"Come back",
+  "confirm":"Confirm"
+
+
+  
+} 
   
 
 
