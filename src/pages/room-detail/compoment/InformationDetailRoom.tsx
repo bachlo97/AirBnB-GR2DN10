@@ -183,7 +183,7 @@ function InformationDetailRoom(props: Props) {
       </div>
 
       <div
-        className=" h-[430px] border border-solid border-white  p-8 2sm:w-[40%] md:sticky md:right-0 md:top-36 lg:w-[35%] xl:w-[32%] 2xl:w-[38%] "
+        className=" h-[435px] border border-solid border-white  p-8 2sm:w-[40%] md:sticky md:right-0 md:top-36 lg:w-[35%] xl:w-[32%] 2xl:w-[38%] "
         style={{ boxShadow: " rgba(16, 20, 24, 0.2) 0px 8px 24px" }}
         id="dateSearchbar"
       >
@@ -313,9 +313,11 @@ function InformationDetailRoom(props: Props) {
                       
                     } else if(inputDiscount?.value==''){
                       setErrorDisnount("Bạn bỏ trống mã giảm giá")
+                      setDiscount(0);
 
                     }else{
                       setErrorDisnount("Bạn nhập không đúng mã giảm giá")
+                      setDiscount(0);
                     }
                     
                     
