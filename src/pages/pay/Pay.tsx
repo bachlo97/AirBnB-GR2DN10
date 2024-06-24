@@ -133,7 +133,7 @@ function Pay() {
           
             <div className='flex justify-between'>
             <p>{t("pageDetail.deal")}</p>
-                <p>{payRoom.discount}</p>
+                <p>{payRoom.discount}%</p>
             </div>
 
           

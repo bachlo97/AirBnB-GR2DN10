@@ -44,7 +44,8 @@ function InformationDetailRoom(props: Props) {
   const [countClient, setCountClient] = useState(1);
 
   const [countDay, setCountDay] = useState(0);
-  const [discount] = useState(0);
+  const [discount,setDiscount] = useState(0);
+  const [errorDisnount,setErrorDisnount]=useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const user: any = useAppSelector((state) => state.authReducer.user);
 
@@ -300,12 +301,31 @@ function InformationDetailRoom(props: Props) {
                     type="text"
                     placeholder= {t("pageDetail.discountCode")}
                     className="h-[35px] w-[90%] border border-solid border-gray-400 px-3 outline-none"
+                    id="inputDiscount"
                   />
-                  <ButtonPrimary height={3.5} width="30%">
+                  <ButtonPrimary height={3.5} width="30%"
+                  onClick={(e)=>{
+                    e.preventDefault();
+                    const inputDiscount:any=document.querySelector("#inputDiscount");
+                    if(inputDiscount?.value=='khaitruong'){
+                      setDiscount(30);
+                      setErrorDisnount("")
+                      
+                    } else if(inputDiscount?.value==''){
+                      setErrorDisnount("Bạn bỏ trống mã giảm giá")
+
+                    }else{
+                      setErrorDisnount("Bạn nhập không đúng mã giảm giá")
+                    }
+                    
+                    
+                  }}
+                  >
                   {t("pagePay.confirm")}
                   </ButtonPrimary>
+                
                 </form>
-
+  <p className="text-red-500 text-[15px]">{errorDisnount}</p>
                 <div className="flex justify-between">
                   <p>{t("pageDetail.deal")}</p>
                   <TextPrimary>-{discount}%</TextPrimary>
