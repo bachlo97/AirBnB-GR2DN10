@@ -26,6 +26,10 @@ function TableRoom() {
  
     },
     {
+      title: "Mã Phòng",
+      dataIndex: "id",
+    },
+    {
       title: "Hinh Ảnh",
       dataIndex: "hinhAnh",
       render: (imageUrl: string) => (
