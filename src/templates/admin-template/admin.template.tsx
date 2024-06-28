@@ -83,7 +83,7 @@ const AdminTemplate: React.FC = () => {
     {
       key: "2",
       danger: true,
-      label: <button onClick={handlelogout}>Đăng xuất</button>,
+      label: <p onClick={handlelogout}>Đăng xuất</p>,
     },
   ];
 
