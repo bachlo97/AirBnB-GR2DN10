@@ -132,7 +132,7 @@ function TableRender() {
       
       <Search
         className="mb-4"
-        placeholder="Mời bạn nhập tên phòng"
+        placeholder="Mời bạn nhập tên vị trí"
         allowClear
         enterButton={<IoSearchOutline />}
         size="large"

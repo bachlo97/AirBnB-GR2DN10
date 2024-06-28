@@ -87,7 +87,7 @@ export const userValidator = {
     .matches(/^\d{10,11}$/, "invalid")
     .required("Required"),
   birthday: Yup.date()
-    .min(new Date(new Date().getFullYear() - 150, 0, 1), "must be over 150 yrs")
+    .min(new Date(new Date().getFullYear() - 150, 0, 1), "must be under 150 yrs")
     .max(new Date(new Date().getFullYear() - 4, 11, 31), "must be over 3 yrs")
     .required("required"),
 };
